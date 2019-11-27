@@ -34,7 +34,7 @@ class LoginComponent extends Component {
 //    }
 //    return  post(url, formData,config)
 //  }
-  
+  /*
   state = {
     name: '',
   }
@@ -48,11 +48,25 @@ class LoginComponent extends Component {
     const user= {
       name: this.state.name
     };
-    console.log(user);
     axios.post(`${axios.defaults.baseURL}/people`, { user })
       .then(res => {
         console.log(res);
       })
+  }*/
+  
+  state = {
+    name: '',
+    password: '',
+  }
+  
+  handleSubmit(e) { // e (event) - параметр который передается при субмите (можно написать любое слово)
+    e.preventDefault(); // сбросили значение по умолчанию
+    console.log(e);
+  }
+  
+  handleChange = event => {
+    console.log(event.target.value);  //event.target - это сам input элемент
+    this.setState({name: event.target.value})
   }
   
   close() {
@@ -69,7 +83,7 @@ class LoginComponent extends Component {
           <div className="login-container__form">
             <input type="name" id="login" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
             <label htmlFor="login" className="login-container__label">Логин</label>
-            <input type="password" id="password" className="login-container__input" maxLength="20"/>
+            <input type="password" id="password" className="login-container__input" maxLength="20" required/>
             <label htmlFor="password" className="login-container__label">пароль</label>
             <p className="login-container__incorrect">Неверный логин или пароль</p>
             <a href="#" className="login-container__remember-password">Не помню пароль</a>
