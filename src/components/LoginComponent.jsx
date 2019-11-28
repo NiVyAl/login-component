@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios, { post } from 'axios';
+import url from '../url.js'
 
 class LoginComponent extends Component {
 //  constructor(props) {
@@ -59,11 +60,6 @@ class LoginComponent extends Component {
     password: '',
   }
 
-  handleSubmit(e) { // e (event) - параметр который передается при субмите (можно написать любое слово)
-    e.preventDefault(); // сбросили значение по умолчанию
-//    console.log(this.state.name);
-  }
-
   handleChange = event => {
 //    console.log(event.target.id);  //event.target - это сам input элемент
 		if (event.target.id === "login") {
@@ -73,8 +69,19 @@ class LoginComponent extends Component {
 		if (event.target.id === "password") {
 			this.setState({password: event.target.value})
 		}
-		console.log(this.State);
-
+  }
+  
+  handleSubmit = async event => { // e (event) - параметр который передается при субмите (можно написать любое слово)
+    event.preventDefault(); // сбросили значение по умолчанию
+//    axios.post(url).then(resp => {
+//      console.log(resp.data);
+//    })
+    try {
+      const response = await axios.post(url, { posted_data: this.state });
+      console.log('Returned data:', response);
+    } catch (e) {
+      console.log(`Axios request failed: ` + e);
+    }
   }
 
   close() {
