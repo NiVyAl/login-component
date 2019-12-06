@@ -3,65 +3,12 @@ import axios, { post } from 'axios';
 import url from '../url.js'
 
 class LoginComponent extends Component {
-//  constructor(props) {
-//    super(props);
-//    this.state ={
-//      file:null
-//    }
-//    this.onFormSubmit = this.onFormSubmit.bind(this)
-//    this.onChange = this.onChange.bind(this)
-////    this.fileUpload = this.fileUpload.bind(this)
-//  }
-//
-//  onFormSubmit(e){
-//    e.preventDefault() // Stop form submit
-//    this.fileUpload(this.state.file).then((response)=>{
-//      console.log(response.data);
-//    })
-//  }
-//
-//  onChange(e) {
-//    this.setState({file:e.target.files[0]})
-//  }
-//
-//  fileUpload(file){
-//    const url = 'http://example.com/file-upload';
-//    const formData = new FormData();
-//    formData.append('file',file)
-//    const config = {
-//        headers: {
-//            'content-type': 'multipart/form-data'
-//        }
-//    }
-//    return  post(url, formData,config)
-//  }
-  /*
-  state = {
-    name: '',
-  }
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const user= {
-      name: this.state.name
-    };
-    axios.post(`${axios.defaults.baseURL}/people`, { user })
-      .then(res => {
-        console.log(res);
-      })
-  }*/
-
   state = {
     name: '',
     password: '',
   }
 
   handleChange = event => {
-//    console.log(event.target.id);  //event.target - это сам input элемент
 		if (event.target.id === "login") {
 			this.setState({name: event.target.value})
 		}
@@ -73,9 +20,6 @@ class LoginComponent extends Component {
   
   handleSubmit = async event => { // e (event) - параметр который передается при субмите (можно написать любое слово)
     event.preventDefault(); // сбросили значение по умолчанию
-//    axios.post(url).then(resp => {
-//      console.log(resp.data);
-//    })
     try {
       const response = await axios.post(url, { posted_data: this.state });
       console.log('Returned data:', response);

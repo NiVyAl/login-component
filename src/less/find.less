@@ -1,0 +1,39 @@
+.find {
+	position: relative;
+}
+
+.find::before {
+	width: 15px;
+	height: 15px;
+	border: 2px solid @main-color;
+	content: "";
+	position: absolute;
+	display: block;
+	border-radius: 50%;
+  top: 10px;
+  left: 15px;
+}
+
+.find::after {
+	width: 12px;
+	height: 2px;
+	background-color: @main-color;
+	content: "";
+	position: absolute;
+	display: block;
+	transform: rotate(40deg);
+  left: 30px;
+  bottom: 14px;
+}
+
+.find__input {
+	font-size: @button-font-size;
+	padding: @button-padding-vert;
+	border-radius: @button-radius;
+	border: 2px solid @main-color;
+	width: 240px;
+  outline: none;
+  padding-left: 50px;
+	margin: 0;
+//	background-color: #f1f3f4;
+}
