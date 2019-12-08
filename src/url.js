@@ -1,3 +1,3 @@
 //const url = "http://webcode.me";
-const url = "http://localhost:3001";
+const url = "https://redux-oauth-backend.herokuapp.com";
 export default url;
