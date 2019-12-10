@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import logo from '../img/logo.png';
+import { store } from '../store';
 import userAvatar from '../img/user-icon.png'
 
 class HeaderComponent extends Component {
   logOpen() {
-    console.log('event');
+    store.dispatch( {type: "open"});
   }
   
   render() {
