@@ -20,8 +20,9 @@ class LoginComponent extends Component {
   
   handleSubmit = async event => {
     event.preventDefault();
+    console.log(this.state);
     try {
-      const response = await axios.post(url, { posted_data: this.state });
+      const response = await axios.post(""+url, this.state);
       console.log('Returned data:', response);
     } catch (e) {
       console.log(`Axios request failed: ` + e);
