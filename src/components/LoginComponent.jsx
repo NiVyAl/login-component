@@ -55,7 +55,7 @@ class LoginComponent extends Component {
           </div>
           <div className="login-container__buttons">
             <button type="submit" className="login-container__button button login-container__button--login">Войти</button>
-            <a href="#" className="login-container__button button login-container__button--registration">Зарегистрироваться</a>
+            <a href="/registration" className="login-container__button button login-container__button--registration">Зарегистрироваться</a>
           </div>
         </form>
         {/* <ReactReduxContext.Consumer> // store прям в разметке (нужно в заголовке import { ReactReduxContext } from 'react-redux')

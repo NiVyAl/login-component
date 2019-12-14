@@ -2,9 +2,11 @@ import React from 'react';
 import './style.less';
 import LoginComponent from './components/LoginComponent.jsx'
 import HeaderComponent from './components/HeaderComponent.jsx'
+import MainComponent from './components/MainComponent.jsx'
+import RegistrationComponent from './components/RegistrationComponent.jsx'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { store } from './store'
 
-console.log(store.getState());
 function App() {
   var isOpen;
   if (store.getState() == "open") {
@@ -16,10 +18,17 @@ function App() {
   }
   return (
     <div>
-      <HeaderComponent/>
-      {store.getState() == "open" &&
-      <LoginComponent/>
-      }
+      <Router>
+        <HeaderComponent/>
+        {store.getState() == "open" &&
+        <LoginComponent/>
+        }
+
+        <Switch>
+          <Route path="/" exact component={MainComponent}/>
+          <Route path="/registration" component={RegistrationComponent}/>
+        </Switch>
+      </Router>
     </div>
   );
 }
