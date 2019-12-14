@@ -47,13 +47,13 @@ class RegistrationComponent extends Component{
             <div className="registration">
                 <h2 className="registration__title">Регистрация</h2>
                 <form onSubmit={this.saveUser}>
-                    <input type="name" id="nameR" className="login-container__input" maxLength="20" onChange={this.handleChange}/>
-                    <label htmlFor="name" className="login-container__label">Имя</label>
+                    <input type="name" id="nameR" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
+                    <label htmlFor="nameR" className="login-container__label">Имя</label>
 
-                    <input type="name" id="surnameR" className="login-container__input" maxLength="20" onChange={this.handleChange}/>
+                    <input type="name" id="surnameR" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
                     <label htmlFor="surnameR" className="login-container__label">Фамилия</label>
 
-                    <input type="name" id="middleNameR" className="login-container__input" maxLength="20" onChange={this.handleChange}/>
+                    <input type="name" id="middleNameR" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
                     <label htmlFor="middleNameR" className="login-container__label">Отчество</label>
 
                     <input type="name" id="name" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
@@ -65,10 +65,10 @@ class RegistrationComponent extends Component{
                     <input type="text" id="country" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
                     <label htmlFor="country" className="login-container__label">Страна</label>
 
-                    <input type="text" id="university" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
+                    <input type="text" id="university" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
                     <label htmlFor="university" className="login-container__label">Университет</label>
 
-                    <input type="email" id="email" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
+                    <input type="email" id="email" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
                     <label htmlFor="email" className="login-container__label">email</label>
 
                     <input type="password" id="password" className="login-container__input" maxLength="20" onChange={this.handleChange} autoComplete="new-password" required/>

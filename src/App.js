@@ -20,9 +20,7 @@ function App() {
     <div>
       <Router>
         <HeaderComponent/>
-        {store.getState() == "open" &&
         <LoginComponent/>
-        }
 
         <Switch>
           <Route path="/" exact component={MainComponent}/>

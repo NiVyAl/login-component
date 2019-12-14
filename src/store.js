@@ -18,7 +18,7 @@ function counter(state = 0, action) {
  
 export let store = createStore(loginToggle);
 
-store.subscribe(() => console.log(store.getState())); // подписались на событие (при изменении срабатывает console.log)
+// store.subscribe(() => console.log(store.getState())); // подписались на событие (при изменении срабатывает console.log)
 // store.dispatch({ type: 'INCREMENT' }); 
 // store.dispatch({ type: 'INCREMENT' });
 // store.dispatch({ type: 'DECREMENT' });

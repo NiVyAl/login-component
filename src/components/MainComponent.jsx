@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class MainComponent extends Component {
     render() {
         return(
-            <p>Главная страница</p>
+            <p class="main__text">Главная страница</p>
         )
     }
 }
