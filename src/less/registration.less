@@ -1,0 +1,47 @@
+.registration {
+	max-width: 700px;
+	padding: 30px 30px;
+	background-color: white;
+	margin: 30px auto;
+	border-radius: @window-radius;
+	box-shadow: 0 0px 2.5px -1.5px #34495e;
+}
+
+.registration__title {
+	font-size: 30px;
+	margin-top: 0;
+	font-weight: normal;
+	margin-bottom: 40px;
+}
+
+.registration__button {
+	margin: 0 auto;
+	margin-top: 15px;
+}
+
+.label--active {
+	transform: scale(0.83);
+	top: -47px;
+}
+
+#nameR:valid ~ .login-container__label[for="nameR"],
+#surnameR:valid ~ .login-container__label[for="surnameR"],
+#middleNameR:valid ~ .login-container__label[for="middleNameR"],
+#surname:valid ~ .login-container__label[for="surname"],
+#country:valid ~ .login-container__label[for="country"],
+#university:valid ~ .login-container__label[for="university"],
+#email:valid ~ .login-container__label[for="email"],
+#password:valid ~ .login-container__label[for="password"],
+#name:valid ~ .login-container__label[for="name"],
+#nameR:focus ~ .login-container__label[for="nameR"],
+#surnameR:focus ~ .login-container__label[for="surnameR"],
+#middleNameR:focus ~ .login-container__label[for="middleNameR"],
+#surname:focus ~ .login-container__label[for="surname"],
+#country:focus ~ .login-container__label[for="country"],
+#university:focus ~ .login-container__label[for="university"],
+#email:focus ~ .login-container__label[for="email"],
+#password:focus ~ .login-container__label[for="password"],
+#name:focus ~ .login-container__label[for="name"],{
+  transform: scale(0.83);
+	top: -47px;
+}

@@ -38,7 +38,7 @@
 	margin: auto;
 	width: 400px;
 	height: 500px;
-	border-radius: 5px;
+	border-radius: @window-radius;
 	box-shadow: 0 0px 5px -1.5px #34495e;
 	box-sizing: border-box;
 	padding: 30px 30px;
@@ -101,9 +101,9 @@
 }
 
 #login:focus ~ .login-container__label[for="login"],
-#password:focus ~ .login-container__label[for="password"],
+#passwordLog:focus ~ .login-container__label[for="passwordLog"],
 #login:valid ~ .login-container__label[for="login"],
-#password:valid ~ .login-container__label[for="password"]{
+#passwordLog:valid ~ .login-container__label[for="passwordLog"]{
   transform: scale(0.83);
 	top: -47px;
 }
