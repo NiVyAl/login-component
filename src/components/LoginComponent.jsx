@@ -4,6 +4,7 @@ import url from '../url.js'
 import { store } from '../store';
 
 class LoginComponent extends Component {
+
   constructor(props) {
     super(props);
     
@@ -27,6 +28,7 @@ class LoginComponent extends Component {
     }
   }
   
+
   handleSubmit = async event => { 
     event.preventDefault();
     let user = {};
