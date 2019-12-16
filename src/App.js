@@ -3,6 +3,7 @@ import './style.less';
 import LoginComponent from './components/LoginComponent.jsx'
 import HeaderComponent from './components/HeaderComponent.jsx'
 import MainComponent from './components/MainComponent.jsx'
+import RegistrationConfirmComponent from './components/RegistrationConfirmComponent.jsx'
 import RegistrationComponent from './components/RegistrationComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { store } from './store'
@@ -25,6 +26,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={MainComponent}/>
           <Route path="/registration" component={RegistrationComponent}/>
+          <Route path="/registrationConfirm" component={RegistrationConfirmComponent}/>
         </Switch>
       </Router>
     </div>
