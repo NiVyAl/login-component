@@ -45,7 +45,7 @@ class RegistrationComponent extends Component{
     render() {
         return(
             <div className="registration">
-                <h2 className="registration__title">Регистрация</h2>
+                <h2 className="registration__title sub-title">Регистрация</h2>
                 <form onSubmit={this.saveUser}>
                     <input type="name" id="nameR" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
                     <label htmlFor="nameR" className="login-container__label">Имя</label>
@@ -73,35 +73,6 @@ class RegistrationComponent extends Component{
 
                     <input type="password" id="password" className="login-container__input" maxLength="20" onChange={this.handleChange} autoComplete="new-password" required/>
                     <label htmlFor="password" className="login-container__label">Пароль</label>
-                {/* <div className="form-group">
-                    <label>Имя:</label>
-                    <input type="text" placeholder="username" name="username" className="form-control" value={this.state.username} onChange={this.onChange} required/>
-                </div>
-
-                <div className="form-group">
-                    <label>Фамилия</label>
-                    <input type="password" placeholder="password" name="password" className="form-control" value={this.state.password} onChange={this.onChange} required/>
-                </div>
-
-                <div className="form-group">
-                    <label>Отчество</label>
-                    <input placeholder="First Name" name="firstName" className="form-control" value={this.state.firstName} onChange={this.onChange} required/>
-                </div>
-
-                <div className="form-group">
-                    <label>Имя (латиницей)</label>
-                    <input placeholder="Last name" name="lastName" className="form-control" value={this.state.lastName} onChange={this.onChange}/>
-                </div>
-
-                <div className="form-group">
-                    <label>Age:</label>
-                    <input type="number" placeholder="age" name="age" className="form-control" value={this.state.age} onChange={this.onChange}/>
-                </div>
-
-                <div className="form-group">
-                    <label>Salary:</label>
-                    <input type="number" placeholder="salary" name="salary" className="form-control" value={this.state.salary} onChange={this.onChange}/>
-                </div> */}
 
                 <button className="button registration__button" type="submit">Зарегистрироваться</button>
             </form>

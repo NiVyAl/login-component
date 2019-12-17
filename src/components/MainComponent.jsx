@@ -5,7 +5,8 @@ class MainComponent extends Component {
         return(
             <div>
                 <p className="main__text">Главная страница</p>
-                <a href="http://localhost:3000/registrationConfirm?token=aa3ff242-2269">подтверждение email</a>
+                <a href="http://localhost:3000/registrationConfirm?token=aa3ff242-2269">подтверждение email</a><br></br>
+                <a href="http://localhost:3000/addArticle/step1">отправка статьи</a>
             </div>
         )
     }

@@ -58,7 +58,7 @@ class LoginComponent extends Component {
         <div className="login-container">
           <div onClick={this.close} className="login-container__background"></div>
           <form className="login-container__window" onSubmit={this.handleSubmit}>
-            <p className="login-container__title">Войти</p>
+            <p className="login-container__title sub-title">Войти</p>
             <div className="login-container__form">
               <input type="name" id="login" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
               <label htmlFor="login" className="login-container__label">email</label>

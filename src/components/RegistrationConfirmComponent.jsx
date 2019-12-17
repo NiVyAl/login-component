@@ -25,11 +25,11 @@ class RegistrationConfirmComponent extends Component {
 			try {
 				const response = await axios.post(url, { data });
 				const responce2 = 200;
-				this.state.isResponce = responce2;
+				this.setState({isResponce: responce2})
 				console.log('Returned data:', response);
 			 } catch (e) {
 				const responce2 = 200;
-				this.state.isResponce = responce2;
+				this.setState({isResponce: responce2})
 				console.log(this.state.isResponce);
 				console.log(`Axios request failed: ` + e);
 			 }
@@ -38,12 +38,14 @@ class RegistrationConfirmComponent extends Component {
 	
 	render() {
 		return(
-			<div onLoad={this.postToken()}>
+			<div>
 				confirm
 				<button onClick={this.postToken}>Отправить</button>
-				<div className="confirm">
+				
+				<div className="confirm window">
 					<h2 className="sub-title confirm__title">Подтверждение email</h2>
-					{this.state.isResponce &&
+					
+					{this.state.isResponce === 200 && 
 						<p className="confirm__text">email подтвержден!</p>
 					}
 					{this.state.isResponce === false &&
