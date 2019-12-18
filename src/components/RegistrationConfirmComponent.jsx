@@ -10,37 +10,40 @@ class RegistrationConfirmComponent extends Component {
 			isResponce: false,
 		}
 	}
-	
-	postToken = async event => {
-		let data = window.location.href;
-		let newData = "";
-		for (let i = 0; i < data.length; i++) {
-			if (data[i] === "=") {
-				newData = data.slice(i+1, data.length);
-				break
+
+	componentDidMount() {
+		console.log("didMount");
+			let data = window.location.href;
+			let newData = "";
+			for (let i = 0; i < data.length; i++) {
+				if (data[i] === "=") {
+					newData = data.slice(i+1, data.length);
+					break
+				}
 			}
-		}
-		console.log(newData);
-		if (newData !== "") {
-			try {
-				const response = await axios.post(url, { data });
-				const responce2 = 200;
-				this.setState({isResponce: responce2})
-				console.log('Returned data:', response);
-			 } catch (e) {
-				const responce2 = 200;
-				this.setState({isResponce: responce2})
-				console.log(this.state.isResponce);
-				console.log(`Axios request failed: ` + e);
-			 }
-		}	
+			console.log(newData);
+			if (newData !== "") {
+				try {
+					const response = axios.post(url, { data });
+					// const responce2 = 200;
+					this.setState({isResponce: response})
+					console.log('Returned data:', response);
+				 } catch (e) {
+					// const responce2 = 200;
+					// this.setState({isResponce: responce})
+					console.log(this.state.isResponce);
+					console.log(`Axios request failed: ` + e);
+				 }
+			}	
 	}
+	
+	
 	
 	render() {
 		return(
 			<div>
-				confirm
-				<button onClick={this.postToken}>Отправить</button>
+				{/* confirm
+				<button onClick={this.postToken}>Отправить</button> */}
 				
 				<div className="confirm window">
 					<h2 className="sub-title confirm__title">Подтверждение email</h2>
@@ -48,7 +51,7 @@ class RegistrationConfirmComponent extends Component {
 					{this.state.isResponce === 200 && 
 						<p className="confirm__text">email подтвержден!</p>
 					}
-					{this.state.isResponce === false &&
+					{this.state.isResponce !== 200 &&
 						<p className="confirm__text">произошла ошибка подтверждения</p>
 					}
 					
