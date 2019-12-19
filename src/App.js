@@ -25,15 +25,17 @@ function App() {
       <Router>
         <HeaderComponent/>
         <LoginComponent/>
-        {/* <SubjectsComponent/> */}
-
-        <Switch>
-          <Route path="/" exact component={MainComponent}/>
-          <Route path="/registration" component={RegistrationComponent}/>
-          <Route path="/registrationConfirm" component={RegistrationConfirmComponent}/>
-          <Route path="/addArticle/step1" component={AddArticle1Component}/>
-          <Route path="/addArticle/step2" component={AddArticle2Component}/>
-        </Switch>
+        
+        <div className="main">
+          <SubjectsComponent/>
+          <Switch>
+            <Route path="/" exact component={MainComponent}/>
+            <Route path="/registration" component={RegistrationComponent}/>
+            <Route path="/registrationConfirm" component={RegistrationConfirmComponent}/>
+            <Route path="/addArticle/step1" component={AddArticle1Component}/>
+            <Route path="/addArticle/step2" component={AddArticle2Component}/>
+          </Switch>
+        </div>
       </Router>
     </div>
   );

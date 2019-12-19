@@ -23,7 +23,7 @@ class LoginComponent extends Component {
 			this.setState({name: event.target.value})
 		}
 
-		if (event.target.id === "password") {
+		if (event.target.id === "passwordLog") {
 			this.setState({password: event.target.value})
     }
   }
@@ -34,7 +34,7 @@ class LoginComponent extends Component {
     let user = {};
     for (let i in this.state) {    
       if ((this.state[i] !== "") && (i !== "open")) {
-          user[i] = this.state[i]
+          user[i] = this.state[i]   
       }
     };
     try {
@@ -43,6 +43,7 @@ class LoginComponent extends Component {
     } catch (e) {
       console.log(`Axios request failed: ` + e);
     }
+    store.dispatch({ type: "log" });
   }
 
   close() {

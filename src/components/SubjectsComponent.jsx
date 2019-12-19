@@ -7,7 +7,7 @@ class SubjectsComponent extends Component {
 				<h2 className="subject__title sub-title">Специальности:</h2>
 				<ul className="subject__list">
 					<li className="subject__item"><a href="#" className="subject__link">неорганическая химия</a></li>
-					<li className="subject__item"><a href="#" classNameName="subject__link">высокомолекулярные соединения</a></li>
+					<li className="subject__item"><a href="#" className="subject__link">высокомолекулярные соединения</a></li>
 					<li className="subject__item"><a href="#" className="subject__link">Физическая химия</a></li>
 					<li className="subject__item"><a href="#" className="subject__link">Электрохимия</a></li>
 					<li className="subject__item"><a href="#" className="subject__link">Высокомолекулярные соединения</a></li>

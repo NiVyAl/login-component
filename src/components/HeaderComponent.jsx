@@ -4,6 +4,16 @@ import { store } from '../store';
 import userAvatar from '../img/user-icon.png'
 
 class HeaderComponent extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      isLog: false,
+    }
+
+    store.subscribe(() => this.setState({isLog: store.getState()}));
+  }
+  
   logOpen() {
     store.dispatch( {type: "open"});
   }
@@ -20,12 +30,18 @@ class HeaderComponent extends Component {
           <div className="find header__find">
             <input type="text" className="find__input" placeholder="Введите поисковый запрос"/>
           </div>
-          <button onClick={this.logOpen} className="account-button--login button header__button">войти</button>
-          <a href="/registration" className="account-button--registration button header__button">регистрация</a>
-          <a href="#" className="user-login">
-            <span className="user-login__name">admin</span>
-            <img src={userAvatar} className="user-login__img"/>
-          </a>
+          {this.state.isLog !== "log" &&
+            <div className="header__user">
+              <button onClick={this.logOpen} className="account-button--login button header__button">войти</button>
+              <a href="/registration" className="account-button--registration button header__button">регистрация</a>
+            </div>
+          }
+          {this.state.isLog === "log" &&
+            <a href="#" className="user-login">
+              <span className="user-login__name">admin</span>
+              <img src={userAvatar} className="user-login__img"/>
+            </a>
+          }
         </div>
       </header>
     )

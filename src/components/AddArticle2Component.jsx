@@ -55,12 +55,13 @@ class AddArticle1Component extends Component {
 				<h2 className="sub-title add-article__title registration__title">Добавление статьи (шаг 2)</h2>
 				
 				<form onSubmit={this.sendDescription}>
-						<div className="add-article__section">
-							<input type="file" id="file1"></input>
+						<div className="add-article__section">		
 							<div className="add-article__description">
 								<input type="name" id="file1Description" className="login-container__input" maxLength="100" onChange={this.handleChange} required/>
 								<label htmlFor="file1Description" className="login-container__label">Описание файла</label>
 							</div>
+							
+							<input type="file" id="file1"></input>
 						</div>
 						   
 						<a href="/addArticle/step1" className="add-article__link" type="submit">Вернуться на предыдущий шаг</a>
