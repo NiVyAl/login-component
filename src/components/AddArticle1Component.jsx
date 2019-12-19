@@ -7,12 +7,22 @@ class AddArticle1Component extends Component {
 		this.state ={
 			 articleName: '',
 			 runningHead: '',
+			 annotation: '',
+			 keys: '',
 			 message: null
 		}
-		this.saveUser = this.saveUser.bind(this);
+		this.sendArticle = this.sendArticle.bind(this);
+  }
+  
+  componentDidMount() {
+		for (var i in this.state) {
+			if (localStorage.getItem(i)) {
+				document.getElementById(i).value = localStorage.getItem(i);
+			}
+		}	  
   }
 
-  saveUser = (e) => {
+  sendArticle = (e) => {
 		e.preventDefault();
 		let user = {};
 		for (let i in this.state) {    
@@ -31,6 +41,7 @@ class AddArticle1Component extends Component {
 
   handleChange = (e) => {
 		this.setState({ [e.target.id]: e.target.value });
+		localStorage.setItem(e.target.id, e.target.value);
   }
   
 	render() {
@@ -38,7 +49,7 @@ class AddArticle1Component extends Component {
 			<div className="add-article registration"> {/*временно добавил registration*/}
 				<h2 className="sub-title add-article__title registration__title">Добавление статьи (шаг 1)</h2>
 				
-				<form onSubmit={this.saveUser}>
+				<form onSubmit={this.sendArticle}>
                     <input type="text" id="articleName" className="login-container__input" maxLength="100" onChange={this.handleChange} required/>
                     <label htmlFor="articleName" className="login-container__label">Название</label>
 

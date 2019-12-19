@@ -15,6 +15,8 @@ class RegistrationComponent extends Component{
             surname: '',
             country: '',
             university: '',
+            city: '',
+            phone: '',
             message: null
         }
         this.saveUser = this.saveUser.bind(this);
@@ -64,9 +66,15 @@ class RegistrationComponent extends Component{
 
                     <input type="text" id="country" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
                     <label htmlFor="country" className="login-container__label">Страна</label>
+                    
+                    <input type="text" id="city" className="login-container__input" maxLength="20" onChange={this.handleChange} required/>
+                    <label htmlFor="city" className="login-container__label">Город</label>
 
                     <input type="text" id="university" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
                     <label htmlFor="university" className="login-container__label">Университет</label>
+                    
+                    <input type="tel" id="phone" className="login-container__input" maxLength="30" onChange={this.handleChange}required/>
+                    <label htmlFor="phone" className="login-container__label">Телефон</label>
 
                     <input type="email" id="email" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
                     <label htmlFor="email" className="login-container__label">email</label>
