@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios, { post } from 'axios';
 import url from '../url.js'
 import { store } from '../store';
+import ApiService from "../service/ApiService";
 
 class LoginComponent extends Component {
 
@@ -37,17 +38,27 @@ class LoginComponent extends Component {
           user[i] = this.state[i]   
       }
     };
-    try {
-      const response = await axios.post("http://localhost:4000/users/auth", { user });
-      console.log('Returned data:', response);
-    } catch (e) {
-      console.log(`Axios request failed: ` + e);
-    }
-    this.log();
+    console.log(user);
+    // try {
+    //   const response = await axios.post("http://localhost:4000/users/auth", { user });
+    //   console.log('Returned data:', response);
+    // } catch (e) {
+    //   console.log(`Axios request failed: ` + e);
+    // }
+    ApiService.log(user)
+            .then(res => {
+                this.setState({message : 'User log successfully.'});
+                // this.props.history.push('/users');
+                console.log(res.data.email);
+                if (res.data.email) {
+                  this.log(res.data.email)
+                }
+            });
+    // this.log();
   }
 
-  log() {
-    localStorage.setItem("log", this.state.name);
+  log(email) {
+    localStorage.setItem("log", email);
     store.dispatch({ type: "log" });
   }
 

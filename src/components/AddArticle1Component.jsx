@@ -24,14 +24,15 @@ class AddArticle1Component extends Component {
 
   sendArticle = (e) => {
 		e.preventDefault();
-		let user = {};
+		let article1 = {};
 		for (let i in this.state) {    
+			console.log(this.state);
 			 if ((this.state[i] !== "") && (i !== "message")) {
-				  user[i] = this.state[i]
+				article1[i] = this.state[i]
 			 }
 		};
-		console.log(user);
-		ApiService.addUser(user)
+		console.log(article1);
+		ApiService.addArticle1(article1)
 			 .then(res => {
 				 console.log(res);
 				  this.setState({message : 'article add.'});
