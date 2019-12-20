@@ -18,7 +18,11 @@ class ApiService {
     }
 
     addUser(user) {
-        return axios.post(""+USER_API_BASE_URL, user);
+        return axios.post("http://localhost:4000/users/registration", user);
+    }
+
+    addFileDescription(description) {
+        return axios.post("http://localhost:4000/article/saveFile", description);
     }
 
     editUser(user) {

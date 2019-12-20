@@ -38,11 +38,16 @@ class LoginComponent extends Component {
       }
     };
     try {
-      const response = await axios.post(url, { user });
+      const response = await axios.post("http://localhost:4000/users/auth", { user });
       console.log('Returned data:', response);
     } catch (e) {
       console.log(`Axios request failed: ` + e);
     }
+    this.log();
+  }
+
+  log() {
+    localStorage.setItem("log", this.state.name);
     store.dispatch({ type: "log" });
   }
 

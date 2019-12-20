@@ -8,10 +8,11 @@ class HeaderComponent extends Component {
     super(props);
     
     this.state = {
-      isLog: false,
+      isLog: store.getState(),
     }
 
     store.subscribe(() => this.setState({isLog: store.getState()}));
+    // console.log("header " + this.state.isLog + store.getState());
   }
   
   logOpen() {
@@ -37,8 +38,8 @@ class HeaderComponent extends Component {
             </div>
           }
           {this.state.isLog === "log" &&
-            <a href="#" className="user-login">
-              <span className="user-login__name">admin</span>
+            <a href="/addArticle/step1" className="user-login">
+            <span className="user-login__name">{localStorage.getItem("log")}</span>
               <img src={userAvatar} className="user-login__img"/>
             </a>
           }

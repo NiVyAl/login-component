@@ -33,8 +33,9 @@ class AddArticle1Component extends Component {
 		console.log(user);
 		ApiService.addUser(user)
 			 .then(res => {
+				 console.log(res);
 				  this.setState({message : 'article add.'});
-				  this.props.history.push('/article');
+				//   this.props.history.push('/article');
 				  window.location.href="/addArticle/step2";
 			 });  
   }

@@ -11,12 +11,17 @@ import { createStore } from 'redux';
 // 	}
 // };
 
- function loginToggle(state= "close", action) {
-	 state = action.type;
-	 return state
- }
- 
+function loginToggle(state= "close", action) {
+	state = action.type;
+	return state
+}
+
 export let store = createStore(loginToggle);
+
+if (localStorage.getItem("log")) {
+	store.dispatch({ type: "log" });
+	console.log(store.getState());
+}
 
 // store.subscribe(() => console.log(store.getState())); // подписались на событие (при изменении срабатывает console.log)
 // store.dispatch({ type: 'INCREMENT' }); 

@@ -54,22 +54,17 @@ class RegistrationConfirmComponent extends Component {
 	
 	render() {
 		return(
-			<div>
-				{/* confirm
-				<button onClick={this.postToken}>Отправить</button> */}
+			<div className="confirm window">
+				<h2 className="sub-title confirm__title">Подтверждение email</h2>
 				
-				<div className="confirm window">
-					<h2 className="sub-title confirm__title">Подтверждение email</h2>
-					
-					{/* {this.state.isResponce === 200 && 
-						<p className="confirm__text">email подтвержден!</p>
-					}
-					{this.state.isResponce !== 200 &&
-						<p className="confirm__text">произошла ошибка подтверждения</p>
-					} */}
-					<p className="confirm__text">email: {this.state.email} подтвержден!</p>
-					
-				</div>
+				{/* {this.state.isResponce === 200 && 
+					<p className="confirm__text">email подтвержден!</p>
+				}
+				{this.state.isResponce !== 200 &&
+					<p className="confirm__text">произошла ошибка подтверждения</p>
+				} */}
+				<p className="confirm__text">email: {this.state.email} подтвержден!</p>
+				
 			</div>
 		)
 	}
