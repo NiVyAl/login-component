@@ -18,9 +18,24 @@ class MainComponent extends Component {
             
         }
     }
-    
-    sliderMove() {
-        console.log("move");
+
+
+    sliderMove(e) {
+        
+        var sliderList = document.querySelector(".slider__list");
+        var sliderItems = document.querySelectorAll(".slider__item");
+        var howVisible = sliderList.offsetWidth/sliderItems[0].offsetWidth;
+        var howHidden = sliderItems.length - howVisible;
+
+        howVisible = sliderList.offsetWidth/sliderItems[0].offsetWidth;
+        howHidden = sliderItems.length - howVisible;
+        console.log(e.target.className);
+        if (e.target.className == "slider__button slider__button--right") {
+            sliderList.style.transform = "translateX(-" + howHidden * sliderItems[0].offsetWidth + "px)";
+        }
+        if (e.target.className == "slider__button slider__button--left") {
+            sliderList.style.transform = "translateX(" + 0 + "px)";
+        }
     }
     
     render() {

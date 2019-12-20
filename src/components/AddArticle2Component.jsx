@@ -21,7 +21,7 @@ class AddArticle1Component extends Component {
 		var file = document.querySelector('#file1');
 		formData.append("file1", file.files[0]);
 		console.log(file.files[0]);
-		this.setState({isSend: true});
+		this.sendSuccess();
 		const responce = await axios.post(url, formData, {
 			headers: {
 			'Content-Type': 'multipart/form-data'
@@ -31,6 +31,15 @@ class AddArticle1Component extends Component {
 		// this.setState({isSend: true});
 
 	} 
+
+	sendSuccess() {
+		this.setState({isSend: true});
+		localStorage.removeItem("keys");
+		localStorage.removeItem("log");
+		localStorage.removeItem("annotation");
+		localStorage.removeItem("runningHead");
+		localStorage.removeItem("articleName");
+	}
 
 	sendDescription = (e) => {
 			e.preventDefault();
