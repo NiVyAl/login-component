@@ -24,7 +24,6 @@ class RegistrationComponent extends Component{
 
     saveUser = (e) => {
         e.preventDefault();
-        // let user = {email: this.state.email, password: this.state.password, nameR: this.state.nameR, surnameR: this.state.surnameR, middleNameR: this.state.middleNameR, name: this.state.name, surname: this.state.surname, country: this.state.country, university: this.state.university,};
         let user = {};
         for (let i in this.state) {    
             if ((this.state[i] !== "") && (i !== "message")) {

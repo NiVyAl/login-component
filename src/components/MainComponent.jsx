@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import cover1 from '../img/covers/1.jpg'
 import cover2 from '../img/covers/2.jpg'
-import cover3 from '../img/covers/3.jpg'
 import cover4 from '../img/covers/4.jpg'
 import cover5 from '../img/covers/5.jpg'
 import cover6 from '../img/covers/6.jpg'
-import cover7 from '../img/covers/7.jpg'
 import cover8 from '../img/covers/8.jpg'
 import cover9 from '../img/covers/9.jpg'
 import cover10 from '../img/covers/10.jpg'
@@ -30,10 +28,10 @@ class MainComponent extends Component {
         howVisible = sliderList.offsetWidth/sliderItems[0].offsetWidth;
         howHidden = sliderItems.length - howVisible;
         console.log(e.target.className);
-        if (e.target.className == "slider__button slider__button--right") {
+        if (e.target.className === "slider__button slider__button--right") {
             sliderList.style.transform = "translateX(-" + howHidden * sliderItems[0].offsetWidth + "px)";
         }
-        if (e.target.className == "slider__button slider__button--left") {
+        if (e.target.className === "slider__button slider__button--left") {
             sliderList.style.transform = "translateX(" + 0 + "px)";
         }
     }

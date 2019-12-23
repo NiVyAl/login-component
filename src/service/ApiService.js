@@ -1,41 +1,41 @@
 import axios from 'axios';
-import url from '../url';
+// import url from '../url';
 
-const USER_API_BASE_URL = url;
+// const USER_API_BASE_URL = url;
 
 class ApiService {
 
-    fetchUsers() {
-        return axios.get(USER_API_BASE_URL);
+    // fetchUsers() {
+    //     return axios.get(USER_API_BASE_URL);
+    // }
+
+    // fetchUserById(userId) {
+    //     return axios.get(USER_API_BASE_URL + '/' + userId);
+    // }
+
+    // deleteUser(userId) {
+    //     return axios.delete(USER_API_BASE_URL + '/' + userId);
+    // }
+
+    addUser(data) {
+        return axios.post("http://localhost:4000/users/registration", data);
     }
 
-    fetchUserById(userId) {
-        return axios.get(USER_API_BASE_URL + '/' + userId);
+    addArticle1(data) {
+        return axios.post("http://localhost:4000/article/save", data);
     }
 
-    deleteUser(userId) {
-        return axios.delete(USER_API_BASE_URL + '/' + userId);
-    }
-
-    addUser(user) {
-        return axios.post("http://localhost:4000/users/registration", user);
-    }
-
-    addArticle1(user) {
-        return axios.post("http://localhost:4000/article/save", user);
-    }
-
-    log(user) {
-        return axios.post("http://localhost:4000/users/auth", user);
+    log(data) {
+        return axios.post("http://localhost:4000/users/auth", data);
     }
 
     addFileDescription(description) {
         return axios.post("http://localhost:4000/article/saveFile", description);
     }
 
-    editUser(user) {
-        return axios.put(USER_API_BASE_URL + '/' + user.id, user);
-    }
+    // editUser(user) {
+    //     return axios.put(USER_API_BASE_URL + '/' + user.id, user);
+    // }
 
 }
 

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import axios, { post } from 'axios';
-import url from '../url.js'
 import { store } from '../store';
 import ApiService from "../service/ApiService";
 
@@ -16,7 +14,6 @@ class LoginComponent extends Component {
     }
 
     store.subscribe(() => this.setState({open: store.getState()}));
-    // store.subscribe(() => console.log("store state " + store.getState()));
   }
 
   handleChange = event => {
@@ -38,23 +35,15 @@ class LoginComponent extends Component {
           user[i] = this.state[i]   
       }
     };
-    console.log(user);
-    // try {
-    //   const response = await axios.post("http://localhost:4000/users/auth", { user });
-    //   console.log('Returned data:', response);
-    // } catch (e) {
-    //   console.log(`Axios request failed: ` + e);
-    // }
+
     ApiService.log(user)
             .then(res => {
                 this.setState({message : 'User log successfully.'});
-                // this.props.history.push('/users');
                 console.log(res.data.email);
                 if (res.data.email) {
                   this.log(res.data.email)
                 }
             });
-    // this.log();
   }
 
   log(email) {
@@ -70,8 +59,7 @@ class LoginComponent extends Component {
   render() {
     return (
       <div>
-        {/* {console.log("this: " + this.state.open)} */}
-        { this.state.open == "open" &&
+        { this.state.open === "open" &&
         <div className="login-container">
           <div onClick={this.close} className="login-container__background"></div>
           <form className="login-container__window" onSubmit={this.handleSubmit}>

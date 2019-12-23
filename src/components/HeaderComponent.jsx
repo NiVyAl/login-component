@@ -23,7 +23,7 @@ class HeaderComponent extends Component {
     return(
       <header className="header">
         <div className="header__logo logo-container">
-          <a href="http://www.kstu.ru/"><img className="logo-container__logo logo" src={logo}/></a>
+          <a href="http://www.kstu.ru/"><img className="logo-container__logo logo" src={logo} alt="логотип КНИТУ"/></a>
           <h1 className="logo-container__title title"><a href="/" className="title__link">Вестник технологического университета</a></h1>
         </div>
 
@@ -40,7 +40,7 @@ class HeaderComponent extends Component {
           {this.state.isLog === "log" &&
             <a href="/addArticle/step1" className="user-login">
             <span className="user-login__name">{localStorage.getItem("log")}</span>
-              <img src={userAvatar} className="user-login__img"/>
+              <img src={userAvatar} alt="аватар пользователя" className="user-login__img"/>
             </a>
           }
         </div>

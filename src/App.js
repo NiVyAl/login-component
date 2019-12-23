@@ -9,17 +9,8 @@ import AddArticle2Component from './components/AddArticle2Component.jsx'
 import RegistrationConfirmComponent from './components/RegistrationConfirmComponent.jsx'
 import RegistrationComponent from './components/RegistrationComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { store } from './store'
 
 function App() {
-  var isOpen;
-  if (store.getState() == "open") {
-    isOpen = true;
-  }
-  
-  if (store.getState() == "close") {
-    isOpen = false;
-  }
   return (
     <div>
       <Router>

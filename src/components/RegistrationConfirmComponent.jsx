@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios, { post } from 'axios';
+import axios from 'axios';
 import url from '../url.js'
 
 class RegistrationConfirmComponent extends Component {
@@ -38,12 +38,9 @@ class RegistrationConfirmComponent extends Component {
 		if (newData !== "") {
 			try {
 				const response = await axios.post(url, { newData });
-				// const responce2 = 200;
 				this.setState({isResponce: response})
 				console.log('Returned data:', response);
-				} catch (e) {
-				// const responce2 = 200;
-				// this.setState({isResponce: responce})
+			} catch (e) {
 				console.log(this.state.isResponce);
 				console.log(`Axios request failed: ` + e);
 				}

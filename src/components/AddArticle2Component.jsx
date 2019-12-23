@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ApiService from "../service/ApiService";
-import axios, { post } from 'axios';
-import url from '../url.js'
+// import ApiService from "../service/ApiService";
+import axios from 'axios';
+// import url from '../url.js'
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -30,7 +30,7 @@ class AddArticle1Component extends Component {
 		})
 		console.log(responce.data);	
 		this.setState({isSend: true});
-		if (responce.status == 200) {
+		if (responce.status === 200) {
 			this.sendSuccess();
 			this.setState({filePath: responce.data})
 		}	
@@ -61,7 +61,7 @@ class AddArticle1Component extends Component {
 			// 		this.props.history.push('/article');
 			// 	});
 				
-			this.sendFile(e);
+			this.sendFile(e); // после отправки описания отправляется файл
 	}
 
 	handleChange = (e) => {
