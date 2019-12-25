@@ -9,7 +9,7 @@ class AddArticle1Component extends Component {
 			 runningHead: '',
 			 annotation: '',
 			 keys: '',
-			 message: null
+			//  message: null
 		}
 		this.sendArticle = this.sendArticle.bind(this);
   }
@@ -26,19 +26,19 @@ class AddArticle1Component extends Component {
 		e.preventDefault();
 		let article1 = {};
 		for (let i in this.state) {    
-			console.log(this.state);
-			 if ((this.state[i] !== "") && (i !== "message")) {
+			if ((this.state[i] !== "") && (i !== "message")) {
 				article1[i] = this.state[i]
-			 }
+			}
+		
 		};
-		console.log(article1);
+		
 		ApiService.addArticle1(article1)
-			 .then(res => {
-				 console.log(res);
-				  this.setState({message : 'article add.'});
-				//   this.props.history.push('/article');
-				  window.location.href="/addArticle/step2";
-			 });  
+			.then(res => {
+				if (res.id) {
+					localStorage.setItem("articleId", res.id);
+				} 
+				window.location.href="/addArticle/step2";
+			});  
   }
 
   handleChange = (e) => {

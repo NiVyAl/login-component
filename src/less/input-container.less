@@ -1,0 +1,39 @@
+.input-container {
+	margin-top: 25px;
+}
+
+.input-container__input {
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #cccccc;
+	font-size: 18px;
+ }
+ 
+ .input-container:first-child {
+	 margin-top: 0;
+ }
+ 
+ .input-container__input:focus {
+	outline: none;
+	border-bottom: 1px solid #7f2620;
+ }
+ 
+ .input-container__label {
+	color: #9d9d9d;
+	text-transform: capitalize;
+	position: relative;
+	top: -27px;
+	font-size: 18px;
+	 transition: 0.25s ease all;
+	transform-origin: left;
+	align-self: start;
+ }
+ 
+ #login:focus ~ .input-container__label[for="login"],
+ #passwordLog:focus ~ .input-container__label[for="passwordLog"],
+ #login:valid ~ .input-container__label[for="login"],
+ #passwordLog:valid ~ .input-container__label[for="passwordLog"]{
+	transform: scale(0.83);
+	 top: -47px;
+ }
+ 
