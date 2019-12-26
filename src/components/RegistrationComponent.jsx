@@ -41,7 +41,6 @@ class RegistrationComponent extends Component{
 
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
-        
     }
 
     render() {
@@ -49,7 +48,7 @@ class RegistrationComponent extends Component{
             <div className="registration">
                 <h2 className="registration__title sub-title">Регистрация</h2>
                 <form onSubmit={this.saveUser}>
-                    <InputComponent text="Имя" name="nameR"/>
+                    <InputComponent text="Имя" name="nameR" handleChange={this.handleChange} type="name" maxLength="20" isRequired={true}/>
                     
                     <div className="input-container">
                         <input type="name" id="surnameR" className="input-container__input" maxLength="20" onChange={this.handleChange} required/>
