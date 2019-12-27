@@ -1,5 +1,6 @@
 .input-container {
-margin-top: 25px;
+	margin-top: 25px;
+	width: 100%;
 }
 
 .input-container__input {
@@ -19,6 +20,7 @@ margin-top: 25px;
 }
 
 .input-container__label {
+	display: inline-block;
 	color: #9d9d9d;
 	text-transform: capitalize;
 	position: relative;
@@ -33,13 +35,14 @@ margin-top: 25px;
 .input-container__label--active {
 	transform: scale(0.83);
 	top: -47px;
+	// transform: translateY(-47px);
 }
  
- #login:focus ~ .input-container__label[for="login"],
- #passwordLog:focus ~ .input-container__label[for="passwordLog"],
- #login:valid ~ .input-container__label[for="login"],
- #passwordLog:valid ~ .input-container__label[for="passwordLog"]{
-	transform: scale(0.83);
-	top: -47px;
- }
+//  #login:focus ~ .input-container__label[for="login"],
+//  #passwordLog:focus ~ .input-container__label[for="passwordLog"],
+//  #login:valid ~ .input-container__label[for="login"],
+//  #passwordLog:valid ~ .input-container__label[for="passwordLog"]{
+// 	transform: scale(0.83);
+// 	top: -47px;
+//  }
  

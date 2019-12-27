@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { store } from '../store';
 import ApiService from "../service/ApiService";
+import InputComponent from "../components/InputComponent";
 
 class LoginComponent extends Component {
 
@@ -35,7 +36,6 @@ class LoginComponent extends Component {
           user[i] = this.state[i]   
       }
     };
-
     ApiService.log(user)
             .then(res => {
                 this.setState({message : 'User log successfully.'});
@@ -65,11 +65,14 @@ class LoginComponent extends Component {
           <form className="login-container__window" onSubmit={this.handleSubmit}>
             <p className="login-container__title sub-title">Войти</p>
             <div className="login-container__form">
-              <input type="name" id="login" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
+              {/* <input type="name" id="login" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
               <label htmlFor="login" className="login-container__label">email</label>
               <input type="password" id="passwordLog" className="login-container__input" maxLength="20"onChange={this.handleChange} required/>
-              <label htmlFor="passwordLog" className="login-container__label">пароль</label>
-              <p className="login-container__incorrect">Неверный логин или пароль</p>
+              <label htmlFor="passwordLog" className="login-container__label">пароль</label> */}
+              
+              <InputComponent text="email" name="login" handleChange={this.handleChange} type="email" maxLength="30" required/>
+					    <InputComponent text="пароль" name="passwordLog" handleChange={this.handleChange} type="password" maxLength="20" required/>
+              
               <a href="#" className="login-container__remember-password">Не помню пароль</a>
             </div>
             <div className="login-container__buttons">

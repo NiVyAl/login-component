@@ -70,10 +70,10 @@ class AddArticle1Component extends Component {
   
 	render() {
 		return(
-			<div className="add-article registration"> {/*временно добавил registration*/}
+			<div className="add-article window"> {/*временно добавил registration*/}
 				{this.state.isSend === false &&
 					<div>
-					<h2 className="sub-title add-article__title registration__title">Добавление статьи (шаг 2)</h2>
+					<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
 					
 					<form onSubmit={this.sendDescription} enctype="multipart/form-data">
 							<div className="add-article__section">		
@@ -86,7 +86,7 @@ class AddArticle1Component extends Component {
 							</div>
 							
 							<a href="/addArticle/step1" className="add-article__link" type="submit">Вернуться на предыдущий шаг</a>
-							<button className="button registration__button" type="submit">Отправить на проверку</button>
+							<button className="button window__button" type="submit">Отправить на проверку</button>
 					</form>
 					</div>
 				}
