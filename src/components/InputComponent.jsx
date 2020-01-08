@@ -8,7 +8,8 @@ class InputComponent extends Component {
 	}
 	
 	componentDidMount() {
-		console.log(this.input.current);
+		// console.log(this.input.current);
+		console.log();
 	}
 	
 	active = (e) => {
