@@ -6,8 +6,8 @@
 .input-container__input {
 	width: 100%;
 	border: none;
-	border-bottom: 1px solid #cccccc;
-	font-size: 18px;
+	border-bottom: 1px solid @gray;
+	font-size: @button-font-size;
 }
 
 .input-container:first-child {
@@ -21,11 +21,11 @@
 
 .input-container__label {
 	display: inline-block;
-	color: #9d9d9d;
+	color: @text-gray;
 	text-transform: capitalize;
 	position: relative;
 	top: -27px;
-	font-size: 18px;
+	font-size: @button-font-size;
 	will-change: transform;
 	transition: 0.25s ease all;
 	transform-origin: left;

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import InputComponent from "../components/InputComponent";
+import SelectInputComponent from "../components/SelectInputComponent";
 
-class RegistrationComponent extends Component{
+class AddUserComponent extends Component{
 
     constructor(props){
-        super(props);
+		  super(props);
+		  
+		  this.roles = ["READ_PRIVILEGE", "REVIEW_PRIVILEGE", "EDIT_PRIVILEGE"];
+		  this.rolesNames = ["Read", "Review", "Edit"];
+		  
         this.state ={
             email: '',
             password: '',
@@ -18,34 +23,35 @@ class RegistrationComponent extends Component{
             university: '',
             city: '',
             phone: '',
+            role: this.roles[0],
         }
-        this.saveUser = this.saveUser.bind(this);
     }
 
     saveUser = (e) => {
         e.preventDefault();
         let user = {};
         for (let i in this.state) {    
-            if (this.state[i] !== "") {
+            if ((this.state[i] !== "") && (i !== "message")) {
                 user[i] = this.state[i]
             }
         };
         console.log(user);
-        ApiService.registration(user)
+        ApiService.addUser(user)
             .then(res => {
-                this.setState({message : 'User added successfully.'});
-                this.props.history.push('/users');
+               //  this.setState({message : 'User added successfully.'});
+					//  this.props.history.push('/users');
+					
             });
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.id]: e.target.value });
+		this.setState({ [e.target.id]: e.target.value });
     }
 
     render() {
         return(
             <div className="registration window">
-                <h2 className="sub-title window__title">Регистрация</h2>
+                <h2 className="sub-title window__title">Создать пользователя</h2>
                 <form onSubmit={this.saveUser}>
                     <InputComponent text="Имя" name="nameR" handleChange={this.handleChange} type="name" maxLength="20"/> {/*name это еще и id*/}
                     <InputComponent text="Фамилия" name="surnameR" handleChange={this.handleChange} type="name" maxLength="20"/>
@@ -59,11 +65,13 @@ class RegistrationComponent extends Component{
                     <InputComponent text="email" name="email" handleChange={this.handleChange} type="email" maxLength="30" required/>
                     <InputComponent text="Пароль" name="password" handleChange={this.handleChange} type="password" maxLength="20" autoComplete="new-password" required/>
 
-                    <button className="button window__button" type="submit">Зарегистрироваться</button>
+						  <SelectInputComponent id="role" change={this.handleChange} values={this.roles} texts={this.rolesNames}/>
+
+                    <button className="button window__button" type="submit">Создать пользователя</button>
                 </form>
             </div>
         );
     }
 }
 
-export default RegistrationComponent;
+export default AddUserComponent;
