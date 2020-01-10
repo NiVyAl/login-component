@@ -18,7 +18,7 @@ class InputComponent extends Component {
 	}
 	
 	blur = (e) => {
-		if (e.target.value == false) {
+		if (e.target.value === false) {
 			this.label.current.classList.remove("input-container__label--active")
 		}
 	}

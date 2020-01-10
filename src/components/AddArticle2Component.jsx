@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import ApiService from "../service/ApiService";
 import axios from 'axios';
-// import url from '../url.js'
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -22,7 +20,6 @@ class AddArticle1Component extends Component {
 		var file = document.querySelector('#file1');
 		formData.append("file1", file.files[0]);
 		console.log(file.files[0]);
-		// this.sendSuccess();
 		const responce = await axios.post("http://localhost:4000/article/saveFile", formData, {
 			headers: {
 			// 'Content-Type': 'multipart/form-data'
@@ -70,7 +67,7 @@ class AddArticle1Component extends Component {
   
 	render() {
 		return(
-			<div className="add-article window"> {/*временно добавил registration*/}
+			<div className="add-article window">
 				{this.state.isSend === false &&
 					<div>
 					<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>

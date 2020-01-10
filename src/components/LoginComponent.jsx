@@ -65,15 +65,10 @@ class LoginComponent extends Component {
           <form className="login-container__window" onSubmit={this.handleSubmit}>
             <p className="login-container__title sub-title">Войти</p>
             <div className="login-container__form">
-              {/* <input type="name" id="login" className="login-container__input" maxLength="30" onChange={this.handleChange} required/>
-              <label htmlFor="login" className="login-container__label">email</label>
-              <input type="password" id="passwordLog" className="login-container__input" maxLength="20"onChange={this.handleChange} required/>
-              <label htmlFor="passwordLog" className="login-container__label">пароль</label> */}
-              
               <InputComponent text="email" name="login" handleChange={this.handleChange} type="email" maxLength="30" required/>
 					    <InputComponent text="пароль" name="passwordLog" handleChange={this.handleChange} type="password" maxLength="20" required/>
               
-              <a href="#" className="login-container__remember-password">Не помню пароль</a>
+              <a href="/" className="login-container__remember-password">Не помню пароль</a>
             </div>
             <div className="login-container__buttons">
               <button type="submit" className="login-container__button button login-container__button--login">Войти</button>

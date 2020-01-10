@@ -45,14 +45,14 @@ class MainComponent extends Component {
                         <button className="slider__button slider__button--left" onClick={this.sliderMove}></button>
                         <div className="slider__img-container">
                             <ul className="slider__list" >
-                                <li className="slider__item"><a href="pdf/cover9.pdf" target="_blank" className="slider__link"><img className="slider__img" src={cover8}/></a></li>
-                                <li className="slider__item"><a href="pdf/cover8.pdf" target="_blank" className="slider__link"><img className="slider__img" src={cover9}/></a></li>
-                                <li className="slider__item"><a href="pdf/cover7.pdf" target="_blank" className="slider__link"><img className="slider__img" src={cover10}/></a></li>
-                                <li className="slider__item"><a href="#" className="slider__link"><img className="slider__img" src={cover1}/></a></li>
-                                <li className="slider__item"><a href="#" className="slider__link"><img className="slider__img" src={cover2}/></a></li>
-                                <li className="slider__item"><a href="#" className="slider__link"><img className="slider__img" src={cover6}/></a></li>
-                                <li className="slider__item"><a href="#" className="slider__link"><img className="slider__img" src={cover5}/></a></li>
-                                <li className="slider__item"><a href="#" className="slider__link"><img className="slider__img" src={cover4}/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover8} alt="cover"/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover9} alt="cover"/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover10} alt="cover"/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover1} alt="cover"/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover2} alt="cover"/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover6} alt="cover"/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover5} alt="cover"/></a></li>
+                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover4} alt="cover"/></a></li>
                             </ul>
                         </div>
                         <button className="slider__button slider__button--right" onClick={this.sliderMove}></button>
@@ -65,19 +65,19 @@ class MainComponent extends Component {
                     <ul className="latest__list">
                         <li className="latest__item">
                         <time className="latest__date">2019-T22-№9</time>
-                        <a href="pdf/v-29.pdf" className="latest__link" target="_blank">АЛГОРИТМ ОБНАРУЖЕНИЯ СВЕТОВЫХ СИГНАЛОВ ТРАНСПОРТНЫХ СРЕДСТВ И СВЕТОФОРОВ</a>
+                        <a href="/" className="latest__link" target="_blank">АЛГОРИТМ ОБНАРУЖЕНИЯ СВЕТОВЫХ СИГНАЛОВ ТРАНСПОРТНЫХ СРЕДСТВ И СВЕТОФОРОВ</a>
                         <p className="latest__description">Ключевые слова: компьютерное зрение, обработка изображений, преобразование радиальной симметрии, детектор Кэнни.</p>
                         </li>
 
                         <li className="latest__item">
                         <time className="latest__date">2019-T22-№9</time>
-                        <a href="pdf/v-5.pdf" className="latest__link" target="_blank">АДСОРБЦИОННАЯ СПОСОБНОСТЬ МОДИФИЦИРОВАННЫХ КЛИНОПТИЛОЛИТОВ: ТЕРМОДИНАМИЧЕСКАЯ ОЦЕНКА</a>
+                        <a href="/" className="latest__link" target="_blank">АДСОРБЦИОННАЯ СПОСОБНОСТЬ МОДИФИЦИРОВАННЫХ КЛИНОПТИЛОЛИТОВ: ТЕРМОДИНАМИЧЕСКАЯ ОЦЕНКА</a>
                         <p className="latest__description">Ключевые слова: адсорбция, цеолиты, сточные воды, серный полимер, ионы тяжелых металлов.</p>
                         </li>
 
                         <li className="latest__item">
                         <time className="latest__date">2019-T22-№9</time>
-                        <a href="pdf/v-27.pdf" className="latest__link" target="_blank">РАСПРЕДЕЛЕННАЯ ОБРАБОТКА ДВУМЕРНЫХ МАССИВОВ ДАННЫХ
+                        <a href="/" className="latest__link" target="_blank">РАСПРЕДЕЛЕННАЯ ОБРАБОТКА ДВУМЕРНЫХ МАССИВОВ ДАННЫХ
                             НА ОСНОВЕ АППАРАТНЫХ IP-ЯДЕР В АРХИТЕКТУРЕ ПЛИС</a>
                         <p className="latest__description">Ключевые слова: быстрое преобразование Фурье, оценки сложности, ПЛИС.</p>
                         </li>
