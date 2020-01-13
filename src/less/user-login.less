@@ -13,6 +13,7 @@
 	align-items: center;
 	background-color: transparent;
 	border: 0;
+	
 }
 
 .user-login__img {
@@ -32,18 +33,36 @@
 	border: 1px solid @gray;
 	border-radius: @window-radius;
 	background-color: white;
-	padding: 15px;
+	padding: 20px 50px;
+	padding-left: 30px;
 	box-shadow: @shadow;
 	display: none;
 	z-index: 10;
 }
 
-// .user-login__modal-button {
-// 	position: absolute;
-// 	width: 100%;
-// 	height: 100%;
-// 	background-color: red;
-// }
+.user-login__modal-name {
+	margin: 0;
+	display: block;
+	white-space: nowrap;
+}
+
+.user-login__email {
+	margin: 0;
+	font-size: 16px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	display: block;
+}
+
+.user-login__modal-button {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	display: none;
+	background-color: transparent;
+}
 
 .user-login__modal--active {
 	display: block;
@@ -60,8 +79,8 @@
 	display: block;
 }
 
-.user-login__link:first-child {
-	margin-top: 0;
+.user-login__link--logout {
+	background-color: #F0F0F0;	
 }
 
 .user-login__link:hover {

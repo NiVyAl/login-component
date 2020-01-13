@@ -53,6 +53,7 @@ class LoginComponent extends Component {
 
   log(res) {
     localStorage.setItem("log", res.data.user.username);
+    localStorage.setItem("email", res.data.user.username);
     axios.defaults.headers.common.Authorization = res.data.token;
     store.dispatch({ type: "log" });
   }

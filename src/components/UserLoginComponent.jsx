@@ -7,10 +7,16 @@ class UserLoginComponent extends Component {
     constructor(props) {
         super(props);
         this.modal  = React.createRef();
+        this.modalButton = React.createRef();
     }
+    
+    // componentDidMount() { // чтоб окно было открыто при загрузке
+    //     this.modalOpen()
+    // }
 
-    modalOpen = (e) => {
+    modalOpen = () => {
         this.modal.current.classList.add("user-login__modal--active");
+        this.modalButton.current.classList.add("user-login__modal--active");
     }
 
     logOut = () => {
@@ -18,22 +24,34 @@ class UserLoginComponent extends Component {
         delete axios.defaults.headers.common.Authorization;
         store.dispatch({ type: "close" });
     }
+    
+    close = () => {
+        this.modal.current.classList.remove("user-login__modal--active");
+        this.modalButton.current.classList.remove("user-login__modal--active");
+    }
 
     render() {
         return(
-            <div className="user-login">
-                <button className="user-login__button" onClick={this.modalOpen}>
-                    <span className="user-login__name">{localStorage.getItem("log")}</span>
-                    <img src={userAvatar} alt="аватар пользователя" className="user-login__img"/>
-                </button>
-
-                <div className="user-login__modal-button"></div>
+            <div>
                 
-                <div ref={this.modal} className="user-login__modal">
-                    <a className="user-login__link" href="/profile">Мои статью</a>
-                    <a className="user-login__link" href="/addArticle/step1">Добавить статью</a>
-                    <button onClick={this.logOut} className="user-login__link">Выйти</button>
+                <div className="user-login__modal-button" onClick={this.close} ref={this.modalButton}></div>
+                
+                <div className="user-login">
+                    <button className="user-login__button" onClick={this.modalOpen}>
+                        <span className="user-login__name">{localStorage.getItem("log")}</span>
+                        <img src={userAvatar} alt="аватар пользователя" className="user-login__img"/>
+                    </button>
+                    
+                    <div ref={this.modal} className="user-login__modal">
+                        <p className="user-login__modal-name">Никита Высоцкий</p>
+                        <p className="user-login__email">{localStorage.getItem("email")}</p>
+                        
+                        <a className="user-login__link" href="/profile">Профиль</a>
+                        <a className="user-login__link" href="/addArticle/step1">Добавить статью</a>
+                        <button onClick={this.logOut} className="user-login__link user-login__link--logout">Выйти</button>
+                    </div>
                 </div>
+                
             </div>
         )
     }
