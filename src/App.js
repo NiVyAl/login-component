@@ -9,6 +9,7 @@ import AddArticle2Component from './components/AddArticle2Component.jsx'
 import RegistrationConfirmComponent from './components/RegistrationConfirmComponent.jsx'
 import RegistrationComponent from './components/RegistrationComponent.jsx'
 import AddUserComponent from './components/AddUserComponent.jsx'
+import ProfileComponent from './components/ProfileComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/registrationConfirm" component={RegistrationConfirmComponent}/>
             <Route path="/addArticle/step1" component={AddArticle1Component}/>
             <Route path="/addArticle/step2" component={AddArticle2Component}/>
+            <Route path="/profile" component={ProfileComponent}/>
           </Switch>
         </div>
       </Router>

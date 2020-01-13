@@ -2,9 +2,17 @@
 	font-size: 18px;
 	text-decoration: none;
 	color: @main-color;
-  display: flex;
-  align-items: center;
-//   display: none;
+	position: relative;
+}
+
+.user-login__button {
+	padding: 0;
+	margin: 0;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+	border: 0;
 }
 
 .user-login__img {
@@ -12,6 +20,62 @@
 }
 
 .user-login__name {
-	margin-left: 20px;
+	// margin-left: 20px;
 	margin-right: 10px;
+}
+
+.user-login__modal {
+	position: absolute;
+	// width: 120px;
+	top: 120%;
+	right: 0;
+	border: 1px solid @gray;
+	border-radius: @window-radius;
+	background-color: white;
+	padding: 15px;
+	box-shadow: @shadow;
+	display: none;
+	z-index: 10;
+}
+
+// .user-login__modal-button {
+// 	position: absolute;
+// 	width: 100%;
+// 	height: 100%;
+// 	background-color: red;
+// }
+
+.user-login__modal--active {
+	display: block;
+}
+
+.user-login__link {
+	font-size: 15px;
+	padding: 0;
+	border: none;
+	color: black;
+	text-decoration: none;
+	margin-top: 15px;
+	cursor: pointer;
+	display: block;
+}
+
+.user-login__link:first-child {
+	margin-top: 0;
+}
+
+.user-login__link:hover {
+	text-decoration: underline;
+}
+
+.user-login__modal::before {
+	content: "";
+	display: none;
+	position: absolute;
+	border: 15px solid red;
+	border-left-color: transparent;
+	border-top-color: transparent;
+	// border-bottom-color: transparent;
+	border-right-color: transparent;
+	// top: -74%;
 }

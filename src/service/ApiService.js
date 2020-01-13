@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = "http://localhost:4000";
+const url = "http://192.168.0.103:4000";
 
 class ApiService {
     registration(data) {
@@ -16,7 +16,7 @@ class ApiService {
     }
 
     log(data) {
-        return axios.post(`${url}/users/auth`, data);
+        return axios.post(`${url}/auth`, data);
     }
 
     addFileDescription(description) {

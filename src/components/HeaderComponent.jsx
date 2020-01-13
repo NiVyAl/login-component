@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../img/logo.png';
 import { store } from '../store';
-import userAvatar from '../img/user-icon.png'
+import UserLoginComponent from './UserLoginComponent';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -38,10 +38,9 @@ class HeaderComponent extends Component {
             </div>
           }
           {this.state.isLog === "log" &&
-            <a href="/addArticle/step1" className="user-login">
-            <span className="user-login__name">{localStorage.getItem("log")}</span>
-              <img src={userAvatar} alt="аватар пользователя" className="user-login__img"/>
-            </a>
+            <div className="header__user-login">
+              <UserLoginComponent/>
+            </div>
           }
         </div>
       </header>

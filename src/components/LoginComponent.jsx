@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { store } from '../store';
 import ApiService from "../service/ApiService";
 import InputComponent from "../components/InputComponent";
+import axios from 'axios';
 
 class LoginComponent extends Component {
 
@@ -9,7 +10,7 @@ class LoginComponent extends Component {
     super(props);
     
     this.state = {
-      name: '',
+      username: '',
       password: '',
       open: '',
     }
@@ -19,7 +20,7 @@ class LoginComponent extends Component {
 
   handleChange = event => {
 		if (event.target.id === "login") {
-			this.setState({name: event.target.value})
+			this.setState({username: event.target.value})
 		}
 
 		if (event.target.id === "passwordLog") {
@@ -37,17 +38,22 @@ class LoginComponent extends Component {
       }
     };
     ApiService.log(user)
-            .then(res => {
-                this.setState({message : 'User log successfully.'});
-                console.log(res.data.email);
-                if (res.data.email) {
-                  this.log(res.data.email)
-                }
-            });
+      .then(res => {
+        // this.setState({message : 'User log successfully.'});
+        console.log(res);
+        if (res.status === 200) {
+          this.log(res)
+        }
+        // axios.defaults.headers.common.Authorization = res.data.token;
+        // if (res.data.email) {
+        //   this.log(res.data.email)
+        // }
+      });
   }
 
-  log(email) {
-    localStorage.setItem("log", email);
+  log(res) {
+    localStorage.setItem("log", res.data.user.username);
+    axios.defaults.headers.common.Authorization = res.data.token;
     store.dispatch({ type: "log" });
   }
 
