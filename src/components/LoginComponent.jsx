@@ -18,11 +18,13 @@ class LoginComponent extends Component {
     this.container = React.createRef();
 
     store.subscribe(() => this.setState({open: store.getState()}));
-  }
-  
-  componentWillMount(){
+    
     document.addEventListener("keydown", this.escFunction, false);
   }
+  
+  // componentWillMount(){
+  //   document.addEventListener("keydown", this.escFunction, false);
+  // }
 
   escFunction = (e) => {
       if (e.keyCode === 27) {
@@ -81,7 +83,9 @@ class LoginComponent extends Component {
   }
 
   close() {
-    store.dispatch({ type: "close" });
+    if ((store.getState() !== "log") && (store.getState() !== "close")) { // если уже залогинен то 
+      store.dispatch({ type: "close" });
+    }
   }
 
 
@@ -99,7 +103,7 @@ class LoginComponent extends Component {
               
               <p className="login-container__error">Неверный логин или пароль</p>
               
-              <a href="/" className="login-container__remember-password">Не помню пароль</a>
+              <a href="/" className="login-container__remember-password link">Не помню пароль</a>
             </div>
             <div className="login-container__buttons">
               <button type="submit" className="login-container__button button login-container__button--login">Войти</button>

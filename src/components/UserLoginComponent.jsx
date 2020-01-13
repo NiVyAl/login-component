@@ -32,8 +32,10 @@ class UserLoginComponent extends Component {
     }
     
     close = () => {
-        this.modal.current.classList.remove("user-login__modal--active");
-        this.modalButton.current.classList.remove("user-login__modal--active");
+        if (this.modal.current) {
+            this.modal.current.classList.remove("user-login__modal--active");
+            this.modalButton.current.classList.remove("user-login__modal--active");    
+        }
     }
 
     render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import InputComponent from "../components/InputComponent";
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -18,14 +19,14 @@ class AddArticle1Component extends Component {
 		e.preventDefault();
 		var formData = new FormData();
 		var file = document.querySelector('#file1');
-		formData.append("file1", file.files[0]);
+		formData.append(this.state.file1Description, file.files[0]);
 		console.log(file.files[0]);
 		const responce = await axios.post("http://localhost:4000/article/saveFile", formData, {
 			headers: {
-			// 'Content-Type': 'multipart/form-data'
+				id: localStorage.getItem("articleId")
 			}
 		})
-		console.log(responce.data);	
+		console.log(responce);	
 		this.setState({isSend: true});
 		if (responce.status === 200) {
 			this.sendSuccess();
@@ -34,14 +35,14 @@ class AddArticle1Component extends Component {
 
 	} 
 
-	sendSuccess() {
-		this.setState({isSend: true});
-		localStorage.removeItem("keys");
-		localStorage.removeItem("log");
-		localStorage.removeItem("annotation");
-		localStorage.removeItem("runningHead");
-		localStorage.removeItem("articleName");
-	}
+	// sendSuccess() {
+	// 	this.setState({isSend: true});
+	// 	localStorage.removeItem("keys");
+	// 	localStorage.removeItem("log");
+	// 	localStorage.removeItem("annotation");
+	// 	localStorage.removeItem("runningHead");
+	// 	localStorage.removeItem("articleName");
+	// }
 
 	sendDescription = (e) => {
 			// e.preventDefault();
@@ -72,11 +73,12 @@ class AddArticle1Component extends Component {
 					<div>
 					<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
 					
-					<form onSubmit={this.sendDescription} enctype="multipart/form-data">
+					<form onSubmit={this.sendDescription} encType="multipart/form-data">
 							<div className="add-article__section">		
 								<div className="add-article__description">
-									<input type="name" id="file1Description" className="login-container__input" maxLength="100" onChange={this.handleChange} required/>
-									<label htmlFor="file1Description" className="login-container__label">Описание файла</label>
+									{/* <input type="name" id="file1Description" className="login-container__input" maxLength="100" onChange={this.handleChange} required/>
+									<label htmlFor="file1Description" className="login-container__label">Описание файла</label> */}
+									<InputComponent text="Описание файла" name="file1Description" handleChange={this.handleChange} type="text" maxLength="100" required/>
 								</div>
 								
 								<input type="file" id="file1"></input>

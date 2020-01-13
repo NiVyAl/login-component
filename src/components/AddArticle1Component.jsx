@@ -14,13 +14,13 @@ class AddArticle1Component extends Component {
 		this.sendArticle = this.sendArticle.bind(this);
   }
   
-  componentDidMount() {
-		for (var i in this.state) {
-			if (localStorage.getItem(i)) {
-				document.getElementById(i).value = localStorage.getItem(i);
-			}
-		}	  
-  }
+//   componentDidMount() {
+// 		for (var i in this.state) {
+// 			if (localStorage.getItem(i)) {
+// 				document.getElementById(i).value = localStorage.getItem(i);
+// 			}
+// 		}	  
+//   }
 
   sendArticle = (e) => {
 		e.preventDefault();
@@ -33,17 +33,18 @@ class AddArticle1Component extends Component {
 		};
 		
 		ApiService.addArticle1(article1)
-			.then(res => {
-				if (res.id) {
-					localStorage.setItem("articleId", res.id);
-				} 
-				window.location.href="/addArticle/step2";
-			});  
+		.then(res => {
+			if (res.data.id) {
+				localStorage.setItem("articleId", res.data.id);
+			} 
+			window.location.href="/addArticle/step2";
+		});  
+		
   }
 
   handleChange = (e) => {
 		this.setState({ [e.target.id]: e.target.value });
-		localStorage.setItem(e.target.id, e.target.value); // кидаем данные каждую форму в localStorage
+		// localStorage.setItem(e.target.id, e.target.value); // кидаем данные каждой формы в localStorage
   }
   
 	render() {
