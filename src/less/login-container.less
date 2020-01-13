@@ -120,6 +120,22 @@
   color: #0044bb;
 }
 
-.login-container__input--false {
-  border-bottom: 1px solid #DF4B41;
+// .login-container__input--false {
+//   border-bottom: 1px solid #DF4B41;
+// }
+
+
+.login-container__error {
+	margin: 0;
+	margin-bottom: 15px;
+	color: @error-color;
+	display: none;
+}
+
+.login-container--error-password .login-container__error {
+	display: block;
+}
+
+.login-container--error-password input {
+	border-bottom: 1px solid @error-color;
 }

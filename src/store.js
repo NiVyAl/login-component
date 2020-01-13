@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import axios from 'axios';
 
 // function counter(state = 0, action) {
 // 	switch (action.type) {
@@ -21,6 +22,10 @@ export let store = createStore(loginToggle);
 if (localStorage.getItem("log")) {
 	store.dispatch({ type: "log" });
 	console.log(store.getState());
+}
+
+if (localStorage.getItem("token")) {
+	axios.defaults.headers.common.Authorization = localStorage.getItem("token");
 }
 
 // store.subscribe(() => console.log(store.getState())); // подписались на событие (при изменении срабатывает console.log)

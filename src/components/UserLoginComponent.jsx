@@ -10,9 +10,15 @@ class UserLoginComponent extends Component {
         this.modalButton = React.createRef();
     }
     
-    // componentDidMount() { // чтоб окно было открыто при загрузке
-    //     this.modalOpen()
-    // }
+    componentWillMount(){
+        document.addEventListener("keydown", this.escFunction, false);
+    }
+
+    escFunction = (e) => {
+        if (e.keyCode === 27) {
+            this.close();
+        }
+    }
 
     modalOpen = () => {
         this.modal.current.classList.add("user-login__modal--active");
@@ -43,7 +49,7 @@ class UserLoginComponent extends Component {
                     </button>
                     
                     <div ref={this.modal} className="user-login__modal">
-                        <p className="user-login__modal-name">Никита Высоцкий</p>
+                        <p className="user-login__modal-name">{localStorage.getItem("log")}</p>
                         <p className="user-login__email">{localStorage.getItem("email")}</p>
                         
                         <a className="user-login__link" href="/profile">Профиль</a>

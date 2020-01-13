@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import ApiService from "../service/ApiService";
 
 class ProfileComponent extends Component {
+    componentDidMount() {
+        ApiService.test()
+            .then((response) => {
+                console.log(response);
+            })
+    }
+    
     render() {
         return(
             <div className="window">

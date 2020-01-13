@@ -12,11 +12,24 @@ class LoginComponent extends Component {
     this.state = {
       username: '',
       password: '',
-      open: '',
+      open: '', //пустая строка
     }
+    
+    this.container = React.createRef();
 
     store.subscribe(() => this.setState({open: store.getState()}));
   }
+  
+  componentWillMount(){
+    document.addEventListener("keydown", this.escFunction, false);
+  }
+
+  escFunction = (e) => {
+      if (e.keyCode === 27) {
+          this.close();
+      }
+  }
+  
 
   handleChange = event => {
 		if (event.target.id === "login") {
@@ -48,12 +61,21 @@ class LoginComponent extends Component {
         // if (res.data.email) {
         //   this.log(res.data.email)
         // }
-      });
+      })
+      .catch(error => {
+        console.log(error);
+        if (error.response) {
+          if (error.response.status === 401) {
+            this.container.current.classList.add("login-container--error-password");
+          }
+        }
+      })
   }
 
   log(res) {
     localStorage.setItem("log", res.data.user.username);
     localStorage.setItem("email", res.data.user.username);
+    localStorage.setItem('token', res.data.token);
     axios.defaults.headers.common.Authorization = res.data.token;
     store.dispatch({ type: "log" });
   }
@@ -67,13 +89,15 @@ class LoginComponent extends Component {
     return (
       <div>
         { this.state.open === "open" &&
-        <div className="login-container">
+        <div ref={this.container} className="login-container">
           <div onClick={this.close} className="login-container__background"></div>
           <form className="login-container__window" onSubmit={this.handleSubmit}>
             <p className="login-container__title sub-title">Войти</p>
             <div className="login-container__form">
               <InputComponent text="email" name="login" handleChange={this.handleChange} type="email" maxLength="30" required/>
 					    <InputComponent text="пароль" name="passwordLog" handleChange={this.handleChange} type="password" maxLength="20" required/>
+              
+              <p className="login-container__error">Неверный логин или пароль</p>
               
               <a href="/" className="login-container__remember-password">Не помню пароль</a>
             </div>

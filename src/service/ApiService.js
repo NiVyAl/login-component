@@ -22,6 +22,10 @@ class ApiService {
     addFileDescription(description) {
         return axios.post(`${url}/article/saveFile`, description);
     }
+    
+    test() {
+        return axios.get(`${url}/users/test`);
+    }
 }
 
 export default new ApiService();
