@@ -27,10 +27,10 @@ class InputComponent extends Component {
 		return(
 			<div className="input-container">
 				{this.props.required &&
-					<input ref={this.input} type={this.props.type} id={this.props.name} className="input-container__input" maxLength={this.props.maxLength} onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} autoComplete={this.autoComplete} required/>
+					<input ref={this.input} type={this.props.type} id={this.props.name} className="input-container__input" maxLength={this.props.maxLength} onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} autoComplete={this.props.autoComplete} required/>
 				}
 				{this.props.required === undefined &&
-					<input ref={this.input} type={this.props.type} id={this.props.name} className="input-container__input" maxLength={this.props.maxLength} onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} autoComplete={this.autoComplete}/>
+					<input ref={this.input} type={this.props.type} id={this.props.name} className="input-container__input" maxLength={this.props.maxLength} onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} autoComplete={this.props.autoComplete}/>
 				}
 				<label ref={this.label} htmlFor={this.props.name} className="input-container__label">{this.props.text}</label>
 			</div>

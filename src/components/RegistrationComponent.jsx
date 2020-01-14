@@ -7,30 +7,22 @@ class RegistrationComponent extends Component{
     constructor(props){
         super(props);
         this.state ={
-            email: '',
-            password: '',
-            nameR: '',
-            surnameR: '',
-            middleNameR: '',
-            name: '',
-            surname: '',
-            country: '',
-            university: '',
-            city: '',
-            phone: '',
+            isRegistration: false,
         }
         this.saveUser = this.saveUser.bind(this);
+        this.window = React.createRef();
     }
 
     saveUser = (e) => {
         e.preventDefault();
         let user = {};
         for (let i in this.state) {    
-            if (this.state[i] !== "") {
+            if ((this.state[i] !== "") && (i !== this.state.isRegistration )) {
                 user[i] = this.state[i]
             }
         };
         console.log(user);
+        this.window.current.classList.add("load");
         ApiService.registration(user)
             .then(res => {
                 this.setState({message : 'User added successfully.'});
@@ -44,10 +36,10 @@ class RegistrationComponent extends Component{
 
     render() {
         return(
-            <div className="registration window">
+            <div className="registration window" ref={this.window}>
                 <h2 className="sub-title window__title">Регистрация</h2>
                 <form onSubmit={this.saveUser}>
-                    <InputComponent text="Имя" name="nameR" handleChange={this.handleChange} type="name" maxLength="20"/> {/*name это еще и id*/}
+                    <InputComponent text="Имя" name="nameR" handleChange={this.handleChange} type="name" maxLength="20"/> {/*name для сервера, еще и id*/}
                     <InputComponent text="Фамилия" name="surnameR" handleChange={this.handleChange} type="name" maxLength="20"/>
                     <InputComponent text="Отчество" name="middleNameR" handleChange={this.handleChange} type="name" maxLength="20"/>
                     <InputComponent text="Имя (латиницей)" name="name" handleChange={this.handleChange} type="name" maxLength="20" required/>

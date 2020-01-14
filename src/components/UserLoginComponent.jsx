@@ -26,7 +26,9 @@ class UserLoginComponent extends Component {
     }
 
     logOut = () => {
-        localStorage.removeItem("log");
+        // localStorage.removeItem("log");
+        // localStorage.removeItem("token");
+        localStorage.clear();
         delete axios.defaults.headers.common.Authorization;
         store.dispatch({ type: "close" });
     }
