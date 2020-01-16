@@ -58,6 +58,7 @@ class LoginComponent extends Component {
       .then(res => {
         // this.setState({message : 'User log successfully.'});
         // console.log(res);
+        console.log(res);
         this.window.current.classList.remove("load");
         if (res.status === 200) {
           this.log(res)

@@ -6,10 +6,11 @@ import SelectInputComponent from "../components/SelectInputComponent";
 class AddUserComponent extends Component{
 
     constructor(props){
-		  super(props);
-		  
-		  this.roles = ["READ_PRIVILEGE", "REVIEW_PRIVILEGE", "EDIT_PRIVILEGE"];
-		  this.rolesNames = ["Read", "Review", "Edit"];
+        super(props);
+        
+        this.roles = ["ROLE_ROOT", "ROLE_ADMIN", "ROLE_REVIEWER", "ROLE_AUTHOR"];
+        this.rolesNames = ["Root", "Admin", "Reviewer", "Author"];
+        this.window = React.createRef(); 
 		  
         this.state ={
             email: '',
@@ -29,6 +30,7 @@ class AddUserComponent extends Component{
 
     saveUser = (e) => {
         e.preventDefault();
+        this.window.current.classList.add("load");
         let user = {};
         for (let i in this.state) {    
             if ((this.state[i] !== "") && (i !== "message")) {
@@ -50,7 +52,7 @@ class AddUserComponent extends Component{
 
     render() {
         return(
-            <div className="registration window">
+            <div ref={this.window} className="registration window">
                 <h2 className="sub-title window__title">Создать пользователя</h2>
                 <form onSubmit={this.saveUser}>
                     <InputComponent text="Имя" name="nameR" handleChange={this.handleChange} type="name" maxLength="20"/> {/*name это еще и id*/}

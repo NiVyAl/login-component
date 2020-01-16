@@ -7,6 +7,7 @@ class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		this.state ={
+			data: {}
 			//  articleName: '',
 			//  runningHead: '',
 			//  annotation: '',
@@ -22,17 +23,13 @@ class AddArticle1Component extends Component {
 // 				document.getElementById(i).value = localStorage.getItem(i);
 // 			}
 // 		}	  
-//   }  
-  send = async (e) => {
-	  let res = await sendInput.submit(e);
-	  console.log(res);
-  }
+//   } 
 
   sendArticle = (e) => {
 		e.preventDefault();
 		this.window.current.classList.add("load");
 		console.log(this.state.data);
-		ApiService.addArticle1(this.state.data)
+		ApiService.addArticle1(this.state)
 		.then(res => {
 			if (res.data.id) {
 				localStorage.setItem("articleId", res.data.id);
@@ -43,7 +40,7 @@ class AddArticle1Component extends Component {
   }
 
   handleChange = (e) => {
-		this.setState({ [e.target.id]: e.target.value });
+	this.setState({ [e.target.id]: e.target.value });
 		// localStorage.setItem(e.target.id, e.target.value); // кидаем данные каждой формы в localStorage
   }
   
@@ -52,7 +49,7 @@ class AddArticle1Component extends Component {
 			<div className="add-article window" ref={this.window}>
 				<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 1)</h2>
 				
-				<form onSubmit={this.send}>
+				<form onSubmit={this.sendArticle}>
 					<InputComponent text="Название" name="articleName" handleChange={sendInput.handleChange} type="text" maxLength="100" required/>
 					<InputComponent text="Тип" name="type" handleChange={sendInput.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="100"/>
