@@ -6,45 +6,22 @@ import InputComponent from "../components/InputComponent";
 class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
-		this.state ={
-			//  articleName: '',
-			//  runningHead: '',
-			//  annotation: '',
-			//  keys: '',
-		}
-		// this.sendArticle = this.sendArticle.bind(this);
 		this.window = React.createRef();
   }
   
-//   componentDidMount() {
-// 		for (var i in this.state) {
-// 			if (localStorage.getItem(i)) {
-// 				document.getElementById(i).value = localStorage.getItem(i);
-// 			}
-// 		}	  
-//   }  
-  send = async (e) => {
-	  let res = await sendInput.submit(e);
-	  console.log(res);
-  }
-
-  sendArticle = (e) => {
-		e.preventDefault();
-		this.window.current.classList.add("load");
-		console.log(this.state.data);
-		ApiService.addArticle1(this.state.data)
+  send = (e) => {
+	  e.preventDefault();
+	  console.log(sendInput.data);
+	  this.window.current.classList.add("load");
+	  console.log(this.window);
+	  ApiService.addArticle1(sendInput.data)
 		.then(res => {
+			console.log(res);
 			if (res.data.id) {
 				localStorage.setItem("articleId", res.data.id);
 			} 
 			window.location.href="/addArticle/step2";
-		});  
-		
-  }
-
-  handleChange = (e) => {
-		this.setState({ [e.target.id]: e.target.value });
-		// localStorage.setItem(e.target.id, e.target.value); // кидаем данные каждой формы в localStorage
+		});
   }
   
 	render() {
@@ -55,10 +32,10 @@ class AddArticle1Component extends Component {
 				<form onSubmit={this.send}>
 					<InputComponent text="Название" name="articleName" handleChange={sendInput.handleChange} type="text" maxLength="100" required/>
 					<InputComponent text="Тип" name="type" handleChange={sendInput.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="100"/>
+					<InputComponent text="Running Head" name="runningHead" handleChange={sendInput.handleChange} type="text" maxLength="100"/>
+					<InputComponent text="Аннотация" name="annotation" handleChange={sendInput.handleChange} type="text" maxLength="100"/>
+					<InputComponent text="Ключевые слова" name="keys" handleChange={sendInput.handleChange} type="text" maxLength="100"/>
+					<InputComponent text="Авторы" name="authors" handleChange={sendInput.handleChange} type="text" maxLength="100"/>
 
 					<button className="button window__button" type="submit">Сохранить и продолжить</button>
 				</form>

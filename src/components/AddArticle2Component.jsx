@@ -6,13 +6,9 @@ class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		this.state ={
-			 articleName: '',
-			 runningHead: '',
-			 message: null,
 			 isSend: false,
 			 filePath: '',
 		}
-		this.sendDescription = this.sendDescription.bind(this);
 	}
 
 	sendFile= async e =>  {
@@ -76,8 +72,6 @@ class AddArticle1Component extends Component {
 					<form onSubmit={this.sendDescription} encType="multipart/form-data">
 							<div className="add-article__section">		
 								<div className="add-article__description">
-									{/* <input type="name" id="file1Description" className="login-container__input" maxLength="100" onChange={this.handleChange} required/>
-									<label htmlFor="file1Description" className="login-container__label">Описание файла</label> */}
 									<InputComponent text="Описание файла" name="file1Description" handleChange={this.handleChange} type="text" maxLength="100" required/>
 								</div>
 								
