@@ -1,69 +1,82 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import ApiService from "../service/ApiService";
 import InputComponent from "../components/InputComponent";
+import InputFileComponent from './InputFileComponent';
 
-class AddArticle1Component extends Component {
+class AddArticle2Component extends Component {
 	constructor(props){
 		super(props);
 		this.state ={
-			 articleName: '',
-			 runningHead: '',
-			 message: null,
 			 isSend: false,
 			 filePath: '',
+			 countFiles: 1,
+			 items: [0]
 		}
-		this.sendDescription = this.sendDescription.bind(this);
 	}
 
-	send= async e =>  {
+	send = (e) =>  {
 		e.preventDefault();
 		var formData = new FormData();
 		var file = document.querySelector('#file1');
 		formData.append(this.state.file1Description, file.files[0]);
 		console.log(file.files[0]);
-		const responce = await axios.post("http://localhost:4000/article/saveFile", formData, {
-			headers: {
-				id: localStorage.getItem("articleId")
-			}
-		})
-		console.log(responce);	
-		this.setState({isSend: true});
-		if (responce.status === 200) {
-			this.sendSuccess();
-			this.setState({filePath: responce.data})
-		}	
+		ApiService.addArticle2()
+			.then((res) => {
+				console.log(res)
+			})
+		
+		// const responce = axios.post("http://localhost:4000/article/saveFile", formData, {
+		// 	headers: {
+		// 		id: localStorage.getItem("articleId")
+		// 	}
+		// })
+		// console.log(responce);	
+		// this.setState({isSend: true});
+		// if (responce.status === 200) {
+		// 	this.sendSuccess();
+		// 	this.setState({filePath: responce.data})
+		// }	
 
 	} 
 
-	// sendSuccess() {
-	// 	this.setState({isSend: true});
-	// 	localStorage.removeItem("keys");
-	// 	localStorage.removeItem("log");
-	// 	localStorage.removeItem("annotation");
-	// 	localStorage.removeItem("runningHead");
-	// 	localStorage.removeItem("articleName");
-	// }
+	// // sendSuccess() {
+	// // 	this.setState({isSend: true});
+	// // 	localStorage.removeItem("keys");
+	// // 	localStorage.removeItem("log");
+	// // 	localStorage.removeItem("annotation");
+	// // 	localStorage.removeItem("runningHead");
+	// // 	localStorage.removeItem("articleName");
+	// // }
 
-	sendDescription = (e) => {
-			// e.preventDefault();
-			// let description = {};
-			// for (let i in this.state) {    
-			// 	if ((this.state[i] !== "") && (i !== "message") && (i !== "isSend")) {
-			// 		description[i] = this.state[i]
-			// 	}
-			// };
-			// console.log(description);
-			// ApiService.addFileDescription(description)
-			// 	.then(res => {
-			// 		this.setState({message : 'article add.'});
-			// 		this.props.history.push('/article');
-			// 	});
+	// sendDescription = (e) => {
+	// 		// e.preventDefault();
+	// 		// let description = {};
+	// 		// for (let i in this.state) {    
+	// 		// 	if ((this.state[i] !== "") && (i !== "message") && (i !== "isSend")) {
+	// 		// 		description[i] = this.state[i]
+	// 		// 	}
+	// 		// };
+	// 		// console.log(description);
+	// 		// ApiService.addFileDescription(description)
+	// 		// 	.then(res => {
+	// 		// 		this.setState({message : 'article add.'});
+	// 		// 		this.props.history.push('/article');
+	// 		// 	});
 				
-			this.sendFile(e); // после отправки описания отправляется файл
-	}
+	// 		this.sendFile(e); // после отправки описания отправляется файл
+	// }
 
 	handleChange = (e) => {
 			this.setState({ [e.target.id]: e.target.value });
+	}
+	
+	addFile = () => {
+		// console.log(typeof this.state.countFiles);
+		// this.setState({countFiles: this.state.countFiles.push(this.state.countFiles.length)})
+		// console.log(this.state.countFiles);
+		this.state.items.push(this.state.items.length);
+		this.setState({countFiles: this.state.countFiles + 1});
+		console.log(this.state.countFiles);
 	}
   
 	render() {
@@ -74,21 +87,13 @@ class AddArticle1Component extends Component {
 						<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
 						
 						<form onSubmit={this.send} encType="multipart/form-data">
-								<div className="add-article__section">		
-									<div className="add-article__description">
-										<InputComponent text="Описание файла" name="file1Description" handleChange={this.handleChange} type="text" maxLength="100" required/>
+								{this.state.items.map(item => 
+									<div className="add-article__section" key={item}>
+										<InputFileComponent id={item}/>
 									</div>
-									
-									<input type="file" id="file1"></input>
-								</div>
-
-								<div className="add-article__section">		
-									<div className="add-article__description">
-										<InputComponent text="Описание файла" name="file2Description" handleChange={this.handleChange} type="text" maxLength="100" required/>
-									</div>
-									
-									<input type="file" id="file2"></input>
-								</div>
+								)}
+								
+								<div className="add-article__button-more" onClick={this.addFile}>добавить еще файл</div>
 								
 								<a href="/addArticle/step1" className="add-article__link" type="submit">Вернуться на предыдущий шаг</a>
 								<button className="button window__button" type="submit">Отправить на проверку</button>
@@ -107,4 +112,4 @@ class AddArticle1Component extends Component {
 	}
 }
 
-export default AddArticle1Component;
+export default AddArticle2Component;

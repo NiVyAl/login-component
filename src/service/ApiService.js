@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = "http://192.168.0.100:4000";
+const url = "http://192.168.155.133:4000";
 
 class ApiService {
     registration(data) {
@@ -8,11 +8,15 @@ class ApiService {
     }
     
     addUser(data) {
-        return axios.post(`${url}/users/registration`, data);
+        return axios.post(`${url}/users/addUser`, data);
     }
 
     addArticle1(data) {
         return axios.post(`${url}/article/save`, data);
+    }
+    
+    addArticle2(data) {
+        return axios.post(`${url}/article/saveFile`, data);
     }
 
     log(data) {
@@ -25,6 +29,10 @@ class ApiService {
     
     test() {
         return axios.get(`${url}/users/test`);
+    }
+    
+    registrationConfirm(data) {
+        return axios.post(`${url}/users/registrationConfirm`, data);
     }
 }
 
