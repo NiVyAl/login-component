@@ -8,9 +8,6 @@ class UserLoginComponent extends Component {
         super(props);
         this.modal  = React.createRef();
         this.modalButton = React.createRef();
-    }
-    
-    componentWillMount(){
         document.addEventListener("keydown", this.escFunction, false);
     }
 

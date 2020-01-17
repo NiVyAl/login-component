@@ -22,10 +22,6 @@ class LoginComponent extends Component {
     
     document.addEventListener("keydown", this.escFunction, false);
   }
-  
-  // componentWillMount(){
-  //   document.addEventListener("keydown", this.escFunction, false);
-  // }
 
   escFunction = (e) => {
       if (e.keyCode === 27) {
@@ -93,6 +89,7 @@ class LoginComponent extends Component {
     localStorage.setItem("log", userFullName);
     localStorage.setItem("email", res.data.user.username);
     localStorage.setItem('token', res.data.token);
+    // localStorage.setItem('role', res.data.token);
     axios.defaults.headers.common.Authorization = res.data.token;
     store.dispatch({ type: "log" });
   }
