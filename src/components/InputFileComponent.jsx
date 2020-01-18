@@ -14,10 +14,10 @@ class InputFileComponent extends Component {
 		return(
 			<div className="input-file">		
 				<div className="input-file__description">
-					<InputComponent text="Описание файла" name="file1Description" handleChange={this.handleChange} type="text" maxLength="100" required/>
+					<InputComponent text="Описание файла" name={`file${this.props.id}Description`} handleChange={this.props.handleChange} type="text" maxLength="100" required/>
 				</div>
 				
-				<input className="input-file__input" type="file" id={this.props.id} required></input>
+				<input className="input-file__input" type="file" id={this.props.id} ></input>
 			</div>
 		)
 	}

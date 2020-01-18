@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
-import InputComponent from "../components/InputComponent";
 import InputFileComponent from './InputFileComponent';
 
 class AddArticle2Component extends Component {
@@ -12,68 +11,40 @@ class AddArticle2Component extends Component {
 			 countFiles: 1,
 			 items: [0]
 		}
+		this.window = React.createRef();
 	}
 
 	send = (e) =>  {
 		e.preventDefault();
-		var formData = new FormData();
-		var file = document.querySelector('#file1');
-		formData.append(this.state.file1Description, file.files[0]);
-		console.log(file.files[0]);
-		ApiService.addArticle2()
+		this.window.current.classList.add("load");
+		let formDatas = {};
+		let descriptions = {};
+		let inputFiles = document.querySelectorAll(".input-file__input");
+		for (let i in this.state) { // заполняем descriptions
+			if ((i !== "isSend") && (i !== "filePath") && (i !== "countFiles") && (i !== "items")) {
+				descriptions[i] = this.state[i];
+			}
+		}
+		for (let i = 0; i < inputFiles.length; i++) {
+			formDatas[`file${i}`] = new FormData();
+			formDatas[`file${i}`].append(descriptions[i], inputFiles[i].files[0]);
+		}
+		let articleId = {id: localStorage.getItem("articleId")};
+
+		let data = Object.assign(articleId, descriptions, formDatas);
+		console.log(data);
+		ApiService.addArticle2(data)
 			.then((res) => {
 				console.log(res)
+				this.setState({isSend: true});
 			})
-		
-		// const responce = axios.post("http://localhost:4000/article/saveFile", formData, {
-		// 	headers: {
-		// 		id: localStorage.getItem("articleId")
-		// 	}
-		// })
-		// console.log(responce);	
-		// this.setState({isSend: true});
-		// if (responce.status === 200) {
-		// 	this.sendSuccess();
-		// 	this.setState({filePath: responce.data})
-		// }	
-
 	} 
-
-	// // sendSuccess() {
-	// // 	this.setState({isSend: true});
-	// // 	localStorage.removeItem("keys");
-	// // 	localStorage.removeItem("log");
-	// // 	localStorage.removeItem("annotation");
-	// // 	localStorage.removeItem("runningHead");
-	// // 	localStorage.removeItem("articleName");
-	// // }
-
-	// sendDescription = (e) => {
-	// 		// e.preventDefault();
-	// 		// let description = {};
-	// 		// for (let i in this.state) {    
-	// 		// 	if ((this.state[i] !== "") && (i !== "message") && (i !== "isSend")) {
-	// 		// 		description[i] = this.state[i]
-	// 		// 	}
-	// 		// };
-	// 		// console.log(description);
-	// 		// ApiService.addFileDescription(description)
-	// 		// 	.then(res => {
-	// 		// 		this.setState({message : 'article add.'});
-	// 		// 		this.props.history.push('/article');
-	// 		// 	});
-				
-	// 		this.sendFile(e); // после отправки описания отправляется файл
-	// }
 
 	handleChange = (e) => {
 			this.setState({ [e.target.id]: e.target.value });
 	}
 	
 	addFile = () => {
-		// console.log(typeof this.state.countFiles);
-		// this.setState({countFiles: this.state.countFiles.push(this.state.countFiles.length)})
-		// console.log(this.state.countFiles);
 		this.state.items.push(this.state.items.length);
 		this.setState({countFiles: this.state.countFiles + 1});
 		console.log(this.state.countFiles);
@@ -83,13 +54,13 @@ class AddArticle2Component extends Component {
 		return(
 			<div className="add-article window">
 				{this.state.isSend === false &&
-					<div>
+					<div ref={this.window}>
 						<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
 						
 						<form onSubmit={this.send} encType="multipart/form-data">
 								{this.state.items.map(item => 
 									<div className="add-article__section" key={item}>
-										<InputFileComponent id={item}/>
+										<InputFileComponent id={item} handleChange={this.handleChange}/>
 									</div>
 								)}
 								
