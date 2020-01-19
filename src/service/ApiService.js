@@ -16,7 +16,11 @@ class ApiService {
     }
     
     addArticle2(data) {
-        return axios.post(`${url}/article/saveFile`, data);
+        return axios.post(`${url}/article/saveFile`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
     }
 
     log(data) {

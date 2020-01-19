@@ -27,11 +27,19 @@ class AddArticle2Component extends Component {
 		}
 		for (let i = 0; i < inputFiles.length; i++) {
 			formDatas[`file${i}`] = new FormData();
-			formDatas[`file${i}`].append(descriptions[i], inputFiles[i].files[0]);
+			formDatas[`file${i}`].append("file", inputFiles[i].files[0]);
+			// console.log(inputFiles[i].files[0]);
 		}
 		let articleId = {id: localStorage.getItem("articleId")};
 
-		let data = Object.assign(articleId, descriptions, formDatas);
+		const data = new Map()
+		data.set("articleId", localStorage.getItem("articleId"));
+		for (let i = 0; i < inputFiles.length; i++) {
+			data.set(descriptions[`file${i}Description`], formDatas[`file${i}`]);
+			console.log(formDatas[`file${i}`].get("file"));
+		}
+		// const data = Object.assign(articleId, descriptions, formDatas);
+
 		console.log(data);
 		ApiService.addArticle2(data)
 			.then((res) => {
