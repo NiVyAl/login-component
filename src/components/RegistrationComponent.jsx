@@ -34,7 +34,7 @@ class RegistrationComponent extends Component{
                 console.log(res);
                 if (res.status === 200) {
                     this.setState({isRegistration: true})
-                    // document.querySelector("body").scrollTop = 0;
+                    window.scroll(0, 0);
                     this.window.current.classList.remove("load");
                 }
             });

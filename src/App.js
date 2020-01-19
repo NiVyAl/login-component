@@ -10,6 +10,7 @@ import RegistrationConfirmComponent from './components/RegistrationConfirmCompon
 import RegistrationComponent from './components/RegistrationComponent.jsx'
 import AddUserComponent from './components/AddUserComponent.jsx'
 import ProfileComponent from './components/ProfileComponent.jsx'
+import FooterComponent from './components/FooterComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
             </Switch>
           </div>
         </div>
+
+        <FooterComponent/>
       </Router>
     </div>
   );

@@ -7,6 +7,7 @@ class ArticlesContainerComponent extends Component {
 		
 		this.state ={
 			open: false,
+			scrollY: 0,
 		}
 	}
 	
@@ -16,12 +17,13 @@ class ArticlesContainerComponent extends Component {
 	}
 	
 	open = (e) => {
-		if (e.target.id === this.state.open) {
+		if (e.target.id === this.state.open) { //если нажали на меньше информации (скрывается)
 			this.setState({open: false});
 			e.target.innerHTML = "Больше информации";
-		} else {
+			window.scroll(this.state.scrollY, 0);
+		} else { // если нажали на больше информации (раскрывается)
 			this.setState({open: e.target.id});	
-			console.log(this.buttons);
+			this.setState({scrollY: window.pageYOffset})
 			for (let i = 0; i < this.buttons.length; i++) {
 				this.buttons[i].innerHTML = "Больше информации";
 			}
@@ -37,10 +39,8 @@ class ArticlesContainerComponent extends Component {
 					<li className="articles-container__item">
 						<h3 className="articles-container__title">Влияние посещаемости на успевамость</h3>
 						{/* <p className="articles-container__status">Находится на проверке</p> */}
-						<p className="articles-container__status">Не доделана (<a href="/" className="link articles-container__link">продолжить создание</a>)</p>
+						<p className="articles-container__status">Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
 						<a href="/" className="link articles-container__link" download>Скачать</a>
-						
-						<button className="articles-container__button" id="1" onClick={this.open}>Больше информации</button>
 						
 						{this.state.open == 1 &&
 							<ul className="more-list articles-container__more-list">
@@ -80,6 +80,7 @@ class ArticlesContainerComponent extends Component {
 									</li>
 							</ul>
 						}
+						<button className="articles-container__button button" id="1" onClick={this.open}>Больше информации</button>
 					</li>
 					
 					
@@ -88,8 +89,6 @@ class ArticlesContainerComponent extends Component {
 						<p className="articles-container__status">Находится на проверке</p>
 						{/* <p className="articles-container__status">Не доделана (<a href="/" className="link articles-container__link">продолжить создание</a>)</p> */}
 						<a href="/" className="link articles-container__link" download>Скачать</a>
-						
-						<button className="articles-container__button" id="2" onClick={this.open}>Больше информации</button>
 						
 						{this.state.open == 2 &&
 							<ul className="more-list articles-container__more-list">
@@ -129,6 +128,7 @@ class ArticlesContainerComponent extends Component {
 									</li>
 							</ul>
 						}
+						<button className="articles-container__button button" id="2" onClick={this.open}>Больше информации</button>
 					</li>
 				</ul>
 			</div>

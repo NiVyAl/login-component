@@ -20,6 +20,7 @@ class AddArticle2Component extends Component {
 		let formDatas = {};
 		let descriptions = {};
 		let inputFiles = document.querySelectorAll(".input-file__input");
+		
 		for (let i in this.state) { // заполняем descriptions
 			if ((i !== "isSend") && (i !== "filePath") && (i !== "countFiles") && (i !== "items")) {
 				descriptions[i] = this.state[i];
@@ -28,7 +29,7 @@ class AddArticle2Component extends Component {
 		for (let i = 0; i < inputFiles.length; i++) {
 			formDatas[`file${i}`] = new FormData();
 			formDatas[`file${i}`].append("file", inputFiles[i].files[0]);
-			// console.log(inputFiles[i].files[0]);
+			console.log(inputFiles[i].files[0]);
 		}
 		let articleId = {id: localStorage.getItem("articleId")};
 
@@ -36,12 +37,17 @@ class AddArticle2Component extends Component {
 		data.set("articleId", localStorage.getItem("articleId"));
 		for (let i = 0; i < inputFiles.length; i++) {
 			data.set(descriptions[`file${i}Description`], formDatas[`file${i}`]);
-			console.log(formDatas[`file${i}`].get("file"));
+			// console.log(formDatas[`file${i}`].get("file"));
 		}
 		// const data = Object.assign(articleId, descriptions, formDatas);
+		// console.log(data);
 
-		console.log(data);
-		ApiService.addArticle2(data)
+		let newData = new FormData();
+		for (let i = 0; i < inputFiles.length; i++) {
+			newData.append(descriptions[`file${i}Description`], inputFiles[i].files[0])
+		}
+		console.log(newData);
+		ApiService.addArticle2(newData)
 			.then((res) => {
 				console.log(res)
 				this.setState({isSend: true});
@@ -65,14 +71,14 @@ class AddArticle2Component extends Component {
 					<div ref={this.window}>
 						<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
 						
-						<form onSubmit={this.send} encType="multipart/form-data">
+						<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
 								{this.state.items.map(item => 
 									<div className="add-article__section" key={item}>
 										<InputFileComponent id={item} handleChange={this.handleChange}/>
 									</div>
 								)}
 								
-								<div className="add-article__button-more" onClick={this.addFile}>добавить еще файл</div>
+								<div className="add-article__button-more button-more" onClick={this.addFile}>+</div>
 								
 								<a href="/addArticle/step1" className="add-article__link" type="submit">Вернуться на предыдущий шаг</a>
 								<button className="button window__button" type="submit">Отправить на проверку</button>

@@ -23,12 +23,15 @@ class RegistrationConfirmComponent extends Component {
 	// 	console.log(newData);
 	// 	this.setState({token: newData});
 	// }
+	componentDidMount() {
+		this.sendToken();
+	}
 	
-	sendToken = (event) => {
+	sendToken = () => {
 		let data = window.location.href;
 			let newData = "";
 			for (let i = 0; i < data.length; i++) {
-				if (data[i] === "=") {
+				if (data[i] === "?") {
 					newData = data.slice(i+1, data.length);
 					break
 				}
