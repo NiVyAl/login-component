@@ -39,43 +39,47 @@ class ArticlesContainerComponent extends Component {
 					<li className="articles-container__item">
 						<h3 className="articles-container__title">Влияние посещаемости на успевамость</h3>
 						{/* <p className="articles-container__status">Находится на проверке</p> */}
-						<p className="articles-container__status">Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
+						<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
 						<a href="/" className="link articles-container__link" download>Скачать</a>
 						
 						{this.state.open == 1 &&
 							<ul className="more-list articles-container__more-list">
 									<li className="more-list__item">
-										<p className="more-list__title">Running Head</p>
+										<p className="more-list__title">Авторы:</p>
+										<p className="more-list__content">Гордеев Фёдор Андреевич, Тетерин Даниил Михайлович, Лаврентьев Евсей Вадимович, Шумейко Виктор Валерьевич</p>
+									</li>
+									<li className="more-list__item">
+										<p className="more-list__title">Running Head:</p>
 										<p className="more-list__content">Значимость этих проблем настолько очевидна</p>
 									</li>
 									
 									<li className="more-list__item">
-										<p className="more-list__title">Аннотация</p>
+										<p className="more-list__title">Аннотация:</p>
 										<p className="more-list__content">Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции требуют определения и уточнения существенных финансовых и административных условий. С другой стороны постоянный количественный рост и сфера нашей активности играет важную роль в формировании дальнейших направлений развития. Разнообразный и богатый опыт сложившаяся структура организации способствует подготовки и реализации форм развития. Не следует, однако забывать, что рамки и место обучения кадров требуют от нас анализа существенных финансовых и административных условий. Задача организации, в особенности же дальнейшее развитие различных форм деятельности требуют от нас анализа позиций, занимаемых участниками в отношении поставленных задач. Не следует, однако забывать, что реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.</p>
 									</li>
 									
 									<li className="more-list__item">
-										<p className="more-list__title">Ключевые слова</p>
+										<p className="more-list__title">Ключевые слова:</p>
 										<p className="more-list__content">Не следует, однако забывать, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки позиций, занимаемых участниками в отношении поставленных задач. Равным образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки новых предложений. Повседневная практика показывает, что укрепление и развитие структуры играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач. Не следует, однако забывать, что рамки и место обучения кадров требуют определения и уточнения позиций, занимаемых участниками в отношении поставленных задач. Задача организации, в особенности же реализация намеченных плановых заданий в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. С другой стороны укрепление и развитие структуры требуют определения и уточнения новых предложений.</p>
 									</li>
 									
 									<li className="more-list__item">
-										<p className="more-list__title">проверка на антиплагиат</p>
+										<p className="more-list__title">Проверка на антиплагиат:</p>
 										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
 									</li>
 									
 									<li className="more-list__item">
-										<p className="more-list__title">еще какой-то файл</p>
+										<p className="more-list__title">еще какой-то файл:</p>
 										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
 									</li>
 									
 									<li className="more-list__item">
-										<p className="more-list__title">pdf файл самой статьи</p>
+										<p className="more-list__title">pdf файл самой статьи:</p>
 										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
 									</li>
 									
 									<li className="more-list__item">
-										<p className="more-list__title">третий файл самой статьи</p>
+										<p className="more-list__title">третий файл самой статьи:</p>
 										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
 									</li>
 							</ul>
@@ -86,7 +90,7 @@ class ArticlesContainerComponent extends Component {
 					
 					<li className="articles-container__item">
 						<h3 className="articles-container__title">Влияние посещаемости на успевамость</h3>
-						<p className="articles-container__status">Находится на проверке</p>
+						<p className="articles-container__status"><span className="text-bold">Статус: </span>Находится на проверке</p>
 						{/* <p className="articles-container__status">Не доделана (<a href="/" className="link articles-container__link">продолжить создание</a>)</p> */}
 						<a href="/" className="link articles-container__link" download>Скачать</a>
 						

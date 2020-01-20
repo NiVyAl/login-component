@@ -52,17 +52,11 @@ class LoginComponent extends Component {
     this.window.current.classList.add("load");
     ApiService.log(user)
       .then(res => {
-        // this.setState({message : 'User log successfully.'});
-        // console.log(res);
         console.log(res);
         this.window.current.classList.remove("load");
         if (res.status === 200) {
           this.log(res)
         }
-        // axios.defaults.headers.common.Authorization = res.data.token;
-        // if (res.data.email) {
-        //   this.log(res.data.email)
-        // }
       })
       .catch(error => {
         if (this.window.current) { // проверка на открытость окна
@@ -89,7 +83,7 @@ class LoginComponent extends Component {
     localStorage.setItem("log", userFullName);
     localStorage.setItem("email", res.data.user.username);
     localStorage.setItem('token', res.data.token);
-    // localStorage.setItem('role', res.data.token);
+    localStorage.setItem('userId', res.data.user.id);
     axios.defaults.headers.common.Authorization = res.data.token;
     store.dispatch({ type: "log" });
   }

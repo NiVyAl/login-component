@@ -7,7 +7,7 @@ class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		this.state ={
-			data: {}
+			userId: localStorage.getItem("userId"),
 			//  articleName: '',
 			//  runningHead: '',
 			//  annotation: '',
@@ -28,13 +28,13 @@ class AddArticle1Component extends Component {
   sendArticle = (e) => {
 		e.preventDefault();
 		this.window.current.classList.add("load");
-		console.log(this.state.data);
+		console.log(this.state);
 		ApiService.addArticle1(this.state)
 		.then(res => {
 			if (res.data.id) {
 				localStorage.setItem("articleId", res.data.id);
 			} 
-			window.location.href="/addArticle/step2";
+			// window.location.href="/addArticle/step2";
 		});  
 		
   }
@@ -50,8 +50,8 @@ class AddArticle1Component extends Component {
 				<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 1)</h2>
 				
 				<form onSubmit={this.sendArticle}>
-					<InputComponent text="Название" name="articleName" handleChange={sendInput.handleChange} type="text" maxLength="100" required/>
-					<InputComponent text="Тип" name="type" handleChange={sendInput.handleChange} type="text" maxLength="100"/>
+					<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="100" required/>
+					<InputComponent text="Тип" name="type" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="100"/>

@@ -4,9 +4,13 @@ import ArticlesContainerComponent from './ArticlesContainerComponent';
 
 class ProfileComponent extends Component {
     componentDidMount() {
-        ApiService.test()
+        // ApiService.test()
+        //     .then((response) => {
+        //         console.log(response);
+        //     })
+        ApiService.getArticles(localStorage.getItem("userId"))
             .then((response) => {
-                console.log(response);
+                console.log(response)
             })
     }
     

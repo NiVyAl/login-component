@@ -17,7 +17,6 @@ class AddArticle2Component extends Component {
 	send = (e) =>  {
 		e.preventDefault();
 		this.window.current.classList.add("load");
-		let formDatas = {};
 		let descriptions = {};
 		let inputFiles = document.querySelectorAll(".input-file__input");
 		
@@ -26,28 +25,14 @@ class AddArticle2Component extends Component {
 				descriptions[i] = this.state[i];
 			}
 		}
-		for (let i = 0; i < inputFiles.length; i++) {
-			formDatas[`file${i}`] = new FormData();
-			formDatas[`file${i}`].append("file", inputFiles[i].files[0]);
-			console.log(inputFiles[i].files[0]);
-		}
-		let articleId = {id: localStorage.getItem("articleId")};
 
-		const data = new Map()
-		data.set("articleId", localStorage.getItem("articleId"));
+		let data = new FormData();
 		for (let i = 0; i < inputFiles.length; i++) {
-			data.set(descriptions[`file${i}Description`], formDatas[`file${i}`]);
-			// console.log(formDatas[`file${i}`].get("file"));
+			data.append(descriptions[`file${i}Description`], inputFiles[i].files[0])
 		}
-		// const data = Object.assign(articleId, descriptions, formDatas);
-		// console.log(data);
-
-		let newData = new FormData();
-		for (let i = 0; i < inputFiles.length; i++) {
-			newData.append(descriptions[`file${i}Description`], inputFiles[i].files[0])
-		}
-		console.log(newData);
-		ApiService.addArticle2(newData)
+		
+		console.log(data);
+		ApiService.addArticle2(data, localStorage.getItem("articleId"))
 			.then((res) => {
 				console.log(res)
 				this.setState({isSend: true});
@@ -78,7 +63,10 @@ class AddArticle2Component extends Component {
 									</div>
 								)}
 								
-								<div className="add-article__button-more button-more" onClick={this.addFile}>+</div>
+								<div className="add-article__button-more button-more" onClick={this.addFile}>
+									<div className="button-more__button">+</div>
+									<span className="button-more__description">Добавить файл</span>	
+								</div>
 								
 								<a href="/addArticle/step1" className="add-article__link" type="submit">Вернуться на предыдущий шаг</a>
 								<button className="button window__button" type="submit">Отправить на проверку</button>
