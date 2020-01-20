@@ -31,8 +31,8 @@ class AddArticle1Component extends Component {
 		console.log(this.state);
 		ApiService.addArticle1(this.state)
 		.then(res => {
-			if (res.data.id) {
-				localStorage.setItem("articleId", res.data.id);
+			if (res.data.articleId) {
+				localStorage.setItem("articleId", res.data.articleId);
 			} 
 			// window.location.href="/addArticle/step2";
 		});  

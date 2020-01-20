@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import ArticlesContainerComponent from './ArticlesContainerComponent';
+import ArticlesReviewContainerComponent from './ArticlesReviewContainerComponent';
 
 class ProfileComponent extends Component {
     componentDidMount() {
-        // ApiService.test()
-        //     .then((response) => {
-        //         console.log(response);
-        //     })
-        ApiService.getArticles(localStorage.getItem("userId"))
+        ApiService.test()
             .then((response) => {
-                console.log(response)
+                console.log(response);
             })
     }
     
@@ -20,7 +17,8 @@ class ProfileComponent extends Component {
                 <h2 className="sub-title window__title">Профиль</h2>
                 
                 <div className="profile__articles-container">
-                    <ArticlesContainerComponent/>
+                    {/* <ArticlesContainerComponent/> */}
+                    <ArticlesReviewContainerComponent/>
                 </div>
             </div>
         )

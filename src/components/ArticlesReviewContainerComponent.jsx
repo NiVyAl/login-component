@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 
-class ArticlesContainerComponent extends Component {
+class ArticlesReviewContainerComponent extends Component {
 	constructor(props){
 		super(props);
 		
@@ -39,12 +39,11 @@ class ArticlesContainerComponent extends Component {
 	render() {
 		return(
 			<div className="articles-container">
-				<h2 className="articles-container__title">Ваши статьи:</h2>
+				<h2 className="articles-container__title">Статьи на проверку:</h2>
 				<ul className="articles-container__list">
 					<li className="articles-container__item">
 						<h3 className="articles-container__title">Влияние посещаемости на успевамость</h3>
 						{/* <p className="articles-container__status">Находится на проверке</p> */}
-						<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
 						<a href="/" className="link articles-container__link" download>Скачать</a>
 						
 						{this.state.open == 1 &&
@@ -71,6 +70,7 @@ class ArticlesContainerComponent extends Component {
 									<li className="more-list__item">
 										<p className="more-list__title">Проверка на антиплагиат:</p>
 										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
+										{/* <p className="more-list__content"><a href="/" className="link" download>Загрузить измененный файл</a></p> */}
 									</li>
 									
 									<li className="more-list__item">
@@ -89,6 +89,7 @@ class ArticlesContainerComponent extends Component {
 									</li>
 							</ul>
 						}
+						<button className="articles-container__button-edit-status button">Изменить статус</button>
 						<button className="articles-container__button button" id="1" onClick={this.open}>Больше информации</button>
 					</li>
 					
@@ -145,4 +146,4 @@ class ArticlesContainerComponent extends Component {
 	}
 }
 
-export default ArticlesContainerComponent;
+export default ArticlesReviewContainerComponent;
