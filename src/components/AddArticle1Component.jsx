@@ -7,7 +7,7 @@ class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		this.state ={
-			userId: localStorage.getItem("userId"),
+			id: localStorage.getItem("userId"),
 			//  articleName: '',
 			//  runningHead: '',
 			//  annotation: '',

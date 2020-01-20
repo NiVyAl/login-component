@@ -78,7 +78,7 @@ class LoginComponent extends Component {
     if ((res.data.user.nameR) && (res.data.user.surnameR)) {
       userFullName = `${res.data.user.nameR} ${res.data.user.surnameR}`;
     } else {
-      userFullName = `${res.data.user.firstName} ${res.data.user.firstName}`
+      userFullName = `${res.data.user.firstName} ${res.data.user.lastName}`;
     }
     localStorage.setItem("log", userFullName);
     localStorage.setItem("email", res.data.user.username);

@@ -9,6 +9,7 @@ class RegistrationConfirmComponent extends Component {
 			isConfirm: false,
 			// token: "",
 		}
+		this.window = React.createRef();
 	}
 
 	// componentDidMount() {
@@ -42,7 +43,9 @@ class RegistrationConfirmComponent extends Component {
 				.then((res) => {
 					console.log(res)
 					if (res.status === 200) {
-						this.isConfirm = true;
+						console.log("ok");
+						this.setState({isConfirm: true})
+						this.window.current.classList.remove("load");
 					}
 				})
 			// try {
@@ -60,11 +63,11 @@ class RegistrationConfirmComponent extends Component {
 	
 	render() {
 		return(
-			<div className="confirm window load">
+			<div className="confirm window load" ref={this.window}>
 				<h2 className="sub-title confirm__title">Подтверждение email</h2>
 				
 				{this.state.isConfirm &&
-					<p className="confirm__text">email: {this.state.email} подтвержден!</p>
+					<p className="confirm__text">email подтвержден!</p>
 				}
 				
 			</div>
