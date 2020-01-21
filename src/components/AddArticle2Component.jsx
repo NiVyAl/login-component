@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import InputFileComponent from './InputFileComponent';
+import InputComponent from "../components/InputComponent";
 
 class AddArticle2Component extends Component {
 	constructor(props){
@@ -40,7 +41,7 @@ class AddArticle2Component extends Component {
 	} 
 
 	handleChange = (e) => {
-			this.setState({ [e.target.id]: e.target.value });
+		this.setState({ [e.target.id]: e.target.value });
 	}
 	
 	addFile = () => {
@@ -57,19 +58,20 @@ class AddArticle2Component extends Component {
 						<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
 						
 						<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
-								{this.state.items.map(item => 
-									<div className="add-article__section" key={item}>
-										<InputFileComponent id={item} handleChange={this.handleChange}/>
-									</div>
-								)}
-								
-								<div className="add-article__button-more button-more" onClick={this.addFile}>
-									<div className="button-more__button">+</div>
-									<span className="button-more__description">Добавить файл</span>	
+							
+							{this.state.items.map(item => 
+								<div className="add-article__section" key={item}>
+									<InputFileComponent id={item} handleChange={this.handleChange}/>
 								</div>
-								
-								<a href="/addArticle/step1" className="add-article__link" type="submit">Вернуться на предыдущий шаг</a>
-								<button className="button window__button" type="submit">Отправить на проверку</button>
+							)}
+							
+							<div className="add-article__button-more button-more" onClick={this.addFile}>
+								<div className="button-more__button">+</div>
+								<span className="button-more__description">Добавить файл</span>	
+							</div>
+							
+							<a href="/addArticle/step1" className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</a>
+							<button className="button window__button" type="submit">Отправить на проверку</button>
 						</form>
 					</div>
 				}

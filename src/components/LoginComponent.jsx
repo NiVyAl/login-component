@@ -41,7 +41,7 @@ class LoginComponent extends Component {
   }
   
 
-  handleSubmit = async event => { 
+  handleSubmit = async event => {
     event.preventDefault();
     let user = {};
     for (let i in this.state) {    

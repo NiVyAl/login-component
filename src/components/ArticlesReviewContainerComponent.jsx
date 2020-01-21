@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
+import ArticleEditComponent from './ArticleEditComponent';
 
 class ArticlesReviewContainerComponent extends Component {
 	constructor(props){
@@ -8,6 +9,7 @@ class ArticlesReviewContainerComponent extends Component {
 		this.state ={
 			open: false,
 			scrollY: 0,
+			isEditOpen: true,
 		}
 	}
 	
@@ -35,10 +37,17 @@ class ArticlesReviewContainerComponent extends Component {
 			e.target.innerHTML = "Меньше информации";
 		}
 	}
+
+	editOpen = () => {
+		this.setState({isEditOpen: true});
+	}
 	
 	render() {
 		return(
 			<div className="articles-container">
+				{this.state.isEditOpen &&
+					<ArticleEditComponent/>
+				}
 				<h2 className="articles-container__title">Статьи на проверку:</h2>
 				<ul className="articles-container__list">
 					<li className="articles-container__item">
@@ -89,8 +98,8 @@ class ArticlesReviewContainerComponent extends Component {
 									</li>
 							</ul>
 						}
-						<button className="articles-container__button-edit-status button">Изменить статус</button>
-						<button className="articles-container__button button" id="1" onClick={this.open}>Больше информации</button>
+						<p className="articles-container__text-button text-button" id="1" onClick={this.open}>Больше информации</p>
+						<button className="articles-container__button-edit-status button" onClick={this.editOpen}>Изменить статус</button>
 					</li>
 					
 					
