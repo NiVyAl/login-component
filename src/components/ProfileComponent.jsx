@@ -5,10 +5,10 @@ import ArticlesReviewContainerComponent from './ArticlesReviewContainerComponent
 
 class ProfileComponent extends Component {
     componentDidMount() {
-        ApiService.test()
-            .then((response) => {
-                console.log(response);
-            })
+        // ApiService.test()
+        //     .then((response) => {
+        //         console.log(response);
+        //     })
     }
     
     render() {

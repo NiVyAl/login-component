@@ -67,7 +67,7 @@ class AddUserComponent extends Component{
                     <InputComponent text="email" name="email" handleChange={this.handleChange} type="email" maxLength="30" required/>
                     <InputComponent text="Пароль" name="password" handleChange={this.handleChange} type="password" maxLength="20" autoComplete="new-password" required/>
 
-						  <SelectInputComponent id="role" change={this.handleChange} values={this.roles} texts={this.rolesNames}/>
+						  <SelectInputComponent title="Роль пользователя:" id="role" change={this.handleChange} values={this.roles} texts={this.rolesNames}/>
 
                     <button className="button window__button" type="submit">Создать пользователя</button>
                 </form>

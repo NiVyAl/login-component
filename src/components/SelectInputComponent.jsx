@@ -8,7 +8,7 @@ class SelectInputComponent extends Component {
 	render() {
 		return(
 			<div className="select-input">
-				<p className="select-input__title">Роль пользователя:</p>
+				<p className="select-input__title">{this.props.title}</p>
 				
 				<select id={this.props.id} onChange={this.props.change} className="select-input__select">
 					{this.props.texts.map(this.writeOption)}

@@ -75,8 +75,8 @@ class LoginComponent extends Component {
   log(res) {
     console.log(res.data);
     let userFullName;
-    if ((res.data.user.nameR) && (res.data.user.surnameR)) {
-      userFullName = `${res.data.user.nameR} ${res.data.user.surnameR}`;
+    if ((res.data.user.surnameR) && (res.data.user.middleNameR)) {
+      userFullName = `${res.data.user.surnameR} ${res.data.user.middleNameR}`;
     } else {
       userFullName = `${res.data.user.firstName} ${res.data.user.lastName}`;
     }

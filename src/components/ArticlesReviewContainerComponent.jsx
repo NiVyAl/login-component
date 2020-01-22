@@ -10,6 +10,7 @@ class ArticlesReviewContainerComponent extends Component {
 			open: false,
 			scrollY: 0,
 			isEditOpen: true,
+			articles: {},
 		}
 	}
 	

@@ -34,7 +34,7 @@ class AddArticle1Component extends Component {
 			if (res.data.articleId) {
 				localStorage.setItem("articleId", res.data.articleId);
 			} 
-			// window.location.href="/addArticle/step2";
+			window.location.href="/addArticle/step2";
 		});  
 		
   }

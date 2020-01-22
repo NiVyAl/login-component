@@ -8,20 +8,26 @@ class ArticlesContainerComponent extends Component {
 		this.state ={
 			open: false,
 			scrollY: 0,
+			articles: {},
+			isResponse: false,
+			buttons: [],
 		}
 	}
 	
 	componentDidMount() {
-		let buttons = document.querySelectorAll(".articles-container__button");
-		this.buttons = buttons;
-		
 		ApiService.getArticles(localStorage.getItem("userId"))
 			.then((response) => {
 					console.log(response)
+					this.setState({articles: response.data})
+					this.setState({isResponse: true});
 			})
 	}
 	
 	open = (e) => {
+		if (this.state.buttons.length === 0) {
+			this.setState({buttons: document.querySelectorAll(".articles-container__button")})
+		}
+		
 		if (e.target.id === this.state.open) { //если нажали на меньше информации (скрывается)
 			this.setState({open: false});
 			e.target.innerHTML = "Больше информации";
@@ -29,117 +35,97 @@ class ArticlesContainerComponent extends Component {
 		} else { // если нажали на больше информации (раскрывается)
 			this.setState({open: e.target.id});	
 			this.setState({scrollY: window.pageYOffset})
-			for (let i = 0; i < this.buttons.length; i++) {
-				this.buttons[i].innerHTML = "Больше информации";
+			for (let i = 0; i < this.state.buttons.length; i++) {
+				this.state.buttons[i].innerHTML = "Больше информации";
 			}
 			e.target.innerHTML = "Меньше информации";
 		}
+	}
+	
+	writeFiles(fileMap) {
+		console.log(fileMap);
+		for (let i of fileMap) {
+			console.log(i);
+		}
+		return(
+			<div>addFile</div>
+		)
 	}
 	
 	render() {
 		return(
 			<div className="articles-container">
 				<h2 className="articles-container__title">Ваши статьи:</h2>
-				<ul className="articles-container__list">
-					<li className="articles-container__item">
-						<h3 className="articles-container__title">Влияние посещаемости на успевамость</h3>
-						{/* <p className="articles-container__status">Находится на проверке</p> */}
-						<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
-						<a href="/" className="link articles-container__link" download>Скачать</a>
-						
-						{this.state.open == 1 &&
-							<ul className="more-list articles-container__more-list">
-									<li className="more-list__item">
-										<p className="more-list__title">Авторы:</p>
-										<p className="more-list__content">Гордеев Фёдор Андреевич, Тетерин Даниил Михайлович, Лаврентьев Евсей Вадимович, Шумейко Виктор Валерьевич</p>
-									</li>
-									<li className="more-list__item">
-										<p className="more-list__title">Running Head:</p>
-										<p className="more-list__content">Значимость этих проблем настолько очевидна</p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">Аннотация:</p>
-										<p className="more-list__content">Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции требуют определения и уточнения существенных финансовых и административных условий. С другой стороны постоянный количественный рост и сфера нашей активности играет важную роль в формировании дальнейших направлений развития. Разнообразный и богатый опыт сложившаяся структура организации способствует подготовки и реализации форм развития. Не следует, однако забывать, что рамки и место обучения кадров требуют от нас анализа существенных финансовых и административных условий. Задача организации, в особенности же дальнейшее развитие различных форм деятельности требуют от нас анализа позиций, занимаемых участниками в отношении поставленных задач. Не следует, однако забывать, что реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.</p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">Ключевые слова:</p>
-										<p className="more-list__content">Не следует, однако забывать, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки позиций, занимаемых участниками в отношении поставленных задач. Равным образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки новых предложений. Повседневная практика показывает, что укрепление и развитие структуры играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач. Не следует, однако забывать, что рамки и место обучения кадров требуют определения и уточнения позиций, занимаемых участниками в отношении поставленных задач. Задача организации, в особенности же реализация намеченных плановых заданий в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. С другой стороны укрепление и развитие структуры требуют определения и уточнения новых предложений.</p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">Проверка на антиплагиат:</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">еще какой-то файл:</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">pdf файл самой статьи:</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">третий файл самой статьи:</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-							</ul>
-						}
-						<button className="articles-container__button button" id="1" onClick={this.open}>Больше информации</button>
-					</li>
-					
-					
-					<li className="articles-container__item">
-						<h3 className="articles-container__title">Влияние посещаемости на успевамость</h3>
-						<p className="articles-container__status"><span className="text-bold">Статус: </span>Находится на проверке</p>
-						{/* <p className="articles-container__status">Не доделана (<a href="/" className="link articles-container__link">продолжить создание</a>)</p> */}
-						<a href="/" className="link articles-container__link" download>Скачать</a>
-						
-						{this.state.open == 2 &&
-							<ul className="more-list articles-container__more-list">
-									<li className="more-list__item">
-										<p className="more-list__title">Running Head</p>
-										<p className="more-list__content">Значимость этих проблем настолько очевидна</p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">Аннотация</p>
-										<p className="more-list__content">Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции требуют определения и уточнения существенных финансовых и административных условий. С другой стороны постоянный количественный рост и сфера нашей активности играет важную роль в формировании дальнейших направлений развития. Разнообразный и богатый опыт сложившаяся структура организации способствует подготовки и реализации форм развития. Не следует, однако забывать, что рамки и место обучения кадров требуют от нас анализа существенных финансовых и административных условий. Задача организации, в особенности же дальнейшее развитие различных форм деятельности требуют от нас анализа позиций, занимаемых участниками в отношении поставленных задач. Не следует, однако забывать, что реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.</p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">Ключевые слова</p>
-										<p className="more-list__content">Не следует, однако забывать, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки позиций, занимаемых участниками в отношении поставленных задач. Равным образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки новых предложений. Повседневная практика показывает, что укрепление и развитие структуры играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач. Не следует, однако забывать, что рамки и место обучения кадров требуют определения и уточнения позиций, занимаемых участниками в отношении поставленных задач. Задача организации, в особенности же реализация намеченных плановых заданий в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. С другой стороны укрепление и развитие структуры требуют определения и уточнения новых предложений.</p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">проверка на антиплагиат</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">еще какой-то файл</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">pdf файл самой статьи</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-									
-									<li className="more-list__item">
-										<p className="more-list__title">третий файл самой статьи</p>
-										<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-									</li>
-							</ul>
-						}
-						<button className="articles-container__button button" id="2" onClick={this.open}>Больше информации</button>
-					</li>
-				</ul>
+				{this.state.isResponse &&
+					<ul className="articles-container__list">
+						{this.state.articles.map(item => 
+							<li className="articles-container__item" key={item.articleId}>
+								<h3 className="articles-container__title">{item.articleName}</h3>
+								{/* <p className="articles-container__status">Находится на проверке</p> */}
+								<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
+								<a href="/" className="link articles-container__link" download>Скачать</a>
+								{/* {console.log(item.pathsMap)} */}
+								{/* {this.writeFiles(item.pathsMap)} */}
+								{/* {item.pathsMap.forEach( (value, key) => 
+									<div>{value + key}</div>
+								)} */}
+								{/* {item.pathsMap.map( (value, key) => 
+									<div>{value + key}</div>
+								)} */}
+								{this.state.open == item.articleId &&
+									<ul className="more-list articles-container__more-list">
+											<li className="more-list__item">
+												<p className="more-list__title">Авторы:</p>
+												<p className="more-list__content">{item.authors}</p>
+											</li>
+											<li className="more-list__item">
+												<p className="more-list__title">Running Head:</p>
+												<p className="more-list__content">{item.runningHead}</p>
+											</li>
+											
+											<li className="more-list__item">
+												<p className="more-list__title">Аннотация:</p>
+												<p className="more-list__content">{item.annotation}</p>
+											</li>
+											
+											<li className="more-list__item">
+												<p className="more-list__title">Ключевые слова:</p>
+												<p className="more-list__content">{item.keys}</p>
+											</li>
+											{/* {item.pathsMap.map(i =>
+												<li className="more-list__item">
+													<p className="more-list__title">Проверка на антиплагиат:</p>
+													<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
+												</li>
+											)} */}
+											{/* {this.writeFiles(item.pathsMap)} */}
+											
+											<li className="more-list__item">
+												<p className="more-list__title">Проверка на антиплагиат:</p>
+												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
+											</li>
+											
+											<li className="more-list__item">
+												<p className="more-list__title">еще какой-то файл:</p>
+												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
+											</li>
+											
+											<li className="more-list__item">
+												<p className="more-list__title">pdf файл самой статьи:</p>
+												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
+											</li>
+											
+											<li className="more-list__item">
+												<p className="more-list__title">третий файл самой статьи:</p>
+												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
+											</li>
+									</ul>
+								}
+								<button className="articles-container__button button" id={item.articleId} onClick={this.open}>Больше информации</button>
+							</li>
+						)}
+					</ul>
+				}
 			</div>
 		)
 	}
