@@ -26,8 +26,8 @@ class ArticleEditComponent extends Component {
         return(
             <div ref={this.container} className="modal-window article-edit">
                 <div onClick={this.close} className="modal-window__background"></div>
-                <form className="modal-window__window" onSubmit={this.handleSubmit} ref={this.window}>
-
+                <form className="modal-window__window article-edit__window" onSubmit={this.handleSubmit} ref={this.window}>
+                <p className="modal-window__title sub-title">Изменить статус</p>
                 <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="name" maxLength="100" required/>
 
                     {this.state.items.map(item => 
