@@ -9,7 +9,7 @@ class ArticlesReviewContainerComponent extends Component {
 		this.state ={
 			open: false,
 			scrollY: 0,
-			isEditOpen: true,
+			isEditOpen: false,
 			articles: {},
 		}
 	}
@@ -39,15 +39,15 @@ class ArticlesReviewContainerComponent extends Component {
 		}
 	}
 
-	editOpen = () => {
-		this.setState({isEditOpen: true});
+	editOpenCloseToggle = () => {
+		this.setState({isEditOpen: !this.state.isEditOpen});
 	}
 	
 	render() {
 		return(
 			<div className="articles-container">
 				{this.state.isEditOpen &&
-					<ArticleEditComponent/>
+					<ArticleEditComponent editClose={this.editOpenCloseToggle}/>
 				}
 				<h2 className="articles-container__title">Статьи на проверку:</h2>
 				<ul className="articles-container__list">
@@ -100,7 +100,7 @@ class ArticlesReviewContainerComponent extends Component {
 							</ul>
 						}
 						<p className="articles-container__text-button text-button" id="1" onClick={this.open}>Больше информации</p>
-						<button className="articles-container__button-edit-status button" onClick={this.editOpen}>Изменить статус</button>
+						<button className="articles-container__button-edit-status button" onClick={this.editOpenCloseToggle}>Изменить статус</button>
 					</li>
 					
 					

@@ -11,10 +11,18 @@ class ArticleEditComponent extends Component {
             countFiles: 1,
             items: [0],
         }
-        
+        this.container = React.createRef();
+        // document.addEventListener("keydown", this.escFunction, false);
         this.status = ["needEdit", "ok"];
         this.statusNames = ["Отправить на доработку", "Одобрить"];
     }
+    
+    // escFunction = (e) => {
+    //     console.log("esc");
+    //     if (e.keyCode === 27) {
+    //         this.props.editClose();
+    //     }
+    // }
 
     addFile = () => {
 		this.state.items.push(this.state.items.length);
@@ -29,16 +37,16 @@ class ArticleEditComponent extends Component {
     render() {
         return(
             <div ref={this.container} className="modal-window article-edit">
-                <div onClick={this.close} className="modal-window__background"></div>
+                <div onClick={this.props.editClose} className="modal-window__background"></div>
                 <form className="modal-window__window article-edit__window" onSubmit={this.handleSubmit} ref={this.window}>
                     <p className="modal-window__title sub-title">Изменить статус</p>
                     
                     <div className="article-edit__content">
                         <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="name" maxLength="100" required/>
                         <SelectInputComponent title="Статус:" id="role" change={this.handleChange} values={this.status} texts={this.statusNames}/>
-                    
+                
                         {this.state.items.map(item => 
-                            <div className="add-article__section" key={item}>
+                            <div className="add-article__section article-edit__input-file" key={item}>
                                 <InputFileComponent id={item} handleChange={this.handleChange}/>
                             </div>
                         )}

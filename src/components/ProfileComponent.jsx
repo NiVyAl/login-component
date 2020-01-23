@@ -17,8 +17,8 @@ class ProfileComponent extends Component {
                 <h2 className="sub-title window__title">Профиль</h2>
                 
                 <div className="profile__articles-container">
-                    {/* <ArticlesContainerComponent/> */}
-                    <ArticlesReviewContainerComponent/>
+                    <ArticlesContainerComponent/>
+                    {/* <ArticlesReviewContainerComponent/> */}
                 </div>
             </div>
         )

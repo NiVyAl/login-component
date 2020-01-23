@@ -20,42 +20,66 @@ class ArticlesContainerComponent extends Component {
 					console.log(response)
 					this.setState({articles: response.data})
 					this.setState({isResponse: true});
+					
+					for (let i of response.data) {
+						this.setState({[i.articleId]: false})
+					}
+					
+					// console.log(response.data.reverte())
+						
 			})
 	}
 	
-	open = (e) => {
-		if (this.state.buttons.length === 0) {
-			this.setState({buttons: document.querySelectorAll(".articles-container__button")})
-		}
+	// open = (e) => {
+	// 	if (this.state.buttons.length === 0) {
+	// 		this.setState({buttons: document.querySelectorAll(".articles-container__button")})
+	// 	}
 		
-		if (e.target.id === this.state.open) { //если нажали на меньше информации (скрывается)
-			this.setState({open: false});
-			e.target.innerHTML = "Больше информации";
-			window.scroll(this.state.scrollY, 0);
-		} else { // если нажали на больше информации (раскрывается)
-			this.setState({open: e.target.id});	
-			this.setState({scrollY: window.pageYOffset})
-			for (let i = 0; i < this.state.buttons.length; i++) {
-				this.state.buttons[i].innerHTML = "Больше информации";
+	// 	if (e.target.id === this.state.open) { //если нажали на меньше информации (скрывается)
+	// 		this.setState({open: false});
+	// 		e.target.innerHTML = "Больше информации";
+	// 		window.scroll(this.state.scrollY, 0);
+	// 	} else { // если нажали на больше информации (раскрывается)
+	// 		this.setState({open: e.target.id});	
+	// 		this.setState({scrollY: window.pageYOffset})
+	// 		for (let i = 0; i < this.state.buttons.length; i++) {
+	// 			this.state.buttons[i].innerHTML = "Больше информации";
+	// 		}
+	// 		e.target.innerHTML = "Меньше информации";
+	// 	}
+	// }
+	open = (e) => {
+		for (let i in this.state) {
+			// console.log(i);
+			if (i == e.target.id) {
+				if (this.state[i]) {
+					e.target.innerHTML = "Больше информации"
+				} else {
+					e.target.innerHTML = "Меньше информации";
+				}
+				this.setState({[i]: !this.state[i]})
 			}
-			e.target.innerHTML = "Меньше информации";
 		}
 	}
 	
-	writeFiles(fileMap) {
-		console.log(fileMap);
-		for (let i of fileMap) {
-			console.log(i);
-		}
-		return(
-			<div>addFile</div>
-		)
+	writeFiles(data) {
+		console.log(data)
+		// console.log(fileMap);
+		// for (let i of fileMap) {
+		// 	console.log(i);
+		// }
+		// return(
+		// 	<div>addFile</div>
+		// )
 	}
 	
 	render() {
 		return(
 			<div className="articles-container">
 				<h2 className="articles-container__title">Ваши статьи:</h2>
+				{!this.state.isResponse &&
+					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
+				}
 				{this.state.isResponse &&
 					<ul className="articles-container__list">
 						{this.state.articles.map(item => 
@@ -72,7 +96,7 @@ class ArticlesContainerComponent extends Component {
 								{/* {item.pathsMap.map( (value, key) => 
 									<div>{value + key}</div>
 								)} */}
-								{this.state.open == item.articleId &&
+								{this.state[item.articleId] &&
 									<ul className="more-list articles-container__more-list">
 											<li className="more-list__item">
 												<p className="more-list__title">Авторы:</p>
@@ -98,7 +122,7 @@ class ArticlesContainerComponent extends Component {
 													<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
 												</li>
 											)} */}
-											{/* {this.writeFiles(item.pathsMap)} */}
+											{this.writeFiles(item.pathsMap)}
 											
 											<li className="more-list__item">
 												<p className="more-list__title">Проверка на антиплагиат:</p>
