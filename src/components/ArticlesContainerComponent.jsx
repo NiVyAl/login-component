@@ -18,15 +18,12 @@ class ArticlesContainerComponent extends Component {
 		ApiService.getArticles(localStorage.getItem("userId"))
 			.then((response) => {
 					console.log(response)
-					this.setState({articles: response.data})
+					this.setState({articles: response.data.reverse()})
 					this.setState({isResponse: true});
 					
-					for (let i of response.data) {
+					for (let i of this.state.articles) {
 						this.setState({[i.articleId]: false})
-					}
-					
-					// console.log(response.data.reverte())
-						
+					}	
 			})
 	}
 	
@@ -63,14 +60,20 @@ class ArticlesContainerComponent extends Component {
 	}
 	
 	writeFiles(data) {
-		console.log(data)
-		// console.log(fileMap);
-		// for (let i of fileMap) {
-		// 	console.log(i);
-		// }
-		// return(
-		// 	<div>addFile</div>
-		// )
+		let files = [];
+		for (let i in data) {
+			files.push(i);
+		}
+		return(
+			<div>
+				{files.map(fileName => 
+					<li className="more-list__item" key={fileName}>
+						<p className="more-list__title">{fileName}</p>
+						<p className="more-list__content"><a href={data[fileName]} className="link" download>Скачать</a></p>
+					</li>		
+				)}
+			</div>
+		)
 	}
 	
 	render() {
@@ -99,6 +102,10 @@ class ArticlesContainerComponent extends Component {
 								{this.state[item.articleId] &&
 									<ul className="more-list articles-container__more-list">
 											<li className="more-list__item">
+												<p className="more-list__title">Тип:</p>
+												<p className="more-list__content">{item.type}</p>
+											</li>
+											<li className="more-list__item">
 												<p className="more-list__title">Авторы:</p>
 												<p className="more-list__content">{item.authors}</p>
 											</li>
@@ -124,7 +131,7 @@ class ArticlesContainerComponent extends Component {
 											)} */}
 											{this.writeFiles(item.pathsMap)}
 											
-											<li className="more-list__item">
+											{/* <li className="more-list__item">
 												<p className="more-list__title">Проверка на антиплагиат:</p>
 												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
 											</li>
@@ -142,7 +149,7 @@ class ArticlesContainerComponent extends Component {
 											<li className="more-list__item">
 												<p className="more-list__title">третий файл самой статьи:</p>
 												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-											</li>
+											</li> */}
 									</ul>
 								}
 								<button className="articles-container__button button" id={item.articleId} onClick={this.open}>Больше информации</button>

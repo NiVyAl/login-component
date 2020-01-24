@@ -37,6 +37,7 @@ class AddArticle2Component extends Component {
 			.then((res) => {
 				console.log(res)
 				this.setState({isSend: true});
+				localStorage.removeItem("articleId");
 			})
 	} 
 
@@ -78,7 +79,8 @@ class AddArticle2Component extends Component {
 				{this.state.isSend === true &&
 					<div>
 						<h2 className="sub-title add-article__title registration__title">Статья отправлена!</h2>
-						<p className="confirm__text">Статья находится на проверке, Загрузить её можно <a href={this.state.filePath} download>здесь</a></p>
+						{/* <p className="confirm__text">Статья находится на проверке, Загрузить её можно <a href={this.state.filePath} download>здесь</a></p> */}
+						<p className="confirm__text">Статья загружена, посмотреть ее статус можно <a href="/profile">здесь</a></p>
 					</div>
 				}
 				
