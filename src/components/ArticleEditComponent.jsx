@@ -23,6 +23,11 @@ class ArticleEditComponent extends Component {
     //         this.props.editClose();
     //     }
     // }
+    
+    send = (e) => {
+        e.preventDefault();
+        this.container.current.classList.add("load");
+    }
 
     addFile = () => {
 		this.state.items.push(this.state.items.length);
@@ -36,10 +41,10 @@ class ArticleEditComponent extends Component {
     
     render() {
         return(
-            <div ref={this.container} className="modal-window article-edit">
+            <div className="modal-window article-edit">
                 <div onClick={this.props.editClose} className="modal-window__background"></div>
-                <form className="modal-window__window article-edit__window" onSubmit={this.handleSubmit} ref={this.window}>
-                    <p className="modal-window__title sub-title">Изменить статус</p>
+                <form ref={this.container} className="modal-window__window article-edit__window" onSubmit={this.handleSubmit}>
+                    <p className="modal-window__title sub-title">Изменить статус {this.props.articleId}</p>
                     
                     <div className="article-edit__content">
                         <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="name" maxLength="100" required/>
@@ -57,7 +62,7 @@ class ArticleEditComponent extends Component {
                         </div>
                     </div>
                     
-                    <button type="submit" className="button">Отправить</button>
+                    <button type="submit" className="button" onClick={this.send}>Отправить</button>
                 </form>
             </div>
         )

@@ -27,27 +27,8 @@ class ArticlesContainerComponent extends Component {
 			})
 	}
 	
-	// open = (e) => {
-	// 	if (this.state.buttons.length === 0) {
-	// 		this.setState({buttons: document.querySelectorAll(".articles-container__button")})
-	// 	}
-		
-	// 	if (e.target.id === this.state.open) { //если нажали на меньше информации (скрывается)
-	// 		this.setState({open: false});
-	// 		e.target.innerHTML = "Больше информации";
-	// 		window.scroll(this.state.scrollY, 0);
-	// 	} else { // если нажали на больше информации (раскрывается)
-	// 		this.setState({open: e.target.id});	
-	// 		this.setState({scrollY: window.pageYOffset})
-	// 		for (let i = 0; i < this.state.buttons.length; i++) {
-	// 			this.state.buttons[i].innerHTML = "Больше информации";
-	// 		}
-	// 		e.target.innerHTML = "Меньше информации";
-	// 	}
-	// }
 	open = (e) => {
 		for (let i in this.state) {
-			// console.log(i);
 			if (i == e.target.id) {
 				if (this.state[i]) {
 					e.target.innerHTML = "Больше информации"
@@ -91,14 +72,7 @@ class ArticlesContainerComponent extends Component {
 								{/* <p className="articles-container__status">Находится на проверке</p> */}
 								<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
 								<a href="/" className="link articles-container__link" download>Скачать</a>
-								{/* {console.log(item.pathsMap)} */}
-								{/* {this.writeFiles(item.pathsMap)} */}
-								{/* {item.pathsMap.forEach( (value, key) => 
-									<div>{value + key}</div>
-								)} */}
-								{/* {item.pathsMap.map( (value, key) => 
-									<div>{value + key}</div>
-								)} */}
+								
 								{this.state[item.articleId] &&
 									<ul className="more-list articles-container__more-list">
 											<li className="more-list__item">
@@ -123,33 +97,7 @@ class ArticlesContainerComponent extends Component {
 												<p className="more-list__title">Ключевые слова:</p>
 												<p className="more-list__content">{item.keys}</p>
 											</li>
-											{/* {item.pathsMap.map(i =>
-												<li className="more-list__item">
-													<p className="more-list__title">Проверка на антиплагиат:</p>
-													<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-												</li>
-											)} */}
 											{this.writeFiles(item.pathsMap)}
-											
-											{/* <li className="more-list__item">
-												<p className="more-list__title">Проверка на антиплагиат:</p>
-												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-											</li>
-											
-											<li className="more-list__item">
-												<p className="more-list__title">еще какой-то файл:</p>
-												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-											</li>
-											
-											<li className="more-list__item">
-												<p className="more-list__title">pdf файл самой статьи:</p>
-												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-											</li>
-											
-											<li className="more-list__item">
-												<p className="more-list__title">третий файл самой статьи:</p>
-												<p className="more-list__content"><a href="/" className="link" download>Скачать</a></p>
-											</li> */}
 									</ul>
 								}
 								<button className="articles-container__button button" id={item.articleId} onClick={this.open}>Больше информации</button>
