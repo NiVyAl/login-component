@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = "http://192.168.155.133:4000";
+const url = "http://192.168.0.106:4000";
 
 class ApiService {
     registration(data) {

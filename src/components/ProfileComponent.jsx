@@ -17,22 +17,23 @@ class ProfileComponent extends Component {
         //         console.log(response);
         //     })
         this.setState({privilege: JSON.parse(localStorage.getItem("roles"))});
-
-        for (let i of this.state.privilege) {
+        console.log(JSON.parse(localStorage.getItem("roles")));
+        for (let i of JSON.parse(localStorage.getItem("roles"))) {
             if (i === "REVIEW_PRIVILEGE") {
                 this.setState({role: "review"})
+                break
+            }
+            if (i === "WRITE_PRIVILEGE") {
+                this.setState({role: "writer"})
             }
         }
-        // console.log(JSON.parse(localStorage.getItem("roles")));
     }
     
-    checkRoll = (role) => {
-        console.log(role);
-        if (role === "REVIEW_PRIVILEGE") {
-            console.log("review")
+    checkRoll = () => {
+        if (this.state.role === "review") {
             return(<ArticlesReviewContainerComponent/>)
-        } else {
-            console.log("все остальные")
+        }
+        if (this.state.role === "writer") {
             return(<ArticlesContainerComponent/>)
         }
     }
@@ -41,16 +42,11 @@ class ProfileComponent extends Component {
         return(
             <div className="window profile">
                 <h2 className="sub-title window__title">Профиль</h2>
-                
-                {this.state.roles &&
                     <div className="profile__articles-container">
-                        {this.state.roles.map(role =>
-                            {this.checkRoll(role)}
-                        )}
+                        {this.checkRoll()}
                         {/* <ArticlesContainerComponent/> */}
                         {/* <ArticlesReviewContainerComponent/> */}
                     </div>
-                }
             </div>
         )
     }

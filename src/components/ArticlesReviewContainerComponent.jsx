@@ -30,7 +30,7 @@ class ArticlesReviewContainerComponent extends Component {
 			})
 	}
 	
-	open = (e) => {
+	openMore = (e) => {
 		for (let i in this.state) {
 			if (i == e.target.id) {
 				if (this.state[i]) {
@@ -69,9 +69,9 @@ class ArticlesReviewContainerComponent extends Component {
 	render() {
 		return(
 			<div className="articles-container">
-				{this.state.isEditOpen &&
-					<ArticleEditComponent editClose={this.editOpenCloseToggle} articleId={this.state.whichArticleOpen}/>
-				}
+				{/* {this.state.isEditOpen &&
+					<ArticleEditComponent editClose={this.editOpenCloseToggle} articleId={this.state.whichArticleOpen} articleId={item.articleName}/>
+				} */}
 				<h2 className="articles-container__title">Статьи на проверку:</h2>
 				{!this.state.isResponse &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
@@ -80,6 +80,9 @@ class ArticlesReviewContainerComponent extends Component {
 					<ul className="articles-container__list">
 						{this.state.articles.map(item => 
 							<li className="articles-container__item" key={item.articleId}>
+								{this.state.isEditOpen &&
+									<ArticleEditComponent editClose={this.editOpenCloseToggle} articleId={this.state.whichArticleOpen} articleName={item.articleName}/>
+								}
 								<h3 className="articles-container__title">{item.articleName}</h3>
 								{/* <p className="articles-container__status">Находится на проверке</p> */}
 								<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
@@ -112,7 +115,7 @@ class ArticlesReviewContainerComponent extends Component {
 											{this.writeFiles(item.pathsMap)}
 									</ul>
 								}
-								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.open}>Больше информации</p>
+								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
 								<button className="articles-container__button-edit-status button" id={item.articleId} onClick={this.editOpenCloseToggle}>Изменить статус</button>
 							</li>
 						)}
