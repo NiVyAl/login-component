@@ -16,16 +16,18 @@ class ProfileComponent extends Component {
         //     .then((response) => {
         //         console.log(response);
         //     })
-        this.setState({privilege: JSON.parse(localStorage.getItem("roles"))});
-        console.log(JSON.parse(localStorage.getItem("roles")));
-        for (let i of JSON.parse(localStorage.getItem("roles"))) {
-            if (i === "REVIEW_PRIVILEGE") {
-                this.setState({role: "review"})
-                break
-            }
+        if (JSON.parse(localStorage.getItem("roles"))) {
+            this.setState({privilege: JSON.parse(localStorage.getItem("roles"))});
+            console.log(JSON.parse(localStorage.getItem("roles")));
+            for (let i of JSON.parse(localStorage.getItem("roles"))) {
+                if (i === "REVIEW_PRIVILEGE") {
+                    this.setState({role: "review"})
+                    break
+                }
             if (i === "WRITE_PRIVILEGE") {
                 this.setState({role: "writer"})
             }
+        }
         }
     }
     
@@ -47,6 +49,13 @@ class ProfileComponent extends Component {
                         {/* <ArticlesContainerComponent/> */}
                         {/* <ArticlesReviewContainerComponent/> */}
                     </div>
+
+                    {this.state.role === "review" &&
+                    <div>
+                        <h3 className="articles-container__title">Создать пользователя:</h3>
+                        <a className="link" href="/addUser">Создать пользователя</a>
+                    </div>
+                    }
             </div>
         )
     }

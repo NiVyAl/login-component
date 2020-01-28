@@ -40,6 +40,8 @@ class AddUserComponent extends Component{
         console.log(user);
         ApiService.addUser(user)
             .then(res => {
+                console.log(res);
+                window.location.href="/";
                //  this.setState({message : 'User added successfully.'});
 					//  this.props.history.push('/users');
 					

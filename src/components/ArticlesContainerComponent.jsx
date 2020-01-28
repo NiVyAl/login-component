@@ -38,6 +38,11 @@ class ArticlesContainerComponent extends Component {
 				this.setState({[i]: !this.state[i]})
 			}
 		}
+		// ApiService.getArticle(e.target.id)
+		// 	.then((response) => {
+		// 		console.log("getArticle");
+		// 		console.log(response);
+		// 	})
 	}
 	
 	writeFiles(data) {
