@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import sendInput from "../service/sendInput";
 import InputComponent from "../components/InputComponent";
+import checkLog from "../service/checkLog";
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -15,6 +16,7 @@ class AddArticle1Component extends Component {
 		}
 		// this.sendArticle = this.sendArticle.bind(this);
 		this.window = React.createRef();
+		checkLog();
   }
   
 //   componentDidMount() {

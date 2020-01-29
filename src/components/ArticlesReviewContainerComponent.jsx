@@ -22,7 +22,9 @@ class ArticlesReviewContainerComponent extends Component {
 			.then((response) => {
 					console.log(response)
 					this.setState({articles: response.data.reverse()})
-					this.setState({isResponse: true});
+					if (response.data.length > 0) {
+						this.setState({isResponse: true});
+					}	
 					
 					for (let i of this.state.articles) {
 						this.setState({[i.articleId + "btnMore"]: false})

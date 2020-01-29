@@ -19,7 +19,9 @@ class ArticlesContainerComponent extends Component {
 			.then((response) => {
 					console.log(response)
 					this.setState({articles: response.data.reverse()})
-					this.setState({isResponse: true});
+					if (response.data.length > 0) {
+						this.setState({isResponse: true});
+					}	
 					
 					for (let i of this.state.articles) {
 						this.setState({[i.articleId]: false})
@@ -75,7 +77,7 @@ class ArticlesContainerComponent extends Component {
 							<li className="articles-container__item" key={item.articleId}>
 								<h3 className="articles-container__title">{item.articleName}</h3>
 								{/* <p className="articles-container__status">Находится на проверке</p> */}
-								<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
+								<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href={`/addArticle/step1?id=${item.articleId}`} className="link">продолжить создание</a>)</p>
 								<a href="/" className="link articles-container__link" download>Скачать</a>
 								
 								{this.state[item.articleId] &&

@@ -87,6 +87,8 @@ class LoginComponent extends Component {
     axios.defaults.headers.common.Authorization = res.data.token;
     localStorage.setItem('roles', JSON.stringify(res.data.user.roles)); // сохранение роли
     store.dispatch({ type: "log" });
+    
+    window.location.reload();
   }
 
   close() {

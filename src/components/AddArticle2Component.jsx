@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import InputFileComponent from './InputFileComponent';
 import InputComponent from "../components/InputComponent";
+import checkLog from "../service/checkLog";
 
 class AddArticle2Component extends Component {
 	constructor(props){
@@ -13,6 +14,7 @@ class AddArticle2Component extends Component {
 			 items: [0]
 		}
 		this.window = React.createRef();
+		checkLog();
 	}
 
 	send = (e) =>  {

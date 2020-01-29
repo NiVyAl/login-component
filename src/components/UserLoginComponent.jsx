@@ -28,6 +28,7 @@ class UserLoginComponent extends Component {
         localStorage.clear();
         delete axios.defaults.headers.common.Authorization;
         store.dispatch({ type: "close" });
+        window.location.reload();
     }
     
     close = () => {

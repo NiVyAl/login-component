@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
+import checkLog from "../service/checkLog";
 import ArticlesContainerComponent from './ArticlesContainerComponent';
 import ArticlesReviewContainerComponent from './ArticlesReviewContainerComponent';
 
@@ -8,14 +9,16 @@ class ProfileComponent extends Component {
         super(props);
         
         this.state = {
-                
+            
         }
+        checkLog();
     }
     componentDidMount() {
         // ApiService.test()
         //     .then((response) => {
         //         console.log(response);
         //     })
+        
         if (JSON.parse(localStorage.getItem("roles"))) {
             this.setState({privilege: JSON.parse(localStorage.getItem("roles"))});
             console.log(JSON.parse(localStorage.getItem("roles")));
@@ -24,10 +27,11 @@ class ProfileComponent extends Component {
                     this.setState({role: "review"})
                     break
                 }
-            if (i === "WRITE_PRIVILEGE") {
-                this.setState({role: "writer"})
+                
+                if (i === "WRITE_PRIVILEGE") {
+                    this.setState({role: "writer"})
+                }
             }
-        }
         }
     }
     
