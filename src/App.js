@@ -11,6 +11,7 @@ import RegistrationComponent from './components/RegistrationComponent.jsx'
 import AddUserComponent from './components/AddUserComponent.jsx'
 import ProfileComponent from './components/ProfileComponent.jsx'
 import FooterComponent from './components/FooterComponent.jsx'
+import ArticleEditComponent from './components/ArticleEditComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route path="/addArticle/step1" component={AddArticle1Component}/>
               <Route path="/addArticle/step2" component={AddArticle2Component}/>
               <Route path="/profile" component={ProfileComponent}/>
+              <Route path="/addReview" component={ArticleEditComponent}/>
             </Switch>
           </div>
         </div>

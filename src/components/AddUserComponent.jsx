@@ -9,7 +9,7 @@ class AddUserComponent extends Component{
         super(props);
         
         this.roles = ["ROLE_ROOT", "ROLE_ADMIN", "ROLE_REVIEWER", "ROLE_AUTHOR"];
-        this.rolesNames = ["Root", "Admin", "Reviewer", "Author"];
+        this.rolesNames = ["Root", "Admin", "Рецензент", "Автор"];
         this.window = React.createRef(); 
 		  
         this.state ={

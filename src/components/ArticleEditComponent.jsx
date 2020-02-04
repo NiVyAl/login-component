@@ -6,33 +6,62 @@ import SelectInputComponent from "../components/SelectInputComponent";
 class ArticleEditComponent extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            countFiles: 1,
-            items: [0],
+        
+        this.inputId = ["subject", "test0", "test1", "test2", "test3", "test4", "test5", "recommendation"]
+        
+        this.inputData = {
+            subject: ["02.00.00", "05.17.00", "05.19.00", "05.13.00", "03.02.00"],
+            test0: [true, false],
+            test1: [true, false],
+            test2: [true, false],
+            test3: [true, false],
+            test4: [true, false],
+            test5: [true, false],
+            recommendation: [1, 2, 3, 4, 5, 6],
         }
+        
+        this.inputText = {
+            subject: ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Технология материалов текстильной и легкой промышленности (05.19.00)", "Информатика, вычислительная техника и управление (05.13.00)", "Общая биология (03.02.00)" ],
+            test0: ["Да", "Нет"],
+            test1: ["Да", "Нет"],
+            test2: ["Да", "Нет"],
+            test3: ["Да", "Нет"],
+            test4: ["Да", "Нет"],
+            test5: ["Да", "Нет"],
+            recommendation: [
+                "рекомендовать к публикации в представленном виде, без внесения изменений",
+                "рекомендовать к публикации с небольшими изменениями в тексте статьи", 
+                "рекомендовать к публикации после внесения в текст статьи значительных изменений и повторного рецензирования", 
+                "отклонить в связи с неудовлетворительным научным содержанием статьи", 
+                "отклонить в связи с несоответствием тематики либо содержания статьи всем указанным выше профильным тематическим направлениям Журнала",
+                "отклонить после повторного рецензирования"
+            ],
+        }
+        
+        this.inputTitle = {
+            subject: "Направление журнала, под который, по мнению рецензента, подпадает статья:",
+            test0: "Соответствует ли тематика статьи профилю паспорта научной специальности?",
+            test1: "Представлены ли в статье оригинальные результаты, полученные лично ее авторами?",
+            test2: "Убеждает ли рецензента данная статья в достоверности представленных в ней результатов?	+	",
+            test3: "Содержит ли аннотация статьи конкретное изложение основных результатов, которые в ней представлены?",
+            test4: "Достаточно ли ясно изложен материал статьи ее авторами?",
+            test5: "Достаточно ли хорошо оформлена статья с чисто технической точки зрения и соответствует ли ее оформление нормативам журнала в полном их объеме?",
+            recommendation: "Рекомендация рецензента:",
+        }
+        
         this.container = React.createRef();
-        // document.addEventListener("keydown", this.escFunction, false);
-        this.status = ["02.00.00", "05.17.00", "05.19.00", "05.13.00", "03.02.00"];
-        this.statusNames = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Технология материалов текстильной и легкой промышленности (05.19.00)", "Информатика, вычислительная техника и управление (05.13.00)", "Общая биология (03.02.00)" ];
     }
     
-    // escFunction = (e) => {
-    //     console.log("esc");
-    //     if (e.keyCode === 27) {
-    //         this.props.editClose();
-    //     }
-    // }
+    componentDidMount() {
+        for (let i of this.inputId) {
+            this.setState({ [i]: this.inputData[i][0] })
+        }
+    }
     
     send = (e) => {
         e.preventDefault();
+        console.log(this.state);
         this.container.current.classList.add("load");
-    }
-
-    addFile = () => {
-		this.state.items.push(this.state.items.length);
-		this.setState({countFiles: this.state.countFiles + 1});
-		console.log(this.state.countFiles);
     }
 
     handleChange = (e) => {
@@ -41,25 +70,14 @@ class ArticleEditComponent extends Component {
     
     render() {
         return(
-            <div className="modal-window article-edit">
-                <div onClick={this.props.editClose} className="modal-window__background"></div>
-                <form ref={this.container} className="modal-window__window article-edit__window" onSubmit={this.handleSubmit}>
+            <div className="window article-edit">
+                <form ref={this.container} onSubmit={this.handleSubmit}>
                     <p className="modal-window__title sub-title">Изменить статус {this.props.articleId}</p>
                     
                     <div className="article-edit__content">
-                        <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="name" maxLength="100" required/>
-                        <SelectInputComponent title="Направление журнала, под который, по мнению рецензента, подпадает статья:" id="role" change={this.handleChange} values={this.status} texts={this.statusNames}/>
-                
-                        {this.state.items.map(item => 
-                            <div className="add-article__section article-edit__input-file" key={item}>
-                                <InputFileComponent id={item} handleChange={this.handleChange}/>
-                            </div>
+                        {this.inputId.map(item => 
+                            <SelectInputComponent title={this.inputTitle[item]} id={item} change={this.handleChange} values={this.inputData[item]} texts={this.inputText[item]} key={item}/>    
                         )}
-                                    
-                        <div className="add-article__button-more button-more" onClick={this.addFile}>
-                            <div className="button-more__button">+</div>
-                            <span className="button-more__description">Добавить файл</span>	
-                        </div>
                     </div>
                     
                     <button type="submit" className="button" onClick={this.send}>Отправить</button>

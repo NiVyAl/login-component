@@ -11,7 +11,7 @@ class ArticlesReviewContainerComponent extends Component {
 			scrollY: 0,
 			articles: {},
 			isResponse: false,
-			isEditOpen: true,
+			isEditOpen: false,
 			buttons: [],
 			whichArticleOpen: "",
 		}
@@ -63,8 +63,9 @@ class ArticlesReviewContainerComponent extends Component {
 	}
 	
 	editOpenCloseToggle = (e) => {
-		this.setState({whichArticleOpen: e.target.id})
-		this.setState({isEditOpen: !this.state.isEditOpen});
+		// this.setState({whichArticleOpen: e.target.id})
+		// this.setState({isEditOpen: !this.state.isEditOpen});
+		window.location.href=`/addReview?id=${e.target.id}`;
 	}
 	
 	
