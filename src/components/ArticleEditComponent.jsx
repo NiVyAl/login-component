@@ -13,8 +13,8 @@ class ArticleEditComponent extends Component {
         }
         this.container = React.createRef();
         // document.addEventListener("keydown", this.escFunction, false);
-        this.status = ["needEdit", "ok"];
-        this.statusNames = ["Отправить на доработку", "Одобрить"];
+        this.status = ["02.00.00", "05.17.00", "05.19.00", "05.13.00", "03.02.00"];
+        this.statusNames = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Технология материалов текстильной и легкой промышленности (05.19.00)", "Информатика, вычислительная техника и управление (05.13.00)", "Общая биология (03.02.00)" ];
     }
     
     // escFunction = (e) => {
@@ -48,7 +48,7 @@ class ArticleEditComponent extends Component {
                     
                     <div className="article-edit__content">
                         <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="name" maxLength="100" required/>
-                        <SelectInputComponent title="Статус:" id="role" change={this.handleChange} values={this.status} texts={this.statusNames}/>
+                        <SelectInputComponent title="Направление журнала, под который, по мнению рецензента, подпадает статья:" id="role" change={this.handleChange} values={this.status} texts={this.statusNames}/>
                 
                         {this.state.items.map(item => 
                             <div className="add-article__section article-edit__input-file" key={item}>

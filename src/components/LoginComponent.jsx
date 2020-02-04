@@ -102,10 +102,10 @@ class LoginComponent extends Component {
     return (
       <div>
         { this.state.open === "open" &&
-        <div ref={this.container} className="login-container">
-          <div onClick={this.close} className="login-container__background"></div>
-          <form className="login-container__window" onSubmit={this.handleSubmit} ref={this.window}>
-            <p className="login-container__title sub-title">Войти</p>
+        <div ref={this.container} className="login-container modal-window">
+          <div onClick={this.close} className="modal-window__background"></div>
+          <form className="modal-window__window" onSubmit={this.handleSubmit} ref={this.window}>
+            <p className="modal-window__title sub-title">Войти</p>
             <div className="login-container__form">
               <InputComponent text="email" name="login" handleChange={this.handleChange} type="email" maxLength="30" required/>
 					    <InputComponent text="пароль" name="passwordLog" handleChange={this.handleChange} type="password" maxLength="20" required/>

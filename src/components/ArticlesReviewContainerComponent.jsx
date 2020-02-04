@@ -11,7 +11,7 @@ class ArticlesReviewContainerComponent extends Component {
 			scrollY: 0,
 			articles: {},
 			isResponse: false,
-			isEditOpen: false,
+			isEditOpen: true,
 			buttons: [],
 			whichArticleOpen: "",
 		}
