@@ -26,10 +26,6 @@ class ApiService {
     log(data) {
         return axios.post(`${url}/auth`, data);
     }
-
-    // addFileDescription(description) {
-    //     return axios.post(`${url}/article/saveFile`, description);
-    // }
     
     test() {
         return axios.get(`${url}/users/test`);
@@ -49,6 +45,10 @@ class ApiService {
 
     getAllArticles() {
         return axios.get(`${url}/article/getAllArticles`)
+    }
+    
+    addReview(data) {
+        return axios.post(`${url}/`, data);
     }
 }
 

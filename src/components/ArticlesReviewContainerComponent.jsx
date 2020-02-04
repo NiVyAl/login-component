@@ -62,9 +62,8 @@ class ArticlesReviewContainerComponent extends Component {
 		)
 	}
 	
-	editOpenCloseToggle = (e) => {
-		// this.setState({whichArticleOpen: e.target.id})
-		// this.setState({isEditOpen: !this.state.isEditOpen});
+	editOpenCloseToggle = (e, item) => {
+		console.log(item.articleName);
 		window.location.href=`/addReview?id=${e.target.id}`;
 	}
 	
@@ -119,7 +118,7 @@ class ArticlesReviewContainerComponent extends Component {
 									</ul>
 								}
 								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
-								<button className="articles-container__button-edit-status button" id={item.articleId} onClick={this.editOpenCloseToggle}>Изменить статус</button>
+								<button className="articles-container__button-edit-status button" id={item.articleId} onClick={(e) => this.editOpenCloseToggle(e, item)}>Изменить статус</button>
 							</li>
 						)}
 					</ul>
