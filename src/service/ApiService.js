@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = "http://192.168.155.133:4000";
+const url = "http://192.168.0.104:4000";
 
 class ApiService {
     registration(data) {
@@ -43,8 +43,8 @@ class ApiService {
         return axios.get(`${url}/article/getArticle?id=${articleId}`)
     }
 
-    getAllArticles() {
-        return axios.get(`${url}/article/getAllArticles`)
+    getAllArticles(userId) {
+        return axios.get(`${url}/article/getAllArticles?of=0&to=10&id=${userId}`)
     }
     
     addReview(data) {

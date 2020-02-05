@@ -18,7 +18,7 @@ class ArticlesReviewContainerComponent extends Component {
 	}
 	
 	componentDidMount() {
-		ApiService.getAllArticles()
+		ApiService.getAllArticles(localStorage.getItem("userId"))
 			.then((response) => {
 					console.log(response)
 					this.setState({articles: response.data.reverse()})

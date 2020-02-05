@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
-import sendInput from "../service/sendInput";
 import InputComponent from "../components/InputComponent";
+import SelectInputComponent from "../components/SelectInputComponent";
 import checkLog from "../service/checkLog";
 
 class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
+		
+		this.inputData = ["02.00.00", "05.17.00", "05.19.00", "05.13.00", "03.02.00"];
+		this.inputText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Технология материалов текстильной и легкой промышленности (05.19.00)", "Информатика, вычислительная техника и управление (05.13.00)", "Общая биология (03.02.00)" ];
+
 		this.state ={
 			id: localStorage.getItem("userId"),
 			//  articleName: '',
 			//  runningHead: '',
 			//  annotation: '',
 			//  keys: '',
+			subject: this.inputData[0]
 		}
 		// this.sendArticle = this.sendArticle.bind(this);
 		this.window = React.createRef();
@@ -58,6 +63,7 @@ class AddArticle1Component extends Component {
 					<InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="100"/>
+					<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText}/>  
 
 					<button className="button window__button" type="submit">Сохранить и продолжить</button>
 				</form>
