@@ -87,7 +87,8 @@ class ArticlesReviewContainerComponent extends Component {
 								}
 								<h3 className="articles-container__title">{item.articleName}</h3>
 								{/* <p className="articles-container__status">Находится на проверке</p> */}
-								<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p>
+								{/* <p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href="/" className="link">продолжить создание</a>)</p> */}
+								<p className="articles-container__status"><span className="text-bold">Статус:</span> {item.articleStatus}</p>
 								<a href="/" className="link articles-container__link" download>Скачать</a>
 								
 								{this.state[item.articleId + "btnMore"] &&

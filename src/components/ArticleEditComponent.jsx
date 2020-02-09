@@ -21,7 +21,7 @@ class ArticleEditComponent extends Component {
             test3: [true, false],
             test4: [true, false],
             test5: [true, false],
-            recommendation: [1, 2, 3, 4, 5, 6],
+            recommendation: [0, 1, 2, 3, 4, 5],
         }
         
         this.inputText = {
@@ -113,6 +113,7 @@ class ArticleEditComponent extends Component {
                 
                 {!this.state.isSend &&
                     <form ref={this.container} onSubmit={this.handleSubmit}>
+                        <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="text" maxLength="256"/>
                         <div className="article-edit__content">
                             {this.inputId.map(item => 
                                 <SelectInputComponent title={this.inputTitle[item]} id={item} change={this.handleChange} values={this.inputData[item]} texts={this.inputText[item]} key={item}/>    
