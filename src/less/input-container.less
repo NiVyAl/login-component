@@ -16,7 +16,7 @@
 
 .input-container__input:focus {
 	outline: none;
-	border-bottom: 1px solid #7f2620;
+	border-bottom: 1px solid @main-color;
 }
 
 .input-container__label {
@@ -31,13 +31,13 @@
 	transform-origin: left;
 	align-self: start;
 }
- 
+
 .input-container__label--active {
 	transform: scale(0.83);
 	top: -47px;
 	// transform: translateY(-47px);
 }
- 
+
 //  #login:focus ~ .input-container__label[for="login"],
 //  #passwordLog:focus ~ .input-container__label[for="passwordLog"],
 //  #login:valid ~ .input-container__label[for="login"],
@@ -45,4 +45,3 @@
 // 	transform: scale(0.83);
 // 	top: -47px;
 //  }
- 

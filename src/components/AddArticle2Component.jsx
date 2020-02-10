@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
-import InputFileComponent from './InputFileComponent';
-import InputComponent from "../components/InputComponent";
+import InputFileComponent from './service/InputFileComponent';
 import checkLog from "../service/checkLog";
 
 class AddArticle2Component extends Component {

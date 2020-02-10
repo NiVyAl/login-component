@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { store } from '../store';
 import ApiService from "../service/ApiService";
-import InputComponent from "../components/InputComponent";
+import InputComponent from "../components/service/InputComponent";
 import axios from 'axios';
 
 class LoginComponent extends Component {

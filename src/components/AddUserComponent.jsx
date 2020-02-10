@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
-import InputComponent from "../components/InputComponent";
-import SelectInputComponent from "../components/SelectInputComponent";
+import InputComponent from "../components/service/InputComponent";
+import SelectInputComponent from "../components/service/SelectInputComponent";
 
 class AddUserComponent extends Component{
 

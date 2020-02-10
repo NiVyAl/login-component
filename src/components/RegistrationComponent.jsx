@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
-import InputComponent from "../components/InputComponent";
+import InputComponent from "../components/service/InputComponent";
 // import { store } from '../store';
 
 class RegistrationComponent extends Component{

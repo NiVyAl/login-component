@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputComponent from "../components/InputComponent";
+import InputComponent from "../service/InputComponent";
 
 class InputFileComponent extends Component {
 	constructor(props) {

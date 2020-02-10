@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
-import InputComponent from "../components/InputComponent";
-import SelectInputComponent from "../components/SelectInputComponent";
+import InputComponent from "../components/service/InputComponent";
+import SelectInputComponent from "../components/service/SelectInputComponent";
+import TextAreaComponent from "../components/service/TextAreaComponent";
 import checkLog from "../service/checkLog";
 
 class AddArticle1Component extends Component {
@@ -60,9 +61,10 @@ class AddArticle1Component extends Component {
 					<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="100" required/>
 					<InputComponent text="Тип" name="type" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/>
+					{/* <InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/> */}
 					<InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="100"/>
+					<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation"/>
 					<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText}/>  
 
 					<button className="button window__button" type="submit">Сохранить и продолжить</button>

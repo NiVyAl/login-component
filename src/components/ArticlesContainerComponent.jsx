@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
+import ArticleComponent from "./service/ArticleComponent";
 
 class ArticlesContainerComponent extends Component {
 	constructor(props){
@@ -24,27 +25,22 @@ class ArticlesContainerComponent extends Component {
 					}	
 					
 					for (let i of this.state.articles) {
-						this.setState({[i.articleId]: false})
+						this.setState({[i.articleId + "btnMore"]: false})
 					}	
 			})
 	}
 	
-	open = (e) => {
+	openMore = (e) => {
 		for (let i in this.state) {
 			if (i == e.target.id) {
 				if (this.state[i]) {
-					e.target.innerHTML = "Больше информации"
+					e.target.innerHTML = "Больше информации";
 				} else {
 					e.target.innerHTML = "Меньше информации";
 				}
 				this.setState({[i]: !this.state[i]})
 			}
 		}
-		// ApiService.getArticle(e.target.id)
-		// 	.then((response) => {
-		// 		console.log("getArticle");
-		// 		console.log(response);
-		// 	})
 	}
 	
 	writeFiles(data) {
@@ -75,39 +71,8 @@ class ArticlesContainerComponent extends Component {
 					<ul className="articles-container__list">
 						{this.state.articles.map(item => 
 							<li className="articles-container__item" key={item.articleId}>
-								<h3 className="articles-container__title">{item.articleName}</h3>
-								{/* <p className="articles-container__status">Находится на проверке</p> */}
-								<p className="articles-container__status"><span className="text-bold">Статус:</span> Не доделана (<a href={`/addArticle/step1?id=${item.articleId}`} className="link">продолжить создание</a>)</p>
-								<a href="/" className="link articles-container__link" download>Скачать</a>
-								
-								{this.state[item.articleId] &&
-									<ul className="more-list articles-container__more-list">
-											<li className="more-list__item">
-												<p className="more-list__title">Тип:</p>
-												<p className="more-list__content">{item.type}</p>
-											</li>
-											<li className="more-list__item">
-												<p className="more-list__title">Авторы:</p>
-												<p className="more-list__content">{item.authors}</p>
-											</li>
-											<li className="more-list__item">
-												<p className="more-list__title">Running Head:</p>
-												<p className="more-list__content">{item.runningHead}</p>
-											</li>
-											
-											<li className="more-list__item">
-												<p className="more-list__title">Аннотация:</p>
-												<p className="more-list__content">{item.annotation}</p>
-											</li>
-											
-											<li className="more-list__item">
-												<p className="more-list__title">Ключевые слова:</p>
-												<p className="more-list__content">{item.keys}</p>
-											</li>
-											{this.writeFiles(item.pathsMap)}
-									</ul>
-								}
-								<button className="articles-container__button button" id={item.articleId} onClick={this.open}>Больше информации</button>
+								<ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
+								<button className="articles-container__button button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</button>
 							</li>
 						)}
 					</ul>

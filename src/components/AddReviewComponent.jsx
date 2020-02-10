@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import InputComponent from "../components/InputComponent";
-import InputFileComponent from './InputFileComponent';
-import SelectInputComponent from "../components/SelectInputComponent";
+import InputComponent from "../components/service/InputComponent";
+import TextAreaComponent from "../components/service/TextAreaComponent";
+import SelectInputComponent from "../components/service/SelectInputComponent";
 import ApiService from "../service/ApiService";
 
-class ArticleEditComponent extends Component {
+class AddReviewComponent extends Component {
     constructor(props) {
         super(props);
         
@@ -104,21 +104,22 @@ class ArticleEditComponent extends Component {
     
     render() {
         return(
-            <div className="window article-edit">
+            <div className="window add-review">
                 <h2 className="window__title sub-title">Заключение рецензента о возможности публикации статьи</h2>
-                <p className="article-edit__articleName">{this.state.articleName}</p>
+                <p className="add-review__articleName">{this.state.articleName}</p>
                 {this.state.isSend &&
                     <p className="">Рецензия отправлена!</p>
                 }
                 
                 {!this.state.isSend &&
                     <form ref={this.container} onSubmit={this.handleSubmit}>
-                        <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="text" maxLength="256"/>
-                        <div className="article-edit__content">
+                        <div className="add-review__content">
                             {this.inputId.map(item => 
                                 <SelectInputComponent title={this.inputTitle[item]} id={item} change={this.handleChange} values={this.inputData[item]} texts={this.inputText[item]} key={item}/>    
                             )}
                         </div>
+                        {/* <InputComponent text="Комментарий" name="comment" handleChange={this.handleChange} type="text" maxLength="256"/> */}
+                        <TextAreaComponent handleChange={this.handleChange} text="Комментарий" name="comment"/>
                         
                         <button type="submit" className="button" onClick={this.send}>Отправить</button>
                     </form>
@@ -128,4 +129,4 @@ class ArticleEditComponent extends Component {
     }
 }
 
-export default ArticleEditComponent;
+export default AddReviewComponent;
