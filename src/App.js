@@ -12,6 +12,7 @@ import AddUserComponent from './components/AddUserComponent.jsx'
 import ProfileComponent from './components/ProfileComponent.jsx'
 import FooterComponent from './components/FooterComponent.jsx'
 import AddReviewComponent from './components/AddReviewComponent.jsx'
+import AllReviewerComponent from './components/AllReviewerComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path="/addArticle/step2" component={AddArticle2Component}/>
               <Route path="/profile" component={ProfileComponent}/>
               <Route path="/addReview" component={AddReviewComponent}/>
+              <Route path="/allReviewer" component={AllReviewerComponent}/>
             </Switch>
           </div>
         </div>

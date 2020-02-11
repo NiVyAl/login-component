@@ -7,12 +7,15 @@ class AddUserComponent extends Component{
 
     constructor(props){
         super(props);
+
+        this.inputData = ["02.00.00", "05.17.00", "05.13.00"];
+		this.inputText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Информатика, вычислительная техника и управление (05.13.00)" ];
         
         this.roles = ["ROLE_ROOT", "ROLE_ADMIN", "ROLE_REVIEWER", "ROLE_AUTHOR"];
-        this.rolesNames = ["Root", "Admin", "Рецензент", "Автор"];
+        this.rolesNames = ["Root", "Секретарь", "Рецензент", "Автор"];
         this.window = React.createRef(); 
 		  
-        this.state ={
+        this.state = {
             email: '',
             password: '',
             nameR: '',
@@ -25,6 +28,7 @@ class AddUserComponent extends Component{
             city: '',
             phone: '',
             role: this.roles[0],
+            subject: this.inputData[0],
         }
     }
 
@@ -33,7 +37,7 @@ class AddUserComponent extends Component{
         this.window.current.classList.add("load");
         let user = {};
         for (let i in this.state) {    
-            if ((this.state[i] !== "") && (i !== "message")) {
+            if ((this.state[i] !== "") && (i !== "message") && (i !== "isReviewer")) {
                 user[i] = this.state[i]
             }
         };
@@ -49,7 +53,15 @@ class AddUserComponent extends Component{
     }
 
     handleChange = (e) => {
-		this.setState({ [e.target.id]: e.target.value });
+        this.setState({ [e.target.id]: e.target.value });
+        if (e.target.id === "role") {
+            if ((e.target.value === "ROLE_REVIEWER") || (e.target.value === "ROLE_AUTHOR")) {
+                this.setState({isNeedSubject: true})
+            } else {
+                this.setState({isNeedSubject: false})
+            }
+            
+        }
     }
 
     render() {
@@ -69,8 +81,10 @@ class AddUserComponent extends Component{
                     <InputComponent text="email" name="email" handleChange={this.handleChange} type="email" maxLength="30" required/>
                     <InputComponent text="Пароль" name="password" handleChange={this.handleChange} type="password" maxLength="20" autoComplete="new-password" required/>
 
-						  <SelectInputComponent title="Роль пользователя:" id="role" change={this.handleChange} values={this.roles} texts={this.rolesNames}/>
-
+					<SelectInputComponent title="Роль пользователя:" id="role" change={this.handleChange} values={this.roles} texts={this.rolesNames}/>
+                    {this.state.isNeedSubject &&
+					    <SelectInputComponent title="Предмет рецензента" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText}/>
+                    }
                     <button className="button window__button" type="submit">Создать пользователя</button>
                 </form>
             </div>
