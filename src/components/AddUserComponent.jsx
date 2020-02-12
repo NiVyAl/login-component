@@ -79,6 +79,7 @@ class AddUserComponent extends Component{
                     <InputComponent text="Организация" name="organization" handleChange={this.handleChange} type="text" maxLength="30"/>
                     <InputComponent text="Телефон" name="phone" handleChange={this.handleChange} type="tel" maxLength="30" required/>
                     <InputComponent text="email" name="email" handleChange={this.handleChange} type="email" maxLength="30" required/>
+                    <InputComponent text="Логин" name="login" handleChange={this.handleChange} type="text" maxLength="30" required/>
                     <InputComponent text="Пароль" name="password" handleChange={this.handleChange} type="password" maxLength="20" autoComplete="new-password" required/>
 
 					<SelectInputComponent title="Роль пользователя:" id="role" change={this.handleChange} values={this.roles} texts={this.rolesNames}/>

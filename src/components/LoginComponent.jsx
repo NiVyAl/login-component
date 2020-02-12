@@ -3,6 +3,7 @@ import { store } from '../store';
 import ApiService from "../service/ApiService";
 import InputComponent from "../components/service/InputComponent";
 import axios from 'axios';
+import checkRole from "../service/checkRole";
 
 class LoginComponent extends Component {
 
@@ -85,7 +86,9 @@ class LoginComponent extends Component {
     localStorage.setItem('token', res.data.token);
     localStorage.setItem('userId', res.data.user.id);
     axios.defaults.headers.common.Authorization = res.data.token;
-    localStorage.setItem('roles', JSON.stringify(res.data.user.roles)); // сохранение роли
+    localStorage.setItem('privilege', JSON.stringify(res.data.user.roles)); // сохранение роли
+    // checkRole(res.data.user.roles);
+    
     store.dispatch({ type: "log" });
     
     window.location.reload();

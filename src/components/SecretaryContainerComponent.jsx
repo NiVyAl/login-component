@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import ArticleComponent from "./service/ArticleComponent";
 
-class ArticlesReviewContainerComponent extends Component {
+class SecretaryContainerComponent extends Component {
 	constructor(props){
 		super(props);
 		
@@ -11,9 +11,7 @@ class ArticlesReviewContainerComponent extends Component {
 			scrollY: 0,
 			articles: {},
 			isResponse: false,
-			isEditOpen: false,
 			buttons: [],
-			whichArticleOpen: "",
 		}
 	}
 	
@@ -43,11 +41,6 @@ class ArticlesReviewContainerComponent extends Component {
 				this.setState({[i]: !this.state[i]})
 			}
 		}
-	}
-
-	editOpenCloseToggle = (e, item) => {
-		console.log(item.articleName);
-		window.location.href=`/addReview?id=${e.target.id}`;
 	}
 	
 	writeFiles(data) {
@@ -80,7 +73,7 @@ class ArticlesReviewContainerComponent extends Component {
 							<li className="articles-container__item" key={item.articleId}>
 								<ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
 								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
-								<button className="articles-container__button-edit-status button" id={item.articleId} onClick={(e) => this.editOpenCloseToggle(e, item)}>Добавить рецензию</button>
+								{/* <button className="articles-container__button-edit-status button" id={item.articleId} onClick={(e) => this.editOpenCloseToggle(e, item)}>Добавить рецензию</button> */}
 							</li>
 						)}
 					</ul>
@@ -90,4 +83,4 @@ class ArticlesReviewContainerComponent extends Component {
 	}
 }
 
-export default ArticlesReviewContainerComponent;
+export default SecretaryContainerComponent;

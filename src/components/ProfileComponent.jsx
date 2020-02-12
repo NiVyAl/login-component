@@ -3,6 +3,7 @@ import ApiService from "../service/ApiService";
 import checkLog from "../service/checkLog";
 import ArticlesContainerComponent from './ArticlesContainerComponent';
 import ArticlesReviewContainerComponent from './ArticlesReviewContainerComponent';
+import SecretaryContainerComponent from './ArticlesReviewContainerComponent';
 
 class ProfileComponent extends Component {
     constructor(props) {
@@ -19,17 +20,31 @@ class ProfileComponent extends Component {
         //         console.log(response);
         //     })
         
-        if (JSON.parse(localStorage.getItem("roles"))) {
-            this.setState({privilege: JSON.parse(localStorage.getItem("roles"))});
-            console.log(JSON.parse(localStorage.getItem("roles")));
-            for (let i of JSON.parse(localStorage.getItem("roles"))) {
+        if (JSON.parse(localStorage.getItem("privilege"))) {
+            // this.setState({privilege: JSON.parse(localStorage.getItem("roles"))});
+            // console.log(JSON.parse(localStorage.getItem("roles")));
+            for (let i of JSON.parse(localStorage.getItem("privilege"))) {
+                // switch(i) {
+                //     case "REVIEW_PRIVILEGE":
+                //         this.setState({role: "review"})
+                //         break
+                //     case "WRITE_PRIVILEGE":
+                //         this.setState({role: "writer"})
+                //     case "ADD_PRIVILEGE":
+                //         this.setState({role: "secretary"})
+                // }
                 if (i === "REVIEW_PRIVILEGE") {
-                    this.setState({role: "review"})
+                    // this.setState({role: "review"})
+                    this.setState({role: "secretary"})
                     break
                 }
                 
                 if (i === "WRITE_PRIVILEGE") {
                     this.setState({role: "writer"})
+                }
+                
+                if (i === "ADD_PRIVILEGE") {
+                    this.setState({role: "secretary"})
                 }
             }
         }
@@ -41,6 +56,9 @@ class ProfileComponent extends Component {
         }
         if (this.state.role === "writer") {
             return(<ArticlesContainerComponent/>)
+        }
+        if (this.state.role === "secretary") {
+            return(<SecretaryContainerComponent/>)
         }
     }
     
