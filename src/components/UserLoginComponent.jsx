@@ -54,7 +54,7 @@ class UserLoginComponent extends Component {
                         <p className="user-login__modal-name">{localStorage.getItem("log")}</p>
                         <p className="user-login__email">{localStorage.getItem("email")}</p>
                         
-                        <a className="user-login__link" href="/profile">Профиль</a>
+                        <a className="user-login__link" href="/profile">Личный кабинет</a>
                         <a className="user-login__link" href="/addArticle/step1">Добавить статью</a>
                         <button onClick={this.logOut} className="user-login__link user-login__link--logout">Выйти</button>
                     </div>
