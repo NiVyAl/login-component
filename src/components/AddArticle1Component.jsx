@@ -61,7 +61,7 @@ class AddArticle1Component extends Component {
 				<form onSubmit={this.sendArticle}>
 					<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="100" required/>
 					<InputComponent text="Тип" name="type" handleChange={this.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="100"/>
+					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="250"/>
 					{/* <InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/> */}
 					<InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>

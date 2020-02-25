@@ -45,7 +45,7 @@ class ArticlesReviewContainerComponent extends Component {
 
 	modalOpenToggle = (item) => {
 		if (item) {
-			console.log(item);
+			this.setState({articleName: item.articleName})
 			this.setState({isModalOpen: true});
 		} else {
 			console.log("Закрыть");
@@ -75,7 +75,7 @@ class ArticlesReviewContainerComponent extends Component {
 		return(
 			<div className="articles-container">
 				{this.state.isModalOpen &&
-					<ChooseReviewerComponent close={this.modalOpenToggle}/>
+					<ChooseReviewerComponent close={this.modalOpenToggle} title={this.state.articleName}/>
 				}
 				<h2 className="articles-container__title">Статьи ожидающие рецензии:</h2>
 				{!this.state.isResponse &&

@@ -55,6 +55,7 @@ class ProfileComponent extends Component {
             return(<ArticlesReviewContainerComponent/>)
         }
         if (this.state.role === "writer") {
+            console.log("hui")
             return(<ArticlesContainerComponent/>)
         }
         if (this.state.role === "secretary") {
@@ -65,7 +66,7 @@ class ProfileComponent extends Component {
     render() {
         return(
             <div className="window profile">
-                <h2 className="sub-title window__title">Профиль</h2>
+                <h2 className="sub-title window__title">Личный кабинет</h2>
                     <div className="profile__articles-container">
                         {this.checkRoll()}
                         {/* <ArticlesContainerComponent/> */}

@@ -8,7 +8,7 @@ class ArticleComponent extends Component {
 		}
 		return(
 			<div>
-				{files.map(fileName => 
+				{files.map(fileName =>  
                     <li className="more-list__item" key={fileName}>
                         <p className="more-list__text-container more-list__text-container--file"> 
                             <svg className="more-list__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -38,12 +38,6 @@ class ArticleComponent extends Component {
                                 <p className="more-list__text-container">
                                     <span className="more-list__title text-bold">Тип:</span>
                                     <span className="more-list__content">{this.props.item.type}</span>
-                                </p>
-                            </li>
-                            <li className="more-list__item">
-                                <p className="more-list__text-container">
-                                    <span className="more-list__title text-bold">Авторы:</span>
-                                    <span className="more-list__content">{this.props.item.authors}</span>
                                 </p>
                             </li>
                             <li className="more-list__item">
