@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class InputComponent extends Component {
-	constructor(props) {
+	constructor(props) { 
 		super(props);
 		this.label = React.createRef();
 		this.input  = React.createRef();
@@ -10,6 +10,13 @@ class InputComponent extends Component {
 	componentDidMount() {
 		// console.log(this.input.current);
 		console.log();
+		if (this.props.value) {
+			// console.log(this.input);
+			this.input.current.value = this.props.value;
+			this.active();
+			let e = {target: {id: this.input.current.id, value: this.props.value}};
+			this.props.handleChange(e);
+		}
 	}
 	
 	active = (e) => {

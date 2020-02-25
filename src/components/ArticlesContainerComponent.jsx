@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import ArticleComponent from "./service/ArticleComponent";
 
-class ArticlesContainerComponent extends Component {
+class ArticlesContainerComponent extends Component { 
 	constructor(props){
 		super(props);
 		
@@ -22,11 +22,11 @@ class ArticlesContainerComponent extends Component {
 					this.setState({articles: response.data.reverse()})
 					if (response.data.length > 0) {
 						this.setState({isResponse: true});
-					}	
+					}
 					
 					for (let i of this.state.articles) {
 						this.setState({[i.articleId + "btnMore"]: false})
-					}	
+					}
 			})
 	}
 	

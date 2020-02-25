@@ -48,6 +48,7 @@ class AddArticle1Component extends Component {
   }
 
   handleChange = (e) => {
+	console.log(e.target.value);
 	this.setState({ [e.target.id]: e.target.value });
 		// localStorage.setItem(e.target.id, e.target.value); // кидаем данные каждой формы в localStorage
   }
@@ -63,7 +64,7 @@ class AddArticle1Component extends Component {
 					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="100"/>
 					{/* <InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/> */}
 					<InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="100"/>
+					<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
 					<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation"/>
 					<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText}/>  
 
