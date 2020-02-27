@@ -74,7 +74,7 @@ class ArticlesReviewContainerComponent extends Component {
 	render() {
 		return(
 			<div className="articles-container">
-				{this.state.isModalOpen &&
+				{!this.state.isModalOpen &&
 					<ChooseReviewerComponent close={this.modalOpenToggle} title={this.state.articleName}/>
 				}
 				<h2 className="articles-container__title">Статьи ожидающие рецензии:</h2>
