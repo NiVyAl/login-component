@@ -3,7 +3,7 @@ import ApiService from "../service/ApiService";
 import checkLog from "../service/checkLog";
 import ArticlesContainerComponent from './ArticlesContainerComponent';
 import ArticlesReviewContainerComponent from './ArticlesReviewContainerComponent';
-import SecretaryContainerComponent from './ArticlesReviewContainerComponent';
+import SecretaryContainerComponent from './SecretaryContainerComponent';
 
 class ProfileComponent extends Component {
     constructor(props) {
@@ -34,8 +34,8 @@ class ProfileComponent extends Component {
                 //         this.setState({role: "secretary"})
                 // }
                 if (i === "REVIEW_PRIVILEGE") {
-                    // this.setState({role: "review"})
-                    this.setState({role: "secretary"})
+                    this.setState({role: "review"})
+                    // this.setState({role: "secretary"})
                     break
                 }
                 
@@ -55,7 +55,6 @@ class ProfileComponent extends Component {
             return(<ArticlesReviewContainerComponent/>)
         }
         if (this.state.role === "writer") {
-            console.log("hui")
             return(<ArticlesContainerComponent/>)
         }
         if (this.state.role === "secretary") {

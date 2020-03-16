@@ -27,7 +27,7 @@ class ChooseReviewerComponent extends Component {
                 <form className="choose-reviewer modal-window__window" onSubmit={this.handleSubmit}>
                     <p className="modal-window__title sub-title">Выберите рецензентов</p>
                     <p className="modal-window__title-description title-description">{this.props.title}ЭЛЕКТРОХИМИЧЕСКИЙ МЕТОД ИССЛЕДОВАНИЯ ПРОЦЕССОВ МИКРОБНОЙ КОРРОЗИИ</p>
-                    <div class="choose-reviewer__reviewer-container reviewer-container">
+                    <div className="choose-reviewer__reviewer-container reviewer-container">
                         <div className="reviewer-container__main">
                             <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer2" text="Игорь Николаевич Маресьев"/>

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import ArticleComponent from "./service/ArticleComponent";
+import ChooseReviewerComponent from "./ChooseReviewerComponent.jsx";
 
-class SecretaryContainerComponent extends Component {
+class SecretaryContainerComponent extends Component { 
 	constructor(props){
 		super(props);
 		
 		this.state ={ 
-			open: false,
-			scrollY: 0,
 			articles: {},
 			isResponse: false,
 			buttons: [],
+			isModalOpen: false,
 		}
 	}
 	
@@ -42,6 +42,17 @@ class SecretaryContainerComponent extends Component {
 			}
 		}
 	}
+
+	modalOpenToggle = (item) => {
+		if (item) {
+			this.setState({articleName: item.articleName})
+			this.setState({isModalOpen: true});
+		} else {
+			console.log("Закрыть");
+			this.setState({isModalOpen: false});
+		}
+		
+	}
 	
 	writeFiles(data) {
 		let files = [];
@@ -50,11 +61,11 @@ class SecretaryContainerComponent extends Component {
 		}
 		return(
 			<div>
-				{files.map(fileName => 
+				{files.map(fileName =>
 					<li className="more-list__item" key={fileName}>
 						<p className="more-list__title">{fileName}</p>
 						<p className="more-list__content"><a href={data[fileName]} className="link" download>Скачать</a></p>
-					</li>		
+					</li>
 				)}
 			</div>
 		)
@@ -63,7 +74,10 @@ class SecretaryContainerComponent extends Component {
 	render() {
 		return(
 			<div className="articles-container">
-				<h2 className="articles-container__title">Статьи на проверку:</h2>
+				{this.state.isModalOpen &&
+					<ChooseReviewerComponent close={this.modalOpenToggle} title={this.state.articleName}/>
+				}
+				<h2 className="articles-container__title">Статьи ожидающие рецензии:</h2>
 				{!this.state.isResponse &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
 				}
@@ -73,7 +87,7 @@ class SecretaryContainerComponent extends Component {
 							<li className="articles-container__item" key={item.articleId}>
 								<ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
 								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
-								{/* <button className="articles-container__button-edit-status button" id={item.articleId} onClick={(e) => this.editOpenCloseToggle(e, item)}>Добавить рецензию</button> */}
+								<button className="articles-container__button-edit-status button" id={item.articleId} onClick={(e) => this.modalOpenToggle(item)}>Выбрать рецензента</button>
 							</li>
 						)}
 					</ul>

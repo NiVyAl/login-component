@@ -59,12 +59,14 @@ class AddArticle1Component extends Component {
 				<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 1)</h2>
 				
 				<form onSubmit={this.sendArticle}>
-					<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="100" required/>
+					<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="250" required/>
 					<InputComponent text="Тип" name="type" handleChange={this.handleChange} type="text" maxLength="100"/>
 					<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="250"/>
 					{/* <InputComponent text="Аннотация" name="annotation" handleChange={this.handleChange} type="text" maxLength="100"/> */}
-					<InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="100"/>
-					<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
+					{/* <InputComponent text="Ключевые слова" name="keys" handleChange={this.handleChange} type="text" maxLength="250"/> */}
+					{/* <TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation"/> */}
+					<InputComponent text="Ключевые слова" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
+					<TextAreaComponent handleChange={this.handleChange} text="Ключевые слова" name="keys"/>
 					<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation"/>
 					<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText}/>  
 
