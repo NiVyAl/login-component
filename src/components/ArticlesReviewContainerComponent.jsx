@@ -77,7 +77,7 @@ class ArticlesReviewContainerComponent extends Component {
 									<a href={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</a>
 								}
 								{item.articleStatus === "Одобрена" &&
-									<p className="articles-container__button-edit-status button" id={item.articleId}>Статья одобрена</p>
+									<p className="articles-container__button-edit-status button articles-container__button--succes" id={item.articleId}>Статья одобрена</p>
 								}
 							</li>
 						)}

@@ -35,7 +35,6 @@ class ProfileComponent extends Component {
                 // }
                 if (i === "REVIEW_PRIVILEGE") {
                     this.setState({role: "review"})
-                    // this.setState({role: "secretary"})
                     break
                 }
                 

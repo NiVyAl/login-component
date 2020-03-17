@@ -29,7 +29,7 @@ class ChooseReviewerComponent extends Component {
                     <p className="modal-window__title-description title-description">{this.props.title}ЭЛЕКТРОХИМИЧЕСКИЙ МЕТОД ИССЛЕДОВАНИЯ ПРОЦЕССОВ МИКРОБНОЙ КОРРОЗИИ</p>
                     <div className="choose-reviewer__reviewer-container reviewer-container">
                         <div className="reviewer-container__main">
-                            <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/>
+                            <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/><a href="/allReviewer">Больше информации</a>
                             <CheckboxComponent name="reviewer2" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer3" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer4" text="Игорь Николаевич Маресьев"/>

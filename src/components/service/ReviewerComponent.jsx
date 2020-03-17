@@ -16,14 +16,14 @@ class ReviewerComponent extends Component {
                 <tbody>
                     {/* Тут цикл */}
                     <tr className="reviewer-container__tr">
-                        <td className="reviewer__item reviewer__item--name">Алексей Федорович Алексенко</td>
+                        <td className="reviewer__item reviewer__item--name">Иванов Иван Иванович</td>
                         <td className="reviewer__item"><a href="/" class="link">10</a></td> {/* находятся на рецензии */}
                         <td className="reviewer__item"><a href="/" class="link">50</a></td> {/* ожидают повторного рецензирования*/}
                         <td className="reviewer__item"><a href="/" class="link">3</a></td> {/* написано рецензий (за все время) */}
                     </tr>
 
                     <tr className="reviewer-container__tr">
-                        <td className="reviewer__item reviewer__item--name">Алексей Федорович Алексенко-Понасенко</td>
+                        <td className="reviewer__item reviewer__item--name">Иванов Иван Ивановичы</td>
                         <td className="reviewer__item"><a href="/" class="link">25</a></td> {/* находятся на рецензии */}
                         <td className="reviewer__item"><a href="/" class="link">34</a></td> {/* ожидают повторного рецензирования*/}
                         <td className="reviewer__item"><a href="/" class="link">80</a></td> {/* написано рецензий (за все время) */}

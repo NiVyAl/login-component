@@ -9,6 +9,9 @@ class AllReviewerComponent extends Component {
 
                 <p className="add-review__articleName">Химия (02.00.00)</p>
                 <ReviewerComponent/>
+
+                <p className="add-review__articleName">Химическая технология (05.17.00)</p>
+                <ReviewerComponent/>
             </div>
         )
     }
