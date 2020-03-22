@@ -73,11 +73,14 @@ class ArticlesReviewContainerComponent extends Component {
 							<li className="articles-container__item" key={item.articleId}>
 								<ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
 								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
-								{item.articleStatus !== "Одобрена" &&
+								{item.articleStatus === "В процессе" &&
 									<a href={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</a>
 								}
 								{item.articleStatus === "Одобрена" &&
 									<p className="articles-container__button-edit-status button articles-container__button--succes" id={item.articleId}>Статья одобрена</p>
+								}
+								{item.articleStatus === "Доработка" &&
+									<p className="articles-container__button-edit-status button articles-container__button--succes" id={item.articleId}>Отправлена на доработку</p>
 								}
 							</li>
 						)}

@@ -5,7 +5,7 @@ class ReviewerComponent extends Component {
         return(
             <tabel className="reviewer-container">
                 <thead>
-                    <tr class="reviewer-container__tr reviewer-container__tr--description">
+                    <tr className="reviewer-container__tr reviewer-container__tr--description">
                         <td className="reviewer__item reviewer__item--name">ФИО Рецензента</td>
                         <td className="reviewer__item reviewer__item--description"><span className="one-line">находятся на</span> рецензии</td> {/* находятся на рецензии */}
                         <td className="reviewer__item reviewer__item--description">ожидают повторного рецензирования</td> {/* ожидают повторного рецензирования*/}
@@ -17,16 +17,16 @@ class ReviewerComponent extends Component {
                     {/* Тут цикл */}
                     <tr className="reviewer-container__tr">
                         <td className="reviewer__item reviewer__item--name">Иванов Иван Иванович</td>
-                        <td className="reviewer__item"><a href="/" class="link">10</a></td> {/* находятся на рецензии */}
-                        <td className="reviewer__item"><a href="/" class="link">50</a></td> {/* ожидают повторного рецензирования*/}
-                        <td className="reviewer__item"><a href="/" class="link">3</a></td> {/* написано рецензий (за все время) */}
+                        <td className="reviewer__item"><a href="/" className="link">10</a></td> {/* находятся на рецензии */}
+                        <td className="reviewer__item"><a href="/" className="link">50</a></td> {/* ожидают повторного рецензирования*/}
+                        <td className="reviewer__item"><a href="/" className="link">3</a></td> {/* написано рецензий (за все время) */}
                     </tr>
 
                     <tr className="reviewer-container__tr">
                         <td className="reviewer__item reviewer__item--name">Иванов Иван Ивановичы</td>
-                        <td className="reviewer__item"><a href="/" class="link">25</a></td> {/* находятся на рецензии */}
-                        <td className="reviewer__item"><a href="/" class="link">34</a></td> {/* ожидают повторного рецензирования*/}
-                        <td className="reviewer__item"><a href="/" class="link">80</a></td> {/* написано рецензий (за все время) */}
+                        <td className="reviewer__item"><a href="/" className="link">25</a></td> {/* находятся на рецензии */}
+                        <td className="reviewer__item"><a href="/" className="link">34</a></td> {/* ожидают повторного рецензирования*/}
+                        <td className="reviewer__item"><a href="/" className="link">80</a></td> {/* написано рецензий (за все время) */}
                     </tr>
                 </tbody>
             </tabel>

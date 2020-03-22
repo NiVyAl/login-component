@@ -3,7 +3,7 @@ import './style.less';
 import LoginComponent from './components/LoginComponent.jsx'
 import HeaderComponent from './components/HeaderComponent.jsx'
 import MainComponent from './components/MainComponent.jsx'
-import SubjectsComponent from './components/SubjectsComponent.jsx'
+import CategoriesComponent from './components/CategoriesComponent.jsx'
 import AddArticle1Component from './components/AddArticle1Component.jsx'
 import AddArticle2Component from './components/AddArticle2Component.jsx'
 import RegistrationConfirmComponent from './components/RegistrationConfirmComponent.jsx'
@@ -16,6 +16,7 @@ import AllReviewerComponent from './components/AllReviewerComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
+  let isLog = localStorage.getItem("log");
   return (
     <div>
       <Router>
@@ -23,7 +24,7 @@ function App() {
         <LoginComponent/>
         
         <div className="main">
-          <SubjectsComponent/>
+          <CategoriesComponent/>
           <div className="main__content">
             <Switch>
               <Route path="/" exact component={MainComponent}/>

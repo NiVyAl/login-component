@@ -26,23 +26,24 @@ class ChooseReviewerComponent extends Component {
                 <div onClick={() => this.props.close()} className="modal-window__background"></div>
                 <form className="choose-reviewer modal-window__window" onSubmit={this.handleSubmit}>
                     <p className="modal-window__title sub-title">Выберите рецензентов</p>
-                    <p className="modal-window__title-description title-description">{this.props.title}ЭЛЕКТРОХИМИЧЕСКИЙ МЕТОД ИССЛЕДОВАНИЯ ПРОЦЕССОВ МИКРОБНОЙ КОРРОЗИИ</p>
+                    <p className="choose-reviewer__article-name modal-window__title-description title-description">{this.props.title}ЭЛЕКТРОХИМИЧЕСКИЙ МЕТОД ИССЛЕДОВАНИЯ ПРОЦЕССОВ МИКРОБНОЙ КОРРОЗИИ</p>
                     <div className="choose-reviewer__reviewer-container reviewer-container">
-                        <div className="reviewer-container__main">
-                            <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/><a href="/allReviewer">Больше информации</a>
+                        <div className="reviewer-container__sub-container reviewer-container__sub-container--main">
+                            <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/>
+                            {/* <a href="/allReviewer">Информация о всех рецентах</a> */}
                             <CheckboxComponent name="reviewer2" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer3" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer4" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer5" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer6" text="Игорь Николаевич Маресьев"/>
                         </div>
-                        <p className="text-button" onClick={this.moreOpen}>{this.state.moreButtonText}</p>
+                        <p className="reviewer-container__button-more text-button" onClick={this.moreOpen}>{this.state.moreButtonText}</p>
                         {this.state.isMoreOpen &&
-                            <div className="reviewer-container__more">
+                            <div className="reviewer-container__sub-container reviewer-container__sub-container--more">
                                 <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
+                                <CheckboxComponent name="reviewer8" text="Игорь Николаевич Маресьев"/>
+                                <CheckboxComponent name="reviewer9" text="Игорь Николаевич Маресьев"/>
+                                <CheckboxComponent name="reviewer10" text="Игорь Николаевич Маресьев"/>
                                 <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
                                 <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
                                 <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
@@ -58,6 +59,7 @@ class ChooseReviewerComponent extends Component {
                                 <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
                             </div>
                         }
+                        <button type="submit" class="button">Отправить на рецензию</button>
                     </div>
                 </form>
             </div>

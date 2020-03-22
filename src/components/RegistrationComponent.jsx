@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import InputComponent from "../components/service/InputComponent";
-// import { store } from '../store';
+import { store } from '../store';
 
 class RegistrationComponent extends Component{
 
@@ -13,9 +13,9 @@ class RegistrationComponent extends Component{
         this.saveUser = this.saveUser.bind(this);
         this.window = React.createRef();
 
-        // if ((store.getState() === "log") && (!this.state.isRegistration)) {
-        //     window.location.href="/";
-        // }
+        if ((store.getState() === "log") && (!this.state.isRegistration)) {
+            window.location.href="/";
+        }
     }
 
     saveUser = (e) => {

@@ -16,6 +16,7 @@ class AddUserComponent extends Component{
         this.window = React.createRef(); 
 		  
         this.state = {
+            isReviewer: false,
             email: '',
             password: '',
             nameR: '',
@@ -29,6 +30,38 @@ class AddUserComponent extends Component{
             phone: '',
             role: this.roles[0],
             subject: this.inputData[0],
+        }
+
+        // const privilege = JSON.parse(localStorage.getItem("privilege"));
+        // let acces = false;
+        // if (privilege) {
+        //     for (let i of privilege) {
+        //         if (i === "ADD_PRIVILEGE") {
+        //             acces = true;
+        //             this.setState({isReviewer: true})
+        //             break
+        //         }
+        //     }
+        // }
+        // if (!acces) {
+        //     window.location.href = "/";
+        // }
+    }
+
+    componentDidMount() {
+        const privilege = JSON.parse(localStorage.getItem("privilege"));
+        let acces = false;
+        if (privilege) {
+            for (let i of privilege) {
+                if (i === "ADD_PRIVILEGE") {
+                    acces = true;
+                    this.setState({isReviewer: true})
+                    break
+                }
+            }
+        }
+        if (!acces) {
+            window.location.href = "/";
         }
     }
 
@@ -55,7 +88,7 @@ class AddUserComponent extends Component{
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
         if (e.target.id === "role") {
-            if ((e.target.value === "ROLE_REVIEWER") || (e.target.value === "ROLE_AUTHOR")) {
+            if (e.target.value === "ROLE_REVIEWER") {
                 this.setState({isNeedSubject: true})
             } else {
                 this.setState({isNeedSubject: false})
@@ -67,6 +100,8 @@ class AddUserComponent extends Component{
     render() {
         return(
             <div ref={this.window} className="registration window">
+                {this.state.isReviewer &&
+                <div>
                 <h2 className="sub-title window__title">Создать пользователя</h2>
                 <form onSubmit={this.saveUser}>
                     <InputComponent text="Имя" name="nameR" handleChange={this.handleChange} type="name" maxLength="20"/> {/*name это еще и id*/}
@@ -88,6 +123,8 @@ class AddUserComponent extends Component{
                     }
                     <button className="button window__button" type="submit">Создать пользователя</button>
                 </form>
+                </div>
+                }
             </div>
         );
     }

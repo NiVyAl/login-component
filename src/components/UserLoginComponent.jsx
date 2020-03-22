@@ -9,6 +9,22 @@ class UserLoginComponent extends Component {
         this.modal  = React.createRef();
         this.modalButton = React.createRef();
         document.addEventListener("keydown", this.escFunction, false);
+
+        this.state = {
+            isCanAdd: false,
+        }
+    }
+
+    componentDidMount() {
+        const allPrivelege = JSON.parse(localStorage.getItem("privilege"));
+        console.log(allPrivelege);
+        if (allPrivelege) {
+            for (let i of allPrivelege) {
+                if (i === "ADD_PRIVILEGE") {
+                    this.setState({isCanAdd: true})
+                }
+            }
+        }
     }
 
     escFunction = (e) => {
@@ -55,7 +71,12 @@ class UserLoginComponent extends Component {
                         <p className="user-login__email">{localStorage.getItem("email")}</p>
                         
                         <a className="user-login__link" href="/profile">Личный кабинет</a>
-                        <a className="user-login__link" href="/addArticle/step1">Добавить статью</a>
+                        {!this.state.isCanAdd &&
+                            <a className="user-login__link" href="/addArticle/step1">Добавить статью</a>
+                        }
+                        {this.state.isCanAdd &&
+                            <a className="user-login__link" href="/addUser">Создать пользователя</a>
+                        }
                         <button onClick={this.logOut} className="user-login__link user-login__link--logout">Выйти</button>
                     </div>
                 </div>

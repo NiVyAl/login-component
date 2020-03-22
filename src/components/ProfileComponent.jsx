@@ -35,7 +35,7 @@ class ProfileComponent extends Component {
                 // }
                 if (i === "REVIEW_PRIVILEGE") {
                     this.setState({role: "review"})
-                    break
+                    // break
                 }
                 
                 if (i === "WRITE_PRIVILEGE") {
@@ -71,12 +71,12 @@ class ProfileComponent extends Component {
                         {/* <ArticlesReviewContainerComponent/> */}
                     </div>
 
-                    {this.state.role === "review" &&
+                    {/* {this.state.role === "review" &&
                     <div>
                         <h3 className="articles-container__title">Создать пользователя:</h3>
                         <a className="link" href="/addUser">Создать пользователя</a>
                     </div>
-                    }
+                    } */}
             </div>
         )
     }

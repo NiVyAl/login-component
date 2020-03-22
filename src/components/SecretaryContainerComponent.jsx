@@ -11,7 +11,7 @@ class SecretaryContainerComponent extends Component {
 			articles: {},
 			isResponse: false,
 			buttons: [],
-			isModalOpen: false,
+			isModalOpen: true,
 		}
 	}
 	
