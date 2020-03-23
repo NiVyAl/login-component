@@ -59,7 +59,7 @@ class ChooseReviewerComponent extends Component {
                                 <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
                             </div>
                         }
-                        <button type="submit" class="button">Отправить на рецензию</button>
+                        <button type="submit" className="button">Отправить на рецензию</button>
                     </div>
                 </form>
             </div>

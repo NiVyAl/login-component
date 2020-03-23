@@ -10,10 +10,10 @@ class CategoriesComponent extends Component {
 	}
 
 	componentDidMount() {
-		// ApiService.getAllArticles() //404
-		// 	.then((response) => {
-		// 		console.log(response);
-		// 	})
+		ApiService.getAllArticles() //404
+			.then((response) => {
+				console.log(response);
+			})
 	}
 	 
 
