@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import InputFileComponent from './service/InputFileComponent';
 import checkLog from "../service/checkLog";
+import getGetRequest from '../service/getGetRequest';
 
 class AddArticle2Component extends Component {
 	constructor(props){
@@ -34,11 +35,12 @@ class AddArticle2Component extends Component {
 		}
 		
 		console.log(data);
-		ApiService.addArticle2(data, localStorage.getItem("articleId"))
+		const articleId = getGetRequest();
+		ApiService.addArticle2(data, articleId)
 			.then((res) => {
 				console.log(res)
 				this.setState({isSend: true});
-				localStorage.removeItem("articleId");
+				// localStorage.removeItem("articleId");
 			})
 	} 
 

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import ArticleComponent from "./service/ArticleComponent";
 
-class ArticlesReviewContainerComponent extends Component {
+class WriterContainerComponent extends Component { 
 	constructor(props){
 		super(props);
 		
-		this.state ={ 
+		this.state ={
 			open: false,
 			scrollY: 0,
 			articles: {},
@@ -16,17 +16,17 @@ class ArticlesReviewContainerComponent extends Component {
 	}
 	
 	componentDidMount() {
-		ApiService.getAllArticles(localStorage.getItem("userId"))
+		ApiService.getArticles(localStorage.getItem("userId"))
 			.then((response) => {
 					console.log(response)
 					this.setState({articles: response.data.reverse()})
 					if (response.data.length > 0) {
 						this.setState({isResponse: true});
-					}	
+					}
 					
 					for (let i of this.state.articles) {
 						this.setState({[i.articleId + "btnMore"]: false})
-					}	
+					}
 			})
 	}
 	
@@ -63,7 +63,7 @@ class ArticlesReviewContainerComponent extends Component {
 	render() {
 		return(
 			<div className="articles-container">
-				<h2 className="articles-container__title">Статьи на проверку:</h2>
+				<h2 className="articles-container__title">Ваши статьи:</h2>
 				{!this.state.isResponse &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
 				}
@@ -73,15 +73,7 @@ class ArticlesReviewContainerComponent extends Component {
 							<li className="articles-container__item" key={item.articleId}>
 								<ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
 								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
-								{item.articleStatus === "В процессе" &&
-									<a href={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</a>
-								}
-								{item.articleStatus === "Одобрена" &&
-									<p className="articles-container__button-edit-status button articles-container__button--succes" id={item.articleId}>Статья одобрена</p>
-								}
-								{item.articleStatus === "Доработка" &&
-									<p className="articles-container__button-edit-status button articles-container__button--succes" id={item.articleId}>Отправлена на доработку</p>
-								}
+								<a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}>Редактировать</a>
 							</li>
 						)}
 					</ul>
@@ -91,4 +83,4 @@ class ArticlesReviewContainerComponent extends Component {
 	}
 }
 
-export default ArticlesReviewContainerComponent;
+export default WriterContainerComponent;

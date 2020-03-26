@@ -3,6 +3,7 @@ import InputComponent from "../components/service/InputComponent";
 import TextAreaComponent from "../components/service/TextAreaComponent";
 import SelectInputComponent from "../components/service/SelectInputComponent";
 import ApiService from "../service/ApiService";
+import getGetRequest from "../service/getGetRequest";
 
 class AddReviewComponent extends Component {
     constructor(props) {
@@ -60,10 +61,10 @@ class AddReviewComponent extends Component {
         for (let i of this.inputId) {
             this.setState({ [i]: this.inputData[i][0] })
         }
-        let id = this.getId();
-        this.setState({id: id});
+
+        this.setState({id: getGetRequest()});
         
-        ApiService.getArticle(id)
+        ApiService.getArticle(getGetRequest())
             .then((response) => {
                 this.setState({articleName: response.data.articleName})
             })
@@ -88,18 +89,6 @@ class AddReviewComponent extends Component {
 
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
-    }
-    
-    getId = () => {
-        let url = window.location.href;
-        let id = "";
-        for (let i = 0; i < url.length; i++) {
-            if (url[i] === "=") {
-                id = url.slice(i+1, url.length);
-                break
-            }
-        }
-        return id
     }
     
     render() {

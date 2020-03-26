@@ -76,8 +76,8 @@ class LoginComponent extends Component {
   log(res) {
     console.log(res.data);
     let userFullName;
-    if ((res.data.user.surnameR) && (res.data.user.middleNameR)) {
-      userFullName = `${res.data.user.surnameR} ${res.data.user.middleNameR}`;
+    if ((res.data.user.nameR) && (res.data.user.surnameR)) {
+      userFullName = `${res.data.user.nameR} ${res.data.user.surnameR}`;
     } else {
       userFullName = `${res.data.user.firstName} ${res.data.user.lastName}`;
     }
@@ -87,7 +87,6 @@ class LoginComponent extends Component {
     localStorage.setItem('userId', res.data.user.id);
     axios.defaults.headers.common.Authorization = res.data.token;
     localStorage.setItem('privilege', JSON.stringify(res.data.user.roles)); // сохранение роли
-    // checkRole(res.data.user.roles);
     
     store.dispatch({ type: "log" });
     

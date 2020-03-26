@@ -8,10 +8,8 @@ class InputComponent extends Component {
 	}
 	
 	componentDidMount() {
-		// console.log(this.input.current);
-		console.log();
-		if (this.props.value) {
-			// console.log(this.input);
+		if (this.props.value) { // есть ли значение по умолчанию
+			console.log(this.props.value + " - " + this.props.text);
 			this.input.current.value = this.props.value;
 			this.active();
 			let e = {target: {id: this.input.current.id, value: this.props.value}};
@@ -20,7 +18,6 @@ class InputComponent extends Component {
 	}
 	
 	active = (e) => {
-		// console.log(e.target.id);
 		this.label.current.classList.add("input-container__label--active")
 	}
 	

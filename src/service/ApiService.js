@@ -39,12 +39,16 @@ class ApiService {
         return axios.get(`${url}/article/getArticles?of=0&to=10&id=${userId}`)
     } 
 
-    getArticle(articleId) {
-        return axios.get(`${url}/article/getArticle?id=${articleId}`)
+    getAllArticles(userId) {  //для секретаря
+        return axios.get(`${url}/article/getAllArticles?of=0&to=10`)
     }
 
-    getAllArticles(userId) {  //для проверяющего все статьи
-        return axios.get(`${url}/article/getAllArticles`)
+    getReviewerArticles(userId) {  //для проверяющего все статьи
+        return axios.get(`${url}/article/getAllArticles?of=0&to=10`)
+    }
+
+    getArticle(articleId) { // получить одну статью (по id)
+        return axios.get(`${url}/article/getArticle?id=${articleId}`)
     }
     
     addReview(data) {
@@ -56,7 +60,7 @@ class ApiService {
     }
 
     getReviewers() {
-        return axios.get(`${url}/review/getReviewers/`);
+        return axios.get(`${url}/reviewers/getReviewers?of=0&to=100`);
     }
 }
 

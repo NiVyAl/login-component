@@ -5,14 +5,14 @@ class CategoriesComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			allCategories: [],
 		}
 	}
 
 	componentDidMount() {
-		ApiService.getAllArticles() //404
+		ApiService.getAllCategories() //404
 			.then((response) => {
-				console.log(response);
+				this.setState({allCategories: response.data})
 			})
 	}
 	 
@@ -22,7 +22,12 @@ class CategoriesComponent extends Component {
 			<div className="main__categories categories">
 				<h2 className="categories__title sub-title">Специальности:</h2>
 				<ul className="categories__list">
-					<li className="categories__item"><a href="/" className="categories__link">неорганическая химия</a></li>
+				{this.state.allCategories.map(item => 
+					<li className="categories__item" key={item.id}>
+						<a href="/" className="categories__link">{item.name}</a>
+					</li>
+				)}
+					{/* <li className="categories__item"><a href="/" className="categories__link">неорганическая химия</a></li>
 					<li className="categories__item"><a href="/" className="categories__link">высокомолекулярные соединения</a></li>
 					<li className="categories__item"><a href="/" className="categories__link">Физическая химия</a></li>
 					<li className="categories__item"><a href="/" className="categories__link">Электрохимия</a></li>
@@ -44,7 +49,7 @@ class CategoriesComponent extends Component {
 					<li className="categories__item"><a href="/" className="categories__link">Технология и переработка полимеров и композитов</a></li>
 					<li className="categories__item"><a href="/" className="categories__link">Химическая технология топлива и высокоэнергетических веществ</a></li>
 					<li className="categories__item"><a href="/" className="categories__link">Процессы и аппараты химических технологий</a></li>
-					<li className="categories__item"><a href="/" className="categories__link">Технология силикатных и тугоплавких неметаллических материалов</a></li>
+					<li className="categories__item"><a href="/" className="categories__link">Технология силикатных и тугоплавких неметаллических материалов</a></li> */}
 				</ul>
 				</div>
 		)

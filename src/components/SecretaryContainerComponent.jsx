@@ -3,7 +3,7 @@ import ApiService from "../service/ApiService";
 import ArticleComponent from "./service/ArticleComponent";
 import ChooseReviewerComponent from "./ChooseReviewerComponent.jsx";
 
-class SecretaryContainerComponent extends Component { 
+class SecretaryContainerComponent extends Component {
 	constructor(props){
 		super(props);
 		
@@ -11,7 +11,7 @@ class SecretaryContainerComponent extends Component {
 			articles: {},
 			isResponse: false,
 			buttons: [],
-			isModalOpen: true,
+			isModalOpen: false,
 		}
 	}
 	
@@ -77,7 +77,7 @@ class SecretaryContainerComponent extends Component {
 				{this.state.isModalOpen &&
 					<ChooseReviewerComponent close={this.modalOpenToggle} title={this.state.articleName}/>
 				}
-				<h2 className="articles-container__title">Статьи ожидающие рецензии:</h2>
+				<h2 className="articles-container__title">Все статьи:</h2>
 				{!this.state.isResponse &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
 				}

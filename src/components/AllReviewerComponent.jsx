@@ -17,12 +17,12 @@ class AllReviewerComponent extends Component {
 
                 <div className="all-reviewer__subject">
                     <p className="add-review__articleName">Химия (02.00.00)</p>
-                    <ReviewerComponent/>
+                    {/* <ReviewerComponent/> */}
                 </div>
 
                 <div className="all-reviewer__subject">
                     <p className="add-review__articleName">Химическая технология (05.17.00)</p>
-                    <ReviewerComponent/>
+                    {/* <ReviewerComponent/> */}
                 </div>
             </div>
         )

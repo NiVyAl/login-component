@@ -17,7 +17,6 @@ class UserLoginComponent extends Component {
 
     componentDidMount() {
         const allPrivelege = JSON.parse(localStorage.getItem("privilege"));
-        console.log(allPrivelege);
         if (allPrivelege) {
             for (let i of allPrivelege) {
                 if (i === "ADD_PRIVILEGE") {
@@ -75,7 +74,10 @@ class UserLoginComponent extends Component {
                             <a className="user-login__link" href="/addArticle/step1">Добавить статью</a>
                         }
                         {this.state.isCanAdd &&
-                            <a className="user-login__link" href="/addUser">Создать пользователя</a>
+                            <div>
+                                <a className="user-login__link" href="/addUser">Создать пользователя</a>
+                                <a className="user-login__link" href="/allReviewer">Все рецензенты</a>
+                            </div>
                         }
                         <button onClick={this.logOut} className="user-login__link user-login__link--logout">Выйти</button>
                     </div>
