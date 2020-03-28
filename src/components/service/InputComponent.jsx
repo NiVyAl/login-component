@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
 class InputComponent extends Component {
-	constructor(props) { 
+	constructor(props) {
 		super(props);
 		this.label = React.createRef();
 		this.input  = React.createRef();
 	}
 	
 	componentDidMount() {
-		if (this.props.value) { // есть ли значение по умолчанию
+		this.setValue(); // устанавливает значение по умолчанию (если есть)
+	}
+
+	setValue() { 
+		if (this.props.value) {
 			console.log(this.props.value + " - " + this.props.text);
 			this.input.current.value = this.props.value;
 			this.active();

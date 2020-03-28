@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import InputComponent from "../components/service/InputComponent";
 import TextAreaComponent from "../components/service/TextAreaComponent";
 import SelectInputComponent from "../components/service/SelectInputComponent";
 import ApiService from "../service/ApiService";

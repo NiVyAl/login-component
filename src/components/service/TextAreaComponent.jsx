@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 
 class TextAreaComponent extends Component {
+    constructor(props) {
+        super(props);
+
+        this.input = React.createRef();
+    }
+
+    componentDidMount() {
+		this.setValue(); // устанавливает значение по умолчанию (если есть)
+	}
+
+	setValue() { 
+		if (this.props.value) {
+			console.log(this.props.value + " - " + this.props.text);
+			this.input.current.value = this.props.value;
+			let e = {target: {id: this.input.current.id, value: this.props.value}};
+			this.props.handleChange(e);
+		}
+    }
+    
     render() {
         return(
-            <textarea className="text-area" placeholder={this.props.text} onChange={this.props.handleChange} id={this.props.name}></textarea>
+            <textarea ref={this.input} className="text-area" placeholder={this.props.text} onChange={this.props.handleChange} id={this.props.name}></textarea>
         )
     }
 }

@@ -3,7 +3,6 @@ import { store } from '../store';
 import ApiService from "../service/ApiService";
 import InputComponent from "../components/service/InputComponent";
 import axios from 'axios';
-import checkRole from "../service/checkRole";
 
 class LoginComponent extends Component {
 
@@ -21,7 +20,7 @@ class LoginComponent extends Component {
 
     store.subscribe(() => this.setState({open: store.getState()}));
     
-    document.addEventListener("keydown", this.escFunction, false);
+    document.addEventListener("keydown", this.escFunction);
   }
 
   escFunction = (e) => {

@@ -32,7 +32,7 @@ class WriterContainerComponent extends Component {
 	
 	openMore = (e) => {
 		for (let i in this.state) {
-			if (i == e.target.id) {
+			if (i === e.target.id) {
 				if (this.state[i]) {
 					e.target.innerHTML = "Больше информации";
 				} else {

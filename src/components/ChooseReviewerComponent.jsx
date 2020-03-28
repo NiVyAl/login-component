@@ -10,6 +10,20 @@ class ChooseReviewerComponent extends Component {
             moreButtonText: "Показать всех рецензентов",
         }
     }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.escClose);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.escClose);
+    }
+
+    escClose = (e) => {
+        if (e.keyCode === 27) {
+            this.props.close();
+        }
+    }
     
     moreOpen = () => {
         if (this.state.isMoreOpen) {

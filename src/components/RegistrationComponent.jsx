@@ -23,7 +23,7 @@ class RegistrationComponent extends Component{
         let user = {};
         for (let i in this.state) {    
             console.log(i);
-            if ((this.state[i] !== "") && (i != "isRegistration" )) {
+            if ((this.state[i] !== "") && (i !== "isRegistration" )) { //было i != "isRegistration"
                 user[i] = this.state[i]
             }
         };

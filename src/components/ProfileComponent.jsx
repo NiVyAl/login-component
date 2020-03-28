@@ -18,7 +18,7 @@ class ProfileComponent extends Component {
             for (let i of JSON.parse(localStorage.getItem("privilege"))) {
                 if (i === "REVIEW_PRIVILEGE") {
                     this.setState({role: "review"})
-                    break
+                    // break
                 }
                 
                 if (i === "WRITE_PRIVILEGE") {

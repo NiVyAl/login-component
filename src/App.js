@@ -16,7 +16,6 @@ import AllReviewerComponent from './components/AllReviewerComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
-  let isLog = localStorage.getItem("log");
   return (
     <div>
       <Router>
