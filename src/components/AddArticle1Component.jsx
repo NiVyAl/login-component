@@ -12,6 +12,7 @@ class AddArticle1Component extends Component {
 		
 		this.inputData = ["02.00.00", "05.17.00", "05.13.00"];
 		this.inputText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Информатика, вычислительная техника и управление (05.13.00)" ];
+		this.subjectDefault = 1;
 
 		this.state ={
 			id: localStorage.getItem("userId"),
@@ -44,10 +45,9 @@ class AddArticle1Component extends Component {
 	this.setState({isEdited: true})
 	ApiService.getArticle(articleId)
 		.then((response) => {
-			console.log(response);
+			// console.log(response);
 			this.setState({articleData: response.data})
 			this.setState({isStartRender: true})
-			// console.log(this.state.aticleData.articleName);
 		})
   }
 
@@ -58,17 +58,16 @@ class AddArticle1Component extends Component {
 	let data = {};
 	for (let i in this.state) {
 		if ((i != "articleData") && (i != "isStartRender") && (i != "isEdited")) {
-			data.i = this.state.i;
-			console.log(this.state.i);
+			data[i] = this.state[i];
 		}
 	}
 	console.log(data);
-	// ApiService.addArticle1(this.state)
-	// .then(res => {
-	// 	if (res.data.articleId) {
-	// 		window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
-	// 	} 
-	// });  
+	ApiService.addArticle1(data)
+	.then(res => {
+		if (res.data.articleId) {
+			window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
+		} 
+	});  
 		
   }
 
@@ -95,7 +94,7 @@ class AddArticle1Component extends Component {
 						<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
 						<TextAreaComponent handleChange={this.handleChange} text="Ключевые слова" name="keys" value={this.state.articleData.keys}/>
 						<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation" value={this.state.articleData.annotation}/>
-						<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText}/>  
+						<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
 
 						<button className="button window__button" type="submit">Сохранить и продолжить</button>
 					</form>
