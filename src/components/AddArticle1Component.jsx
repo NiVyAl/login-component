@@ -12,7 +12,7 @@ class AddArticle1Component extends Component {
 		
 		this.inputData = ["02.00.00", "05.17.00", "05.13.00"];
 		this.inputText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Информатика, вычислительная техника и управление (05.13.00)" ];
-		this.subjectDefault = 1;
+		this.subjectDefault = 0;
 
 		this.state ={
 			id: localStorage.getItem("userId"),

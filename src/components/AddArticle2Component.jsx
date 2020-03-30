@@ -7,6 +7,9 @@ import getGetRequest from '../service/getGetRequest';
 class AddArticle2Component extends Component {
 	constructor(props){
 		super(props);
+
+		this.articleId = getGetRequest();
+
 		this.state ={
 			 isSend: false,
 			 filePath: '',
@@ -15,6 +18,16 @@ class AddArticle2Component extends Component {
 		}
 		this.window = React.createRef();
 		checkLog();
+	}
+
+	componentDidMount() {
+		ApiService.getArticle(this.articleId)
+			.then((response) => {
+				console.log(response);
+				if (response.data.pathsMap) {
+					this.setState({isEdited: true})
+				}
+			})
 	}
 
 	send = (e) =>  {
@@ -35,8 +48,7 @@ class AddArticle2Component extends Component {
 		}
 		
 		console.log(data);
-		const articleId = getGetRequest();
-		ApiService.addArticle2(data, articleId)
+		ApiService.addArticle2(data, this.articleId)
 			.then((res) => {
 				console.log(res)
 				this.setState({isSend: true});
@@ -59,7 +71,12 @@ class AddArticle2Component extends Component {
 			<div className="add-article window">
 				{this.state.isSend === false &&
 					<div ref={this.window}>
-						<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
+						{this.state.isEdited &&
+							<h2 className="sub-title add-article__title window__title">Редактирование статьи (шаг 2)</h2>
+						}
+						{!this.state.isEdited &&
+							<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
+						}
 						
 						<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
 							
