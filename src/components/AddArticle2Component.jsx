@@ -14,7 +14,8 @@ class AddArticle2Component extends Component {
 			 isSend: false,
 			 filePath: '',
 			 countFiles: 1,
-			 items: [0]
+			 items: [0],
+			 isEdited: null,
 		}
 		this.window = React.createRef();
 		checkLog();
@@ -26,6 +27,8 @@ class AddArticle2Component extends Component {
 				console.log(response);
 				if (response.data.pathsMap) {
 					this.setState({isEdited: true})
+				} else {
+					this.setState({isEdited: false})
 				}
 			})
 	}
@@ -34,10 +37,10 @@ class AddArticle2Component extends Component {
 		e.preventDefault();
 		this.window.current.classList.add("load");
 		let descriptions = {};
-		let inputFiles = document.querySelectorAll(".input-file__input");
+		const inputFiles = document.querySelectorAll(".input-file__input");
 		
 		for (let i in this.state) { // заполняем descriptions
-			if ((i !== "isSend") && (i !== "filePath") && (i !== "countFiles") && (i !== "items")) {
+			if ((i !== "isSend") && (i !== "filePath") && (i !== "countFiles") && (i !== "items") && (i !== "isEdited")) {
 				descriptions[i] = this.state[i];
 			}
 		}
@@ -52,7 +55,6 @@ class AddArticle2Component extends Component {
 			.then((res) => {
 				console.log(res)
 				this.setState({isSend: true});
-				// localStorage.removeItem("articleId");
 			})
 	} 
 
@@ -63,7 +65,6 @@ class AddArticle2Component extends Component {
 	addFile = () => {
 		this.state.items.push(this.state.items.length);
 		this.setState({countFiles: this.state.countFiles + 1});
-		console.log(this.state.countFiles);
 	}
   
 	render() {
@@ -74,26 +75,28 @@ class AddArticle2Component extends Component {
 						{this.state.isEdited &&
 							<h2 className="sub-title add-article__title window__title">Редактирование статьи (шаг 2)</h2>
 						}
-						{!this.state.isEdited &&
+						{this.state.isEdited === false &&
 							<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
 						}
 						
-						<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
-							
-							{this.state.items.map(item => 
-								<div className="add-article__section" key={item}>
-									<InputFileComponent id={item} handleChange={this.handleChange}/>
+						{this.state.isEdited !== null && // чтоб не прыгало туда сюда (для красоты)
+							<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
+								
+								{this.state.items.map(item => 
+									<div className="add-article__section" key={item}>
+										<InputFileComponent id={item} handleChange={this.handleChange}/>
+									</div>
+								)}
+								
+								<div className="add-article__button-more button-more" onClick={this.addFile}>
+									<div className="button-more__button">+</div>
+									<span className="button-more__description">Добавить файл</span>	
 								</div>
-							)}
-							
-							<div className="add-article__button-more button-more" onClick={this.addFile}>
-								<div className="button-more__button">+</div>
-								<span className="button-more__description">Добавить файл</span>	
-							</div>
-							
-							<a href="/addArticle/step1" className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</a>
-							<button className="button window__button" type="submit">Отправить на проверку</button>
-						</form>
+								
+								<a href="/addArticle/step1" className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</a>
+								<button className="button window__button" type="submit">Отправить на проверку</button>
+							</form>
+						}
 					</div>
 				}
 				{this.state.isSend === true &&
