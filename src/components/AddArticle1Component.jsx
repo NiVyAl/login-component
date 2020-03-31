@@ -42,7 +42,7 @@ class AddArticle1Component extends Component {
   }
 
   getArticle(articleId) { 
-	this.setState({isEdited: true})
+	this.setState({isEdited: articleId})
 	ApiService.getArticle(articleId)
 		.then((response) => {
 			// console.log(response);
@@ -96,6 +96,9 @@ class AddArticle1Component extends Component {
 						<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation" value={this.state.articleData.annotation}/>
 						<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
 
+						{this.state.isEdited &&
+							<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
+						}
 						<button className="button window__button" type="submit">Сохранить и продолжить</button>
 					</form>
 				}

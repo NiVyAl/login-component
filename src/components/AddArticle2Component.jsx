@@ -93,7 +93,7 @@ class AddArticle2Component extends Component {
 									<span className="button-more__description">Добавить файл</span>	
 								</div>
 								
-								<a href="/addArticle/step1" className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</a>
+								<a href={`/addArticle/step1?articleId=${this.articleId}`} className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</a>
 								<button className="button window__button" type="submit">Отправить на проверку</button>
 							</form>
 						}
