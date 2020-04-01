@@ -26,7 +26,7 @@ class InputFileComponent extends Component {
 			<div className="input-file">
 				<div className="input-file__description">
 					<InputComponent text="Описание файла" name={`file${this.props.id}Description`} handleChange={this.props.handleChange} type="text" maxLength="250"/>
-					<button type="button" class="input-file__button-close button-close">Закрыть</button>
+					<button type="button" className="input-file__button-close button-close" onClick={this.props.close}>Закрыть</button>
 				</div>
 
 				<input onChange={this.handleChange} className="input-file__input" type="file" id={this.props.id}></input>

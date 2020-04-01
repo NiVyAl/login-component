@@ -13,7 +13,7 @@ class AddArticle2Component extends Component {
 		this.state ={
 			 isSend: false,
 			 filePath: '',
-			 countFiles: 1,
+			//  countFiles: 1,
 			 items: [0],
 			 isEdited: null,
 		}
@@ -63,8 +63,17 @@ class AddArticle2Component extends Component {
 	}
 	
 	addFile = () => {
-		this.state.items.push(this.state.items.length);
-		this.setState({countFiles: this.state.countFiles + 1});
+		let temp = this.state.items;
+		temp.push(temp[temp.length-1]+1);
+		this.setState({items: temp});
+		// this.state.items.push(this.state.items.length);
+		// this.setState({countFiles: this.state.countFiles + 1});
+	}
+
+	closeInput = (id) => {
+		let temp = this.state.items;
+		temp.splice(id, 1);
+		this.setState({items: temp});
 	}
   
 	render() {
@@ -82,9 +91,10 @@ class AddArticle2Component extends Component {
 						{this.state.isEdited !== null && // чтоб не прыгало туда сюда (для красоты)
 							<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
 								
-								{this.state.items.map(item => 
+								{this.state.items.map((item, number) => 
 									<div className="add-article__section" key={item}>
-										<InputFileComponent id={item} handleChange={this.handleChange}/>
+										<InputFileComponent id={item} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
+										<p>{item}</p>
 									</div>
 								)}
 								
@@ -102,7 +112,6 @@ class AddArticle2Component extends Component {
 				{this.state.isSend === true &&
 					<div>
 						<h2 className="sub-title add-article__title registration__title">Статья отправлена!</h2>
-						{/* <p className="confirm__text">Статья находится на проверке, Загрузить её можно <a href={this.state.filePath} download>здесь</a></p> */}
 						<p className="confirm__text">Статья загружена, посмотреть ее статус можно <a href="/profile">здесь</a></p>
 					</div>
 				}
