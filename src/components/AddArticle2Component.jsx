@@ -13,7 +13,6 @@ class AddArticle2Component extends Component {
 		this.state ={
 			 isSend: false,
 			 filePath: '',
-			//  countFiles: 1,
 			 items: [0],
 			 isEdited: null,
 		}
@@ -26,7 +25,7 @@ class AddArticle2Component extends Component {
 			.then((response) => {
 				console.log(response);
 				if (response.data.pathsMap) {
-					this.setState({isEdited: true})
+					this.setState({isEdited: response.data.pathsMap})
 				} else {
 					this.setState({isEdited: false})
 				}
@@ -40,22 +39,24 @@ class AddArticle2Component extends Component {
 		const inputFiles = document.querySelectorAll(".input-file__input");
 		
 		for (let i in this.state) { // заполняем descriptions
-			if ((i !== "isSend") && (i !== "filePath") && (i !== "countFiles") && (i !== "items") && (i !== "isEdited")) {
+			if ((i !== "isSend") && (i !== "filePath") && (i !== "items") && (i !== "isEdited")) {
 				descriptions[i] = this.state[i];
 			}
 		}
 
 		let data = new FormData();
 		for (let i = 0; i < inputFiles.length; i++) {
-			data.append(descriptions[`file${i}Description`], inputFiles[i].files[0])
+			console.log(descriptions[`file${i}Description`]);
+			console.log(inputFiles[i].files[0])
+			console.log("------");
+			data.append(descriptions[`file${i}Description`], inputFiles[i].files[0]);
 		}
-		
-		console.log(data);
-		ApiService.addArticle2(data, this.articleId)
-			.then((res) => {
-				console.log(res)
-				this.setState({isSend: true});
-			})
+
+		// ApiService.addArticle2(data, this.articleId)
+		// 	.then((res) => {
+		// 		console.log(res)
+		// 		this.setState({isSend: true});
+		// 	})
 	} 
 
 	handleChange = (e) => {
@@ -66,14 +67,15 @@ class AddArticle2Component extends Component {
 		let temp = this.state.items;
 		temp.push(temp[temp.length-1]+1);
 		this.setState({items: temp});
-		// this.state.items.push(this.state.items.length);
-		// this.setState({countFiles: this.state.countFiles + 1});
 	}
 
 	closeInput = (id) => {
 		let temp = this.state.items;
-		temp.splice(id, 1);
-		this.setState({items: temp});
+		if (temp.length > 1) {
+			temp.splice(id, 1);
+			this.setState({items: temp});
+		}
+		
 	}
   
 	render() {
@@ -91,10 +93,17 @@ class AddArticle2Component extends Component {
 						{this.state.isEdited !== null && // чтоб не прыгало туда сюда (для красоты)
 							<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
 								
+								{/* {this.state.isEdited &&
+									<div>
+										{this.state.isEdited.map((item) =>
+											<div>{item}</div>
+										)}
+									</div>
+								} */}
+
 								{this.state.items.map((item, number) => 
 									<div className="add-article__section" key={item}>
 										<InputFileComponent id={item} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
-										<p>{item}</p>
 									</div>
 								)}
 								
