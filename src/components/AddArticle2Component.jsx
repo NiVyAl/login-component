@@ -16,7 +16,7 @@ class AddArticle2Component extends Component {
 			 items: [0],
 			 isEdited: null,
 		}
-		this.data = {};
+		this.data = [];
 		this.window = React.createRef();
 		checkLog();
 	}
@@ -36,37 +36,27 @@ class AddArticle2Component extends Component {
 	send = (e) =>  {
 		e.preventDefault();
 		this.window.current.classList.add("load");
-		let descriptions = {};
-		const inputFiles = document.querySelectorAll(".input-file__input");
-		
-		for (let i in this.state) { // заполняем descriptions
-			if ((i !== "isSend") && (i !== "filePath") && (i !== "items") && (i !== "isEdited")) {
-				descriptions[i] = this.state[i];
+
+		let data = new FormData();
+		console.log(this.data);
+		for (let i of this.data) {
+			for (let j in i) {
+				console.log(j);
+				console.log(i[j]);
+				console.log("-------");
+				data.append(j, i[j]);
 			}
 		}
 
-		let data = new FormData();
-		for (let i = 0; i < inputFiles.length; i++) {
-			console.log(descriptions[`file${i}Description`]);
-			console.log(inputFiles[i].files[0])
-			console.log("------");
-			data.append(descriptions[`file${i}Description`], inputFiles[i].files[0]);
-		}
-
-		// ApiService.addArticle2(data, this.articleId)
-		// 	.then((res) => {
-		// 		console.log(res)
-		// 		this.setState({isSend: true});
-		// 	})
+		ApiService.addArticle2(data, this.articleId)
+			.then((res) => {
+				console.log(res)
+				this.setState({isSend: true});
+			})
 	} 
 
-	handleChange = (description, file) => {
-		// this.setState({ [e.target.id]: e.target.value });
-		// console.log(description);
-		// console.log(file);
-		// console.log("---------");
-		this.data[description] = file;
-		console.log(this.data);
+	handleChange = (id, description, file) => {
+		this.data[id] = {[description]: file}
 	}
 	
 	addFile = () => {
@@ -79,6 +69,7 @@ class AddArticle2Component extends Component {
 		let temp = this.state.items;
 		if (temp.length > 1) {
 			temp.splice(id, 1);
+			this.data.splice(id, 1);
 			this.setState({items: temp});
 		}
 		

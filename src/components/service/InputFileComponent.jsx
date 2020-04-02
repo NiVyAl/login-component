@@ -18,7 +18,7 @@ class InputFileComponent extends Component {
 			this.buttonText.current.innerHTML = e.target.files[0].name;
 			this.setState({fileChange: e.target.files[0]});
 			if (this.state.inputText) {
-				this.props.handleChange(this.state.inputText, e.target.files[0])
+				this.props.handleChange(this.props.id, this.state.inputText, e.target.files[0])
 			}
 		}
 	}
@@ -26,7 +26,7 @@ class InputFileComponent extends Component {
 	textHandleChange = (e) => {
 		this.setState({inputText: e.target.value});
 		if (this.state.fileChange) {
-			this.props.handleChange(e.target.value, this.state.fileChange)
+			this.props.handleChange(this.props.id, e.target.value, this.state.fileChange)
 		}
 	}
 	
