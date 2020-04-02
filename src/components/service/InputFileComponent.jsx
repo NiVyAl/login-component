@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import InputComponent from "../service/InputComponent";
-import cutPath from "../../service/cutPath"
 
 class InputFileComponent extends Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = {
-			
+			fileChange: false,
 		}
 		this.buttonText = React.createRef();
 	}
@@ -16,7 +15,18 @@ class InputFileComponent extends Component {
 		if(!e.target.value) {
 			this.buttonText.current.innerHTML = "Выберите файл...";
 		} else {
-			this.buttonText.current.innerHTML = cutPath(e.target.value);
+			this.buttonText.current.innerHTML = e.target.files[0].name;
+			this.setState({fileChange: e.target.files[0]});
+			if (this.state.inputText) {
+				this.props.handleChange(this.state.inputText, e.target.files[0])
+			}
+		}
+	}
+
+	textHandleChange = (e) => {
+		this.setState({inputText: e.target.value});
+		if (this.state.fileChange) {
+			this.props.handleChange(e.target.value, this.state.fileChange)
 		}
 	}
 	
@@ -24,7 +34,7 @@ class InputFileComponent extends Component {
 		return(
 			<div className="input-file">
 				<div className="input-file__description">
-					<InputComponent text="Описание файла" name={`file${this.props.id}Description`} handleChange={this.props.handleChange} type="text" maxLength="250" required/>
+					<InputComponent text="Описание файла" name={`file${this.props.id}Description`} handleChange={this.textHandleChange} type="text" maxLength="250" required/>
 					<button type="button" className="input-file__button-close button-close" onClick={this.props.close}>Закрыть</button>
 				</div>
 

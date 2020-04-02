@@ -16,6 +16,7 @@ class AddArticle2Component extends Component {
 			 items: [0],
 			 isEdited: null,
 		}
+		this.data = {};
 		this.window = React.createRef();
 		checkLog();
 	}
@@ -59,8 +60,13 @@ class AddArticle2Component extends Component {
 		// 	})
 	} 
 
-	handleChange = (e) => {
-		this.setState({ [e.target.id]: e.target.value });
+	handleChange = (description, file) => {
+		// this.setState({ [e.target.id]: e.target.value });
+		// console.log(description);
+		// console.log(file);
+		// console.log("---------");
+		this.data[description] = file;
+		console.log(this.data);
 	}
 	
 	addFile = () => {
