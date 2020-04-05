@@ -13,10 +13,11 @@ class AddArticle2Component extends Component {
 		this.state ={
 			 isSend: false,
 			 filePath: '',
-			 items: [0],
+			 items: [],
 			 isEdited: null,
 		}
 		this.data = [];
+		this.dataGet = {};
 		this.window = React.createRef();
 		checkLog();
 	}
@@ -25,10 +26,22 @@ class AddArticle2Component extends Component {
 		ApiService.getArticle(this.articleId)
 			.then((response) => {
 				console.log(response);
-				if (response.data.pathsMap) {
-					this.setState({isEdited: response.data.pathsMap})
+				let data = response.data.pathsMap;
+				if (data) {
+					this.setState({isEdited: true}) // data
+					let temp = this.state.items;
+					let count = 0;
+					for (let i in data) {
+						temp.push(count);
+						this.dataGet[count] = i;
+						count++;
+					}
+					this.setState({items: temp});
 				} else {
 					this.setState({isEdited: false})
+					let temp = this.state.items;
+					temp.push(0);
+					this.setState({items: temp});
 				}
 			})
 	}
@@ -38,7 +51,6 @@ class AddArticle2Component extends Component {
 		this.window.current.classList.add("load");
 
 		let data = new FormData();
-		console.log(this.data);
 		for (let i of this.data) {
 			for (let j in i) {
 				console.log(j);
@@ -48,11 +60,11 @@ class AddArticle2Component extends Component {
 			}
 		}
 
-		ApiService.addArticle2(data, this.articleId)
-			.then((res) => {
-				console.log(res)
-				this.setState({isSend: true});
-			})
+		// ApiService.addArticle2(data, this.articleId)
+		// 	.then((res) => {
+		// 		console.log(res)
+		// 		this.setState({isSend: true});
+		// 	})
 	} 
 
 	handleChange = (id, description, file) => {
@@ -89,18 +101,11 @@ class AddArticle2Component extends Component {
 						
 						{this.state.isEdited !== null && // чтоб не прыгало туда сюда (для красоты)
 							<form onSubmit={this.send} encType="multipart/form-data" className="add-article__form">
-								
-								{/* {this.state.isEdited &&
-									<div>
-										{this.state.isEdited.map((item) =>
-											<div>{item}</div>
-										)}
-									</div>
-								} */}
 
 								{this.state.items.map((item, number) => 
 									<div className="add-article__section" key={item}>
-										<InputFileComponent id={item} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
+										<InputFileComponent id={item} default={this.dataGet[item]} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
+										<div>{item}</div>
 									</div>
 								)}
 								
