@@ -35,7 +35,7 @@ class InputFileComponent extends Component {
 
 	textHandleChange = (e) => {
 		this.setState({inputText: e.target.value});
-		if ((this.state.fileChange) || (this.props.default)) {
+		if (this.state.fileChange) {
 			this.props.handleChange(this.props.id, e.target.value, this.state.fileChange)
 		}
 	}
