@@ -87,13 +87,18 @@ class AddArticle1Component extends Component {
 				
 				{this.state.isStartRender &&
 					<form onSubmit={this.sendArticle}>
-						<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="250" value={this.state.articleData.articleName} required/>
+						<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.articleName} required/>
 						{/* {console.log(this.state.articleData.articleName)} */}
-						<InputComponent text="Тип" name="type" handleChange={this.handleChange} type="text" maxLength="100" value={this.state.articleData.type}/>
-						<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="250" value={this.state.articleData.runningHead}/>
-						<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
-						<TextAreaComponent handleChange={this.handleChange} text="Ключевые слова" name="keys" value={this.state.articleData.keys}/>
-						<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation" value={this.state.articleData.annotation}/>
+						<InputComponent text="Тип" name="type" handleChange={this.handleChange} type="text" maxLength="100" noPostValue={this.state.articleData.type}/>
+						<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.runningHead}/>
+						{!this.state.isEdited &&
+							<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
+						}
+						{this.state.isEdited &&
+							<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.authors}/>
+						}
+						<TextAreaComponent handleChange={this.handleChange} text="Ключевые слова" name="keys" noPostValue={this.state.articleData.keys}/>
+						<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation" noPostValue={this.state.articleData.annotation}/>
 						<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
 
 						{this.state.isEdited &&

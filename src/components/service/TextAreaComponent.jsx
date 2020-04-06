@@ -13,11 +13,14 @@ class TextAreaComponent extends Component {
 
 	setValue() { 
 		if (this.props.value) {
-			// console.log(this.props.value + " - " + this.props.text);
 			this.input.current.value = this.props.value;
 			let e = {target: {id: this.input.current.id, value: this.props.value}};
 			this.props.handleChange(e);
-		}
+        }
+        
+        if (this.props.noPostValue) {
+            this.input.current.value = this.props.noPostValue;
+        }
     }
     
     render() {

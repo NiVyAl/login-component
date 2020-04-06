@@ -3,6 +3,7 @@ import ApiService from "../service/ApiService";
 import InputFileComponent from './service/InputFileComponent';
 import checkLog from "../service/checkLog";
 import getGetRequest from '../service/getGetRequest';
+import isEmptyObject from '../service/isEmptyObject';
 
 class AddArticle2Component extends Component {
 	constructor(props){
@@ -27,7 +28,7 @@ class AddArticle2Component extends Component {
 			.then((response) => {
 				console.log(response);
 				let data = response.data.pathsMap;
-				if (data) {
+				if ((data) && (!isEmptyObject(data))) {
 					this.setState({isEdited: true}) // data
 					let temp = this.state.items;
 					let count = 0;
@@ -60,11 +61,11 @@ class AddArticle2Component extends Component {
 			}
 		}
 
-		// ApiService.addArticle2(data, this.articleId)
-		// 	.then((res) => {
-		// 		console.log(res)
-		// 		this.setState({isSend: true});
-		// 	})
+		ApiService.addArticle2(data, this.articleId)
+			.then((res) => {
+				console.log(res)
+				this.setState({isSend: true});
+			})
 	} 
 
 	handleChange = (id, description, file) => {
@@ -105,7 +106,7 @@ class AddArticle2Component extends Component {
 								{this.state.items.map((item, number) => 
 									<div className="add-article__section" key={item}>
 										<InputFileComponent id={item} default={this.dataGet[item]} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
-										<div>{item}</div>
+										{/* <div>{item}</div> */}
 									</div>
 								)}
 								

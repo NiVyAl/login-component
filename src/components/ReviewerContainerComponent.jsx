@@ -63,7 +63,7 @@ class ReviewerContainerComponent extends Component {
 	render() {
 		return(
 			<div className="articles-container">
-				<h2 className="articles-container__title">Статьи отправленные вам на рецензию:</h2>
+				<h2 className="articles-container__main-title">Статьи отправленные вам на рецензию:</h2>
 				{!this.state.isResponse &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
 				}
