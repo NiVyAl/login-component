@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const url = "http://localhost:4000";
+// const url = "http://localhost:4000";
+const url = "http://192.168.0.109:4000";
 
 class ApiService {
     registration(data) {

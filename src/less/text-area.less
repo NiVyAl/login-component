@@ -1,13 +1,35 @@
 .text-area {
 	width: 100%;
-	resize: vertical;
 	font-size: @button-font-size;
 //	color: @text-gray;
-	border-color: @gray;
-	height: 70px;
 	margin-bottom: 15px;
+	padding-top: 6px;
 }
 
-.text-area::-webkit-input-placeholder {
-	color: @text-gray;
+.text-area__input {
+	width: 100%;
+	font-size: @button-font-size;
+	border-color: @gray;
+	outline: none;
+	resize: vertical;
+	height: 70px;
 }
+
+.text-area__label {
+	bottom: -1.4em;
+	left: 0.35em;
+}
+
+.text-area__input--active {
+	bottom: 0.2em;
+	left: -0.01em;
+}
+
+.text-area__input:active, .text-area__input:focus {
+	border-color: @main-color;
+	outline: none;
+}
+
+//.text-area::-webkit-input-placeholder {
+//	color: @text-gray;
+//}
