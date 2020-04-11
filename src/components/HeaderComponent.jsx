@@ -3,6 +3,9 @@ import logo from '../img/logo.png';
 import { store } from '../store';
 import UserLoginComponent from './UserLoginComponent';
 import TranslatableText from "./service/TranslatableText";
+import Language from "./service/LanguageContext";
+import ruFlag from '../img/ru-flag.svg';
+import enFlag from '../img/en-flag.svg';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -15,9 +18,17 @@ class HeaderComponent extends Component {
     store.subscribe(() => this.setState({isLog: store.getState()}));
     // console.log("header " + this.state.isLog + store.getState());
   }
+
+  componentDidMount() {
+    this.setState({lang: Language["_currentValue"]})
+  }
   
   logOpen() {
     store.dispatch( {type: "open"});
+  }
+
+  changeLanguage() {
+    console.log("change");
   }
   
   render() {
@@ -25,13 +36,27 @@ class HeaderComponent extends Component {
       <header className="header">
         <div className="header__logo logo-container">
           <a href="http://www.kstu.ru/"><img className="logo-container__logo logo" src={logo} alt="логотип КНИТУ"/></a>
-          <h1 className="logo-container__title title"><a href="/" className="title__link">Вестник технологического университета</a></h1>
+          <h1 className="logo-container__title title"><a href="/" className="title__link"><TranslatableText 
+                text={{
+                  ru: "Вестник технологического университета",
+                  en: "Bulletin of the Technological University",
+                }}/></a>
+          </h1>
         </div>
 
         <div className="header__user">
           <div className="find header__find">
             <input type="text" className="find__input" placeholder="Введите поисковый запрос"/>
           </div>
+          <button onClick={this.changeLanguage} className="account-button--lang button button--flag header__button">
+            {this.state.lang === "ru" &&
+              <div className="button-flag__img button-flag__img--ru"></div>
+            }
+            {this.state.lang === "en" &&
+              <div className="button-flag__img button-flag__img--en"></div>
+            }
+            Язы
+          </button>
           {this.state.isLog !== "log" &&
             <div className="header__user">
               <button onClick={this.logOpen} className="account-button--login button header__button"><TranslatableText 
