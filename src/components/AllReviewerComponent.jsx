@@ -3,6 +3,13 @@ import ReviewerComponent from "../components/service/ReviewerComponent";
 import ApiService from "../service/ApiService";
 
 class AllReviewerComponent extends Component {
+    // constructor(props) {
+    //     super(props);
+
+    //     this.state = {
+
+    //     }
+    // }
     componentDidMount() {
         ApiService.getReviewers()
             .then((response) => {
@@ -14,7 +21,6 @@ class AllReviewerComponent extends Component {
         return(
             <div className="window all-reviewer">
                 <h2 className="window__title sub-title">Все рецензенты</h2>
-
                 <div className="all-reviewer__subject">
                     <p className="add-review__articleName">Химия (02.00.00)</p>
                     {/* <ReviewerComponent/> */}

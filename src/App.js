@@ -14,35 +14,41 @@ import FooterComponent from './components/FooterComponent.jsx'
 import AddReviewComponent from './components/AddReviewComponent.jsx'
 import AllReviewerComponent from './components/AllReviewerComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Language from './components/service/LanguageContext'
 
-function App() {
-  return (
-    <div>
-      <Router>
-        <HeaderComponent/>
-        <LoginComponent/>
-        
-        <div className="main">
-          <CategoriesComponent/>
-          <div className="main__content">
-            <Switch>
-              <Route path="/" exact component={MainComponent}/>
-              <Route path="/registration" component={RegistrationComponent}/>
-              <Route path="/addUser" component={AddUserComponent}/>
-              <Route path="/registrationConfirm" component={RegistrationConfirmComponent}/>
-              <Route path="/addArticle/step1" component={AddArticle1Component}/>
-              <Route path="/addArticle/step2" component={AddArticle2Component}/>
-              <Route path="/profile" component={ProfileComponent}/>
-              <Route path="/addReview" component={AddReviewComponent}/>
-              <Route path="/allReviewer" component={AllReviewerComponent}/>
-            </Switch>
-          </div>
+class App extends React.Component {
+  render() {
+    return (
+      <Language.Provider>
+        <div>
+          <Router>
+            <HeaderComponent/>
+            <LoginComponent/>
+            
+            <div className="main">
+              <CategoriesComponent/>
+              <div className="main__content">
+                <Switch>
+                  <Route path="/" exact component={MainComponent}/>
+                  <Route path="/registration" component={RegistrationComponent}/>
+                  <Route path="/addUser" component={AddUserComponent}/>
+                  <Route path="/registrationConfirm" component={RegistrationConfirmComponent}/>
+                  <Route path="/addArticle/step1" component={AddArticle1Component}/>
+                  <Route path="/addArticle/step2" component={AddArticle2Component}/>
+                  <Route path="/profile" component={ProfileComponent}/>
+                  <Route path="/addReview" component={AddReviewComponent}/>
+                  <Route path="/allReviewer" component={AllReviewerComponent}/>
+                </Switch>
+              </div>
+            </div>
+    
+            <FooterComponent/>
+          </Router>
         </div>
-
-        <FooterComponent/>
-      </Router>
-    </div>
-  );
+      </Language.Provider>
+    );
+  }
+  
 }
 
 export default App;

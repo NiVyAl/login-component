@@ -69,7 +69,7 @@ class WriterContainerComponent extends Component {
 				}
 				{this.state.isResponse &&
 					<ul className="articles-container__list">
-						{this.state.articles.map(item => 
+						{this.state.articles.map(item =>
 							<li className="articles-container__item" key={item.articleId}>
 								<ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
 								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>

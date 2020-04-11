@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../img/logo.png';
 import { store } from '../store';
 import UserLoginComponent from './UserLoginComponent';
+import TranslatableText from "./service/TranslatableText";
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -33,8 +34,18 @@ class HeaderComponent extends Component {
           </div>
           {this.state.isLog !== "log" &&
             <div className="header__user">
-              <button onClick={this.logOpen} className="account-button--login button header__button">войти</button>
-              <a href="/registration" className="account-button--registration button header__button">регистрация</a>
+              <button onClick={this.logOpen} className="account-button--login button header__button"><TranslatableText 
+                text={{
+                  ru: "войти",
+                  en: "log in",
+                }}/>
+              </button>
+              <a href="/registration" className="account-button--registration button header__button"><TranslatableText 
+                text={{
+                  ru: "регистрация",
+                  en: "sign up",
+                }}/>
+              </a>
             </div>
           }
           {this.state.isLog === "log" &&
