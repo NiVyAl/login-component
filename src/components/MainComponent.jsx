@@ -7,6 +7,7 @@ import cover6 from '../img/covers/6.jpg'
 import cover8 from '../img/covers/8.jpg'
 import cover9 from '../img/covers/9.jpg'
 import cover10 from '../img/covers/10.jpg'
+import TranslatableText from "./service/TranslatableText";
 
 class MainComponent extends Component {
     constructor(props) {
@@ -40,7 +41,12 @@ class MainComponent extends Component {
         return(        
                 <div className="main__content content">
                     <div className="content__journals journals">
-                    <h2 className="journals__title sub-title">Журналы: </h2>
+                    <h2 className="journals__title sub-title"><TranslatableText 
+                        text={{
+                        ru: "Журналы:",
+                        en: "Journals:",
+                        }}/>
+                    </h2>
                     <div className="journals__slider slider">
                         <button className="slider__button slider__button--left" onClick={this.sliderMove}></button>
                         <div className="slider__img-container">
@@ -60,7 +66,12 @@ class MainComponent extends Component {
                         </div>
 
                     <div className="content__latest latest">
-                    <h2 className="latest__title sub-title">Последние статьи:</h2>
+                    <h2 className="latest__title sub-title"><TranslatableText 
+                        text={{
+                        ru: "Последние статьи:",
+                        en: "Latest articles",
+                        }}/>
+                    </h2>
 
                     <ul className="latest__list">
                         <li className="latest__item">

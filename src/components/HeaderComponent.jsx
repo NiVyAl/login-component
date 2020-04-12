@@ -4,8 +4,6 @@ import { store } from '../store';
 import UserLoginComponent from './UserLoginComponent';
 import TranslatableText from "./service/TranslatableText";
 import Language from "./service/LanguageContext";
-import ruFlag from '../img/ru-flag.svg';
-import enFlag from '../img/en-flag.svg';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -27,8 +25,15 @@ class HeaderComponent extends Component {
     store.dispatch( {type: "open"});
   }
 
-  changeLanguage() {
+  changeLanguage = () => {
     console.log("change");
+    if (this.state.lang === "ru") {
+      localStorage.setItem("lang", "en");
+    }
+    if (this.state.lang === "en") {
+      localStorage.setItem("lang", "ru");
+    }
+    window.location.reload();
   }
   
   render() {
