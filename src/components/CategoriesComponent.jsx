@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
+import TranslatableText from "./service/TranslatableText";
 
 class CategoriesComponent extends Component {
 	constructor(props) {
@@ -20,7 +21,11 @@ class CategoriesComponent extends Component {
 	render() {
 		return(
 			<div className="main__categories categories">
-				<h2 className="categories__title sub-title">Специальности:</h2>
+				<h2 className="categories__title sub-title"><TranslatableText 
+                text={{
+                  ru: "Специальности:",
+                  en: "Сategories:",
+                }}/></h2>
 				<ul className="categories__list">
 				{this.state.allCategories.map(item => 
 					<li className="categories__item" key={item.id}>

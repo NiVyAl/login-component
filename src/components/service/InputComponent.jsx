@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TranslatableText from './TranslatableText';
 
 class InputComponent extends Component {
 	constructor(props) {
@@ -47,7 +48,7 @@ class InputComponent extends Component {
 		return(
 			<div className="input-container">
 				<input ref={this.input} type={this.props.type} id={this.props.name} className="input-container__input" maxLength={this.props.maxLength} onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} autoComplete={this.props.autoComplete}/>
-				<label ref={this.label} htmlFor={this.props.name} className="input-container__label label">{this.props.text}</label>
+				<label ref={this.label} htmlFor={this.props.name} className="input-container__label label"><TranslatableText text={this.props.text}/></label>
 			</div>
 		)
 	}

@@ -6,23 +6,26 @@ class TranslatableText extends Component {
         super(props);
 
         this.state = {
-            text: "",
+            // text: "",
         }
     }
 
     componentDidMount() {
-        const text = this.props.text[Language["_currentValue"]];
-        if (text) {
-            this.setState({text: this.props.text[Language["_currentValue"]]})
+        const texts = this.props.text;
+        if (typeof texts === "string") {
+            this.setState({text: texts});
         } else {
-            this.setState({text: this.props.text["ru"]})
+            this.setState({text: texts[Language["_currentValue"]]})
         }
-        
     }
 
     render() {
         return(
-            <span>{this.state.text}</span>
+            <span>
+            {this.state.text &&
+                this.state.text
+            }
+            </span>
         )
     }
 }

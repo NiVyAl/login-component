@@ -4,6 +4,7 @@ import { store } from '../store';
 import UserLoginComponent from './UserLoginComponent';
 import TranslatableText from "./service/TranslatableText";
 import Language from "./service/LanguageContext";
+import SeachComponent from "./service/SeachComponent";
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -50,9 +51,7 @@ class HeaderComponent extends Component {
         </div>
 
         <div className="header__user">
-          <div className="find header__find">
-            <input type="text" className="find__input" placeholder="Введите поисковый запрос"/>
-          </div>
+          <SeachComponent placeHolder={{ru: "Введите поисковый запрос", en: "Search"}}/>
           <button onClick={this.changeLanguage} className="account-button--lang button button--flag header__button">
             {this.state.lang === "ru" &&
               <div className="button-flag__img button-flag__img--ru"></div>

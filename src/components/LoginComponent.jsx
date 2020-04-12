@@ -3,6 +3,7 @@ import { store } from '../store';
 import ApiService from "../service/ApiService";
 import InputComponent from "../components/service/InputComponent";
 import axios from 'axios';
+import TranslatableText from "./service/TranslatableText";
 
 class LoginComponent extends Component {
 
@@ -106,19 +107,35 @@ class LoginComponent extends Component {
         <div ref={this.container} className="login-container modal-window">
           <div onClick={this.close} className="modal-window__background"></div>
           <form className="modal-window__window" onSubmit={this.handleSubmit} ref={this.window}>
-            <p className="modal-window__title sub-title">Войти</p>
+            <p className="modal-window__title sub-title"><TranslatableText 
+                text={{
+                  ru: "Войти",
+                  en: "Log in",
+                }}/></p>
             <div className="login-container__form">
               <InputComponent text="email" name="login" handleChange={this.handleChange} type="email" maxLength="30" required/>
-					    <InputComponent text="пароль" name="passwordLog" handleChange={this.handleChange} type="password" maxLength="20" required/>
+					    <InputComponent text={{ru: "пароль", en: "password"}} name="passwordLog" handleChange={this.handleChange} type="password" maxLength="20" required/>
               
               <p className="login-container__error">Неверный логин или пароль</p>
               <p className="login-container__error--network-text">Проблема соединения с сервером</p>
               
-              <a href="/" className="login-container__remember-password link">Не помню пароль</a>
+              <a href="/" className="login-container__remember-password link"><TranslatableText 
+                text={{
+                  ru: "Не помню пароль",
+                  en: "Forgot password",
+                }}/></a>
             </div>
             <div className="login-container__buttons">
-              <button type="submit" className="login-container__button button login-container__button--login">Войти</button>
-              <a href="/registration" className="login-container__button button login-container__button--registration">Зарегистрироваться</a>
+              <button type="submit" className="login-container__button button login-container__button--login"><TranslatableText 
+                text={{
+                  ru: "Войти",
+                  en: "Log in",
+                }}/></button>
+              <a href="/registration" className="login-container__button button login-container__button--registration"><TranslatableText 
+                text={{
+                  ru: "Зарегистрироваться",
+                  en: "Sign up",
+                }}/></a>
             </div>
           </form>
         </div>
