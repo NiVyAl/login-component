@@ -1,11 +1,26 @@
 import React, {Component} from 'react';
-import TranslatableText from './TranslatableText';
+import translateText from '../../service/translateText';
 
 class SeachComponent extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+
+        }
+    }
+
+    componentDidMount() {
+        console.log(this.props.placeHolder);
+        this.setState({text: translateText(this.props.placeHolder)});
+    }
+
     render() {
         return(
             <div className="find header__find">
-                <input type="text" className="find__input" placeholder="Введите поисковый запрос"/>
+                {this.state.text &&
+                    <input type="text" className="find__input" placeholder={this.state.text}/>
+                }
             </div>
         )
     }

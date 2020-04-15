@@ -3,6 +3,7 @@ import checkLog from "../service/checkLog";
 import WriterContainerComponent from './WriterContainerComponent';
 import ReviewerContainerComponent from './ReviewerContainerComponent';
 import SecretaryContainerComponent from './SecretaryContainerComponent';
+import TranslatableText from "./service/TranslatableText";
 
 class ProfileComponent extends Component {
     constructor(props) {
@@ -47,7 +48,12 @@ class ProfileComponent extends Component {
     render() {
         return(
             <div className="window profile">
-                <h2 className="sub-title window__title">Личный кабинет</h2>
+                <h2 className="sub-title window__title"><TranslatableText 
+                    text={{
+                    ru: "Личный кабинет",
+                    en: "Profile",
+                    }}/>
+                </h2>
                     <div className="profile__articles-container">
                         {this.checkRoll()}
                     </div>

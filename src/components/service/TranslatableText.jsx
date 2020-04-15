@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Language from './LanguageContext' 
+import translateText from '../../service/translateText';
 
 class TranslatableText extends Component {
     constructor(props) {
@@ -11,12 +11,13 @@ class TranslatableText extends Component {
     }
 
     componentDidMount() {
-        const texts = this.props.text;
-        if (typeof texts === "string") {
-            this.setState({text: texts});
-        } else {
-            this.setState({text: texts[Language["_currentValue"]]})
-        }
+        // const texts = this.props.text;
+        // if (typeof texts === "string") {
+        //     this.setState({text: texts});
+        // } else {
+        //     this.setState({text: texts[Language["_currentValue"]]})
+        // }
+        this.setState({text: translateText(this.props.text)})
     }
 
     render() {

@@ -5,6 +5,7 @@ import SelectInputComponent from "../components/service/SelectInputComponent";
 import TextAreaComponent from "../components/service/TextAreaComponent";
 import checkLog from "../service/checkLog";
 import getGetRequest from "../service/getGetRequest";
+import TranslatableText from "./service/TranslatableText";
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -79,10 +80,20 @@ class AddArticle1Component extends Component {
 		return(
 			<div className="add-article window" ref={this.window}>
 				{this.state.isEdited &&
-					<h2 className="sub-title add-article__title window__title">Редактирование статьи (шаг 1)</h2>
+					<h2 className="sub-title add-article__title window__title"><TranslatableText 
+						text={{
+						ru: "Редактирование статьи (шаг 1)",
+						en: "Edit article (step 1)",
+						}}/>
+					</h2>
 				}
 				{!this.state.isEdited &&
-					<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 1)</h2>
+					<h2 className="sub-title add-article__title window__title"><TranslatableText 
+						text={{
+						ru: "Добавление статьи (шаг 1)",
+						en: "Add article (step 1)",
+						}}/>
+					</h2>
 				}
 				
 				{this.state.isStartRender &&
@@ -104,7 +115,12 @@ class AddArticle1Component extends Component {
 						{this.state.isEdited &&
 							<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
 						}
-						<button className="button window__button" type="submit">Сохранить и продолжить</button>
+						<button className="button window__button" type="submit"><TranslatableText 
+							text={{
+							ru: "Сохранить и продолжить",
+							en: "Save and continue",
+							}}/>
+						</button>
 					</form>
 				}
 				

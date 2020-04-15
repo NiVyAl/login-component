@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import userAvatar from '../img/user-icon.png'
 import axios from 'axios';
+import TranslatableText from "./service/TranslatableText";
 import { store } from '../store';
 
 class UserLoginComponent extends Component {
@@ -38,9 +39,9 @@ class UserLoginComponent extends Component {
     }
 
     logOut = () => {
-        // localStorage.removeItem("log");
-        // localStorage.removeItem("token");
+        const lang = localStorage.getItem("lang");
         localStorage.clear();
+        localStorage.setItem("lang", lang);
         delete axios.defaults.headers.common.Authorization;
         store.dispatch({ type: "close" });
         window.location.reload();
@@ -69,17 +70,42 @@ class UserLoginComponent extends Component {
                         <p className="user-login__modal-name">{localStorage.getItem("log")}</p>
                         <p className="user-login__email">{localStorage.getItem("email")}</p>
                         
-                        <a className="user-login__link" href="/profile">Личный кабинет</a>
+                        <a className="user-login__link" href="/profile"><TranslatableText 
+                            text={{
+                            ru: "Личный кабинет",
+                            en: "Profile",
+                            }}/>
+                        </a>
                         {!this.state.isCanAdd &&
-                            <a className="user-login__link" href="/addArticle/step1">Добавить статью</a>
+                            <a className="user-login__link" href="/addArticle/step1"><TranslatableText 
+                                text={{
+                                ru: "Добавить статью",
+                                en: "Add article",
+                                }}/>
+                            </a>
                         }
                         {this.state.isCanAdd &&
                             <div>
-                                <a className="user-login__link" href="/addUser">Создать пользователя</a>
-                                <a className="user-login__link" href="/allReviewer">Все рецензенты</a>
+                                <a className="user-login__link" href="/addUser"><TranslatableText 
+                                    text={{
+                                    ru: "Создать пользователя",
+                                    en: "Create user",
+                                    }}/>
+                                </a>
+                                <a className="user-login__link" href="/allReviewer"><TranslatableText 
+                                    text={{
+                                    ru: "Все рецензенты",
+                                    en: "All reviewer",
+                                    }}/>
+                                </a>
                             </div>
                         }
-                        <button onClick={this.logOut} className="user-login__link user-login__link--logout">Выйти</button>
+                        <button onClick={this.logOut} className="user-login__link user-login__link--logout"><TranslatableText 
+                            text={{
+                            ru: "Выйти",
+                            en: "Log out",
+                            }}/>
+                        </button>
                     </div>
                 </div>
                 
