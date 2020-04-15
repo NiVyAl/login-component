@@ -109,7 +109,7 @@ class AddArticle1Component extends Component {
 							<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.authors}/>
 						}
 						<TextAreaComponent handleChange={this.handleChange} text="Ключевые слова" name="keys" noPostValue={this.state.articleData.keys}/>
-						<TextAreaComponent handleChange={this.handleChange} text="Аннотация" name="annotation" noPostValue={this.state.articleData.annotation}/>
+						<TextAreaComponent handleChange={this.handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
 						<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
 
 						{this.state.isEdited &&

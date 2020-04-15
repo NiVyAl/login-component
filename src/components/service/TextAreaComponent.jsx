@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TranslatableText from './TranslatableText';
 
 class TextAreaComponent extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class TextAreaComponent extends Component {
     render() {
         return(
             <div className="text-area">
-                <label ref={this.label} htmlFor={this.props.name} className="text-area__label label">{this.props.text}</label>
+                <label ref={this.label} htmlFor={this.props.name} className="text-area__label label"><TranslatableText text={this.props.text}/></label>
                 <textarea ref={this.input} className="text-area__input" onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} id={this.props.name} autoComplete={this.props.autoComplete}></textarea>
             </div>
         )
