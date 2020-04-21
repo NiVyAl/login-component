@@ -11,7 +11,6 @@ class SeachComponent extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.placeHolder);
         this.setState({text: translateText(this.props.placeHolder)});
     }
 
