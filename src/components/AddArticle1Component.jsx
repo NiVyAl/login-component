@@ -6,6 +6,8 @@ import TextAreaComponent from "../components/service/TextAreaComponent";
 import checkLog from "../service/checkLog";
 import getGetRequest from "../service/getGetRequest";
 import TranslatableText from "./service/TranslatableText";
+import { Select } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -111,6 +113,10 @@ class AddArticle1Component extends Component {
 						<TextAreaComponent handleChange={this.handleChange} text="Ключевые слова" name="keys" noPostValue={this.state.articleData.keys}/>
 						<TextAreaComponent handleChange={this.handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
 						<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
+						{/* <Select labelId="label" id="select" value="20" autoWidth={true}>
+							<MenuItem value="10">Ten</MenuItem>
+							<MenuItem value="20">Twenty</MenuItem>
+						</Select> */}
 
 						{this.state.isEdited &&
 							<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
