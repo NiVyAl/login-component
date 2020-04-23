@@ -6,8 +6,7 @@ import TextAreaComponent from "../components/service/TextAreaComponent";
 import checkLog from "../service/checkLog";
 import getGetRequest from "../service/getGetRequest";
 import TranslatableText from "./service/TranslatableText";
-import { Select } from '@material-ui/core';
-import { MenuItem } from '@material-ui/core';
+import FormControlComponent from "../components/service/FormControlComponent";
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -54,24 +53,15 @@ class AddArticle1Component extends Component {
 		})
   }
 
-  sendArticle = (e) => {
-	e.preventDefault();
-	this.window.current.classList.add("load");
-	// console.log(this.state);
-	let data = {};
-	for (let i in this.state) {
-		if ((i != "articleData") && (i != "isStartRender") && (i != "isEdited")) {
-			data[i] = this.state[i];
-		}
-	}
+  sendArticle = (data) => {
 	console.log(data);
+	this.window.current.classList.add("load");
 	ApiService.addArticle1(data)
 	.then(res => {
 		if (res.data.articleId) {
 			window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
 		} 
 	});  
-		
   }
 
   handleChange = (e) => {
@@ -99,35 +89,63 @@ class AddArticle1Component extends Component {
 				}
 				
 				{this.state.isStartRender &&
-					<form onSubmit={this.sendArticle}>
-						<InputComponent text="Название" name="articleName" handleChange={this.handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.articleName} required/>
-						{/* {console.log(this.state.articleData.articleName)} */}
-						<InputComponent text="Тип" name="type" handleChange={this.handleChange} type="text" maxLength="100" noPostValue={this.state.articleData.type}/>
-						<InputComponent text="Running Head" name="runningHead" handleChange={this.handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.runningHead}/>
-						{!this.state.isEdited &&
-							<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
-						}
-						{this.state.isEdited &&
-							<InputComponent text="Авторы" name="authors" handleChange={this.handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.authors}/>
-						}
-						<TextAreaComponent handleChange={this.handleChange} text="Ключевые слова" name="keys" noPostValue={this.state.articleData.keys}/>
-						<TextAreaComponent handleChange={this.handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
-						<SelectInputComponent title="Раздел журнала" id="subject" change={this.handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
-						{/* <Select labelId="label" id="select" value="20" autoWidth={true}>
-							<MenuItem value="10">Ten</MenuItem>
-							<MenuItem value="20">Twenty</MenuItem>
-						</Select> */}
+					<FormControlComponent onSubmit={data => this.sendArticle(data)} render={
+                        handleChange => (
+                            <React.Fragment>
+								<InputComponent text="Название" name="articleName" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.articleName} required/>
+								<InputComponent text="Тип" name="type" handleChange={handleChange} type="text" maxLength="100" noPostValue={this.state.articleData.type}/>
+								<InputComponent text="Running Head" name="runningHead" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.runningHead}/>
+								{!this.state.isEdited &&
+									<InputComponent text="Авторы" name="authors" handleChange={handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
+								}
+								{this.state.isEdited &&
+									<InputComponent text="Авторы" name="authors" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.authors}/>
+								}
+								<TextAreaComponent handleChange={handleChange} text="Ключевые слова" name="keys" noPostValue={this.state.articleData.keys}/>
+								<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
+								<SelectInputComponent title="Раздел журнала" id="subject" change={handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
 
-						{this.state.isEdited &&
-							<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
-						}
-						<button className="button window__button" type="submit"><TranslatableText 
-							text={{
-							ru: "Сохранить и продолжить",
-							en: "Save and continue",
-							}}/>
-						</button>
-					</form>
+								{this.state.isEdited &&
+									<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
+								}
+								<button className="button window__button" type="submit"><TranslatableText 
+									text={{
+									ru: "Сохранить и продолжить",
+									en: "Save and continue",
+									}}/>
+								</button>
+							</React.Fragment>
+						)
+					}/>
+					// <form onSubmit={this.sendArticle}>
+					// 	<InputComponent text="Название" name="articleName" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.articleName} required/>
+					// 	{/* {console.log(this.state.articleData.articleName)} */}
+					// 	<InputComponent text="Тип" name="type" handleChange={handleChange} type="text" maxLength="100" noPostValue={this.state.articleData.type}/>
+					// 	<InputComponent text="Running Head" name="runningHead" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.runningHead}/>
+					// 	{!this.state.isEdited &&
+					// 		<InputComponent text="Авторы" name="authors" handleChange={handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
+					// 	}
+					// 	{this.state.isEdited &&
+					// 		<InputComponent text="Авторы" name="authors" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.authors}/>
+					// 	}
+					// 	<TextAreaComponent handleChange={handleChange} text="Ключевые слова" name="keys" noPostValue={this.state.articleData.keys}/>
+					// 	<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
+					// 	<SelectInputComponent title="Раздел журнала" id="subject" change={handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
+					// 	{/* <Select labelId="label" id="select" value="20" autoWidth={true}>
+					// 		<MenuItem value="10">Ten</MenuItem>
+					// 		<MenuItem value="20">Twenty</MenuItem>
+					// 	</Select> */}
+
+					// 	{this.state.isEdited &&
+					// 		<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
+					// 	}
+					// 	<button className="button window__button" type="submit"><TranslatableText 
+					// 		text={{
+					// 		ru: "Сохранить и продолжить",
+					// 		en: "Save and continue",
+					// 		}}/>
+					// 	</button>
+					// </form>
 				}
 				
 			</div>

@@ -19,7 +19,8 @@ class HeaderComponent extends Component {
   }
 
   componentDidMount() {
-    this.setState({lang: Language["_currentValue"]})
+    const lang = Language["_currentValue"];
+    this.setState({lang: lang})
   }
   
   logOpen() {
@@ -52,14 +53,14 @@ class HeaderComponent extends Component {
 
         <div className="header__user">
           <SeachComponent placeHolder={{ru: "Введите поисковый запрос", en: "Search"}}/>
-          <button onClick={this.changeLanguage} className="account-button--lang button button--flag header__button">
-            {this.state.lang === "ru" &&
+          <button onClick={this.changeLanguage} className={`account-button--lang button button--flag header__button ${this.state.lang === "ru" && "button--flag--ru"} ${this.state.lang === "en" && "button--flag--en"}`}>
+            {/* {this.state.lang === "ru" &&
               <div className="button-flag__img button-flag__img--ru"></div>
             }
             {this.state.lang === "en" &&
               <div className="button-flag__img button-flag__img--en"></div>
-            }
-            Язы
+            } */}
+            Я
           </button>
           {this.state.isLog !== "log" &&
             <div className="header__user">
