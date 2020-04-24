@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import ArticleComponent from "./service/ArticleComponent";
+import TranslatableText from "./service/TranslatableText";
+import ArticlesComponent from './ArticlesComponent';
 
 class WriterContainerComponent extends Component { 
 	constructor(props){
@@ -12,6 +14,7 @@ class WriterContainerComponent extends Component {
 			articles: {},
 			isResponse: false,
 			buttons: [],
+			data: false,
 		}
 	}
 	
@@ -22,6 +25,7 @@ class WriterContainerComponent extends Component {
 					this.setState({articles: response.data.reverse()})
 					if (response.data.length > 0) {
 						this.setState({isResponse: true});
+						this.setState({data: response.data});
 					}
 					
 					for (let i of this.state.articles) {
@@ -43,23 +47,6 @@ class WriterContainerComponent extends Component {
 		}
 	}
 	
-	writeFiles(data) {
-		let files = [];
-		for (let i in data) {
-			files.push(i);
-		}
-		return(
-			<div>
-				{files.map(fileName => 
-					<li className="more-list__item" key={fileName}>
-						<p className="more-list__title">{fileName}</p>
-						<p className="more-list__content"><a href={data[fileName]} className="link" download>Скачать</a></p>
-					</li>		
-				)}
-			</div>
-		)
-	}
-	
 	render() {
 		return(
 			<div className="articles-container">
@@ -67,7 +54,8 @@ class WriterContainerComponent extends Component {
 				{!this.state.isResponse &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
 				}
-				{this.state.isResponse &&
+				<ArticlesComponent data={this.state.data}/>
+				{/* {this.state.isResponse &&
 					<ul className="articles-container__list">
 						{this.state.articles.map(item =>
 							<li className="articles-container__item" key={item.articleId}>
@@ -77,7 +65,7 @@ class WriterContainerComponent extends Component {
 							</li>
 						)}
 					</ul>
-				}
+				} */}
 			</div>
 		)
 	}
