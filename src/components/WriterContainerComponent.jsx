@@ -11,9 +11,7 @@ class WriterContainerComponent extends Component {
 		this.state ={
 			open: false,
 			scrollY: 0,
-			articles: {},
-			isResponse: false,
-			buttons: [],
+			articles: false,
 			data: false,
 		}
 	}
@@ -21,40 +19,40 @@ class WriterContainerComponent extends Component {
 	componentDidMount() {
 		ApiService.getArticles(localStorage.getItem("userId"))
 			.then((response) => {
-					console.log(response)
-					this.setState({articles: response.data.reverse()})
 					if (response.data.length > 0) {
-						this.setState({isResponse: true});
-						this.setState({data: response.data});
+						this.setState({articles: response.data.reverse()})
 					}
 					
-					for (let i of this.state.articles) {
-						this.setState({[i.articleId + "btnMore"]: false})
-					}
+					// for (let i of this.state.articles) {
+					// 	this.setState({[i.articleId + "btnMore"]: false})
+					// }
 			})
 	}
 	
-	openMore = (e) => {
-		for (let i in this.state) {
-			if (i === e.target.id) {
-				if (this.state[i]) {
-					e.target.innerHTML = "Больше информации";
-				} else {
-					e.target.innerHTML = "Меньше информации";
-				}
-				this.setState({[i]: !this.state[i]})
-			}
-		}
-	}
+	// openMore = (e) => {
+	// 	for (let i in this.state) {
+	// 		if (i === e.target.id) {
+	// 			if (this.state[i]) {
+	// 				e.target.innerHTML = "Больше информации";
+	// 			} else {
+	// 				e.target.innerHTML = "Меньше информации";
+	// 			}
+	// 			this.setState({[i]: !this.state[i]})
+	// 		}
+	// 	}
+	// }
 	
 	render() {
 		return(
 			<div className="articles-container">
 				<h2 className="articles-container__main-title">Ваши статьи:</h2>
-				{!this.state.isResponse &&
+				{this.state.articles &&
+					<ArticlesComponent data={this.state.articles}/>
+				}
+
+				{!this.state.articles &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
 				}
-				<ArticlesComponent data={this.state.data}/>
 				{/* {this.state.isResponse &&
 					<ul className="articles-container__list">
 						{this.state.articles.map(item =>

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import TranslatableText from "./TranslatableText";
 
 class ArticleComponent extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            moreOpen: false
+        }
+    }
     writeFiles(data) {
 		let files = [];
 		for (let i in data) {
@@ -21,18 +29,22 @@ class ArticleComponent extends Component {
 				)}
 			</div>
 		)
-	}
+    }
+    
+    openMore = () => {
+        this.setState({moreOpen: !this.state.moreOpen})
+    }
 
     render() {
         return(
-            <div key={this.props.item.articleId}>
+            <React.Fragment key={this.props.item.articleId}>
                 <h3 className="articles-container__title">{this.props.item.articleName}</h3>
                 <p className="articles-container__status"><span className="text-bold">Статус:</span> {this.props.item.articleStatus}</p>
                 <a href="/" className="link articles-container__link" download>Скачать</a>
                 <p className="articles-container__status articles-container__status--new-line"><span className="text-bold">Авторы:</span> {this.props.item.authors}</p>
                 
                 
-                {this.props.isOpen &&
+                {this.state.moreOpen &&
                     <ul className="more-list articles-container__more-list">
                             <li className="more-list__item">
                                 <p className="more-list__text-container">
@@ -66,7 +78,26 @@ class ArticleComponent extends Component {
                             </ul>
                     </ul>
                 }
-            </div>
+                <p className="articles-container__text-button text-button" onClick={this.openMore}>
+                    {this.state.moreOpen &&
+                        <span><TranslatableText 
+                            text={{
+                            ru: "Меньше информации",
+                            en: "Less information",
+                            }}/>
+                        </span>
+                    }
+                    {!this.state.moreOpen &&
+                        <span><TranslatableText 
+                            text={{
+                            ru: "Больше информации",
+                            en: "More information",
+                            }}/>
+                        </span>
+                    }
+                    
+                </p>
+            </React.Fragment>
         )
     }
 }

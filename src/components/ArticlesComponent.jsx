@@ -6,7 +6,7 @@ class ArticlesComponent extends Component {
         super(props);
 
         this.state = {
-
+            
         }
     }
 
@@ -22,7 +22,7 @@ class ArticlesComponent extends Component {
                         {this.props.data.map(item =>
                             <li className="articles-container__item" key={item.articleId}>
                                 <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
-                                <p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
+                                {/* <p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p> */}
                                 <a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}>Редактировать</a>
                             </li>
                         )}

@@ -17,7 +17,6 @@ class AddArticle1Component extends Component {
 		this.subjectDefault = 0;
 
 		this.state ={
-			id: localStorage.getItem("userId"),
 			subject: this.inputData[0], //устанавливаю subject по умолчанию (Химия 02.00.00)
 
 			articleData: {
@@ -54,6 +53,7 @@ class AddArticle1Component extends Component {
   }
 
   sendArticle = (data) => {
+	data.id = localStorage.getItem("userId");
 	console.log(data);
 	this.window.current.classList.add("load");
 	ApiService.addArticle1(data)
@@ -62,10 +62,6 @@ class AddArticle1Component extends Component {
 			window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
 		} 
 	});  
-  }
-
-  handleChange = (e) => {
-	this.setState({ [e.target.id]: e.target.value });
   }
   
 	render() {
