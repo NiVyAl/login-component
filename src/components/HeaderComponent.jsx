@@ -53,7 +53,7 @@ class HeaderComponent extends Component {
 
         <div className="header__user">
           <SeachComponent placeHolder={{ru: "Введите поисковый запрос", en: "Search"}}/>
-          <button onClick={this.changeLanguage} className={`account-button--lang button button--flag header__button ${this.state.lang === "ru" && "button--flag--ru"} ${this.state.lang === "en" && "button--flag--en"}`}>Я</button>
+          <button onClick={this.changeLanguage} className={`account-button--lang button button--flag header__button ${this.state.lang === "ru" && "button--flag--ru"} ${this.state.lang === "en" && "button--flag--en"}`}></button>
           {this.state.isLog !== "log" &&
             <div className="header__user">
               <button onClick={this.logOpen} className="account-button--login button header__button"><TranslatableText 

@@ -6,8 +6,14 @@ class ArticlesComponent extends Component {
         super(props);
 
         this.state = {
-            
+            // filter: 31, // все статьи
+            filter: true, // все статьи
         }
+    }
+
+    filterArticles = (e) => {
+        console.log(e);
+        // switch (e.target.value)
     }
 
     componentDidMount = () => {
@@ -17,14 +23,38 @@ class ArticlesComponent extends Component {
     render() {
         return(
             <React.Fragment>
+                <ul className="articles-categories">
+                    <li className="articles-categories__item">
+                        <button onClick={this.filterArticles} id="all" className="articles-categories__button button">Все</button>
+                    </li>
+                    <li className="articles-categories__item">
+                        <button className="articles-categories__button button">Отправлены на проверку</button>
+                    </li>
+                    <li className="articles-categories__item">
+                        <button className="articles-categories__button button">Требуют доработку</button>
+                    </li>
+                    <li className="articles-categories__item">
+                        <button className="articles-categories__button button">Отправлены на повторную проверку</button>
+                    </li>
+                    <li className="articles-categories__item">
+                        <button className="articles-categories__button button">Приняты</button>
+                    </li>
+                    <li className="articles-categories__item">
+                        <button className="articles-categories__button button">Отклонены</button>
+                    </li>
+                </ul>
                 {this.props.data &&
                     <ul className="articles-container__list">
                         {this.props.data.map(item =>
-                            <li className="articles-container__item" key={item.articleId}>
-                                <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
-                                {/* <p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p> */}
-                                <a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}>Редактировать</a>
-                            </li>
+                            <React.Fragment key={item.articleId}>
+                                {console.log(item.articleId)}
+                                {item.articleId == this.state.filter && // здесь проверяем на нужный state
+                                    <li className="articles-container__item">
+                                        <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
+                                        <a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}>Редактировать</a>
+                                    </li>
+                                } 
+                            </React.Fragment>
                         )}
                     </ul>
                 }
