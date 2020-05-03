@@ -4,6 +4,7 @@ import InputFileComponent from './service/InputFileComponent';
 import checkLog from "../service/checkLog";
 import getGetRequest from '../service/getGetRequest';
 import isEmptyObject from '../service/isEmptyObject';
+import TranslatableText from "./service/TranslatableText";
 
 class AddArticle2Component extends Component {
 	constructor(props){
@@ -94,10 +95,20 @@ class AddArticle2Component extends Component {
 				{this.state.isSend === false &&
 					<div ref={this.window}>
 						{this.state.isEdited &&
-							<h2 className="sub-title add-article__title window__title">Редактирование статьи (шаг 2)</h2>
+							<h2 className="sub-title add-article__title window__title"><TranslatableText 
+								text={{
+								ru: "Редактирование статьи (шаг 2)",
+								en: "Edit article (step 2)",
+								}}/>
+							</h2>
 						}
 						{this.state.isEdited === false &&
-							<h2 className="sub-title add-article__title window__title">Добавление статьи (шаг 2)</h2>
+							<h2 className="sub-title add-article__title window__title"><TranslatableText 
+								text={{
+								ru: "Добавление статьи (шаг 2)",
+								en: "Add article (step 2)",
+								}}/>
+							</h2>
 						}
 						
 						{this.state.isEdited !== null && // чтоб не прыгало туда сюда (для красоты)
@@ -112,7 +123,12 @@ class AddArticle2Component extends Component {
 								
 								<div className="add-article__button-more button-more" onClick={this.addFile}>
 									<div className="button-more__button">+</div>
-									<span className="button-more__description">Добавить файл</span>	
+									<span className="button-more__description"><TranslatableText 
+										text={{
+										ru: "Добавить файл",
+										en: "Add file",
+										}}/>
+									</span>	
 								</div>
 								
 								<a href={`/addArticle/step1?articleId=${this.articleId}`} className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</a>

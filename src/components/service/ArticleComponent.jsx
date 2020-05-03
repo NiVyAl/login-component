@@ -39,16 +39,42 @@ class ArticleComponent extends Component {
         return(
             <React.Fragment key={this.props.item.articleId}>
                 <h3 className="articles-container__title">{this.props.item.articleName}</h3>
-                <p className="articles-container__status"><span className="text-bold">Статус:</span> {this.props.item.articleStatus}</p>
-                <a href="/" className="link articles-container__link" download>Скачать</a>
-                <p className="articles-container__status articles-container__status--new-line"><span className="text-bold">Авторы:</span> {this.props.item.authors}</p>
+                <p className="articles-container__status">
+                    <span className="text-bold"><TranslatableText 
+                        text={{
+                        ru: "Статус:",
+                        en: "Status:",
+                        }}/>
+                    </span> 
+                    {this.props.item.articleStatus}
+                </p>
+                <a href="/" className="link articles-container__link" download><TranslatableText 
+                    text={{
+                    ru: "Скачать",
+                    en: "Download",
+                    }}/>
+                </a>
+                <p className="articles-container__status articles-container__status--new-line">
+                    <span className="text-bold"><TranslatableText 
+                        text={{
+                        ru: "Авторы:",
+                        en: "Authors:",
+                        }}/>
+                    </span> 
+                    {this.props.item.authors}
+                </p>
                 
                 
                 {this.state.moreOpen &&
                     <ul className="more-list articles-container__more-list">
                             <li className="more-list__item">
                                 <p className="more-list__text-container">
-                                    <span className="more-list__title text-bold">Тип:</span>
+                                    <span className="more-list__title text-bold"><TranslatableText 
+                                        text={{
+                                        ru: "Тип:",
+                                        en: "Type",
+                                        }}/>
+                                    </span>
                                     <span className="more-list__content">{this.props.item.type}</span>
                                 </p>
                             </li>
@@ -61,14 +87,25 @@ class ArticleComponent extends Component {
                             
                             <li className="more-list__item">
                                 <p className="more-list__text-container">
-                                    <span className="more-list__title text-bold">Ключевые слова:</span>
+                                    <span className="more-list__title text-bold">  
+                                        <TranslatableText 
+                                        text={{
+                                        ru: "Ключевые слова:",
+                                        en: "Keywords",
+                                        }}/>
+                                    </span>
                                     <span className="more-list__content">{this.props.item.keys}</span>
                                 </p>
                             </li>
 
                             <li className="more-list__item">
                                 <p className="more-list__text-container">
-                                    <span className="more-list__title text-bold">Аннотация:</span>
+                                    <span className="more-list__title text-bold"><TranslatableText 
+                                        text={{
+                                        ru: "Аннотация:",
+                                        en: "Annotations:",
+                                        }}/>
+                                    </span>
                                     <span className="more-list__content">{this.props.item.annotation}</span>
                                 </p>
                             </li>
