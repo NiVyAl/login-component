@@ -8,6 +8,7 @@ import cover8 from '../img/covers/8.jpg'
 import cover9 from '../img/covers/9.jpg'
 import cover10 from '../img/covers/10.jpg'
 import TranslatableText from "./service/TranslatableText";
+import LatestArticlesComponent from "./service/LatestArticlesComponent";
 
 class MainComponent extends Component {
     constructor(props) {
@@ -41,60 +42,30 @@ class MainComponent extends Component {
         return(        
                 <div className="main__content content">
                     <div className="content__journals journals">
-                    <h2 className="journals__title sub-title"><TranslatableText 
-                        text={{
-                        ru: "Журналы:",
-                        en: "Journals:",
-                        }}/>
-                    </h2>
-                    <div className="journals__slider slider">
-                        <button className="slider__button slider__button--left" onClick={this.sliderMove}></button>
-                        <div className="slider__img-container">
-                            <ul className="slider__list" >
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover8} alt="cover"/></a></li>
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover9} alt="cover"/></a></li>
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover10} alt="cover"/></a></li>
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover1} alt="cover"/></a></li>
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover2} alt="cover"/></a></li>
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover6} alt="cover"/></a></li>
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover5} alt="cover"/></a></li>
-                                <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover4} alt="cover"/></a></li>
-                            </ul>
+                        <h2 className="journals__title sub-title"><TranslatableText 
+                            text={{
+                            ru: "Журналы:",
+                            en: "Journals:",
+                            }}/>
+                        </h2>
+                        <div className="journals__slider slider">
+                            <button className="slider__button slider__button--left" onClick={this.sliderMove}></button>
+                            <div className="slider__img-container">
+                                <ul className="slider__list" >
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover8} alt="cover"/></a></li>
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover9} alt="cover"/></a></li>
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover10} alt="cover"/></a></li>
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover1} alt="cover"/></a></li>
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover2} alt="cover"/></a></li>
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover6} alt="cover"/></a></li>
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover5} alt="cover"/></a></li>
+                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover4} alt="cover"/></a></li>
+                                </ul>
+                            </div>
+                            <button className="slider__button slider__button--right" onClick={this.sliderMove}></button>
                         </div>
-                        <button className="slider__button slider__button--right" onClick={this.sliderMove}></button>
                     </div>
-                        </div>
-
-                    <div className="content__latest latest">
-                    <h2 className="latest__title sub-title"><TranslatableText 
-                        text={{
-                        ru: "Последние статьи:",
-                        en: "Latest articles",
-                        }}/>
-                    </h2>
-
-                    <ul className="latest__list">
-                        <li className="latest__item">
-                        <time className="latest__date">2019-T22-№9</time>
-                        <a href="/" className="latest__link" target="_blank">АЛГОРИТМ ОБНАРУЖЕНИЯ СВЕТОВЫХ СИГНАЛОВ ТРАНСПОРТНЫХ СРЕДСТВ И СВЕТОФОРОВ</a>
-                        <p className="latest__description">Ключевые слова: компьютерное зрение, обработка изображений, преобразование радиальной симметрии, детектор Кэнни.</p>
-                        </li>
-
-                        <li className="latest__item">
-                        <time className="latest__date">2019-T22-№9</time>
-                        <a href="/" className="latest__link" target="_blank">АДСОРБЦИОННАЯ СПОСОБНОСТЬ МОДИФИЦИРОВАННЫХ КЛИНОПТИЛОЛИТОВ: ТЕРМОДИНАМИЧЕСКАЯ ОЦЕНКА</a>
-                        <p className="latest__description">Ключевые слова: адсорбция, цеолиты, сточные воды, серный полимер, ионы тяжелых металлов.</p>
-                        </li>
-
-                        <li className="latest__item">
-                        <time className="latest__date">2019-T22-№9</time>
-                        <a href="/" className="latest__link" target="_blank">РАСПРЕДЕЛЕННАЯ ОБРАБОТКА ДВУМЕРНЫХ МАССИВОВ ДАННЫХ
-                            НА ОСНОВЕ АППАРАТНЫХ IP-ЯДЕР В АРХИТЕКТУРЕ ПЛИС</a>
-                        <p className="latest__description">Ключевые слова: быстрое преобразование Фурье, оценки сложности, ПЛИС.</p>
-                        </li>
-
-                    </ul>
-                    </div>
+                   <LatestArticlesComponent/>
             </div>
         )
     }

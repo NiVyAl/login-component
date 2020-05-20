@@ -6,8 +6,8 @@ class ArticlesComponent extends Component {
         super(props);
 
         this.state = {
-            filter: 31, // все статьи
-            // filter: true, // все статьи
+            // filter: 31,
+            filter: "all", // все статьи
         }
     }
 
@@ -59,7 +59,7 @@ class ArticlesComponent extends Component {
                         {this.props.data.map(item =>
                             <React.Fragment key={item.articleId}>
                                 {/* {console.log(this.state.filter)} */}
-                                {item.articleId === this.state.filter && // здесь проверяем на нужный state
+                                {(item.articleId === this.state.filter || this.state.filter === "all") && // здесь проверяем на нужный state
                                     <li className="articles-container__item">
                                         <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
                                         <a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}>Редактировать</a>
