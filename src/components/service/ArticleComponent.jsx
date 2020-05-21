@@ -55,7 +55,7 @@ class ArticleComponent extends Component {
                     }}/>
                 </a>
                 <p className="articles-container__status articles-container__status--new-line">
-                    <span className="text-bold"><TranslatableText 
+                    <span className="text-bold more-list__title"><TranslatableText 
                         text={{
                         ru: "Авторы:",
                         en: "Authors:",
