@@ -1,0 +1,30 @@
+.radio-container {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.radio-container__item {
+	margin-right: 15px;
+	margin-bottom: 25px;
+}
+
+.radio-container__label {
+	border: 2px solid @main-color;
+	font-size: 18px;
+	color: @main-color;
+	border-radius: 1.5em;
+	padding: 0.4em;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.radio-container__input:checked ~ .radio-container__label {
+	background-color: @main-color;
+	color: white;
+}
+
+.radio-container__input {
+	display: none;
+	position: absolute;
+}

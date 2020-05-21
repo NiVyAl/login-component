@@ -11,24 +11,24 @@ class ArticlesComponent extends Component {
             // filter: "all", // все статьи
         }
 
-        this.radioData = [{id: "all", text: "Все", isChecked: true}, {id: 31, text: "Отправлены на проверку(31)"}, {id: 25, text: "Требуют доработку"}, {id: 18, text: "Приняты"}, {id: 15, text: "Отклонены"}];
+        this.radioData = [{id: "all", text: "Все статьи", isChecked: true}, {id: 16, text: "Отправлены на проверку"}, {id: 25, text: "Требуют доработки"}, {id: 18, text: "Приняты"}, {id: 15, text: "Отклонены"}];
     }
 
-    filterArticles = (e) => {
-        e.target.classList.add("button--active");
-        // console.log(e.target.id)
-        switch (e.target.id) {
-            case "all": 
-                this.setState({filter: "all"});
-                break;
-            case "31": 
-                this.setState({filter: 31});
-                break;
-            default: 
-                this.setState({filter: "all"});
-                break;
-        }
-    }
+    // filterArticles = (e) => {
+    //     e.target.classList.add("button--active");
+    //     // console.log(e.target.id)
+    //     switch (e.target.id) {
+    //         case "all": 
+    //             this.setState({filter: "all"});
+    //             break;
+    //         case "31": 
+    //             this.setState({filter: 31});
+    //             break;
+    //         default: 
+    //             this.setState({filter: "all"});
+    //             break;
+    //     }
+    // }
 
     componentDidMount = () => {
         console.log(this.props.data);
@@ -43,7 +43,7 @@ class ArticlesComponent extends Component {
         return(
             <React.Fragment>
                 <RadioButtonComponent data={this.radioData} name="filter-radio" radioChange={this.radioChange}/>
-                <ul className="articles-categories">
+                {/* <ul className="articles-categories">
                     <li className="articles-categories__item">
                         <button onClick={this.filterArticles} id="all" className="articles-categories__button button">Все</button>
                     </li>
@@ -62,7 +62,7 @@ class ArticlesComponent extends Component {
                     <li className="articles-categories__item">
                         <button className="articles-categories__button button">Отклонены</button>
                     </li>
-                </ul>
+                </ul> */}
                 {this.props.data &&
                     <ul className="articles-container__list">
                         {this.props.data.map(item =>

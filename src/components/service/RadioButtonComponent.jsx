@@ -27,13 +27,13 @@ class RadioButtonComponent extends Component {
             <div className="radio-container">
                 {this.props.data.map(item =>
                     <div className="radio-container__item" key={item.id}>
-                        <label htmlFor={item.id}>{item.text}</label>
                         {item.isChecked === true &&
-                            <input type="radio" id={item.id} onChange={() => this.props.radioChange(item.id)} name={this.props.name} defaultChecked/>
+                            <input className="radio-container__input" type="radio" id={item.id} onChange={() => this.props.radioChange(item.id)} name={this.props.name} defaultChecked/>
                         }
                         {item.isChecked !== true &&
-                            <input type="radio" id={item.id} onChange={() => this.props.radioChange(item.id)} name={this.props.name}/>
+                            <input className="radio-container__input" type="radio" id={item.id} onChange={() => this.props.radioChange(item.id)} name={this.props.name}/>
                         }
+                        <label className="radio-container__label" htmlFor={item.id}>{item.text}</label>
                     </div>
                 )}
             </div>
