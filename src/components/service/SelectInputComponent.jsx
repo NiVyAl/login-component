@@ -15,9 +15,15 @@ class SelectInputComponent extends Component {
 			<div className="select-input">
 				<p className="select-input__title">{this.props.title}</p>
 				
-				<select id={this.props.id} onChange={this.props.change} className="select-input__select">
+				<div>
+					{this.props.data.map((item) => 
+							<label>{item.text}<input type="radio" name={this.props.id}/></label>
+					)}	
+				</div>
+
+				{/* <select id={this.props.id} onChange={this.props.change} className="select-input__select">
 					{this.props.texts.map(this.writeOption)}
-				</select>
+				</select> */}
 			</div>
 		)
 	}

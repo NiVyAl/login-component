@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TranslatableText from "./TranslatableText";
 
 class RadioButtonComponent extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class RadioButtonComponent extends Component {
                         {item.isChecked !== true &&
                             <input className="radio-container__input" type="radio" id={item.id} onChange={() => this.props.radioChange(item.id)} name={this.props.name}/>
                         }
-                        <label className="radio-container__label" htmlFor={item.id}>{item.text}</label>
+                        <label className="radio-container__label" htmlFor={item.id}><TranslatableText text={item.text}></TranslatableText></label>
                     </div>
                 )}
             </div>

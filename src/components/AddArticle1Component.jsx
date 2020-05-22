@@ -12,12 +12,12 @@ class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		
-		this.inputData = ["02.00.00", "05.17.00", "05.13.00"];
-		this.inputText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Информатика, вычислительная техника и управление (05.13.00)" ];
-		this.subjectDefault = 0;
+		this.selectData = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
+		// this.selectText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Информатика, вычислительная техника и управление (05.13.00)" ];
+		// this.subjectDefault = 0;
 
 		this.state ={
-			subject: this.inputData[0], //устанавливаю subject по умолчанию (Химия 02.00.00)
+			// subject: this.selectData[0], //устанавливаю subject по умолчанию (Химия 02.00.00)
 
 			articleData: {
 				articleName: "",
@@ -99,7 +99,7 @@ class AddArticle1Component extends Component {
 								}
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Ключевые слова", en: "Keywords"}} name="keys" noPostValue={this.state.articleData.keys}/>
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
-								<SelectInputComponent title="Раздел журнала" id="subject" change={handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
+								<SelectInputComponent title="Раздел журнала" id="subject" change={handleChange} data={this.selectData}/>  
 
 								{this.state.isEdited &&
 									<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
@@ -113,35 +113,6 @@ class AddArticle1Component extends Component {
 							</React.Fragment>
 						)
 					}/>
-					// <form onSubmit={this.sendArticle}>
-					// 	<InputComponent text="Название" name="articleName" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.articleName} required/>
-					// 	{/* {console.log(this.state.articleData.articleName)} */}
-					// 	<InputComponent text="Тип" name="type" handleChange={handleChange} type="text" maxLength="100" noPostValue={this.state.articleData.type}/>
-					// 	<InputComponent text="Running Head" name="runningHead" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.runningHead}/>
-					// 	{!this.state.isEdited &&
-					// 		<InputComponent text="Авторы" name="authors" handleChange={handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
-					// 	}
-					// 	{this.state.isEdited &&
-					// 		<InputComponent text="Авторы" name="authors" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.authors}/>
-					// 	}
-					// 	<TextAreaComponent handleChange={handleChange} text="Ключевые слова" name="keys" noPostValue={this.state.articleData.keys}/>
-					// 	<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
-					// 	<SelectInputComponent title="Раздел журнала" id="subject" change={handleChange} values={this.inputData} texts={this.inputText} default={this.subjectDefault}/>  
-					// 	{/* <Select labelId="label" id="select" value="20" autoWidth={true}>
-					// 		<MenuItem value="10">Ten</MenuItem>
-					// 		<MenuItem value="20">Twenty</MenuItem>
-					// 	</Select> */}
-
-					// 	{this.state.isEdited &&
-					// 		<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
-					// 	}
-					// 	<button className="button window__button" type="submit"><TranslatableText 
-					// 		text={{
-					// 		ru: "Сохранить и продолжить",
-					// 		en: "Save and continue",
-					// 		}}/>
-					// 	</button>
-					// </form>
 				}
 				
 			</div>
