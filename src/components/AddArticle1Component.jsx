@@ -42,7 +42,7 @@ class AddArticle1Component extends Component {
 	}
   }
 
-  getArticle(articleId) { 
+  getArticle(articleId) { // берет данные статьи (при изменении статьи)
 	this.setState({isEdited: articleId})
 	ApiService.getArticle(articleId)
 		.then((response) => {
@@ -99,7 +99,7 @@ class AddArticle1Component extends Component {
 								}
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Ключевые слова", en: "Keywords"}} name="keys" noPostValue={this.state.articleData.keys}/>
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
-								<SelectInputComponent title="Раздел журнала" id="subject" change={handleChange} data={this.selectData}/>  
+								<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData}/>  
 
 								{this.state.isEdited &&
 									<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>

@@ -22,8 +22,8 @@ class InputComponent extends Component {
 		if (this.props.value) {
 			this.input.current.value = this.props.value;
 			this.active();
-			let e = {target: {id: this.input.current.id, value: this.props.value}};
-			this.props.handleChange(e);
+			// let e = {target: {id: this.input.current.id, value: this.props.value}};
+			this.props.handleChange(this.input.current.id, this.props.value);
 		}
 
 		if (this.props.noPostValue) {
@@ -47,7 +47,7 @@ class InputComponent extends Component {
 	render() {
 		return(
 			<div className="input-container">
-				<input ref={this.input} type={this.props.type} id={this.props.name} className="input-container__input" maxLength={this.props.maxLength} onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} autoComplete={this.props.autoComplete}/>
+				<input ref={this.input} type={this.props.type} id={this.props.name} className="input-container__input" maxLength={this.props.maxLength} onChange={(e) => this.props.handleChange(this.props.name, e.target.value)} onFocus={this.active} onBlur={this.blur} autoComplete={this.props.autoComplete}/>
 				<label ref={this.label} htmlFor={this.props.name} className="input-container__label label"><TranslatableText text={this.props.text}/></label>
 			</div>
 		)

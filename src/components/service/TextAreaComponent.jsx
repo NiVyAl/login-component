@@ -19,8 +19,8 @@ class TextAreaComponent extends Component {
 	setValue() { 
 		if (this.props.value) {
 			this.input.current.value = this.props.value;
-			let e = {target: {id: this.input.current.id, value: this.props.value}};
-            this.props.handleChange(e);
+			// let e = {target: {id: this.input.current.id, value: this.props.value}};
+            this.props.handleChange(this.input.current.id, this.props.value);
             this.active();
         }
         
@@ -46,7 +46,7 @@ class TextAreaComponent extends Component {
         return(
             <div className="text-area">
                 <label ref={this.label} htmlFor={this.props.name} className="text-area__label label"><TranslatableText text={this.props.text}/></label>
-                <textarea ref={this.input} className="text-area__input" onChange={this.props.handleChange} onFocus={this.active} onBlur={this.blur} id={this.props.name} autoComplete={this.props.autoComplete}></textarea>
+                <textarea ref={this.input} className="text-area__input" onChange={(e) => this.props.handleChange(this.props.name, e.target.value)} onFocus={this.active} onBlur={this.blur} id={this.props.name} autoComplete={this.props.autoComplete}></textarea>
             </div>
         )
     }
