@@ -31,13 +31,13 @@ class LoginComponent extends Component {
   }
   
 
-  handleChange = event => {
-		if (event.target.id === "login") {
-			this.setState({username: event.target.value})
+  handleChange = (name, value) => {
+		if (name === "login") {
+			this.setState({username: value})
 		}
 
-		if (event.target.id === "passwordLog") {
-			this.setState({password: event.target.value})
+		if (name === "passwordLog") {
+			this.setState({password: value})
     }
   }
   

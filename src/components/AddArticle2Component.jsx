@@ -18,8 +18,8 @@ class AddArticle2Component extends Component {
 			 items: [],
 			 isEdited: null,
 		}
-		this.data = [];
-		this.dataGet = {};
+		this.data = []; // массив с добавляемыми файлами [{2: {описание файла: File}}, {3: {описание файла: File}}] -- (File - объект в котором сам файл)
+		this.dataGet = {}; // объект в котором хранятся названия полученных файлов {0: "договор", 1: "тест на антиплагиат"}
 		this.window = React.createRef();
 		checkLog();
 	}
@@ -71,6 +71,7 @@ class AddArticle2Component extends Component {
 
 	handleChange = (id, description, file) => {
 		this.data[id] = {[description]: file}
+		// console.log(this.data);
 	}
 	
 	addFile = () => {
@@ -85,8 +86,8 @@ class AddArticle2Component extends Component {
 			temp.splice(id, 1);
 			this.data.splice(id, 1);
 			this.setState({items: temp});
+			this.dataGet[id] = undefined;
 		}
-		
 	}
   
 	render() {
@@ -125,8 +126,8 @@ class AddArticle2Component extends Component {
 									<div className="button-more__button">+</div>
 									<span className="button-more__description"><TranslatableText 
 										text={{
-										ru: "Добавить файл",
-										en: "Add file",
+										ru: "Добавить еще один файл",
+										en: "Add more file",
 										}}/>
 									</span>	
 								</div>
