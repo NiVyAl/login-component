@@ -12,13 +12,9 @@ class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		
-		this.selectData = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
-		// this.selectText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Информатика, вычислительная техника и управление (05.13.00)" ];
-		// this.subjectDefault = 0;
+		this.selectData = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)", isChecked: true}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
 
 		this.state ={
-			// subject: this.selectData[0], //устанавливаю subject по умолчанию (Химия 02.00.00)
-
 			articleData: {
 				articleName: "",
 				runningHead: "",
@@ -34,8 +30,8 @@ class AddArticle1Component extends Component {
   }
 
   componentDidMount() {
-	const articleId = getGetRequest(); 
-	if (articleId) {  // новая статья или редактируемая
+	const articleId = getGetRequest(); //получаем get запрос (из адресной строки) если есть 
+	if (articleId) {  // определяем новая статья или редактируемая
 		this.getArticle(articleId); // получаем статью (Редактирование статьи)
 	} else {
 		this.setState({isStartRender: true})
@@ -46,8 +42,9 @@ class AddArticle1Component extends Component {
 	this.setState({isEdited: articleId})
 	ApiService.getArticle(articleId)
 		.then((response) => {
-			// console.log(response);
+			console.log(response);
 			this.setState({articleData: response.data})
+			this.state.articleData.subject = "05.17.00"; // УДАЛИТЬ!!!  костыль пока нет данных с сервера УДАЛИТЬ!!!
 			this.setState({isStartRender: true})
 		})
   }
@@ -56,12 +53,12 @@ class AddArticle1Component extends Component {
 	data.id = localStorage.getItem("userId");
 	console.log(data);
 	this.window.current.classList.add("load");
-	ApiService.addArticle1(data)
-	.then(res => {
-		if (res.data.articleId) {
-			window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
-		} 
-	});  
+	// ApiService.addArticle1(data)
+	// .then(res => {
+	// 	if (res.data.articleId) {
+	// 		window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
+	// 	} 
+	// });  
   }
   
 	render() {
@@ -99,7 +96,7 @@ class AddArticle1Component extends Component {
 								}
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Ключевые слова", en: "Keywords"}} name="keys" noPostValue={this.state.articleData.keys}/>
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
-								<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData}/>  
+								<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData} noPostValue={this.state.articleData.subject}/>  
 
 								{this.state.isEdited &&
 									<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>

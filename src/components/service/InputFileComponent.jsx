@@ -3,6 +3,8 @@ import InputComponent from "../service/InputComponent";
 import translateText from '../../service/translateText';
 import TranslatableText from "./TranslatableText";
 
+//<InputFileComponent id={item} default={this.dataGet[item]} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
+
 class InputFileComponent extends Component {
 	constructor(props) {
 		super(props);

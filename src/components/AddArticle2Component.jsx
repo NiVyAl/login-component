@@ -62,16 +62,15 @@ class AddArticle2Component extends Component {
 			}
 		}
 
-		// ApiService.addArticle2(data, this.articleId)
-		// 	.then((res) => {
-		// 		console.log(res)
-		// 		this.setState({isSend: true});
-		// 	})
+		ApiService.addArticle2(data, this.articleId)
+			.then((res) => {
+				console.log(res)
+				this.setState({isSend: true});
+			})
 	} 
 
 	handleChange = (id, description, file) => {
 		this.data[id] = {[description]: file}
-		// console.log(this.data);
 	}
 	
 	addFile = () => {
@@ -123,7 +122,6 @@ class AddArticle2Component extends Component {
 								{this.state.items.map((item, number) => 
 									<div className="add-article__section" key={item}>
 										<InputFileComponent id={item} default={this.dataGet[item]} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
-										{/* <div>{item}</div> */}
 									</div>
 								)}
 								

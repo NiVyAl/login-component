@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 
+//<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData} noPostValue={this.state.articleData.subject}/>  
+//selectData = [{id: "02.00.00", text: "Химия (02.00.00)", isChecked: true}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
+
 class SelectInputComponent extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 
-		}
-	}
-
-	writeOption = (item, number) => {
-		if (this.props.default === number) {
-			return <option className="select-input__option" value={this.props.values[number]} key={item} selected>{item}</option>
-		} else {
-			return <option className="select-input__option" value={this.props.values[number]} key={item}>{item}</option>
 		}
 	}
 
@@ -24,26 +19,27 @@ class SelectInputComponent extends Component {
                 defaultCheckedId = i.id;
                 this.setState({defaultCheckedId: defaultCheckedId});
             }
-        }
+		}
+
         if (defaultCheckedId) {
-            this.props.handleChange(defaultCheckedId);
+			this.props.handleChange(this.props.id, defaultCheckedId);
         }
-    }
+	}
 	
 	render() {
 		return(
 			<div className="select-input">
 				<p className="select-input__title">{this.props.title}</p>
-				
-				<div>
 					{this.props.data.map((item) => 
-							<label key={item.id}>{item.text}<input type="radio" name={this.props.id} onChange={() => this.props.handleChange(this.props.id, item.id)}/></label>
+						<div>
+							{item.isChecked === true &&
+								<label key={item.id}>{item.text}<input type="radio" name={this.props.id} onChange={() => this.props.handleChange(this.props.id, item.id)}/></label>
+							}
+							{item.isChecked !== true &&
+								<label key={item.id}>{item.text}<input type="radio" name={this.props.id} onChange={() => this.props.handleChange(this.props.id, item.id)}/></label>
+							}
+						</div>
 					)}	
-				</div>
-
-				{/* <select id={this.props.id} onChange={this.props.change} className="select-input__select">
-					{this.props.texts.map(this.writeOption)}
-				</select> */}
 			</div>
 		)
 	}
