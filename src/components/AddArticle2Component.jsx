@@ -15,7 +15,7 @@ class AddArticle2Component extends Component {
 		this.state ={
 			 isSend: false,
 			 filePath: '',
-			 items: [],
+			 items: [], // масив с номерами файлов
 			 isEdited: null,
 		}
 		this.data = []; // массив с добавляемыми файлами [{2: {описание файла: File}}, {3: {описание файла: File}}] -- (File - объект в котором сам файл)
@@ -62,11 +62,11 @@ class AddArticle2Component extends Component {
 			}
 		}
 
-		ApiService.addArticle2(data, this.articleId)
-			.then((res) => {
-				console.log(res)
-				this.setState({isSend: true});
-			})
+		// ApiService.addArticle2(data, this.articleId)
+		// 	.then((res) => {
+		// 		console.log(res)
+		// 		this.setState({isSend: true});
+		// 	})
 	} 
 
 	handleChange = (id, description, file) => {
@@ -86,7 +86,12 @@ class AddArticle2Component extends Component {
 			temp.splice(id, 1);
 			this.data.splice(id, 1);
 			this.setState({items: temp});
-			this.dataGet[id] = undefined;
+
+			if (this.dataGet[id]) { // если убрали файл который уже загружен на сервер
+				const fileName = this.dataGet[id]
+				this.data.push({[fileName]: "deleted"})
+				this.dataGet[id] = undefined;
+			}
 		}
 	}
   
