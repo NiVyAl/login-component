@@ -12,7 +12,7 @@ class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		
-		this.selectData = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)", isChecked: true}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
+		this.selectData = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
 
 		this.state ={
 			articleData: {
@@ -45,8 +45,18 @@ class AddArticle1Component extends Component {
 			console.log(response);
 			this.setState({articleData: response.data})
 			this.state.articleData.subject = "05.17.00"; // УДАЛИТЬ!!!  костыль пока нет данных с сервера УДАЛИТЬ!!!
+			this.setSelect(this.state.articleData.subject); // установить раздел журнала в котором статья
+
 			this.setState({isStartRender: true})
 		})
+  }
+
+  setSelect(selectId) {
+	for (let i in this.selectData) {
+		if (this.selectData[i].id === selectId) {
+			this.selectData[i].noPostCheck = true;
+		}
+	}
   }
 
   sendArticle = (data) => {
@@ -58,7 +68,7 @@ class AddArticle1Component extends Component {
 	// 	if (res.data.articleId) {
 	// 		window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
 	// 	} 
-	// });  
+	// });
   }
   
 	render() {
@@ -96,7 +106,7 @@ class AddArticle1Component extends Component {
 								}
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Ключевые слова", en: "Keywords"}} name="keys" noPostValue={this.state.articleData.keys}/>
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
-								<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData} noPostValue={this.state.articleData.subject}/>  
+								<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData}/>  
 
 								{this.state.isEdited &&
 									<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
