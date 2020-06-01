@@ -97,6 +97,7 @@ class AddArticle1Component extends Component {
                             <React.Fragment>
 								<InputComponent text={{ru: "Название", en: "Article name"}} name="articleName" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.articleName} required/>
 								<InputComponent text={{ru: "Тип", en: "type"}} name="type" handleChange={handleChange} type="text" maxLength="100" noPostValue={this.state.articleData.type}/>
+								<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData}/>  
 								<InputComponent text="Running Head" name="runningHead" handleChange={handleChange} type="text" maxLength="250" noPostValue={this.state.articleData.runningHead}/>
 								{!this.state.isEdited &&
 									<InputComponent text={{ru: "Авторы", en: "Authors"}} name="authors" handleChange={handleChange} type="text" maxLength="250" value={localStorage.getItem("log")}/>
@@ -106,7 +107,6 @@ class AddArticle1Component extends Component {
 								}
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Ключевые слова", en: "Keywords"}} name="keys" noPostValue={this.state.articleData.keys}/>
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
-								<SelectInputComponent title="Раздел журнала" id="subject" handleChange={handleChange} data={this.selectData}/>  
 
 								{this.state.isEdited &&
 									<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>

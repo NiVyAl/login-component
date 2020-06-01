@@ -11,6 +11,9 @@ class SelectInputComponent extends Component {
 		this.state = {
 
 		}
+
+		this.title = React.createRef();
+		this.container = React.createRef();
 	}
 
 	componentDidMount() {
@@ -30,21 +33,31 @@ class SelectInputComponent extends Component {
 			this.props.handleChange(this.props.id, defaultCheckedId);
 		}
 	}
+
+	openList = () => {
+		console.log("open")
+		this.container.current.classList.add("select-input--active");
+		this.title.current.classList.add("select-input__title--active");
+	}
 	
 	render() {
 		return(
-			<div className="select-input">
-				<p className="select-input__title">{this.props.title}</p>
+			<div className="select-input select-input" ref={this.container}>
+				<p ref={this.title} onClick={this.openList} className="select-input__title select-input__title">
+					<span>{this.props.title}</span>
+				</p>
+				<div className="select-input__list">
 					{this.props.data.map((item) => 
-						<div key={item.id}>
+						<div className="select-input__item" key={item.id}>
 							{(item.isChecked === true || item.noPostCheck === true) &&
-								<label >{item.text}<input type="radio" name={this.props.id} onChange={() => this.props.handleChange(this.props.id, item.id)} defaultChecked/></label>
+								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onChange={() => this.props.handleChange(this.props.id, item.id)} defaultChecked/></label>
 							}
 							{(item.isChecked !== true && item.noPostCheck !== true) &&
-								<label>{item.text}<input type="radio" name={this.props.id} onChange={() => this.props.handleChange(this.props.id, item.id)}/></label>
+								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onChange={() => this.props.handleChange(this.props.id, item.id)}/></label>
 							}
 						</div>
 					)}	
+				</div>
 			</div>
 		)
 	}
