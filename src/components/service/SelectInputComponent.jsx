@@ -22,6 +22,9 @@ class SelectInputComponent extends Component {
 
 	componentDidMount() {
 		this.setDefaultCheck();
+		if (this.props.isRequired) {
+			
+		}
 	}
 
 	setDefaultCheck() {
@@ -85,7 +88,7 @@ class SelectInputComponent extends Component {
 								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onChange={(e) => this.chooseItem(e, this.props.id, item.id, item.text)} defaultChecked/></label>
 							}
 							{(item.isChecked !== true && item.noPostCheck !== true) &&
-								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onClick={(e) => this.close(item.id)} onChange={(e) => this.chooseItem(e, this.props.id, item.id, item.text)}/></label>
+								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onClick={(e) => this.close(item.id)} onChange={(e) => this.chooseItem(e, this.props.id, item.id, item.text)} required/></label>
 							}
 						</div>
 					)}	
