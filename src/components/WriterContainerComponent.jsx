@@ -14,6 +14,9 @@ class WriterContainerComponent extends Component {
 			articles: false,
 			data: false,
 		}
+
+		this.filterData = [{id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true}, {id: 16, text: "Отправлены на проверку"}, {id: 25, text: "Требуют доработки"}, {id: 18, text: "Приняты"}, {id: 15, text: "Отклонены"}];
+		this.filterName = "filter-radio";
 	}
 	
 	componentDidMount() {
@@ -34,13 +37,25 @@ class WriterContainerComponent extends Component {
                     en: "Your articles:",
                     }}/>
 				</h2>
-				{this.state.articles &&
-					<ArticlesComponent data={this.state.articles}/>
-				}
+				<ArticlesComponent data={this.state.articles} filterData={this.filterData} filterName={this.filterName} renderButton={
+                        (item) => (
+							<a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}><TranslatableText 
+								text={{
+								ru: "Редактировать",
+								en: "Edit article",
+								}}/>
+							</a>	
+						)
+					}
+				/>
 
-				{!this.state.articles &&
+				{/* {this.state.articles &&
+					<ArticlesComponent data={this.state.articles}/>
+				} */}
+
+				{/* {!this.state.articles &&
 					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
-				}
+				} */}
 			</div>
 		)
 	}

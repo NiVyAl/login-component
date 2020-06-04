@@ -11,7 +11,7 @@ class ArticlesComponent extends Component {
             // filter: "all", // все статьи
         }
 
-        this.radioData = [{id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true}, {id: 16, text: "Отправлены на проверку"}, {id: 25, text: "Требуют доработки"}, {id: 18, text: "Приняты"}, {id: 15, text: "Отклонены"}];
+        // this.radioData = [{id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true}, {id: 16, text: "Отправлены на проверку"}, {id: 25, text: "Требуют доработки"}, {id: 18, text: "Приняты"}, {id: 15, text: "Отклонены"}];
     }
 
     componentDidMount = () => {
@@ -26,7 +26,7 @@ class ArticlesComponent extends Component {
     render() {
         return(
             <React.Fragment>
-                <RadioButtonComponent data={this.radioData} name="filter-radio" radioChange={this.radioChange}/>
+                <RadioButtonComponent data={this.props.filterData} name={this.props.filterName} radioChange={this.radioChange}/>
                 {this.props.data &&
                     <ul className="articles-container__list">
                         {this.props.data.map(item =>
@@ -34,12 +34,15 @@ class ArticlesComponent extends Component {
                                 {(item.articleId === this.state.filter || this.state.filter === "all") && // здесь проверяем на нужный state
                                     <li className="articles-container__item">
                                         <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
-                                        <a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}>Редактировать</a>
+                                        {this.props.renderButton(item)}
                                     </li>
                                 } 
                             </React.Fragment>
                         )}
                     </ul>
+                }
+                {!this.props.data &&
+                    <p className="articles-container__no-articles">Здесь пока ничего нет...</p>
                 }
             </React.Fragment>
         )
