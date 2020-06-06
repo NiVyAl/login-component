@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
-import ArticleComponent from "./service/ArticleComponent";
 import TranslatableText from "./service/TranslatableText";
 import ArticlesComponent from './ArticlesComponent';
 
@@ -48,14 +47,6 @@ class WriterContainerComponent extends Component {
 						)
 					}
 				/>
-
-				{/* {this.state.articles &&
-					<ArticlesComponent data={this.state.articles}/>
-				} */}
-
-				{/* {!this.state.articles &&
-					<p className="articles-container__no-articles">Здесь пока ничего нет...</p>
-				} */}
 			</div>
 		)
 	}
