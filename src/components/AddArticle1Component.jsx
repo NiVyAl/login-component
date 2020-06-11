@@ -63,12 +63,12 @@ class AddArticle1Component extends Component {
 	data.id = localStorage.getItem("userId");
 	console.log(data);
 	this.window.current.classList.add("load");
-	// ApiService.addArticle1(data)
-	// .then(res => {
-	// 	if (res.data.articleId) {
-	// 		window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
-	// 	} 
-	// });
+	ApiService.addArticle1(data)
+	.then(res => {
+		if (res.data.articleId) {
+			window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
+		} 
+	});
   }
   
 	render() {
