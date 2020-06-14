@@ -35,7 +35,8 @@ class ProfileComponent extends Component {
     
     checkRoll = () => {
         if (this.state.role === "writer") {
-            return(<SecretaryContainerComponent/>) // ВРЕМЕННО!!!
+            // return(<SecretaryContainerComponent/>) // ВРЕМЕННО!!!
+            return(<ReviewerContainerComponent/>) // ВРЕМЕННО!!!
             // return(<WriterContainerComponent/>)
         }
         if (this.state.role === "secretary") {

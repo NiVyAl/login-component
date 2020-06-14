@@ -12,6 +12,7 @@
 	border-bottom: 1px solid @gray;
 	cursor: pointer;
 	position: relative;
+  padding-right: 2em
 }
 
 .select-input__chosen-text {
@@ -30,14 +31,16 @@
 
 .select-input__title::before {
 	content: "";
-	display: block;
-	border: 0.3em solid @gray;
-	position: absolute;
-	border-left-color: transparent;
-	border-top-color: transparent;
-	transform: rotate(45deg);
+	display: inline-block;
+	border: 0.5em solid transparent;
+  border-top-color: @gray;
+  border-bottom: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
 	right: 10px;
-	top: -0.15em;
+//	top: -0.15em;
+  bottom: 0.7em;
 }
 
 .select-input__title--active .select-input__title-text {
@@ -72,8 +75,7 @@
 }
 
 .select-input--active .select-input__title::before {
-	border-right-color: @main-color;
-	border-bottom-color: @main-color;
+	border-top-color: @main-color;
 }
 
 .select-input__item label {

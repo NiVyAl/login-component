@@ -12,7 +12,7 @@ class UserLoginComponent extends Component {
         document.addEventListener("keydown", this.escFunction, false);
 
         this.state = {
-            isCanAdd: false,
+            isCanAddUser: false,
         }
     }
 
@@ -21,7 +21,10 @@ class UserLoginComponent extends Component {
         if (allPrivelege) {
             for (let i of allPrivelege) {
                 if (i === "ADD_PRIVILEGE") {
-                    this.setState({isCanAdd: true})
+                    this.setState({isCanAddUser: true})
+                }
+                if (i === "WRITE_PRIVILEGE") {
+                    this.setState({isCanAddArticle: true});
                 }
             }
         }
@@ -76,7 +79,7 @@ class UserLoginComponent extends Component {
                             en: "Profile",
                             }}/>
                         </a>
-                        {!this.state.isCanAdd &&
+                        {this.state.isCanAddArticle &&
                             <a className="user-login__link" href="/addArticle/step1"><TranslatableText 
                                 text={{
                                 ru: "Добавить статью",
@@ -84,7 +87,7 @@ class UserLoginComponent extends Component {
                                 }}/>
                             </a>
                         }
-                        {this.state.isCanAdd &&
+                        {this.state.isCanAddUser &&
                             <div>
                                 <a className="user-login__link" href="/addUser"><TranslatableText 
                                     text={{
