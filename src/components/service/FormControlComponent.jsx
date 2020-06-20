@@ -29,8 +29,7 @@ class FormControlComponent extends Component {
     }
 
     handleChange = (name, value) => {
-        // this.setState({ [e.target.id]: e.target.value });
-        console.log(name + " " + value);
+        // console.log(name + " " + value);
         this.setState({ [name]: value });
     }
 

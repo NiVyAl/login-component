@@ -66,8 +66,6 @@ class SelectInputComponent extends Component {
 	}
 
 	close = (chosenId) => {
-		// console.log(chosenId);
-		// console.log(this.state.chosenId);
 		if (chosenId === this.state.chosenId) {
 			this.closeList();
 		}

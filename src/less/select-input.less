@@ -12,13 +12,19 @@
 	border-bottom: 1px solid @gray;
 	cursor: pointer;
 	position: relative;
-  padding-right: 2em
+  padding-right: 2em;
 }
 
 .select-input__chosen-text {
 	position: absolute;
-	top: -0.1em;
+//	top: -0.1em;
+	bottom: 0.1em;
 	color: black;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 93%; // костыль! должно быть 100%
+	display: inline-block;
+	overflow: hidden;
 }
 
 .select-input__title .select-input__title-text {
