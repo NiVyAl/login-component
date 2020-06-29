@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import checkLog from "../service/checkLog";
+import checkRole from "../service/checkRole";
 import WriterContainerComponent from './WriterContainerComponent';
 import ReviewerContainerComponent from './ReviewerContainerComponent';
 import SecretaryContainerComponent from './SecretaryContainerComponent';
@@ -15,25 +16,13 @@ class ProfileComponent extends Component {
         checkLog();
     }
     componentDidMount() {
-        if (JSON.parse(localStorage.getItem("privilege"))) {
-            for (let i of JSON.parse(localStorage.getItem("privilege"))) {
-                if (i === "REVIEW_PRIVILEGE") {
-                    this.setState({role: "review"})
-                    // break
-                }
-                
-                if (i === "WRITE_PRIVILEGE") {
-                    this.setState({role: "writer"})
-                }
-                
-                if (i === "ADD_PRIVILEGE") {
-                    this.setState({role: "secretary"})
-                }
-            }
+        if (JSON.parse(localStorage.getItem("privilege"))) { //если в localStorage хранятся привилегии
+            const privilege = JSON.parse(localStorage.getItem("privilege"));
+            this.setState({role: checkRole(privilege)}); // заганяем в this.state.role роль пользователя
         }
     }
     
-    checkRoll = () => {
+    contentRender = () => {
         if (this.state.role === "writer") {
             // return(<SecretaryContainerComponent/>) // ВРЕМЕННО!!!
             return(<ReviewerContainerComponent/>) // ВРЕМЕННО!!!
@@ -57,7 +46,7 @@ class ProfileComponent extends Component {
                     }}/>
                 </h2>
                     <div className="profile__articles-container">
-                        {this.checkRoll()}
+                        {this.contentRender()}
                     </div>
             </div>
         )

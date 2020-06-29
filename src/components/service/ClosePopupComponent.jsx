@@ -11,12 +11,6 @@ class ClosePopupComponent extends Component {
         }
     }
 
-    componentDidUpdate() {
-        if (this.props.isOpen) {
-            this.open();
-        }
-    }
-
     escFunction = (e) => {
         if (e.keyCode === 27) {
             this.close();
@@ -24,19 +18,19 @@ class ClosePopupComponent extends Component {
     }
 
     close = () => {
+        console.log("close");
         if (this.modalButton.current) {
-            this.modalButton.current.classList.remove("close-popup-button--active");
-            this.props.close();
+            this.props.close(); // через эту функицию передает родителю что на него нажали
         }
-    }
-
-    open = () => {
-        this.modalButton.current.classList.add("close-popup-button--active");
     }
 
     render() {
         return(
-            <div className="close-popup-button" onClick={this.close} ref={this.modalButton}></div>
+            <React.Fragment>
+                {this.props.isOpen === true &&
+                    <div className="close-popup-button" onClick={this.close} ref={this.modalButton}></div>
+                }
+            </React.Fragment>
         )
     }
 }

@@ -10,7 +10,7 @@ class SelectInputComponent extends Component {
 		super(props);
 
 		this.state = {
-
+			isOpen: false,
 		}
 
 		this.title = React.createRef();
@@ -42,31 +42,32 @@ class SelectInputComponent extends Component {
 	}
 
 	openList = () => {
-		console.log("open")
 		this.container.current.classList.add("select-input--active");
 		this.title.current.classList.add("select-input__title--active");
 		this.setState({isOpen: true});
 	}
 
-	closeList = () => {
+	closeList = () => { // функцию запускает closePopupComponent когда на него нажали
+		this.setState({isOpen: false});
 		this.container.current.classList.remove("select-input--active");
 
-		if (!this.isChosen) {
+		if (!this.isChosen) { // если никакой вариант еще не был выбран то заголовок инпута возвращается назад
 			this.title.current.classList.remove("select-input__title--active");
 		}
 	}
 
 	chooseItem = (e, name, id, chosenText) => {
+		console.log("onChange");
 		this.props.handleChange(name, id);
-		this.setState({isOpen: false});
 		this.setState({chosenId: id});
 		this.isChosen = true
 		this.closeList();
 		this.chosenText.current.innerHTML = chosenText;
 	}
 
-	close = (chosenId) => {
+	close = (chosenId) => { // при нажатии на инпут (НЕ onChange так как это просто нажатие на уже выбранный пункт)
 		if (chosenId === this.state.chosenId) {
+			console.log("onClick");
 			this.closeList();
 		}
 	}
@@ -83,7 +84,7 @@ class SelectInputComponent extends Component {
 					{this.props.data.map((item) => 
 						<div className="select-input__item" key={item.id}>
 							{(item.isChecked === true || item.noPostCheck === true) &&
-								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onChange={(e) => this.chooseItem(e, this.props.id, item.id, item.text)} defaultChecked/></label>
+								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onClick={(e) => this.close(item.id)} onChange={(e) => this.chooseItem(e, this.props.id, item.id, item.text)} defaultChecked/></label>
 							}
 							{(item.isChecked !== true && item.noPostCheck !== true) &&
 								<label>{item.text}<input className="select-input__input" type="radio" name={this.props.id} onClick={(e) => this.close(item.id)} onChange={(e) => this.chooseItem(e, this.props.id, item.id, item.text)} required/></label>
