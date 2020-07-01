@@ -44,19 +44,8 @@ class AddArticle1Component extends Component {
 		.then((response) => {
 			console.log(response);
 			this.setState({articleData: response.data})
-			this.state.articleData.subject = "05.17.00"; // УДАЛИТЬ!!!  костыль пока нет данных с сервера УДАЛИТЬ!!!
-			this.setSelect(this.state.articleData.subject); // установить раздел журнала в котором статья
-
 			this.setState({isStartRender: true})
 		})
-  }
-
-  setSelect(selectId) {
-	for (let i in this.selectData) {
-		if (this.selectData[i].id === selectId) {
-			this.selectData[i].noPostCheck = true;
-		}
-	}
   }
 
   sendArticle = (data) => {

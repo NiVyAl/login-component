@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+//<ClosePopupComponent close={this.closeList} isOpen={this.state.isOpen} visible/> // this.closeList - функция которую запускает при закрытии, isOpen - состояние
+
 class ClosePopupComponent extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +30,14 @@ class ClosePopupComponent extends Component {
         return(
             <React.Fragment>
                 {this.props.isOpen === true &&
-                    <div className="close-popup-button" onClick={this.close} ref={this.modalButton}></div>
+                    <React.Fragment>
+                        {this.props.visible && 
+                            <div className="close-popup-button close-popup-button--visible" onClick={this.close} ref={this.modalButton}></div>
+                        }
+                        {!this.props.visible && 
+                            <div className="close-popup-button" onClick={this.close} ref={this.modalButton}></div>
+                        }
+                    </React.Fragment>
                 }
             </React.Fragment>
         )

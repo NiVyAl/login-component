@@ -22,7 +22,6 @@ class InputComponent extends Component {
 		if (this.props.value) {
 			this.input.current.value = this.props.value;
 			this.active();
-			// let e = {target: {id: this.input.current.id, value: this.props.value}};
 			this.props.handleChange(this.input.current.id, this.props.value);
 		}
 

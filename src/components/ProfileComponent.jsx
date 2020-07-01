@@ -15,6 +15,7 @@ class ProfileComponent extends Component {
         }
         checkLog();
     }
+    
     componentDidMount() {
         if (JSON.parse(localStorage.getItem("privilege"))) { //если в localStorage хранятся привилегии
             const privilege = JSON.parse(localStorage.getItem("privilege"));
@@ -25,8 +26,8 @@ class ProfileComponent extends Component {
     contentRender = () => {
         if (this.state.role === "writer") {
             // return(<SecretaryContainerComponent/>) // ВРЕМЕННО!!!
-            return(<ReviewerContainerComponent/>) // ВРЕМЕННО!!!
-            // return(<WriterContainerComponent/>)
+            // return(<ReviewerContainerComponent/>) // ВРЕМЕННО!!!
+            return(<WriterContainerComponent/>)
         }
         if (this.state.role === "secretary") {
             return(<SecretaryContainerComponent/>)
