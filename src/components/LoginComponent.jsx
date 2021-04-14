@@ -113,8 +113,8 @@ class LoginComponent extends Component {
                   en: "Log in",
                 }}/></p>
             <div className="login-container__form">
-              <InputComponent text="email" name="login" handleChange={this.handleChange} type="email" maxLength="30" required/>
-					    <InputComponent text={{ru: "пароль", en: "password"}} name="passwordLog" handleChange={this.handleChange} type="password" maxLength="20" required/>
+              <InputComponent text="email" name="login" handleChange={this.handleChange} type="email" maxLength="60" required/>
+					    <InputComponent text={{ru: "пароль", en: "password"}} name="passwordLog" handleChange={this.handleChange} type="password" maxLength="60" required/>
               
               <p className="login-container__error">Неверный логин или пароль</p>
               <p className="login-container__error--network-text">Проблема соединения с сервером</p>

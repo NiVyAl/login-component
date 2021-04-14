@@ -5,6 +5,7 @@ import WriterContainerComponent from './WriterContainerComponent';
 import ReviewerContainerComponent from './ReviewerContainerComponent';
 import SecretaryContainerComponent from './SecretaryContainerComponent';
 import TranslatableText from "./service/TranslatableText";
+import ApiService from "../service/ApiService";
 
 class ProfileComponent extends Component {
     constructor(props) {
@@ -17,6 +18,14 @@ class ProfileComponent extends Component {
     }
     
     componentDidMount() {
+        console.log("mount");
+        const data = {"login": "test13", "password": "test13", "email": "test13"}
+        console.log(data);
+        ApiService.NewTest(data)
+			.then((res) => {
+				console.log(res);
+            })
+            
         if (JSON.parse(localStorage.getItem("privilege"))) { //если в localStorage хранятся привилегии
             const privilege = JSON.parse(localStorage.getItem("privilege"));
             this.setState({role: checkRole(privilege)}); // заганяем в this.state.role роль пользователя
@@ -26,8 +35,8 @@ class ProfileComponent extends Component {
     contentRender = () => {
         if (this.state.role === "writer") {
             // return(<SecretaryContainerComponent/>) // ВРЕМЕННО!!!
-            // return(<ReviewerContainerComponent/>) // ВРЕМЕННО!!!
-            return(<WriterContainerComponent/>)
+            return(<ReviewerContainerComponent/>) // ВРЕМЕННО!!!
+            // return(<WriterContainerComponent/>)
         }
         if (this.state.role === "secretary") {
             return(<SecretaryContainerComponent/>)

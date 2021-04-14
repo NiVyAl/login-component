@@ -31,12 +31,12 @@ class AddReviewComponent extends Component {
     
     sendForm = (data) => {
         console.log(data);
-        // this.container.current.classList.add("load");
-        // ApiService.addReview(data)
-        //     .then(res => {
-        //         console.log(res);
-        //         this.setState({isSend: true});
-        //     })
+        this.container.current.classList.add("load");
+        ApiService.addReview(data)
+            .then(res => {
+                console.log(res);
+                this.setState({isSend: true});
+            })
     }
     
     render() {
