@@ -57,7 +57,7 @@ class LatestArticlesComponent extends Component {
                                     en: "Keys:",
                                     }}
                                 />
-                                <span class="latest__description--words"><TranslatableText 
+                                <span className="latest__description--words"><TranslatableText 
                                         text={{
                                         ru: "ОСТАТОЧНЫЕ КОЛИЧЕСТВА, АНТИБИОТИКИ, МЕД, ЖИДКОСТНАЯ ХРОМАТОГРАФИЯ, МАСС-СПЕКТРОМЕТРИЯ",
                                         en: "RESIDUES, ANTIBIOTICS, HONEY, LIQUID CHROMATOGRAPHY, MASS SPECTROMETRY.",
@@ -82,7 +82,7 @@ class LatestArticlesComponent extends Component {
                                     en: "Keys:",
                                     }}
                                 />
-                                <span class="latest__description--words">
+                                <span className="latest__description--words">
                                     <TranslatableText 
                                         text={{
                                         ru: "КОМПЛЕКСЫ ИТТРИЯ(III), ЛЮМИНЕСЦЕНЦИЯ",
@@ -108,7 +108,7 @@ class LatestArticlesComponent extends Component {
                                     en: "Keys:",
                                     }}
                                 />
-                                <span class="latest__description--words">
+                                <span className="latest__description--words">
                                     <TranslatableText 
                                         text={{
                                         ru: "КВАНТОВО-ХИМИЧЕСКИЙ РАСЧЕТ, СТРУКТУРА, ГЕОМЕТРИЧЕСКИЕ ПАРАМЕТРЫ, КОМПЛЕКС ВИСМУТА (III), ЭТИЛЕНДИАМИНТЕТРААЦЕТАТ-ИОН, СУЛЬФИТ-ИОН, АКЦЕПТОРНАЯ ОРБИТАЛЬ, ЭЛЕКТРОВОССТАНОВЛЕНИЕ",
@@ -134,7 +134,7 @@ class LatestArticlesComponent extends Component {
                                     en: "Keys:",
                                     }}
                                 />
-                                <span class="latest__description--words">
+                                <span className="latest__description--words">
                                     <TranslatableText 
                                         text={{
                                         ru: "ГИДРОКСИАПАТИТ, БИОМИМЕТИЧЕСКИЙ, СТРУКТУРНО-МОРФОЛОГИЧЕСКИЙ, ЦИТРАТ-ИОН, КАРБОНАТ, СИЛИКАТ, БИОАКТИВНОСТЬ",

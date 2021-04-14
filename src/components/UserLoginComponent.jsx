@@ -3,6 +3,7 @@ import userAvatar from '../img/user-icon.png'
 import axios from 'axios';
 import TranslatableText from "./service/TranslatableText";
 import { store } from '../store';
+import ApiService from '../service/ApiService';
 
 class UserLoginComponent extends Component {
     constructor(props) {
@@ -42,12 +43,7 @@ class UserLoginComponent extends Component {
     }
 
     logOut = () => {
-        const lang = localStorage.getItem("lang");
-        localStorage.clear();
-        localStorage.setItem("lang", lang);
-        delete axios.defaults.headers.common.Authorization;
-        store.dispatch({ type: "close" });
-        window.location.reload();
+        ApiService.logOut();
     }
     
     close = () => {

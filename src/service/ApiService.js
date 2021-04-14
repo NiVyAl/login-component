@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { store } from '../store';
 
 // const url = "http://localhost:4000";
 const url = "http://192.168.0.105:4000";
@@ -62,6 +63,18 @@ class ApiService {
 
     getReviewers() {
         return axios.get(`${url}/reviewers/getReviewers?of=0&to=100`);
+    }
+
+    logOut() {
+        if (store.getState() != "log")
+            return;
+
+        const lang = localStorage.getItem("lang");
+        localStorage.clear();
+        localStorage.setItem("lang", lang);
+        delete axios.defaults.headers.common.Authorization;
+        store.dispatch({ type: "close" });
+        window.location.reload();
     }
 }
 

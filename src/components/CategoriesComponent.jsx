@@ -15,6 +15,11 @@ class CategoriesComponent extends Component {
 			.then((response) => {
 				this.setState({allCategories: response.data})
 			})
+			.catch((error) => {
+				if (error.response.status == 401) {
+					ApiService.logOut();
+				}
+			})
 	}
 	 
 
