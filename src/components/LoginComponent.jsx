@@ -4,6 +4,7 @@ import ApiService from "../service/ApiService";
 import InputComponent from "../components/service/InputComponent";
 import axios from 'axios';
 import TranslatableText from "./service/TranslatableText";
+import {Link} from 'react-router-dom';
 
 class LoginComponent extends Component {
 
@@ -119,11 +120,11 @@ class LoginComponent extends Component {
               <p className="login-container__error">Неверный логин или пароль</p>
               <p className="login-container__error--network-text">Проблема соединения с сервером</p>
               
-              <a href="/" className="login-container__remember-password link"><TranslatableText 
+              <Link to="/" className="login-container__remember-password link"><TranslatableText 
                 text={{
                   ru: "Не помню пароль",
                   en: "Forgot password",
-                }}/></a>
+                }}/></Link>
             </div>
             <div className="login-container__buttons">
               <button type="submit" className="login-container__button button login-container__button--login"><TranslatableText 
@@ -131,11 +132,11 @@ class LoginComponent extends Component {
                   ru: "Войти",
                   en: "Log in",
                 }}/></button>
-              <a href="/registration" className="login-container__button button login-container__button--registration"><TranslatableText 
+              <Link to="/registration" className="login-container__button button login-container__button--registration"><TranslatableText 
                 text={{
                   ru: "Зарегистрироваться",
                   en: "Sign up",
-                }}/></a>
+                }}/></Link>
             </div>
           </form>
         </div>

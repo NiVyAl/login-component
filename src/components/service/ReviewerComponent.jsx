@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class ReviewerComponent extends Component {
     render() {
@@ -17,16 +18,16 @@ class ReviewerComponent extends Component {
                     {/* Тут цикл */}
                     <tr className="reviewer-container__tr">
                         <td className="reviewer__item reviewer__item--name">Иванов Иван Иванович</td>
-                        <td className="reviewer__item"><a href="/" className="link">10</a></td> {/* находятся на рецензии */}
-                        <td className="reviewer__item"><a href="/" className="link">50</a></td> {/* ожидают повторного рецензирования*/}
-                        <td className="reviewer__item"><a href="/" className="link">3</a></td> {/* написано рецензий (за все время) */}
+                        <td className="reviewer__item"><Link to="/" className="link">10</Link></td> {/* находятся на рецензии */}
+                        <td className="reviewer__item"><Link to="/" className="link">50</Link></td> {/* ожидают повторного рецензирования*/}
+                        <td className="reviewer__item"><Link to="/" className="link">3</Link></td> {/* написано рецензий (за все время) */}
                     </tr>
 
                     <tr className="reviewer-container__tr">
                         <td className="reviewer__item reviewer__item--name">Иванов Иван Ивановичы</td>
-                        <td className="reviewer__item"><a href="/" className="link">25</a></td> {/* находятся на рецензии */}
-                        <td className="reviewer__item"><a href="/" className="link">34</a></td> {/* ожидают повторного рецензирования*/}
-                        <td className="reviewer__item"><a href="/" className="link">80</a></td> {/* написано рецензий (за все время) */}
+                        <td className="reviewer__item"><Link to="/" className="link">25</Link></td> {/* находятся на рецензии */}
+                        <td className="reviewer__item"><Link to="/" className="link">34</Link></td> {/* ожидают повторного рецензирования*/}
+                        <td className="reviewer__item"><Link to="/" className="link">80</Link></td> {/* написано рецензий (за все время) */}
                     </tr>
                 </tbody>
             </tabel>

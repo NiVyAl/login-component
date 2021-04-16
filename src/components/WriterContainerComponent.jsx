@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 import TranslatableText from "./service/TranslatableText";
 import ArticlesComponent from './ArticlesComponent';
+import {Link} from 'react-router-dom';
 
 class WriterContainerComponent extends Component { 
 	constructor(props){
@@ -38,12 +39,12 @@ class WriterContainerComponent extends Component {
 				</h2>
 				<ArticlesComponent data={this.state.articles} filterData={this.filterData} filterName={this.filterName} renderButton={
                         (item) => (
-							<a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}><TranslatableText 
+							<Link to={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}><TranslatableText 
 								text={{
 								ru: "Редактировать",
 								en: "Edit article",
 								}}/>
-							</a>	
+							</Link>	
 						)
 					}
 				/>

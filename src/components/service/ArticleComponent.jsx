@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TranslatableText from "./TranslatableText";
+import {Link} from 'react-router-dom';
 
 class ArticleComponent extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class ArticleComponent extends Component {
                                 <path d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m5 2H6v16h12v-9h-7V4z"></path>
                             </svg>
                             <span className="more-list__title">{fileName}</span>
-                            <span className="more-list__content link"><a href={data[fileName]} className="link" download>Скачать</a></span>
+                            <span className="more-list__content link"><Link to={data[fileName]} className="link" download>Скачать</Link></span>
                         </p>
                     </li>		
 				)}
@@ -48,12 +49,12 @@ class ArticleComponent extends Component {
                     </span> 
                     {this.props.item.articleStatus}
                 </p>
-                <a href="/" className="link articles-container__link" download><TranslatableText 
+                <Link to="/" className="link articles-container__link" download><TranslatableText 
                     text={{
                     ru: "Скачать",
                     en: "Download",
                     }}/>
-                </a>
+                </Link>
                 <p className="articles-container__status articles-container__status--new-line">
                     <span className="text-bold more-list__title"><TranslatableText 
                         text={{

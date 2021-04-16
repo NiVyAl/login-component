@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import TranslatableText from "./service/TranslatableText";
+import {Link} from 'react-router-dom';
 
 class FooterComponent extends Component {
     render() {
         return(
             <footer className="footer">
-                <a className="footer__link" target="_blank" href="/pdf/about.pdf"><TranslatableText 
+                <Link className="footer__link" target="_blank" to="/pdf/about.pdf"><TranslatableText 
                 text={{
                   ru: "О журнале",
                   en: "About",
-                }}/></a>
-                <a className="footer__link" target="_blank" href="/pdf/ethics.pdf"><TranslatableText 
+                }}/></Link>
+                <Link className="footer__link" target="_blank" to="/pdf/ethics.pdf"><TranslatableText 
                 text={{
                   ru: "Публикационная этика",
                   en: "Publication ethics",
-                }}/></a>
-                <a className="footer__link" target="_blank" href="/pdf/regular.pdf"><TranslatableText 
+                }}/></Link>
+                <Link className="footer__link" target="_blank" to="/pdf/regular.pdf"><TranslatableText 
                 text={{
                   ru: "Правила для авторов",
                   en: "Guide for authors",
-                }}/></a>
+                }}/></Link>
             </footer>
         )
     }

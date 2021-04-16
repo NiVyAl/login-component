@@ -5,6 +5,7 @@ import checkLog from "../service/checkLog";
 import getGetRequest from '../service/getGetRequest';
 import isEmptyObject from '../service/isEmptyObject';
 import TranslatableText from "./service/TranslatableText";
+import {Link} from 'react-router-dom';
 
 class AddArticle2Component extends Component {
 	constructor(props){
@@ -135,7 +136,7 @@ class AddArticle2Component extends Component {
 									</span>	
 								</div>
 								
-								<a href={`/addArticle/step1?articleId=${this.articleId}`} className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</a>
+								<Link to={`/addArticle/step1?articleId=${this.articleId}`} className="add-article__link text-button" type="submit">Вернуться на предыдущий шаг</Link>
 								<button className="button window__button" type="submit">Отправить на проверку</button>
 							</form>
 						}
@@ -144,7 +145,7 @@ class AddArticle2Component extends Component {
 				{this.state.isSend === true &&
 					<div>
 						<h2 className="sub-title add-article__title registration__title">Статья отправлена!</h2>
-						<p className="confirm__text">Статья загружена, посмотреть ее статус можно <a href="/profile">здесь</a></p>
+						<p className="confirm__text">Статья загружена, посмотреть ее статус можно <Link to="/profile">здесь</Link></p>
 					</div>
 				}
 				

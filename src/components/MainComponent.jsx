@@ -9,6 +9,7 @@ import cover9 from '../img/covers/9.jpg'
 import cover10 from '../img/covers/10.jpg'
 import TranslatableText from "./service/TranslatableText";
 import LatestArticlesComponent from "./service/LatestArticlesComponent";
+import {Link} from 'react-router-dom';
 
 class MainComponent extends Component {
     constructor(props) {
@@ -52,14 +53,14 @@ class MainComponent extends Component {
                             <button className="slider__button slider__button--left" onClick={this.sliderMove}></button>
                             <div className="slider__img-container">
                                 <ul className="slider__list" >
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover8} alt="cover"/></a></li>
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover9} alt="cover"/></a></li>
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover10} alt="cover"/></a></li>
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover1} alt="cover"/></a></li>
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover2} alt="cover"/></a></li>
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover6} alt="cover"/></a></li>
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover5} alt="cover"/></a></li>
-                                    <li className="slider__item"><a href="/" target="_blank" className="slider__link"><img className="slider__img" src={cover4} alt="cover"/></a></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover8} alt="cover"/></Link></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover9} alt="cover"/></Link></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover10} alt="cover"/></Link></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover1} alt="cover"/></Link></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover2} alt="cover"/></Link></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover6} alt="cover"/></Link></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover5} alt="cover"/></Link></li>
+                                    <li className="slider__item"><Link to="/" target="_blank" className="slider__link"><img className="slider__img" src={cover4} alt="cover"/></Link></li>
                                 </ul>
                             </div>
                             <button className="slider__button slider__button--right" onClick={this.sliderMove}></button>

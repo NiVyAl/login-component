@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TranslatableText from "./TranslatableText";
+import {Link} from 'react-router-dom';
 // import axios from 'axios';
 
 class LatestArticlesComponent extends Component {
@@ -44,12 +45,12 @@ class LatestArticlesComponent extends Component {
                     <ul className="latest__list">
                         <li className="latest__item">
                             <time className="latest__date">2020-T23-№4</time>
-                            <a href="https://www.elibrary.ru/item.asp?id=42739012" className="latest__link" target="_blank"><TranslatableText 
+                            <Link to="https://www.elibrary.ru/item.asp?id=42739012" className="latest__link" target="_blank"><TranslatableText 
                                 text={{
                                 ru: "ОБЗОР ОСНОВНЫХ МЕТОДОВ ОПРЕДЕЛЕНИЯ ОСТАТОЧНОГО КОЛИЧЕСТВА АНТИБИОТИКОВ В МЕДЕ",
                                 en: "REVIEW OF BASIC METHODS FOR DETERMINING RESIDUAL QUANTITIES OF ANTIBIOTICS IN HONEY",
                                 }}/>
-                            </a>
+                            </Link>
                             <p className="latest__description">
                                 <TranslatableText 
                                     text={{
@@ -69,12 +70,12 @@ class LatestArticlesComponent extends Component {
 
                         <li className="latest__item">
                             <time className="latest__date">2020-T23-№4</time>
-                            <a href="https://www.elibrary.ru/item.asp?id=42739014" className="latest__link" target="_blank"><TranslatableText 
+                            <Link to="https://www.elibrary.ru/item.asp?id=42739014" className="latest__link" target="_blank"><TranslatableText 
                                 text={{
                                 ru: "ОПТИЧЕСКИЕ И ЛЮМИНЕСЦЕНТНЫЕ СВОЙСТВА АДДУКТОВ ТРИС(Β-ДИКЕТОНАТОВ) ИТТРИЯ(III)",
                                 en: "OPTICAL AND LUMINESCENT PROPERTIES OF THE ADDUCTS OF YTTRIUM(III) TRIS (В-DIKETONATES)",
                                 }}/>
-                            </a>
+                            </Link>
                             <p className="latest__description">
                                 <TranslatableText 
                                     text={{
@@ -95,12 +96,12 @@ class LatestArticlesComponent extends Component {
 
                         <li className="latest__item">
                             <time className="latest__date">2020-T23-№4</time>
-                            <a href="https://www.elibrary.ru/item.asp?id=42739015" className="latest__link" target="_blank"><TranslatableText 
+                            <Link to="https://www.elibrary.ru/item.asp?id=42739015" className="latest__link" target="_blank"><TranslatableText 
                                 text={{
                                 ru: "КВАНТОВО-ХИМИЧЕСКОЕ ИЗУЧЕНИЕ СТРУКТУРЫ И ВОССТАНОВИТЕЛЬНОЙ АКТИВНОСТИ ЭТИЛЕНДИАМИНТЕТРААЦЕТАТ-СУЛЬФИТНЫХ КОМПЛЕКСОВ ВИСМУТА (III)",
                                 en: "QUANTUM CHEMICAL STUDY OF THE STRUCTURE AND REDUCTION ACTIVITY OF ETHYLENEDIAMINETETRAACETATE-SULPHITE COMPLEXES OF BISMUTH (III)",
                                 }}/>
-                            </a>
+                            </Link>
                             <p className="latest__description">
                                 <TranslatableText 
                                     text={{
@@ -121,12 +122,12 @@ class LatestArticlesComponent extends Component {
 
                         <li className="latest__item">
                             <time className="latest__date">2020-T23-№4</time>
-                            <a href="https://www.elibrary.ru/item.asp?id=42739016" className="latest__link" target="_blank"><TranslatableText 
+                            <Link to="https://www.elibrary.ru/item.asp?id=42739016" className="latest__link" target="_blank"><TranslatableText 
                                 text={{
                                 ru: "ВЛИЯНИЕ ЦИТРАТ-ИОНОВ НА СТРУКТУРНО-МОРФОЛОГИЧЕСКИЕ И БИОЛОГИЧЕСКИЕ СВОЙСТВА НАНОРАЗМЕРНОГО БИОМИМЕТИЧЕСКОГО ГИДРОКСИАПАТИТА, ДОПИРОВАННОГО СИЛИКАТ- И КАРБОНАТ-АНИОНАМИ",
                                 en: "INFLUENCE OF CITRATE IONS ON STRUCTURAL, MORPHOLOGICAL, AND BIOLOGICAL PROPERTIES OF NANOSIZED BIOMIMETIC HYDROXYAPATITE DOPED BY SILICATE AND CARBONATE ANIONS",
                                 }}/>
-                            </a>
+                            </Link>
                             <p className="latest__description">
                                 <TranslatableText 
                                     text={{
@@ -147,14 +148,14 @@ class LatestArticlesComponent extends Component {
 
                         {/* <li className="latest__item">
                         <time className="latest__date">2019-T22-№9</time>
-                        <a href="/" className="latest__link" target="_blank">АДСОРБЦИОННАЯ СПОСОБНОСТЬ МОДИФИЦИРОВАННЫХ КЛИНОПТИЛОЛИТОВ: ТЕРМОДИНАМИЧЕСКАЯ ОЦЕНКА</a>
+                        <Link to="/" className="latest__link" target="_blank">АДСОРБЦИОННАЯ СПОСОБНОСТЬ МОДИФИЦИРОВАННЫХ КЛИНОПТИЛОЛИТОВ: ТЕРМОДИНАМИЧЕСКАЯ ОЦЕНКА</Link>
                         <p className="latest__description">Ключевые слова: адсорбция, цеолиты, сточные воды, серный полимер, ионы тяжелых металлов.</p>
                         </li>
 
                         <li className="latest__item">
                         <time className="latest__date">2019-T22-№9</time>
-                        <a href="/" className="latest__link" target="_blank">РАСПРЕДЕЛЕННАЯ ОБРАБОТКА ДВУМЕРНЫХ МАССИВОВ ДАННЫХ
-                            НА ОСНОВЕ АППАРАТНЫХ IP-ЯДЕР В АРХИТЕКТУРЕ ПЛИС</a>
+                        <Link to="/" className="latest__link" target="_blank">РАСПРЕДЕЛЕННАЯ ОБРАБОТКА ДВУМЕРНЫХ МАССИВОВ ДАННЫХ
+                            НА ОСНОВЕ АППАРАТНЫХ IP-ЯДЕР В АРХИТЕКТУРЕ ПЛИС</Link>
                         <p className="latest__description">Ключевые слова: быстрое преобразование Фурье, оценки сложности, ПЛИС.</p>
                         </li> */}
 

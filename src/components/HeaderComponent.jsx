@@ -5,6 +5,7 @@ import UserLoginComponent from './UserLoginComponent';
 import TranslatableText from "./service/TranslatableText";
 import Language from "./service/LanguageContext";
 import SeachComponent from "./service/SeachComponent";
+import {Link} from 'react-router-dom';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -42,12 +43,12 @@ class HeaderComponent extends Component {
     return(
       <header className="header">
         <div className="header__logo logo-container">
-          <a href="http://www.kstu.ru/"><img className="logo-container__logo logo" src={logo} alt="логотип КНИТУ"/></a>
-          <h1 className="logo-container__title title"><a href="/" className="title__link"><TranslatableText 
+          <Link to="http://www.kstu.ru/"><img className="logo-container__logo logo" src={logo} alt="логотип КНИТУ"/></Link>
+          <h1 className="logo-container__title title"><Link to="/" className="title__link"><TranslatableText 
                 text={{
                   ru: "Вестник технологического университета",
                   en: "Bulletin of the Technological University",
-                }}/></a>
+                }}/></Link>
           </h1>
         </div>
 
@@ -62,12 +63,12 @@ class HeaderComponent extends Component {
                   en: "log in",
                 }}/>
               </button>
-              <a href="/registration" className="account-button--registration button header__button"><TranslatableText 
+              <Link to="/registration" className="account-button--registration button header__button"><TranslatableText 
                 text={{
                   ru: "регистрация",
                   en: "sign up",
                 }}/>
-              </a>
+              </Link>
             </div>
           }
           {this.state.isLog === "log" &&

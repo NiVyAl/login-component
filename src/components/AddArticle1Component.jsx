@@ -7,6 +7,7 @@ import checkLog from "../service/checkLog";
 import getGetRequest from "../service/getGetRequest";
 import TranslatableText from "./service/TranslatableText";
 import FormControlComponent from "../components/service/FormControlComponent";
+import {Link} from 'react-router-dom';
 
 class AddArticle1Component extends Component {
 	constructor(props){
@@ -109,7 +110,7 @@ class AddArticle1Component extends Component {
 								<TextAreaComponent handleChange={handleChange} text={{ru: "Аннотация", en: "Annotation"}} name="annotation" noPostValue={this.state.articleData.annotation}/>
 
 								{this.state.isEdited &&
-									<a href={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</a>
+									<Link to={`/addArticle/step2?articleId=${this.state.isEdited}`} className="add-article__link text-button" type="submit">Продолжить без сохранения изменений</Link>
 								}
 								<button className="button window__button" type="submit"><TranslatableText 
 									text={{

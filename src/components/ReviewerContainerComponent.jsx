@@ -3,6 +3,7 @@ import ApiService from "../service/ApiService";
 import ArticleComponent from "./service/ArticleComponent";
 import TranslatableText from "./service/TranslatableText";
 import ArticlesComponent from './ArticlesComponent';
+import {Link} from 'react-router-dom';
 
 class ReviewerContainerComponent extends Component {
 	constructor(props){
@@ -63,7 +64,7 @@ class ReviewerContainerComponent extends Component {
 	// 			{files.map(fileName => 
 	// 				<li className="more-list__item" key={fileName}>
 	// 					<p className="more-list__title">{fileName}</p>
-	// 					<p className="more-list__content"><a href={data[fileName]} className="link" download>Скачать</a></p>
+	// 					<p className="more-list__content"><Link to={data[fileName]} className="link" download>Скачать</Link></p>
 	// 				</li>		
 	// 			)}
 	// 		</div>
@@ -78,7 +79,7 @@ class ReviewerContainerComponent extends Component {
                         (item) => (
 							<React.Fragment>
 								{/* {item.articleStatus === "В процессе" && */}  {/*показывать кнопку только статьям ожидающим рецензии*/}
-									<a href={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</a>	
+									<Link to={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</Link>	
 								{/* } */}
 							</React.Fragment>
 						)
@@ -94,7 +95,7 @@ class ReviewerContainerComponent extends Component {
 								<ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
 								<p className="articles-container__text-button text-button" id={item.articleId + "btnMore"} onClick={this.openMore}>Больше информации</p>
 								{item.articleStatus === "В процессе" &&
-									<a href={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</a>
+									<Link to={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</Link>
 								}
 								{item.articleStatus === "Одобрена" &&
 									<p className="articles-container__button-edit-status button articles-container__button--succes" id={item.articleId}>Статья одобрена</p>

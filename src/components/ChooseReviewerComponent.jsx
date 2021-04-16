@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CheckboxComponent from './service/CheckboxComponent';
+import {Link} from 'react-router-dom';
 
 class ChooseReviewerComponent extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class ChooseReviewerComponent extends Component {
                     <div className="choose-reviewer__reviewer-container reviewer-container">
                         <div className="reviewer-container__sub-container reviewer-container__sub-container--main">
                             <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/>
-                            {/* <a href="/allReviewer">Информация о всех рецентах</a> */}
+                            {/* <Link to="/allReviewer">Информация о всех рецентах</Link> */}
                             <CheckboxComponent name="reviewer2" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer3" text="Игорь Николаевич Маресьев"/>
                             <CheckboxComponent name="reviewer4" text="Игорь Николаевич Маресьев"/>

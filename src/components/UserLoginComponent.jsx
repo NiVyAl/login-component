@@ -3,6 +3,7 @@ import userAvatar from '../img/user-icon.png'
 import axios from 'axios';
 import TranslatableText from "./service/TranslatableText";
 import { store } from '../store';
+import {Link} from 'react-router-dom';
 import ApiService from '../service/ApiService';
 
 class UserLoginComponent extends Component {
@@ -69,34 +70,34 @@ class UserLoginComponent extends Component {
                         <p className="user-login__modal-name">{localStorage.getItem("log")}</p>
                         <p className="user-login__email">{localStorage.getItem("email")}</p>
                         
-                        <a className="user-login__link" href="/profile"><TranslatableText 
+                        <Link className="user-login__link" to="/profile"><TranslatableText 
                             text={{
                             ru: "Личный кабинет",
                             en: "Profile",
                             }}/>
-                        </a>
+                        </Link>
                         {this.state.isCanAddArticle &&
-                            <a className="user-login__link" href="/addArticle/step1"><TranslatableText 
+                            <Link className="user-login__link" to="/addArticle/step1"><TranslatableText 
                                 text={{
                                 ru: "Добавить статью",
                                 en: "Add article",
                                 }}/>
-                            </a>
+                            </Link>
                         }
                         {this.state.isCanAddUser &&
                             <div>
-                                <a className="user-login__link" href="/addUser"><TranslatableText 
+                                <Link className="user-login__link" to="/addUser"><TranslatableText 
                                     text={{
                                     ru: "Создать пользователя",
                                     en: "Create user",
                                     }}/>
-                                </a>
-                                <a className="user-login__link" href="/allReviewer"><TranslatableText 
+                                </Link>
+                                <Link className="user-login__link" to="/allReviewer"><TranslatableText 
                                     text={{
                                     ru: "Все рецензенты",
                                     en: "All reviewer",
                                     }}/>
-                                </a>
+                                </Link>
                             </div>
                         }
                         <button onClick={this.logOut} className="user-login__link user-login__link--logout"><TranslatableText 
