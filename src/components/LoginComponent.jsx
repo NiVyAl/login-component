@@ -56,21 +56,19 @@ class LoginComponent extends Component {
       .then(res => {
         console.log(res);
         this.window.current.classList.remove("load");
-        if (res.status === 200) {
+        if (res.status === 200)
           this.log(res)
-        }
       })
       .catch(error => {
-        if (this.window.current) { // проверка на открытость окна
-          this.window.current.classList.remove("load");
-          if (error.response) {
-            if (error.response.status === 401) {
-              this.container.current.classList.add("login-container--error-password");
-            }
-          } else {
-            this.container.current.classList.add("login-container--error-network");
-          }
-        }  
+        if (!this.window.current) // проверка на открытость окна
+          return;
+
+        this.window.current.classList.remove("load");
+        if (error.response && error.response.status === 401) {
+          this.container.current.classList.add("login-container--error-password");
+        } else {
+          this.container.current.classList.add("login-container--error-network");
+        }
       })
   }
 
