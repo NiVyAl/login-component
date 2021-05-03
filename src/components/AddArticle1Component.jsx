@@ -75,22 +75,22 @@ class AddArticle1Component extends Component {
 	render() {
 		return(
 			<div className="add-article window" ref={this.window}>
-				{this.state.isEdited &&
-					<h2 className="sub-title add-article__title window__title"><TranslatableText 
-						text={{
-						ru: "Редактирование статьи (шаг 1)",
-						en: "Edit article (step 1)",
+				<h2 className="sub-title add-article__title window__title">
+					{this.state.isEdited &&
+						<TranslatableText 
+							text={{
+							ru: "Редактирование статьи (шаг 1)",
+							en: "Edit article (step 1)",
 						}}/>
-					</h2>
-				}
-				{!this.state.isEdited &&
-					<h2 className="sub-title add-article__title window__title"><TranslatableText 
-						text={{
-						ru: "Добавление статьи (шаг 1)",
-						en: "Add article (step 1)",
+					}
+					{!this.state.isEdited &&
+						<TranslatableText 
+							text={{
+							ru: "Добавление статьи (шаг 1)",
+							en: "Add article (step 1)",
 						}}/>
-					</h2>
-				}
+					}
+				</h2>
 				
 				{this.state.isStartRender &&
 					<FormControlComponent onSubmit={data => this.sendArticle(data)} render={

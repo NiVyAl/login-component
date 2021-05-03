@@ -48,7 +48,7 @@ class ArticlesComponent extends Component {
                         )}
                     </ul>
                 }
-                {!this.props.data &&
+                {this.props.data.length === 0 &&
                     <p className="articles-container__no-articles">Здесь пока ничего нет...</p>
                 }
             </React.Fragment>
