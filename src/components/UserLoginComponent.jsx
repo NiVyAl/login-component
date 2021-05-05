@@ -94,10 +94,10 @@ class UserLoginComponent extends Component {
                         }
                         {this.state.isCanAddUser &&
                             <React.Fragment>
-                                <Link className="user-login__link" to="/addUser"><TranslatableText 
+                                <Link className="user-login__link" to="/allArticles"><TranslatableText 
                                     text={{
                                     ru: "Поступившие статьи",
-                                    en: "Create user",
+                                    en: "Received articles for review",
                                     }}/>
                                 </Link>
                                 <Link className="user-login__link" to="/addUser"><TranslatableText 

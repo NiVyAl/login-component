@@ -38,7 +38,7 @@ class ArticlesComponent extends Component {
                     <ul className="articles-container__list">
                         {this.props.data.map(item =>
                             <React.Fragment key={item.articleId}>
-                                {(item.articleId === this.state.filter || this.state.filter === "all") && // здесь проверяем на нужный state
+                                {(item.articleId === this.state.filter || this.state.filter === "all") && // здесь проверяем на нужный state (item.articleId заменить на item.state)
                                     <li className="articles-container__item">
                                         <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
                                         {this.props.renderButton(item)}

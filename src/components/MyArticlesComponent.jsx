@@ -5,6 +5,9 @@ import ArticlesComponent from './ArticlesComponent';
 import {Link} from 'react-router-dom';
 import ApiService from "../service/ApiService";
 
+/**
+ * Страница "Мои статьи", отображает все статьи отправленные пользователем на рецензирование
+ */
 class MyArticlesComponent extends Component {
     constructor(props) {
         super(props);
@@ -13,8 +16,14 @@ class MyArticlesComponent extends Component {
             articles: [],
         }
     }
-    filterData = [{id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true}, {id: 16, text: "Находятся на рецензировании"}, {id: 25, text: "Требуют доработки"}, {id: 18, text: "Приняты"}, {id: 15, text: "Отклонены"}];
-	filterName = "filter-radio";
+
+    filterName = "filter-radio";
+    filterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true},
+                    {id: 16, text: "Находятся на рецензировании"},
+                    {id: 25, text: "Требуют доработки"},
+                    {id: 18, text: {ru: "Приняты", en: "Accepted аrticles"}},
+                    {id: 15, text: {ru: "Отклонены", en: "Rejected articles"}}
+                 ];
 
     componentDidMount() {
         if (!checkAccessibility(["WRITE_PRIVILEGE"]))
@@ -26,7 +35,6 @@ class MyArticlesComponent extends Component {
                     this.setState({articles: response.data.reverse()})
                 }
         })
-            
     }
     
     render() {

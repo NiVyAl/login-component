@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import CheckboxComponent from './service/CheckboxComponent';
 import {Link} from 'react-router-dom';
 
+/**
+ * Модальное окно для выбора рецензента
+ */
 class ChooseReviewerComponent extends Component {
     constructor(props) {
         super(props);
@@ -40,8 +43,9 @@ class ChooseReviewerComponent extends Component {
             <div className="modal-window">
                 <div onClick={() => this.props.close()} className="modal-window__background"></div>
                 <form className="choose-reviewer modal-window__window" onSubmit={this.handleSubmit}>
-                    <p className="modal-window__title sub-title">Выберите рецензентов</p>
-                    <p className="choose-reviewer__article-name modal-window__title-description title-description">{this.props.title}ЭЛЕКТРОХИМИЧЕСКИЙ МЕТОД ИССЛЕДОВАНИЯ ПРОЦЕССОВ МИКРОБНОЙ КОРРОЗИИ</p>
+                    <p className="modal-window__title sub-title">Выбор рецензента</p>
+                    <p className="choose-reviewer__article-name modal-window__title-description title-description">Название: {this.props.article.articleName}</p>
+                    <p className="choose-reviewer__article-name modal-window__title-description title-description">Раздел журнала: {this.props.article.subject}</p>
                     <div className="choose-reviewer__reviewer-container reviewer-container">
                         <div className="reviewer-container__sub-container reviewer-container__sub-container--main">
                             <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/>

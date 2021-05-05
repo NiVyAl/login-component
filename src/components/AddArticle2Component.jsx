@@ -145,7 +145,7 @@ class AddArticle2Component extends Component {
 				{this.state.isSend === true &&
 					<div>
 						<h2 className="sub-title add-article__title registration__title">Статья отправлена!</h2>
-						<p className="confirm__text">Статья загружена, посмотреть ее статус можно <Link to="/profile">здесь</Link></p>
+						<p className="confirm__text">Статья загружена, посмотреть ее статус можно <Link to="/myArticles">здесь</Link></p>
 					</div>
 				}
 				
