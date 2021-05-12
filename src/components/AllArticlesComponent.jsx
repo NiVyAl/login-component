@@ -24,8 +24,8 @@ class AllArticlesComponent extends Component {
      */
     PendingReviewerSelectionFilter = {id: 39, text: "Ожидают выбора рецензента", isChecked: true};
 
-    filterName = "filter-radio";
-    filterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}},
+    FilterName = "filter-radio";
+    FilterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}},
                     this.PendingReviewerSelectionFilter,
                     {id: 16, text: "Находятся на рецензировании"},
                     {id: 20, text: "Отправлены на доработку"},
@@ -42,15 +42,8 @@ class AllArticlesComponent extends Component {
     }
 
     getArticles() {
-        // ApiService.getAllArticles(localStorage.getItem("userId"))
-        // .then((response) => {
-    //         if (response.data.length > 0) {
-    //             this.setState({articles: response.data.reverse()})
-    //         }
-        // })
-        ApiService.getArticles(localStorage.getItem("userId"))
+        ApiService.getAllArticles(localStorage.getItem("userId"))
         .then((response) => {
-            console.log(response);
             if (response.data.length > 0) {
                 this.setState({articles: response.data.reverse()})
             }
@@ -80,7 +73,7 @@ class AllArticlesComponent extends Component {
 					<ChooseReviewerComponent close={this.modalOpenToggle} article={this.state.selectedArticle}/>
 				}
 
-                <ArticlesComponent data={this.state.articles} filterData={this.filterData} filterName={this.filterName} renderButton={
+                <ArticlesComponent data={this.state.articles} filterData={this.FilterData} filterName={this.FilterName} renderButton={
                     (item) => (
                         <React.Fragment>
                             {item.articleId === this.PendingReviewerSelectionFilter.id &&

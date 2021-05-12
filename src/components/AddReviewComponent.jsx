@@ -4,6 +4,7 @@ import SelectInputComponent from "../components/service/SelectInputComponent";
 import ApiService from "../service/ApiService";
 import getGetRequest from "../service/getGetRequest";
 import FormControlComponent from "../components/service/FormControlComponent";
+import checkAccessibility from '../service/checkAccessibility';
 import TranslatableText from "./service/TranslatableText";
 
 class AddReviewComponent extends Component {
@@ -23,6 +24,9 @@ class AddReviewComponent extends Component {
     }
     
     componentDidMount() {
+        if (!checkAccessibility(["REVIEW_PRIVILEGE"]))
+            window.location.href="/";
+
         ApiService.getArticle(getGetRequest())
             .then((response) => {
                 this.setState({articleName: response.data.articleName})
@@ -32,11 +36,11 @@ class AddReviewComponent extends Component {
     sendForm = (data) => {
         console.log(data);
         // this.container.current.classList.add("load");
-        // ApiService.addReview(data)
-        //     .then(res => {
-        //         console.log(res);
-        //         this.setState({isSend: true});
-        //     })
+        ApiService.addReview(data)
+            .then(res => {
+                console.log(res);
+                this.setState({isSend: true});
+            })
     }
     
     render() {

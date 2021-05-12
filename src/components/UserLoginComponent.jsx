@@ -15,6 +15,8 @@ class UserLoginComponent extends Component {
 
         this.state = {
             isCanAddUser: false,
+            isCanAddArticle: false,
+            isCanAddReview: false,
         }
     }
 
@@ -27,6 +29,9 @@ class UserLoginComponent extends Component {
                 }
                 if (i === "WRITE_PRIVILEGE") {
                     this.setState({isCanAddArticle: true});
+                }
+                if (i === "REVIEW_PRIVILEGE") {
+                    this.setState({isCanAddReview: true});
                 }
             }
         }
@@ -96,7 +101,7 @@ class UserLoginComponent extends Component {
                             <React.Fragment>
                                 <Link className="user-login__link" to="/allArticles"><TranslatableText 
                                     text={{
-                                    ru: "Поступившие статьи",
+                                    ru: "Все поступившие статьи",
                                     en: "Received articles for review",
                                     }}/>
                                 </Link>
@@ -115,10 +120,10 @@ class UserLoginComponent extends Component {
                             </React.Fragment>
                         }
                         {this.state.isCanAddReview &&
-                            <Link className="user-login__link" to="/addArticle/step1"><TranslatableText 
+                            <Link className="user-login__link" to="/articlesForReview"><TranslatableText 
                                 text={{
-                                ru: "Рецензируемые статьи",
-                                en: "Add article",
+                                ru: "Статьи ожидающие вашей рецензии",
+                                en: "Articles for review",
                                 }}/>
                             </Link>
                         }

@@ -14,6 +14,9 @@ import RadioButtonComponent from "./service/RadioButtonComponent";
     }
 /> */
 
+/**
+ * Компонент для вывода списка статей
+ */
 class ArticlesComponent extends Component {
     constructor(props) {
         super(props);
