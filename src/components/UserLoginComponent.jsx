@@ -6,6 +6,9 @@ import { store } from '../store';
 import {Link} from 'react-router-dom';
 import ApiService from '../service/ApiService';
 
+/**
+ * Меню авторизованного пользователя (в хедере справа)
+ */
 class UserLoginComponent extends Component {
     constructor(props) {
         super(props);

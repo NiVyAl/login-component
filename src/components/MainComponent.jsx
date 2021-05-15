@@ -11,6 +11,9 @@ import TranslatableText from "./service/TranslatableText";
 import LatestArticlesComponent from "./service/LatestArticlesComponent";
 import {Link} from 'react-router-dom';
 
+/**
+ * Главная страница
+ */
 class MainComponent extends Component {
     constructor(props) {
         super(props);

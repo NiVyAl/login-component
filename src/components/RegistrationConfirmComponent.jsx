@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
 import ApiService from "../service/ApiService";
 
+/**
+ * Страница с подтверждением email (при клике по ссылке в письме)
+ */
 class RegistrationConfirmComponent extends Component {
 	constructor(props)  {
 		super(props);
 
 		this.state = {
 			isConfirm: false,
-			// token: "",
 		}
 		this.window = React.createRef();
 	}
 
-	// componentDidMount() {
-	// 	let data = window.location.href;
-	// 		let newData = "";
-	// 		for (let i = 0; i < data.length; i++) {
-	// 			if (data[i] === "=") {
-	// 				newData = data.slice(i+1, data.length);
-	// 				break
-	// 			}
-	// 		}
-	// 	console.log(newData);
-	// 	this.setState({token: newData});
-	// }
 	componentDidMount() {
 		this.sendToken();
 	}
@@ -48,15 +38,7 @@ class RegistrationConfirmComponent extends Component {
 						this.window.current.classList.remove("load");
 					}
 				})
-			// try {
-			// 	const response = await axios.post(url, { newData });
-			// 	this.setState({isResponce: response})
-			// 	console.log('Returned data:', response);
-			// } catch (e) {
-			// 	console.log(this.state.isResponce); 
-			// 	console.log(`Axios request failed: ` + e);
-			// 	}
-		}	
+		}
 	}
 	
 	

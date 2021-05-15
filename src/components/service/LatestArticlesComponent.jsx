@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import TranslatableText from "./TranslatableText";
-// import axios from 'axios';
+import axios from 'axios';
 
+/**
+ * Последние статьи добавленные в журнал (отображается на главной странице).
+ */
 class LatestArticlesComponent extends Component {
     constructor(props) {
         super(props);
@@ -14,15 +17,15 @@ class LatestArticlesComponent extends Component {
 
     }
 
-    // componentDidMount() {
-    //     // let response = axios.get("https://elibrary.ru/title_items.asp?id=8488");
-    //     // console.log(response);
+    componentDidMount() {
+        // let response = axios.get("https://elibrary.ru/title_items.asp?id=8488");
+        // console.log(response);
 
-    //     // console.log(this.iframe.current);
-    //     this.iframe.current.onload = () => {
-    //         this.setLatest();
-    //     }
-    // }
+        // console.log(this.iframe.current);
+        // this.iframe.current.onload = () => {
+        //     this.setLatest();
+        // }
+    }
 
     // setLatest = () => {
     //     // console.log(this.iframe.current);

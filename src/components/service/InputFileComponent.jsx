@@ -3,8 +3,9 @@ import InputComponent from "../service/InputComponent";
 import translateText from '../../service/translateText';
 import TranslatableText from "./TranslatableText";
 
-//<InputFileComponent id={item} default={this.dataGet[item]} handleChange={this.handleChange} close={() => this.closeInput(number)}/>
-
+/**
+ * Компонент для отправки файлов
+ */
 class InputFileComponent extends Component {
 	constructor(props) {
 		super(props);
@@ -48,7 +49,6 @@ class InputFileComponent extends Component {
 		return(
 			<div className="input-file">
 				<div className="input-file__description">
-					{/* <InputComponent text="Описание файла" name={`file${this.props.id}Description`} handleChange={this.textHandleChange} type="text" maxLength="250" value={this.props.default} required/> */}
 					{!this.props.default &&
 						<InputComponent text={{ru: "Описание файла", en: "File description"}} name={`file${this.props.id}Description`} handleChange={this.textHandleChange} type="text" maxLength="250" value={this.props.default} required/>
 					}

@@ -16,7 +16,6 @@ class HeaderComponent extends Component {
     }
 
     store.subscribe(() => this.setState({isLog: store.getState()}));
-    // console.log("header " + this.state.isLog + store.getState());
   }
 
   componentDidMount() {

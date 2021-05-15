@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
+/**
+ * Таблица со всеми рецензентами.
+ */
 class ReviewerComponent extends Component {
     render() {
         return(

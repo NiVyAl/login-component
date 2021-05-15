@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+/**
+ * Невидимый блок во всю страницу, располагающийся под модальным окном
+ */
 class ClosePopupComponent extends Component {
     constructor(props) {
         super(props);

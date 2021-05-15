@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import TranslatableText from './TranslatableText';
 
+/**
+ * Текстовое поле ввода
+ */
 class InputComponent extends Component {
 	constructor(props) {
 		super(props);

@@ -1,9 +1,10 @@
 import React from 'react';
 
+/**
+ * Определение языка установленного в localStorage.
+ */
 let Language;
-// if ((localStorage.getItem("lang") === "ru") || (!localStorage.getItem("lang")) || (localStorage.getItem("lang") === null)) {
-//     Language = React.createContext("ru");
-// }
+
 if (localStorage.getItem("lang") === "en") {
     Language = React.createContext("en");
 } else {

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import TranslatableText from "./TranslatableText";
 
+/**
+ * Отображение одной статьи в списке статей.
+ */
 class ArticleComponent extends Component {
     constructor(props) {
         super(props);
