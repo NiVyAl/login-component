@@ -3,6 +3,9 @@ import ApiService from "../service/ApiService";
 import TranslatableText from "./service/TranslatableText";
 import {Link} from 'react-router-dom';
 
+/**
+ * Боковое окно со списком специальностей
+ */
 class CategoriesComponent extends Component {
 	constructor(props) {
 		super(props);

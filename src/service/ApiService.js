@@ -42,11 +42,13 @@ export default class ApiService {
     } 
 
     static getAllArticles(userId) {  //для секретаря
-        return axios.get(`article/getAllArticles?of=0&to=10`)
+        return axios.get(`article/getArticles?of=0&to=10&id=${userId}`) // для теста
+        // return axios.get(`article/getAllArticles?of=0&to=10`) // раскомментировать
     }
 
     static getReviewerArticles(userId) {  //для проверяющего все статьи
-        return axios.get(`article/getAllArticles?of=0&to=10`)
+        return axios.get(`article/getArticles?of=0&to=10&id=${userId}`) // для теста
+        // return axios.get(`article/getAllArticles?of=0&to=10`) // раскомментировать
     }
 
     static getArticle(articleId) { // получить одну статью (по id)
@@ -76,4 +78,9 @@ export default class ApiService {
         store.dispatch({ type: "close" });
         window.location.reload();
     }
+
+    /**
+     * Категории статей журнала (Химия, Химическая технология, Информатика, вычислительная техника и управление)
+     */
+    static ArticlesCategories = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
 }

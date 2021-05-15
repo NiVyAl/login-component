@@ -7,6 +7,9 @@ import FormControlComponent from "../components/service/FormControlComponent";
 import checkAccessibility from '../service/checkAccessibility';
 import TranslatableText from "./service/TranslatableText";
 
+/**
+ * Страница добавления рецензии на статью.
+ */
 class AddReviewComponent extends Component {
     constructor(props) {
         super(props);
@@ -14,13 +17,15 @@ class AddReviewComponent extends Component {
         this.state = {
         }
 
-        this.selectSubject = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
+        this.selectSubject = ApiService.ArticlesCategories;
         this.selectQ1 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
         this.selectQ2 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
         this.selectQ3 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
         this.selectQ4 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
         this.selectQ5 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
         this.selectRecommendation = [{id: "0", text: "рекомендовать к публикации в представленном виде, без внесения изменений"}, {id: "1", text: "рекомендовать к публикации с небольшими изменениями в тексте статьи"}, {id: "2", text: "рекомендовать к публикации после внесения в текст статьи значительных изменений и повторного рецензирования"}, {id: "3", text: "отклонить в связи с неудовлетворительным научным содержанием статьи"}, {id: "4", text: "отклонить в связи с несоответствием тематики либо содержания статьи всем указанным выше профильным тематическим направлениям Журнала"}, {id: "5", text: "отклонить после повторного рецензирования"}];
+
+        this.container = React.createRef();
     }
     
     componentDidMount() {
@@ -35,17 +40,21 @@ class AddReviewComponent extends Component {
     
     sendForm = (data) => {
         console.log(data);
-        // this.container.current.classList.add("load");
+        this.container.current.classList.add("load");
         ApiService.addReview(data)
             .then(res => {
                 console.log(res);
                 this.setState({isSend: true});
             })
+            .catch(err => {
+                this.container.current.classList.remove("load");
+                this.container.current.classList.add("error-alert");
+            })
     }
     
     render() {
         return(
-            <div className="window add-review">
+            <div className="window add-review" ref={this.container}>
                 <h2 className="window__title sub-title">Заключение рецензента о возможности публикации статьи</h2>
                 <p className="add-review__articleName">{this.state.articleName}</p>
                 {this.state.isSend &&

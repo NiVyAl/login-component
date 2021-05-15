@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import ApiService from "../service/ApiService";
 
 /**
- * Страница "Статьи ожидающие рецензии", отображает все статьи отправленные рецензенту
+ * Страница "Статьи ожидающие рецензии" (для рецензента), отображает все статьи отправленные рецензенту
  */
 class MyArticlesComponent extends Component {
     constructor(props) {

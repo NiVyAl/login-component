@@ -7,7 +7,7 @@ import ApiService from "../service/ApiService";
 import ChooseReviewerComponent from "./ChooseReviewerComponent.jsx";
 
 /**
- * Страница "Статьи поступившие на рецензирование", отображает все статьи поступившие от авторов
+ * Страница "Статьи поступившие на рецензирование", отображает все статьи поступившие от авторов (страница для секретаря)
  */
 class AllArticlesComponent extends Component {
     constructor(props) {

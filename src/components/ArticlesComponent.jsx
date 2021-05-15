@@ -2,18 +2,6 @@ import React, { Component } from 'react';
 import ArticleComponent from "./service/ArticleComponent";
 import RadioButtonComponent from "./service/RadioButtonComponent";
 
-// this.filterData = [{id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true}, {id: 16, text: "Отправлены на проверку"}, {id: 25, text: "Требуют доработки"}, {id: 18, text: "Приняты"}, {id: 15, text: "Отклонены"}];
-// this.filterName = "filter-radio";
-// data -  (this.state.articles) статьи полученные с сервера
-/* <ArticlesComponent data={this.state.articles} filterData={this.filterData} filterName={this.filterName} renderButton={
-        (item) => (
-            <a href={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}>
-                Редактировать
-            </a>	
-        )
-    }
-/> */
-
 /**
  * Компонент для вывода списка статей
  */

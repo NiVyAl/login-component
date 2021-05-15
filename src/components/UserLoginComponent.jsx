@@ -122,7 +122,7 @@ class UserLoginComponent extends Component {
                         {this.state.isCanAddReview &&
                             <Link className="user-login__link" to="/articlesForReview"><TranslatableText 
                                 text={{
-                                ru: "Статьи ожидающие вашей рецензии",
+                                ru: "Статьи ожидающие Вашей рецензии",
                                 en: "Articles for review",
                                 }}/>
                             </Link>

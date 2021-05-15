@@ -3,15 +3,17 @@ import ApiService from "../service/ApiService";
 import InputComponent from "../components/service/InputComponent";
 import SelectInputComponent from "../components/service/SelectInputComponent";
 import FormControlComponent from "../components/service/FormControlComponent";
+import checkAccessibility from '../service/checkAccessibility';
 
+/**
+ * Страница создания пользователя администрацией.
+ */
 class AddUserComponent extends Component{
 
     constructor(props){
         super(props);
 
-        // this.inputData = ["02.00.00", "05.17.00", "05.13.00"];
-        // this.inputText = ["Химия (02.00.00)", "Химическая технология (05.17.00)", "Информатика, вычислительная техника и управление (05.13.00)" ];
-        this.selectData = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
+        this.selectData = ApiService.ArticlesCategories;;
         this.selectDataRole = [{id: "ROLE_ROOT", text: "Администратор"}, {id: "ROLE_ADMIN", text: "Секретарь"}, {id: "ROLE_REVIEWER", text: "Рецензент"}, {id: "ROLE_AUTHOR", text: "Автор"}];
         
         this.roles = ["ROLE_ROOT", "ROLE_ADMIN", "ROLE_REVIEWER", "ROLE_AUTHOR"];
@@ -31,41 +33,12 @@ class AddUserComponent extends Component{
             university: '',
             city: '',
             phone: '',
-            // role: this.roles[0],
-            // subject: this.inputData[0],
         }
-
-        // const privilege = JSON.parse(localStorage.getItem("privilege"));
-        // let acces = false;
-        // if (privilege) {
-        //     for (let i of privilege) {
-        //         if (i === "ADD_PRIVILEGE") {
-        //             acces = true;
-        //             this.setState({isReviewer: true})
-        //             break
-        //         }
-        //     }
-        // }
-        // if (!acces) {
-        //     window.location.href = "/";
-        // }
     }
 
     componentDidMount() {
-        const privilege = JSON.parse(localStorage.getItem("privilege"));
-        let acces = false;
-        if (privilege) {
-            for (let i of privilege) {
-                if (i === "ADD_PRIVILEGE") {
-                    acces = true;
-                    this.setState({isReviewer: true})
-                    break
-                }
-            }
-        }
-        if (!acces) {
-            window.location.href = "/";
-        }
+        if (!checkAccessibility(["ADD_PRIVILEGE"]))
+            window.location.href="/";
     }
 
     saveUser = (data) => {
@@ -79,7 +52,6 @@ class AddUserComponent extends Component{
     }
 
     handleChange = (name, id, formHandleChange) => {
-        // this.setState({ [e.target.id]: e.target.value });
         console.log(name, id);
         formHandleChange(name, id);
         if (id === "ROLE_REVIEWER") {
@@ -92,8 +64,6 @@ class AddUserComponent extends Component{
     render() {
         return(
             <div ref={this.window} className="registration window">
-                {this.state.isReviewer &&
-                <div>
                     <h2 className="sub-title window__title">Создать пользователя</h2>
                     <FormControlComponent onSubmit={data => this.saveUser(data)} render={
                             handleChange => (
@@ -111,18 +81,14 @@ class AddUserComponent extends Component{
                                     <InputComponent text="Логин" name="login" handleChange={handleChange} type="text" maxLength="30" required/>
                                     <InputComponent text="Пароль" name="password" handleChange={handleChange} type="password" maxLength="20" autoComplete="new-password" required/>
 
-                                    {/* <SelectInputComponent title="Роль пользователя:" id="role" change={handleChange} values={this.roles} texts={this.rolesNames}/> */}
                                     <SelectInputComponent title="Роль пользователя:" id="role" handleChange={(name, id) => this.handleChange(name, id, handleChange)} data={this.selectDataRole} isRequired={true}/>
                                     {this.state.isNeedSubject &&
                                         <SelectInputComponent title="Предмет рецензента:" id="subject" handleChange={handleChange} data={this.selectData} isRequired={true}/>
-                                        // <SelectInputComponent title="Предмет рецензента" id="subject" change={handleChange} values={this.inputData} texts={this.inputText}/>
                                     }
                                     <button className="button window__button" type="submit">Создать пользователя</button>
                                 </React.Fragment>
                             )
                     }/>
-                </div>
-                }
             </div>
         );
     }

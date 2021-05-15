@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import checkLog from "../service/checkLog";
-import WriterContainerComponent from './WriterContainerComponent';
-import ReviewerContainerComponent from './ReviewerContainerComponent';
-import SecretaryContainerComponent from './SecretaryContainerComponent';
+// import WriterContainerComponent from './WriterContainerComponent';
+// import ReviewerContainerComponent from './ReviewerContainerComponent';
+// import SecretaryContainerComponent from './SecretaryContainerComponent';
 import TranslatableText from "./service/TranslatableText";
 
 class ProfileComponent extends Component {
@@ -34,16 +34,16 @@ class ProfileComponent extends Component {
     }
     
     checkRoll = () => {
-        switch(this.state.role) {
-            case "writer":
-                return(<WriterContainerComponent/>);
-            case "secretary":
-                return(<SecretaryContainerComponent/>);
-            case "review":
-                return(<ReviewerContainerComponent/>);
-            default:
-                return (null);    
-        }
+        // switch(this.state.role) {
+        //     case "writer":
+        //         return(<WriterContainerComponent/>);
+        //     case "secretary":
+        //         return(<SecretaryContainerComponent/>);
+        //     case "review":
+        //         return(<ReviewerContainerComponent/>);
+        //     default:
+        //         return (null);    
+        // }
     }
     
     render() {

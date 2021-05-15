@@ -8,12 +8,16 @@ import getGetRequest from "../service/getGetRequest";
 import TranslatableText from "./service/TranslatableText";
 import FormControlComponent from "../components/service/FormControlComponent";
 import {Link} from 'react-router-dom';
+import checkAccessibility from '../service/checkAccessibility';
 
+/**
+ * Класс добавления/изменения статьи (первый шаг)
+ */
 class AddArticle1Component extends Component {
 	constructor(props){
 		super(props);
 		
-		this.selectData = [{id: "02.00.00", text: "Химия (02.00.00)"}, {id: "05.17.00", text: "Химическая технология (05.17.00)"}, {id: "05.13.00", text: "Информатика, вычислительная техника и управление (05.13.00)"}];
+		this.selectData = ApiService.ArticlesCategories;;
 
 		this.state ={
 			articleData: {
@@ -31,6 +35,8 @@ class AddArticle1Component extends Component {
   }
 
   componentDidMount() {
+	if (!checkAccessibility(["WRITE_PRIVILEGE"]))
+            window.location.href="/";
 	const articleId = getGetRequest(); //получаем get запрос (из адресной строки) если есть 
 	if (articleId) {  // определяем новая статья или редактируемая
 		this.getArticle(articleId); // получаем статью (Редактирование статьи)

@@ -6,7 +6,11 @@ import getGetRequest from '../service/getGetRequest';
 import isEmptyObject from '../service/isEmptyObject';
 import TranslatableText from "./service/TranslatableText";
 import {Link} from 'react-router-dom';
+import checkAccessibility from '../service/checkAccessibility';
 
+/**
+ * Класс добавления/изменения статьи (второй шаг)
+ */
 class AddArticle2Component extends Component {
 	constructor(props){
 		super(props);
@@ -26,6 +30,9 @@ class AddArticle2Component extends Component {
 	}
 
 	componentDidMount() {
+		if (!checkAccessibility(["WRITE_PRIVILEGE"]))
+            window.location.href="/";
+
 		ApiService.getArticle(this.articleId)
 			.then((response) => {
 				console.log(response);

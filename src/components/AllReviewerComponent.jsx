@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import ReviewerComponent from "../components/service/ReviewerComponent";
 import ApiService from "../service/ApiService";
 
+/**
+ * Страница со списком рецензентов
+ */
 class AllReviewerComponent extends Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state = {
+        this.state = {
 
-    //     }
-    // }
+        }
+    }
     componentDidMount() {
         ApiService.getReviewers()
             .then((response) => {
