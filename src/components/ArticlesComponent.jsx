@@ -17,8 +17,31 @@ class ArticlesComponent extends Component {
         console.log(this.props.data);
     }
 
+    /**
+     * Обработчик изменения фильтрации статей
+     * @param {параметр по которому происходит фильтрация} id 
+     */
     radioChange = (id) => { // <RadioButtonComponent> компонент запускает эту функцию при старте (если есть значение по умолчанию)
         this.setState({filter: id});
+    }
+
+    writeArticles = () => {
+        let articles = this.props.data.filter(article => article.articleId === this.state.filter || this.state.filter === "all"); // здесь проверяем на нужный state (item.articleId заменить на item.state)
+        return(
+            <React.Fragment>
+                <ul className="articles-container__list">
+                    {articles.map(item =>
+                        <li className="articles-container__item">
+                            <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
+                            {this.props.renderButton(item)}
+                        </li>
+                    )}
+                </ul>
+                {articles.length === 0 &&
+                    <p className="articles-container__no-articles">Здесь пока ничего нет...</p>
+                }
+            </React.Fragment>
+        )
     }
 
     render() {
@@ -26,21 +49,9 @@ class ArticlesComponent extends Component {
             <React.Fragment>
                 <RadioButtonComponent data={this.props.filterData} name={this.props.filterName} radioChange={this.radioChange}/>
                 {this.props.data &&
-                    <ul className="articles-container__list">
-                        {this.props.data.map(item =>
-                            <React.Fragment key={item.articleId}>
-                                {(item.articleId === this.state.filter || this.state.filter === "all") && // здесь проверяем на нужный state (item.articleId заменить на item.state)
-                                    <li className="articles-container__item">
-                                        <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
-                                        {this.props.renderButton(item)}
-                                    </li>
-                                } 
-                            </React.Fragment>
-                        )}
-                    </ul>
-                }
-                {this.props.data.length === 0 &&
-                    <p className="articles-container__no-articles">Здесь пока ничего нет...</p>
+                    <React.Fragment>
+                        {this.writeArticles()}
+                    </React.Fragment>
                 }
             </React.Fragment>
         )
