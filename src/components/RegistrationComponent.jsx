@@ -5,6 +5,7 @@ import FormControlComponent from "../components/service/FormControlComponent";
 import { store } from '../store';
 import TranslatableText from "./service/TranslatableText";
 import Language from "./service/LanguageContext";
+import ErrorPopupComponent from './service/ErrorPopupComponent';
 
 class RegistrationComponent extends Component{
 
@@ -34,9 +35,21 @@ class RegistrationComponent extends Component{
                 if (res.status === 200) {
                     this.setState({isRegistration: true})
                     window.scroll(0, 0);
-                    this.window.current.classList.remove("load");
                 }
-            });
+            })
+            .catch(err => {
+                this.setState({showErrorPopup: true});
+            })
+            .finally(() => {
+                this.window.current.classList.remove("load");
+            })
+    }
+
+    /**
+     * Метод закрытия модального окна ошибки
+     */
+     handleClosePopup = () => {
+        this.setState({ showErrorPopup: false });
     }
 
     render() {
@@ -82,6 +95,7 @@ class RegistrationComponent extends Component{
                         <p className="registration__text">Регистрация прошла успешно, подтвердите ваш email {this.state.email}</p>
                     </div>
                 }
+                <ErrorPopupComponent isOpen={this.state.showErrorPopup} onClose={this.handleClosePopup} />
             </div>
         );
     }

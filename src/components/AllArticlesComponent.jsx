@@ -5,6 +5,7 @@ import ArticlesComponent from './ArticlesComponent';
 import {Link} from 'react-router-dom';
 import ApiService from "../service/ApiService";
 import ChooseReviewerComponent from "./ChooseReviewerComponent.jsx";
+import ErrorPopupComponent from './service/ErrorPopupComponent';
 
 /**
  * Страница "Статьи поступившие на рецензирование", отображает все статьи поступившие от авторов (страница для секретаря)
@@ -48,6 +49,9 @@ class AllArticlesComponent extends Component {
                 this.setState({articles: response.data.reverse()})
             }
         })
+        .catch((err) => {
+            this.setState({ showErrorPopup: true });
+        })
     }
 
     modalOpenToggle = (item) => {
@@ -58,6 +62,13 @@ class AllArticlesComponent extends Component {
 			this.setState({isModalOpen: false});
 		}
 	}
+
+    /**
+     * Метод закрытия модального окна ошибки
+     */
+     handleClosePopup = () => {
+        this.setState({ showErrorPopup: false });
+    }
     
     render() {
         return(
@@ -83,6 +94,8 @@ class AllArticlesComponent extends Component {
                     )
 					}
 				/>
+
+                <ErrorPopupComponent isOpen={this.state.showErrorPopup} onClose={this.handleClosePopup} />
             </div>
         )
     }

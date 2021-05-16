@@ -5,6 +5,7 @@ import ApiService from "../service/ApiService";
 import getGetRequest from "../service/getGetRequest";
 import FormControlComponent from "../components/service/FormControlComponent";
 import checkAccessibility from '../service/checkAccessibility';
+import ErrorPopupComponent from './service/ErrorPopupComponent';
 import TranslatableText from "./service/TranslatableText";
 
 /**
@@ -47,9 +48,18 @@ class AddReviewComponent extends Component {
                 this.setState({isSend: true});
             })
             .catch(err => {
-                this.container.current.classList.remove("load");
-                this.container.current.classList.add("error-alert");
+                this.setState({showErrorPopup: true});
             })
+            .finally(() => {
+                this.window.current.classList.remove("load");
+            })
+    }
+
+    /**
+     * Метод закрытия модального окна ошибки
+     */
+     handleClosePopup = () => {
+        this.setState({ showErrorPopup: false });
     }
     
     render() {
@@ -78,6 +88,7 @@ class AddReviewComponent extends Component {
                         )
                     }/>
                 }
+                <ErrorPopupComponent isOpen={this.state.showErrorPopup} onClose={this.handleClosePopup} />
             </div>
         )
     }

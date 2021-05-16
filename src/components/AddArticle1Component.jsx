@@ -9,6 +9,7 @@ import TranslatableText from "./service/TranslatableText";
 import FormControlComponent from "../components/service/FormControlComponent";
 import {Link} from 'react-router-dom';
 import checkAccessibility from '../service/checkAccessibility';
+import ErrorPopupComponent from './service/ErrorPopupComponent';
 
 /**
  * Класс добавления/изменения статьи (первый шаг)
@@ -32,51 +33,64 @@ class AddArticle1Component extends Component {
 
 		this.window = React.createRef();
 		checkLog();
-  }
-
-  componentDidMount() {
-	if (!checkAccessibility(["WRITE_PRIVILEGE"]))
-            window.location.href="/";
-	const articleId = getGetRequest(); //получаем get запрос (из адресной строки) если есть 
-	if (articleId) {  // определяем новая статья или редактируемая
-		this.getArticle(articleId); // получаем статью (Редактирование статьи)
-	} else {
-		this.setState({isStartRender: true})
 	}
-  }
 
-  getArticle(articleId) { // берет данные статьи (при изменении статьи)
-	this.setState({isEdited: articleId})
-	ApiService.getArticle(articleId)
-		.then((response) => {
-			console.log(response);
-			this.setState({articleData: response.data})
-			this.state.articleData.subject = "05.17.00"; // УДАЛИТЬ!!!  костыль пока нет данных с сервера УДАЛИТЬ!!!
-			this.setSelect(this.state.articleData.subject); // установить раздел журнала в котором статья
-
+	componentDidMount() {
+		if (!checkAccessibility(["WRITE_PRIVILEGE"]))
+				window.location.href="/";
+		const articleId = getGetRequest(); //получаем get запрос (из адресной строки) если есть 
+		if (articleId) {  // определяем новая статья или редактируемая
+			this.getArticle(articleId); // получаем статью (Редактирование статьи)
+		} else {
 			this.setState({isStartRender: true})
-		})
-  }
-
-  setSelect(selectId) {
-	for (let i in this.selectData) {
-		if (this.selectData[i].id === selectId) {
-			this.selectData[i].noPostCheck = true;
 		}
 	}
-  }
 
-  sendArticle = (data) => {
-	data.id = localStorage.getItem("userId");
-	console.log(data);
-	this.window.current.classList.add("load");
-	ApiService.addArticle1(data)
-	.then(res => {
-		if (res.data.articleId) {
-			window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
-		} 
-	});
-  }
+	getArticle(articleId) { // берет данные статьи (при изменении статьи)
+		this.setState({isEdited: articleId})
+		ApiService.getArticle(articleId)
+			.then((response) => {
+				console.log(response);
+				this.setState({articleData: response.data})
+				this.state.articleData.subject = "05.17.00"; // УДАЛИТЬ!!!  костыль пока нет данных с сервера УДАЛИТЬ!!!
+				this.setSelect(this.state.articleData.subject); // установить раздел журнала в котором статья
+
+				this.setState({isStartRender: true})
+			})
+	}
+
+	setSelect(selectId) {
+		for (let i in this.selectData) {
+			if (this.selectData[i].id === selectId) {
+				this.selectData[i].noPostCheck = true;
+			}
+		}
+	}
+
+	sendArticle = (data) => {
+		data.id = localStorage.getItem("userId");
+		console.log(data);
+		this.window.current.classList.add("load");
+		ApiService.addArticle1(data)
+		.then(res => {
+			if (res.data.articleId) {
+				window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
+			} 
+		})
+		.catch(err => {
+			this.setState({showErrorPopup: true});
+		})
+		.finally(() => {
+			this.window.current.classList.remove("load");
+		})
+	}
+
+	/**
+     * Метод закрытия модального окна ошибки
+     */
+     handleClosePopup = () => {
+        this.setState({ showErrorPopup: false });
+    }
   
 	render() {
 		return(
@@ -128,7 +142,7 @@ class AddArticle1Component extends Component {
 						)
 					}/>
 				}
-				
+				<ErrorPopupComponent isOpen={this.state.showErrorPopup} onClose={this.handleClosePopup} />
 			</div>
 		)
 	}

@@ -4,6 +4,7 @@ import TranslatableText from './service/TranslatableText';
 import ArticlesComponent from './ArticlesComponent';
 import {Link} from 'react-router-dom';
 import ApiService from "../service/ApiService";
+import ErrorPopupComponent from './service/ErrorPopupComponent';
 
 /**
  * Страница "Мои статьи", отображает все статьи отправленные пользователем на рецензирование
@@ -35,6 +36,16 @@ class MyArticlesComponent extends Component {
                     this.setState({articles: response.data.reverse()})
                 }
         })
+        .catch((err) => {
+            this.setState({ showErrorPopup: true });
+        })
+    }
+
+    /**
+     * Метод закрытия модального окна ошибки
+     */
+    handleClosePopup = () => {
+        this.setState({ showErrorPopup: false });
     }
     
     render() {
@@ -58,6 +69,8 @@ class MyArticlesComponent extends Component {
 						)
 					}
 				/>
+
+                <ErrorPopupComponent isOpen={this.state.showErrorPopup} onClose={this.handleClosePopup} />
             </div>
         )
     }

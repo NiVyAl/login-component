@@ -7,6 +7,7 @@ import isEmptyObject from '../service/isEmptyObject';
 import TranslatableText from "./service/TranslatableText";
 import {Link} from 'react-router-dom';
 import checkAccessibility from '../service/checkAccessibility';
+import ErrorPopupComponent from './service/ErrorPopupComponent';
 
 /**
  * Класс добавления/изменения статьи (второй шаг)
@@ -75,7 +76,20 @@ class AddArticle2Component extends Component {
 				console.log(res)
 				this.setState({isSend: true});
 			})
-	} 
+			.catch(err => {
+				this.setState({showErrorPopup: true});
+			})
+			.finally(() => {
+				this.window.current.classList.remove("load");
+			})
+	}
+	
+	/**
+     * Метод закрытия модального окна ошибки
+     */
+     handleClosePopup = () => {
+        this.setState({ showErrorPopup: false });
+    }
 
 	handleChange = (id, description, file) => {
 		this.data[id] = {[description]: file}
@@ -155,7 +169,7 @@ class AddArticle2Component extends Component {
 						<p className="confirm__text">Статья загружена, посмотреть ее статус можно <Link to="/myArticles">здесь</Link></p>
 					</div>
 				}
-				
+				<ErrorPopupComponent isOpen={this.state.showErrorPopup} onClose={this.handleClosePopup} />
 			</div>
 		)
 	}
