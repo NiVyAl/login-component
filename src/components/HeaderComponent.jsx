@@ -42,7 +42,7 @@ class HeaderComponent extends Component {
     return(
       <header className="header">
         <div className="header__logo logo-container">
-          <Link to="http://www.kstu.ru/"><img className="logo-container__logo logo" src={logo} alt="логотип КНИТУ"/></Link>
+          <a href="http://www.kstu.ru/"><img className="logo-container__logo logo" src={logo} alt="логотип КНИТУ"/></a>
           <h1 className="logo-container__title title"><Link to="/" className="title__link"><TranslatableText 
                 text={{
                   ru: "Вестник технологического университета",
