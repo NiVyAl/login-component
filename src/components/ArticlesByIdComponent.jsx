@@ -4,6 +4,7 @@ import ArticlesComponent from './ArticlesComponent';
 import {Link} from 'react-router-dom';
 import ApiService from "../service/ApiService";
 import ErrorPopupComponent from './service/ErrorPopupComponent';
+import queryString, { stringify } from 'query-string';
 
 /**
  * Страница "Мои статьи", отображает все статьи отправленные пользователем на рецензирование
@@ -17,19 +18,34 @@ class MyArticlesComponent extends Component {
         }
     }
 
-    filterName = "filter-radio";
-    filterData = [{id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true},];
-
     componentDidMount() {
-        ApiService.getArticles(localStorage.getItem("userId"))
-        .then((response) => {
-                if (response.data.length > 0) {
-                    this.setState({articles: response.data.reverse()})
-                }
-        })
-        .catch((err) => {
-            this.setState({ showErrorPopup: true });
-        })
+        let GetRequest = queryString.parseUrl(window.location.href);
+
+        // получаем статью по ее id
+        if (GetRequest.query.id && GetRequest.query.id !== "") {
+            ApiService.getArticle(GetRequest.query.id)
+            .then((response) => {
+                    if (response.data.length > 0) {
+                        this.setState({articles: response.data.reverse()})
+                    }
+            })
+            .catch((err) => {
+                this.setState({ showErrorPopup: true });
+            })
+        }
+
+        // получаем статьи по переданной категории
+        if (GetRequest.query.category && GetRequest.query.category !== "") {
+            ApiService.getArticlesByCategoy(GetRequest.query.category)
+            .then((response) => {
+                    if (response.data.length > 0) {
+                        this.setState({articles: response.data.reverse()})
+                    }
+            })
+            .catch((err) => {
+                this.setState({ showErrorPopup: true });
+            })
+        }
     }
 
     /**
@@ -50,9 +66,9 @@ class MyArticlesComponent extends Component {
                 </h2>
 
                 <ArticlesComponent data={this.state.articles} isFilterHidden={true} renderButton={
-                        (item) => (
-							<React.Fragment></React.Fragment>
-						)
+                    (item) => (
+                        <React.Fragment></React.Fragment>
+                    )
 					}
 				/>
 

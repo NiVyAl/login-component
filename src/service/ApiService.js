@@ -54,6 +54,10 @@ export default class ApiService {
     static getArticle(articleId) { // получить одну статью (по id)
         return axios.get(`article/getArticle?id=${articleId}`)
     }
+
+    static getArticlesByCategoy(category) { // получить список статей по категории
+        return axios.get(`article/getArticlesByCategory?category=${category}`)
+    }
     
     static addReview(data) {
         return axios.post(`review/save`, data);
