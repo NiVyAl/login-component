@@ -77,9 +77,12 @@ class AddArticle1Component extends Component {
 				window.location.href=`/addArticle/step2?articleId=${res.data.articleId}`;
 			} 
 		})
-		.catch(err => {
-			this.setState({showErrorPopup: true});
-		})
+		.catch((err) => {
+            if (err.response && err.response.status === 401)
+                ApiService.logOut();
+            else 
+                this.setState({ showErrorPopup: true });
+        })
 		.finally(() => {
 			this.window.current.classList.remove("load");
 		})

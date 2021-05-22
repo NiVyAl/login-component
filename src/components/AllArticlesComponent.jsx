@@ -50,7 +50,10 @@ class AllArticlesComponent extends Component {
             }
         })
         .catch((err) => {
-            this.setState({ showErrorPopup: true });
+            if (err.response && err.response.status === 401)
+                ApiService.logOut();
+            else 
+                this.setState({ showErrorPopup: true });
         })
     }
 

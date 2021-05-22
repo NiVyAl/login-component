@@ -15,6 +15,8 @@ class ArticlesComponent extends Component {
 
     componentDidMount = () => {
         console.log(this.props.data);
+        if (this.props.isFilterHidden)
+            this.setState({filter: "all"});
     }
 
     /**
@@ -31,7 +33,7 @@ class ArticlesComponent extends Component {
             <React.Fragment>
                 <ul className="articles-container__list">
                     {articles.map(item =>
-                        <li className="articles-container__item">
+                        <li className="articles-container__item" key={item.articleId}>
                             <ArticleComponent item={item} isOpen={this.state[item.articleId + "btnMore"]}/>
                             {this.props.renderButton(item)}
                         </li>
@@ -47,7 +49,10 @@ class ArticlesComponent extends Component {
     render() {
         return(
             <React.Fragment>
-                <RadioButtonComponent data={this.props.filterData} name={this.props.filterName} radioChange={this.radioChange}/>
+                {!this.props.isFilterHidden &&
+                    <RadioButtonComponent data={this.props.filterData} name={this.props.filterName} radioChange={this.radioChange}/>
+                }
+                
                 {this.props.data &&
                     <React.Fragment>
                         {this.writeArticles()}

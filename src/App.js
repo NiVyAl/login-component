@@ -15,6 +15,7 @@ import AddReviewComponent from './components/AddReviewComponent.jsx'
 import AllReviewerComponent from './components/AllReviewerComponent.jsx'
 import MyArticlesComponent from './components/MyArticlesComponent.jsx'
 import AllArticlesComponent from './components/AllArticlesComponent.jsx'
+import ArticlesByIdComponent from './components/ArticlesByIdComponent.jsx'
 import ArticlesForReviewComponent from './components/ArticlesForReviewComponent.jsx'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Language from './components/service/LanguageContext'
@@ -41,9 +42,11 @@ class App extends React.Component {
                   <Route path="/profile" component={ProfileComponent}/>
                   <Route path="/addReview" component={AddReviewComponent}/>
                   <Route path="/allReviewer" component={AllReviewerComponent}/>
+
                   <Route path="/myArticles" component={MyArticlesComponent}/>
                   <Route path="/allArticles" component={AllArticlesComponent}/>
                   <Route path="/articlesForReview" component={ArticlesForReviewComponent}/>
+                  <Route path="/articles" component={ArticlesByIdComponent}/>
                 </Switch>
               </div>
             </div>

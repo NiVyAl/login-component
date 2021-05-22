@@ -42,7 +42,7 @@ export default class ApiService {
     } 
 
     static getAllArticles(userId) {  //для секретаря
-        return axios.get(`article/getArticles?of=0&to=10&id=${userId}`) // для теста
+        return axios.get(`article/getAllArticles?id=${userId}`) // для теста
         // return axios.get(`article/getAllArticles?of=0&to=10`) // раскомментировать
     }
 

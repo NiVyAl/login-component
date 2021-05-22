@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import checkAccessibility from '../service/checkAccessibility';
 import TranslatableText from './service/TranslatableText';
 import ArticlesComponent from './ArticlesComponent';
 import {Link} from 'react-router-dom';
@@ -19,17 +18,9 @@ class MyArticlesComponent extends Component {
     }
 
     filterName = "filter-radio";
-    filterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true},
-                    {id: 16, text: "Находятся на рецензировании"},
-                    {id: 25, text: "Требуют доработки"},
-                    {id: 18, text: {ru: "Приняты", en: "Accepted аrticles"}},
-                    {id: 15, text: {ru: "Отклонены", en: "Rejected articles"}}
-                 ];
+    filterData = [{id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true},];
 
     componentDidMount() {
-        if (!checkAccessibility(["WRITE_PRIVILEGE"]))
-            window.location.href="/";
-
         ApiService.getArticles(localStorage.getItem("userId"))
         .then((response) => {
                 if (response.data.length > 0) {
@@ -37,10 +28,7 @@ class MyArticlesComponent extends Component {
                 }
         })
         .catch((err) => {
-            if (err.response && err.response.status === 401)
-                ApiService.logOut();
-            else 
-                this.setState({ showErrorPopup: true });
+            this.setState({ showErrorPopup: true });
         })
     }
 
@@ -56,19 +44,14 @@ class MyArticlesComponent extends Component {
             <div className="window profile">
                 <h2 className="sub-title window__title"><TranslatableText 
                     text={{
-                    ru: "Мои статьи",
-                    en: "My articles",
+                    ru: "Найденные статьи",
+                    en: "Found articles",
                     }}/>
                 </h2>
 
-                <ArticlesComponent data={this.state.articles} filterData={this.filterData} filterName={this.filterName} renderButton={
+                <ArticlesComponent data={this.state.articles} isFilterHidden={true} renderButton={
                         (item) => (
-							<Link to={`/addArticle/step1?articleId=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId}><TranslatableText 
-								text={{
-								ru: "Редактировать",
-								en: "Edit article",
-								}}/>
-							</Link>	
+							<React.Fragment></React.Fragment>
 						)
 					}
 				/>

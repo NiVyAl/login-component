@@ -47,8 +47,11 @@ class AddReviewComponent extends Component {
                 console.log(res);
                 this.setState({isSend: true});
             })
-            .catch(err => {
-                this.setState({showErrorPopup: true});
+            .catch((err) => {
+                if (err.response && err.response.status === 401)
+                    ApiService.logOut();
+                else 
+                    this.setState({ showErrorPopup: true });
             })
             .finally(() => {
                 this.window.current.classList.remove("load");
