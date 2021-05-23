@@ -24,7 +24,13 @@ class AddReviewComponent extends Component {
         this.selectQ3 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
         this.selectQ4 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
         this.selectQ5 = [{id: "true", text: "Да"}, {id: "false", text: "Нет"}]
-        this.selectRecommendation = [{id: "0", text: "рекомендовать к публикации в представленном виде, без внесения изменений"}, {id: "1", text: "рекомендовать к публикации с небольшими изменениями в тексте статьи"}, {id: "2", text: "рекомендовать к публикации после внесения в текст статьи значительных изменений и повторного рецензирования"}, {id: "3", text: "отклонить в связи с неудовлетворительным научным содержанием статьи"}, {id: "4", text: "отклонить в связи с несоответствием тематики либо содержания статьи всем указанным выше профильным тематическим направлениям Журнала"}, {id: "5", text: "отклонить после повторного рецензирования"}];
+        this.selectRecommendation = [   {id: "0", text: "рекомендовать к публикации в представленном виде, без внесения изменений"}, 
+                                        {id: "1", text: "рекомендовать к публикации с небольшими изменениями в тексте статьи"}, 
+                                        {id: "2", text: "рекомендовать к публикации после внесения в текст статьи значительных изменений и повторного рецензирования"}, 
+                                        {id: "3", text: "отклонить в связи с неудовлетворительным научным содержанием статьи"}, 
+                                        {id: "4", text: "отклонить в связи с несоответствием тематики либо содержания статьи всем указанным выше профильным тематическим направлениям Журнала"}, 
+                                        {id: "5", text: "отклонить после повторного рецензирования"}
+                                    ];
 
         this.container = React.createRef();
     }
@@ -41,6 +47,8 @@ class AddReviewComponent extends Component {
     
     sendForm = (data) => {
         console.log(data);
+        data.userId = localStorage.getItem("userId");
+        data.articleId = getGetRequest();
         this.container.current.classList.add("load");
         ApiService.addReview(data)
             .then(res => {
@@ -54,7 +62,7 @@ class AddReviewComponent extends Component {
                     this.setState({ showErrorPopup: true });
             })
             .finally(() => {
-                this.window.current.classList.remove("load");
+                this.container.current.classList.remove("load");
             })
     }
 
@@ -71,7 +79,7 @@ class AddReviewComponent extends Component {
                 <h2 className="window__title sub-title">Заключение рецензента о возможности публикации статьи</h2>
                 <p className="add-review__articleName">{this.state.articleName}</p>
                 {this.state.isSend &&
-                    <p className="">Рецензия отправлена!</p>
+                    <p className="sub-title">Рецензия отправлена!</p>
                 }
                 
                 {!this.state.isSend &&

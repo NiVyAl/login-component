@@ -67,7 +67,7 @@ class ChooseReviewerComponent extends Component {
 			.then((res) => {
 				console.log(res)
 				this.setState({isSend: true});
-                // window.location.reload();
+                window.location.reload();
 			})
 			.catch((err) => {
 				if (err.response && err.response.status === 401)

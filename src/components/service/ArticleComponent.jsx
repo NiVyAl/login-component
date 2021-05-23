@@ -15,19 +15,23 @@ class ArticleComponent extends Component {
     }
     writeFiles(data) {
 		return(
-			<div>
-				{data.map(file =>  
-                    <li className="more-list__item" key={file.fileName}>
-                        <p className="more-list__text-container more-list__text-container--file"> 
-                            <svg className="more-list__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m5 2H6v16h12v-9h-7V4z"></path>
-                            </svg>
-                            <span className="more-list__title">{file.fileName}</span>
-                            <span className="more-list__content link"><a href={"/files/get?id=" + file.id} className="link" download>скачать</a></span>
-                        </p>
-                    </li>		
-				)}
-			</div>
+            <React.Fragment>
+                {data &&
+                    <div>
+                        {data.map(file =>  
+                            <li className="more-list__item" key={file.fileName}>
+                                <p className="more-list__text-container more-list__text-container--file"> 
+                                    <svg className="more-list__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m5 2H6v16h12v-9h-7V4z"></path>
+                                    </svg>
+                                    <span className="more-list__title">{file.fileName}</span>
+                                    <span className="more-list__content link"><a href={ApiService.baseUrl + "/files/get?id=" + file.id} className="link" download>скачать</a></span>
+                                </p>
+                            </li>		
+                        )}
+                    </div>
+                }
+            </React.Fragment>
 		)
     }
     

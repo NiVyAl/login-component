@@ -9,7 +9,7 @@ import ErrorPopupComponent from './service/ErrorPopupComponent';
 /**
  * Страница "Статьи ожидающие рецензии" (для рецензента), отображает все статьи отправленные рецензенту
  */
-class MyArticlesComponent extends Component {
+class ArticlesForReviewComponent extends Component {
     constructor(props) {
         super(props);
         
@@ -21,15 +21,15 @@ class MyArticlesComponent extends Component {
     /**
      *  фильтр для статей требующих рецензирования 
      */
-    PendingReviewerSelectionFilter = [{id: 39, text: "Ожидают рецензирования"}, {id: 47, text: "Ожидают повторного рецензирования"}];
+
+    PendingReviewerSelectionFilter = {id: "PROCESSING", text: "Ожидают рецензирования", isChecked: true};
+
     FilterName = "filter-radio";
-    FilterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}, isChecked: true},
-                    {id: 18, text: "Отправлены на доработку"}, 
-                    {id: 15, text: "Отклонены"}, 
-                    {id: 23, text: "Приняты"}
-                ];
-    FilterData = this.FilterData.concat(this.PendingReviewerSelectionFilter);
-		
+    FilterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}},
+                    this.PendingReviewerSelectionFilter,
+                    {id: "APPROVED", text: {ru: "Приняты", en: "Accepted аrticles"}},
+                    {id: "REJECTED", text: {ru: "Отклонены", en: "Rejected articles"}}
+                 ];
 
     componentDidMount() {
         if (!checkAccessibility(["REVIEW_PRIVILEGE"]))
@@ -66,7 +66,7 @@ class MyArticlesComponent extends Component {
                 <ArticlesComponent data={this.state.articles} filterData={this.FilterData} filterName={this.FilterName} renderButton={
                         (item) => (
                             <React.Fragment>
-                                {(item.articleId === this.PendingReviewerSelectionFilter[0].id || item.articleId === this.PendingReviewerSelectionFilter[1].id) && // item.articleId Заменить на item.state
+                                {(item.verdict === this.PendingReviewerSelectionFilter.id) &&
                                     <Link to={`/addReview?id=${item.articleId}`} className="articles-container__button-edit-status button" id={item.articleId} >Добавить рецензию</Link>
                                 }
                             </React.Fragment> 
@@ -80,4 +80,4 @@ class MyArticlesComponent extends Component {
     }
 }
 
-export default MyArticlesComponent;
+export default ArticlesForReviewComponent;

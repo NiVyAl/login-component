@@ -6,6 +6,8 @@ import { store } from '../store';
 axios.defaults.baseURL = "http://192.168.0.100:4000";
 
 export default class ApiService {
+    static baseUrl = axios.defaults.baseURL;
+
     static registration(data) {
         return axios.post(`users/registration`, data);
     }
@@ -48,7 +50,7 @@ export default class ApiService {
     }
 
     static getReviewerArticles(userId) {  //для проверяющего все статьи
-        return axios.get(`article/getArticles?of=0&to=10&id=${userId}`) // для теста
+        return axios.get(`reviewers/articles?userId=${userId}`) // для теста
         // return axios.get(`article/getAllArticles?of=0&to=10`) // раскомментировать
     }
 
@@ -61,7 +63,7 @@ export default class ApiService {
     }
     
     static addReview(data) {
-        return axios.post(`review/save`, data);
+        return axios.post(`reviewers/save`, data);
     }
 
     static getAllCategories() {

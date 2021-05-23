@@ -29,7 +29,6 @@ class AllArticlesComponent extends Component {
     FilterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}},
                     this.PendingReviewerSelectionFilter,
                     {id: "PROCESSING", text: "Находятся на рецензировании"},
-                    {id: 20, text: "Отправлены на доработку"},
                     {id: "APPROVED", text: {ru: "Приняты", en: "Accepted аrticles"}},
                     {id: "REJECTED", text: {ru: "Отклонены", en: "Rejected articles"}}
                  ];
