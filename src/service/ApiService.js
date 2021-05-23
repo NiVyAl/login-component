@@ -85,6 +85,10 @@ export default class ApiService {
         window.location.reload();
     }
 
+    static addReviewerToArticle(data) {
+        return axios.post(`reviewers/appointAll`, data);
+    }
+
     /**
      * Категории статей журнала (Химия, Химическая технология, Информатика, вычислительная техника и управление)
      */

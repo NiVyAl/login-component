@@ -89,7 +89,7 @@ class AllArticlesComponent extends Component {
                 <ArticlesComponent data={this.state.articles} filterData={this.FilterData} filterName={this.FilterName} renderButton={
                     (item) => (
                         <React.Fragment>
-                            {item.articleId === this.PendingReviewerSelectionFilter.id &&
+                            {item.verdict === this.PendingReviewerSelectionFilter.id &&
                                 <button className="articles-container__button-edit-status button" id={item.articleId} onClick={(e) => this.modalOpenToggle(item)}>Выбрать рецензента</button>
                             }
                         </React.Fragment> 

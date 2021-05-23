@@ -11,21 +11,20 @@ class ReviewerComponent extends Component {
 		super(props);
 
 		this.state ={
-
+            reviewers: [],
 		}
-		this.data = []; // массив с добавляемыми файлами [{2: {описание файла: File}}, {3: {описание файла: File}}] -- (File - объект в котором сам файл)
-		this.dataGet = {}; // объект в котором хранятся названия полученных файлов {0: "договор", 1: "тест на антиплагиат"}
+
 		this.window = React.createRef();
 	}
 
     componentDidMount = () => {
-        if (!checkAccessibility(["WRITE_PRIVILEGE"]))
+        if (!checkAccessibility(["ADD_PRIVILEGE"]))
             window.location.href="/";
 
         ApiService.getReviewers()
 			.then((res) => {
-				console.log(res)
-				this.setState({isSend: true});
+				console.log(res);
+                this.setState({reviewers: res.data});
 			})
 			.catch((err) => {
 				if (err.response && err.response.status === 401)
@@ -40,33 +39,47 @@ class ReviewerComponent extends Component {
 
     render() {
         return(
-            <tabel className="reviewer-container" ref={this.window}>
-                <thead>
-                    <tr className="reviewer-container__tr reviewer-container__tr--description">
-                        <td className="reviewer__item reviewer__item--name">ФИО Рецензента</td>
-                        <td className="reviewer__item reviewer__item--description"><span className="one-line">находятся на</span> рецензии</td> {/* находятся на рецензии */}
-                        <td className="reviewer__item reviewer__item--description">ожидают повторного рецензирования</td> {/* ожидают повторного рецензирования*/}
-                        <td className="reviewer__item reviewer__item--description">написано рецензий <span className="one-line">(за все время)</span></td> {/* написано рецензий (за все время) */}
-                    </tr>
-                </thead>
+            <div>
+                {this.state.reviewers.length > 0 &&
+                <tabel className="reviewer-container" ref={this.window}>
+                    <thead>
+                        <tr className="reviewer-container__tr reviewer-container__tr--description">
+                            <td className="reviewer__item reviewer__item--name">ФИО Рецензента</td>
+                            <td className="reviewer__item reviewer__item--description">находятся на рецензии</td> {/* находятся на рецензии */}
+                            {/* <td className="reviewer__item reviewer__item--description">ожидают повторного рецензирования</td> ожидают повторного рецензирования */}
+                            <td className="reviewer__item reviewer__item--description">написано рецензий</td> {/* написано рецензий (за все время) */}
+                            <td className="reviewer__item reviewer__item--description">выбрать рецензента</td> {/* написано рецензий (за все время) */}
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    {/* Тут цикл */}
-                    <tr className="reviewer-container__tr">
-                        <td className="reviewer__item reviewer__item--name">Иванов Иван Иванович</td>
-                        <td className="reviewer__item"><Link to="/" className="link">10</Link></td> {/* находятся на рецензии */}
-                        <td className="reviewer__item"><Link to="/" className="link">50</Link></td> {/* ожидают повторного рецензирования*/}
-                        <td className="reviewer__item"><Link to="/" className="link">3</Link></td> {/* написано рецензий (за все время) */}
-                    </tr>
+                    <tbody>
+                        {this.state.reviewers.map(item =>
+                            <tr className="reviewer-container__tr" key={item.id}>
+                                <td className="reviewer__item reviewer__item--name">{item.user.surnameR} {item.user.middleNameR}</td>
+                                <td className="reviewer__item"><Link to="/" className="link">{item.articlesOnProcess}</Link></td> {/* находятся на рецензии */}
+                                {/* <td className="reviewer__item"><Link to="/" className="link">{item.user.countOfDesignatedArticles}</Link></td> ожидают повторного рецензирования */}
+                                <td className="reviewer__item"><Link to="/" className="link">{item.countOfWrittenReviews}</Link></td> {/* написано рецензий (за все время) */}
+                                <td className="reviewer__item"><input type="checkbox" onChange={(e) => this.props.handleChange(e, item.id)}/></td>
+                            </tr>
+                        )}
+                        
+                        {/* <tr className="reviewer-container__tr">
+                            <td className="reviewer__item reviewer__item--name">Иванов Иван Иванович</td>
+                            <td className="reviewer__item"><Link to="/" className="link">10</Link></td>
+                            <td className="reviewer__item"><Link to="/" className="link">50</Link></td>
+                            <td className="reviewer__item"><Link to="/" className="link">3</Link></td> 
+                        </tr>
 
-                    <tr className="reviewer-container__tr">
-                        <td className="reviewer__item reviewer__item--name">Иванов Иван Ивановичы</td>
-                        <td className="reviewer__item"><Link to="/" className="link">25</Link></td> {/* находятся на рецензии */}
-                        <td className="reviewer__item"><Link to="/" className="link">34</Link></td> {/* ожидают повторного рецензирования*/}
-                        <td className="reviewer__item"><Link to="/" className="link">80</Link></td> {/* написано рецензий (за все время) */}
-                    </tr>
-                </tbody>
-            </tabel>
+                        <tr className="reviewer-container__tr">
+                            <td className="reviewer__item reviewer__item--name">Иванов Иван Ивановичы</td>
+                            <td className="reviewer__item"><Link to="/" className="link">25</Link></td>
+                            <td className="reviewer__item"><Link to="/" className="link">34</Link></td>
+                            <td className="reviewer__item"><Link to="/" className="link">80</Link></td>
+                        </tr> */}
+                    </tbody>
+                </tabel>
+                }
+            </div>
         )
     }
 }
