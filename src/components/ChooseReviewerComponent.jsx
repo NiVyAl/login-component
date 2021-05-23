@@ -97,45 +97,11 @@ class ChooseReviewerComponent extends Component {
                     <p className="modal-window__title sub-title">Выбор рецензента</p>
                     <p className="choose-reviewer__article-name modal-window__title-description title-description">Название: {this.props.article.articleName}</p>
 
-                    <ReviewerComponent handleChange={this.handleChange}/>
+                    <ReviewerComponent handleChange={this.handleChange} isChooseReviewer={true}/>
                     {this.state.isNotChecked &&
                         <p className="login-container__error">Не выбран рецензент</p>
                     }
                     <button type="submit" className="button">Отправить на рецензию</button>
-                    {/* <div className="choose-reviewer__reviewer-container reviewer-container">
-                        <div className="reviewer-container__sub-container reviewer-container__sub-container--main">
-                            <CheckboxComponent name="reviewer1" text="Игорь Николаевич Маресьев"/>
-                            <Link to="/allReviewer">Информация о всех рецентах</Link>
-                            <CheckboxComponent name="reviewer2" text="Игорь Николаевич Маресьев"/>
-                            <CheckboxComponent name="reviewer3" text="Игорь Николаевич Маресьев"/>
-                            <CheckboxComponent name="reviewer4" text="Игорь Николаевич Маресьев"/>
-                            <CheckboxComponent name="reviewer5" text="Игорь Николаевич Маресьев"/>
-                            <CheckboxComponent name="reviewer6" text="Игорь Николаевич Маресьев"/>
-                        </div>
-                        <p className="reviewer-container__button-more text-button" onClick={this.moreOpen}>{this.state.moreButtonText}</p>
-                        {this.state.isMoreOpen &&
-                            <div className="reviewer-container__sub-container reviewer-container__sub-container--more">
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer8" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer9" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer10" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                                <CheckboxComponent name="reviewer7" text="Игорь Николаевич Маресьев"/>
-                            </div>
-                        }
-                        <button type="submit" className="button">Отправить на рецензию</button>
-                    </div> */}
                 </form>
             </div>
             

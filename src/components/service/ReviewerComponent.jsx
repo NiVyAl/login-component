@@ -39,16 +39,21 @@ class ReviewerComponent extends Component {
 
     render() {
         return(
-            <div>
+            <div ref={this.window}>
                 {this.state.reviewers.length > 0 &&
-                <tabel className="reviewer-container" ref={this.window}>
+                <tabel className="reviewer-container">
                     <thead>
                         <tr className="reviewer-container__tr reviewer-container__tr--description">
                             <td className="reviewer__item reviewer__item--name">ФИО Рецензента</td>
                             <td className="reviewer__item reviewer__item--description">находятся на рецензии</td> {/* находятся на рецензии */}
                             {/* <td className="reviewer__item reviewer__item--description">ожидают повторного рецензирования</td> ожидают повторного рецензирования */}
                             <td className="reviewer__item reviewer__item--description">написано рецензий</td> {/* написано рецензий (за все время) */}
-                            <td className="reviewer__item reviewer__item--description">выбрать рецензента</td> {/* написано рецензий (за все время) */}
+                            {this.props.isChooseReviewer &&
+                                <td className="reviewer__item reviewer__item--description">выбрать рецензента</td>
+                            }
+                            {!this.props.isChooseReviewer &&
+                                <td className="reviewer__item reviewer__item--description">почта рецензента</td>
+                            }
                         </tr>
                     </thead>
 
@@ -59,23 +64,14 @@ class ReviewerComponent extends Component {
                                 <td className="reviewer__item"><Link to="/" className="link">{item.articlesOnProcess}</Link></td> {/* находятся на рецензии */}
                                 {/* <td className="reviewer__item"><Link to="/" className="link">{item.user.countOfDesignatedArticles}</Link></td> ожидают повторного рецензирования */}
                                 <td className="reviewer__item"><Link to="/" className="link">{item.countOfWrittenReviews}</Link></td> {/* написано рецензий (за все время) */}
-                                <td className="reviewer__item"><input type="checkbox" onChange={(e) => this.props.handleChange(e, item.id)}/></td>
+                                {this.props.isChooseReviewer &&
+                                    <td className="reviewer__item"><input type="checkbox" onChange={(e) => this.props.handleChange(e, item.id)}/></td>
+                                }
+                                {!this.props.isChooseReviewer &&
+                                    <td className="reviewer__item"><a href={'mailto:' + item.user.username} className="link">{item.user.username}</a></td>
+                                }   
                             </tr>
                         )}
-                        
-                        {/* <tr className="reviewer-container__tr">
-                            <td className="reviewer__item reviewer__item--name">Иванов Иван Иванович</td>
-                            <td className="reviewer__item"><Link to="/" className="link">10</Link></td>
-                            <td className="reviewer__item"><Link to="/" className="link">50</Link></td>
-                            <td className="reviewer__item"><Link to="/" className="link">3</Link></td> 
-                        </tr>
-
-                        <tr className="reviewer-container__tr">
-                            <td className="reviewer__item reviewer__item--name">Иванов Иван Ивановичы</td>
-                            <td className="reviewer__item"><Link to="/" className="link">25</Link></td>
-                            <td className="reviewer__item"><Link to="/" className="link">34</Link></td>
-                            <td className="reviewer__item"><Link to="/" className="link">80</Link></td>
-                        </tr> */}
                     </tbody>
                 </tabel>
                 }

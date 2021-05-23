@@ -89,6 +89,25 @@ export default class ApiService {
         return axios.post(`reviewers/appointAll`, data);
     }
 
+    static getArticleStatusString(verdict) {
+        switch (verdict) {
+            case("PROCESSING"):
+                return "Находится на рецензировании"
+                break;
+            case("APPROVED"):
+                return "Принята"
+                break;
+            case("REJECTED"):
+                return "Отклонена"
+                break;
+            case("WAITING_REVIEWER"):
+                return "Ожидает выбора рецензента"
+                break;
+            default:
+                return ""
+        }
+    }
+
     /**
      * Категории статей журнала (Химия, Химическая технология, Информатика, вычислительная техника и управление)
      */

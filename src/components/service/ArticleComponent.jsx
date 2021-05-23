@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TranslatableText from "./TranslatableText";
+import ApiService from "../../service/ApiService";
 
 /**
  * Отображение одной статьи в списке статей.
@@ -13,20 +14,16 @@ class ArticleComponent extends Component {
         }
     }
     writeFiles(data) {
-		let files = [];
-		for (let i in data) {
-			files.push(i);
-		}
 		return(
 			<div>
-				{files.map(fileName =>  
-                    <li className="more-list__item" key={fileName}>
+				{data.map(file =>  
+                    <li className="more-list__item" key={file.fileName}>
                         <p className="more-list__text-container more-list__text-container--file"> 
                             <svg className="more-list__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m5 2H6v16h12v-9h-7V4z"></path>
                             </svg>
-                            <span className="more-list__title">{fileName}</span>
-                            <span className="more-list__content link"><a href={data[fileName]} className="link" download>Скачать</a></span>
+                            <span className="more-list__title">{file.fileName}</span>
+                            <span className="more-list__content link"><a href={"/files/get?id=" + file.id} className="link" download>скачать</a></span>
                         </p>
                     </li>		
 				)}
@@ -45,11 +42,11 @@ class ArticleComponent extends Component {
                 <p className="articles-container__status">
                     <span className="text-bold"><TranslatableText 
                         text={{
-                        ru: "Статус:",
-                        en: "Status:",
+                        ru: "Статус: ",
+                        en: "Status: ",
                         }}/>
                     </span> 
-                    {this.props.item.articleStatus}
+                    {ApiService.getArticleStatusString(this.props.item.verdict)}
                 </p>
                 <a href="/" className="link articles-container__link" download><TranslatableText 
                     text={{
@@ -114,7 +111,7 @@ class ArticleComponent extends Component {
                             </li>
 
                             <ul className="more-list__files-list">
-                                {this.writeFiles(this.props.item.pathsMap)}
+                                {this.writeFiles(this.props.item.files)}
                             </ul>
                     </ul>
                 }
