@@ -2,7 +2,8 @@ import axios from 'axios';
 import { store } from '../store';
 
 // axios.defaults.baseURL = "http://localhost:4000";
-axios.defaults.baseURL = "http://192.168.0.107:4000";
+// axios.defaults.baseURL = "http://192.168.0.107:4000";
+axios.defaults.baseURL = "http://192.168.0.100:4000";
 
 export default class ApiService {
     static registration(data) {
@@ -38,12 +39,12 @@ export default class ApiService {
     }
     
     static getArticles(userId) { //все статьи для лоха
-        return axios.get(`article/getArticles?of=0&to=10&id=${userId}`)
+        return axios.get(`article/getArticles?id=${userId}`)
+        // return axios.get(`article/downloadFile/C:\\Users\\admin\\Pictures\\files\\11\\0\\4WDnSHhZBjk.jpg`)
     } 
 
     static getAllArticles(userId) {  //для секретаря
-        // return axios.get(`article/getAllArticles?id=${userId}`)
-        return axios.get(`article/getArticles?of=0&to=10&id=${userId}`)
+        return axios.get(`article/getAllArticles?id=${userId}`)
     }
 
     static getReviewerArticles(userId) {  //для проверяющего все статьи
@@ -68,7 +69,8 @@ export default class ApiService {
     }
 
     static getReviewers() {
-        return axios.get(`reviewers/getReviewers?of=0&to=100`);
+        // return axios.get(`reviewers/getReviewers?of=0&to=100`);
+        return axios.get(`reviewers/getReviewers`);
     }
 
     static logOut() {

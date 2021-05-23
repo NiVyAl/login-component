@@ -23,16 +23,15 @@ class AllArticlesComponent extends Component {
     /**
      *  фильтр для статьи ожидающей выбора рецензента
      */
-    PendingReviewerSelectionFilter = {id: 8, text: "Ожидают выбора рецензента", isChecked: true};
+    PendingReviewerSelectionFilter = {id: "WAITING_REVIEWER", text: "Ожидают выбора рецензента", isChecked: true};
 
     FilterName = "filter-radio";
     FilterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}},
                     this.PendingReviewerSelectionFilter,
-                    {id: 16, text: "Находятся на рецензировании"},
+                    {id: "PROCESSING", text: "Находятся на рецензировании"},
                     {id: 20, text: "Отправлены на доработку"},
-                    {id: 25, text: "Ожидают повторного рецензирования"},
-                    {id: 18, text: {ru: "Приняты", en: "Accepted аrticles"}},
-                    {id: 15, text: {ru: "Отклонены", en: "Rejected articles"}}
+                    {id: "APPROVED", text: {ru: "Приняты", en: "Accepted аrticles"}},
+                    {id: "REJECTED", text: {ru: "Отклонены", en: "Rejected articles"}}
                  ];
 
     componentDidMount() {

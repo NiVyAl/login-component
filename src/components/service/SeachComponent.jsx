@@ -17,50 +17,54 @@ class SeachComponent extends Component {
     }
 
     loadArticles = async () => {
-        // if (this.state.isDataLoad)
-        //     return;
+        if (this.state.isDataLoad)
+            return;
 
-        // let privileges = JSON.parse(localStorage.getItem("privilege"))
+        let privileges = JSON.parse(localStorage.getItem("privilege"))
 
-		// if (privileges === null || privileges === undefined)
-		// 	return;
+		if (privileges === null || privileges === undefined)
+			return;
 
-        // let articles = [];
+        let _articles = [];
 
-        // privileges.array.forEach(async(i) => {
-        //     if (i === "WRITE_PRIVILEGE") {
-        //         await ApiService.getArticles(localStorage.getItem("userId"))
-        //             .then((response) => {
-        //                 if (response.data.length > 0) {
-        //                     articles = articles.concat(response.data);
-        //                 }
-        //             })
-        //     }
-        //     if (i === "REVIEW_PRIVILEGE") {
-        //         await ApiService.getReviewerArticles(localStorage.getItem("userId"))
-        //             .then((response) => {
-        //                 if (response.data.length > 0) {
-        //                     articles = articles.concat(response.data);
-        //                 }
-        //             })
-        //     }
-        //     if (i === "ADD_PRIVILEGE") {
-        //         await ApiService.getAllArticles(localStorage.getItem("userId"))
-        //             .then((response) => {
-        //                 if (response.data.length > 0) {
-        //                     articles = articles.concat(response.data);
-        //                 }
-        //             })
-        //     }
-        // });
-
-        // this.setState({articles: articles})
-        this.setState({isDataLoad: true});
-        console.log(this.state.articles);
+        privileges.forEach(async(i) => {
+            if (i === "WRITE_PRIVILEGE") {
+                await ApiService.getArticles(localStorage.getItem("userId"))
+                    .then((response) => {
+                        if (response.data.length > 0) {
+                            _articles = _articles.concat(response.data);
+                            this.setState({articles: _articles});
+                            this.setState({isDataLoad: true});
+                        }
+                    })
+            }
+            if (i === "REVIEW_PRIVILEGE") {
+                await ApiService.getReviewerArticles(localStorage.getItem("userId"))
+                    .then((response) => {
+                        if (response.data.length > 0) {
+                            _articles = _articles.concat(response.data);
+                            this.setState({articles: _articles});
+                            this.setState({isDataLoad: true});
+                        }
+                    })
+            }
+            if (i === "ADD_PRIVILEGE") {
+                await ApiService.getAllArticles(localStorage.getItem("userId"))
+                    .then((response) => {
+                        if (response.data.length > 0) {
+                            _articles = _articles.concat(response.data);
+                            this.setState({articles: _articles});
+                            this.setState({isDataLoad: true});
+                        }
+                    })
+            }
+        });
     }
 
     handleChange = (e) => {
-        console.log(e);
+        console.log(e.target.value);
+        console.log(this.state.articles);
+        
     }
 
     render() {

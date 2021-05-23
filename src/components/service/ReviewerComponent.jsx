@@ -1,13 +1,46 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import ApiService from "../../service/ApiService";
+import checkAccessibility from '../../service/checkAccessibility';
 
 /**
  * Таблица со всеми рецензентами.
  */
 class ReviewerComponent extends Component {
+    constructor(props){
+		super(props);
+
+		this.state ={
+
+		}
+		this.data = []; // массив с добавляемыми файлами [{2: {описание файла: File}}, {3: {описание файла: File}}] -- (File - объект в котором сам файл)
+		this.dataGet = {}; // объект в котором хранятся названия полученных файлов {0: "договор", 1: "тест на антиплагиат"}
+		this.window = React.createRef();
+	}
+
+    componentDidMount = () => {
+        if (!checkAccessibility(["WRITE_PRIVILEGE"]))
+            window.location.href="/";
+
+        ApiService.getReviewers()
+			.then((res) => {
+				console.log(res)
+				this.setState({isSend: true});
+			})
+			.catch((err) => {
+				if (err.response && err.response.status === 401)
+					ApiService.logOut();
+				else 
+					this.setState({ showErrorPopup: true });
+			})
+			.finally(() => {
+				this.window.current.classList.remove("load");
+			})
+    }
+
     render() {
         return(
-            <tabel className="reviewer-container">
+            <tabel className="reviewer-container" ref={this.window}>
                 <thead>
                     <tr className="reviewer-container__tr reviewer-container__tr--description">
                         <td className="reviewer__item reviewer__item--name">ФИО Рецензента</td>

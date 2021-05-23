@@ -71,6 +71,7 @@ class AddArticle2Component extends Component {
 			}
 		}
 
+		console.log(data);
 		ApiService.addArticle2(data, this.articleId)
 			.then((res) => {
 				console.log(res)
@@ -121,9 +122,9 @@ class AddArticle2Component extends Component {
   
 	render() {
 		return(
-			<div className="add-article window">
+			<div className="add-article window" ref={this.window}>
 				{this.state.isSend === false &&
-					<div ref={this.window}>
+					<React.Fragment>
 						{this.state.isEdited &&
 							<h2 className="sub-title add-article__title window__title"><TranslatableText 
 								text={{
@@ -164,7 +165,7 @@ class AddArticle2Component extends Component {
 								<button className="button window__button" type="submit">Отправить на проверку</button>
 							</form>
 						}
-					</div>
+					</React.Fragment>
 				}
 				{this.state.isSend === true &&
 					<div>

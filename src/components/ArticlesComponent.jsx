@@ -28,7 +28,7 @@ class ArticlesComponent extends Component {
     }
 
     writeArticles = () => {
-        let articles = this.props.data.filter(article => article.articleId === this.state.filter || this.state.filter === "all"); // здесь проверяем на нужный state (item.articleId заменить на item.state)
+        let articles = this.props.data.filter(article => article.verdict === this.state.filter || this.state.filter === "all"); // здесь проверяем на нужный state (item.articleId заменить на item.state)
         return(
             <React.Fragment>
                 <ul className="articles-container__list">
