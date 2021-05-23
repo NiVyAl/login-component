@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReviewerComponent from "../components/service/ReviewerComponent";
 import ApiService from "../service/ApiService";
+import checkAccessibility from '../service/checkAccessibility';
 
 /**
  * Страница со списком рецензентов
@@ -14,6 +15,9 @@ class AllReviewerComponent extends Component {
         }
     }
     componentDidMount() {
+        if (!checkAccessibility(["ADD_PRIVILEGE"]))
+            window.location.href="/";
+
         ApiService.getReviewers()
             .then((response) => {
                 console.log(response);
@@ -26,12 +30,12 @@ class AllReviewerComponent extends Component {
                 <h2 className="window__title sub-title">Все рецензенты</h2>
                 <div className="all-reviewer__subject">
                     <p className="add-review__articleName">Химия (02.00.00)</p>
-                    {/* <ReviewerComponent/> */}
+                    <ReviewerComponent/>
                 </div>
 
                 <div className="all-reviewer__subject">
                     <p className="add-review__articleName">Химическая технология (05.17.00)</p>
-                    {/* <ReviewerComponent/> */}
+                    <ReviewerComponent/>
                 </div>
             </div>
         )

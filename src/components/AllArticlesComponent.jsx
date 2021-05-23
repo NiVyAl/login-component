@@ -23,7 +23,7 @@ class AllArticlesComponent extends Component {
     /**
      *  фильтр для статьи ожидающей выбора рецензента
      */
-    PendingReviewerSelectionFilter = {id: 39, text: "Ожидают выбора рецензента", isChecked: true};
+    PendingReviewerSelectionFilter = {id: 8, text: "Ожидают выбора рецензента", isChecked: true};
 
     FilterName = "filter-radio";
     FilterData = [  {id: "all", text: {ru: "Все статьи", en: "All articles"}},
