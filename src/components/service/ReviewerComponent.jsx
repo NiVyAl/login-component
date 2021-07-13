@@ -39,7 +39,7 @@ class ReviewerComponent extends Component {
 
     render() {
         return(
-            <div ref={this.window}>
+            <div ref={this.window} className="reviewer-container__window">
                 {this.state.reviewers.length > 0 &&
                 <tabel className="reviewer-container">
                     <thead>
@@ -59,18 +59,22 @@ class ReviewerComponent extends Component {
 
                     <tbody>
                         {this.state.reviewers.map(item =>
-                            <tr className="reviewer-container__tr" key={item.id}>
-                                <td className="reviewer__item reviewer__item--name">{item.user.surnameR} {item.user.middleNameR}</td>
-                                <td className="reviewer__item"><Link to="/" className="link">{item.articlesOnProcess}</Link></td> {/* находятся на рецензии */}
-                                {/* <td className="reviewer__item"><Link to="/" className="link">{item.user.countOfDesignatedArticles}</Link></td> ожидают повторного рецензирования */}
-                                <td className="reviewer__item"><Link to="/" className="link">{item.countOfWrittenReviews}</Link></td> {/* написано рецензий (за все время) */}
-                                {this.props.isChooseReviewer &&
-                                    <td className="reviewer__item"><input type="checkbox" onChange={(e) => this.props.handleChange(e, item.id)}/></td>
+                            <React.Fragment>
+                                {(this.props.filter === item.subject || this.props.filter == null) &&
+                                <tr className="reviewer-container__tr" key={item.id}>
+                                    <td className="reviewer__item reviewer__item--name">{item.user.surnameR} {item.user.middleNameR}</td>
+                                    <td className="reviewer__item"><Link to="/" className="link">{item.articlesOnProcess}</Link></td> {/* находятся на рецензии */}
+                                    {/* <td className="reviewer__item"><Link to="/" className="link">{item.user.countOfDesignatedArticles}</Link></td> ожидают повторного рецензирования */}
+                                    <td className="reviewer__item"><Link to="/" className="link">{item.countOfWrittenReviews}</Link></td> {/* написано рецензий (за все время) */}
+                                    {this.props.isChooseReviewer &&
+                                        <td className="reviewer__item"><input type="checkbox" onChange={(e) => this.props.handleChange(e, item.id)}/></td>
+                                    }
+                                    {!this.props.isChooseReviewer &&
+                                        <td className="reviewer__item"><a href={'mailto:' + item.user.username} className="link">{item.user.username}</a></td>
+                                    }   
+                                </tr>
                                 }
-                                {!this.props.isChooseReviewer &&
-                                    <td className="reviewer__item"><a href={'mailto:' + item.user.username} className="link">{item.user.username}</a></td>
-                                }   
-                            </tr>
+                            </React.Fragment>
                         )}
                     </tbody>
                 </tabel>
