@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import ApiService from "../../service/ApiService";
 import checkAccessibility from '../../service/checkAccessibility';
+import { useTable } from 'react-table'
 
 /**
  * Таблица со всеми рецензентами.
@@ -37,9 +38,78 @@ class ReviewerComponent extends Component {
 			})
     }
 
+    Table({ columns, data }) {
+        // Use the state and functions returned from useTable to build your UI
+        const {
+          getTableProps,
+          getTableBodyProps,
+          headerGroups,
+          rows,
+          prepareRow,
+        } = useTable({
+          columns,
+          data,
+        })
+      
+        return (
+          <table {...getTableProps()}>
+            <thead>
+              {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map(column => (
+                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, i) => {
+                prepareRow(row)
+                return (
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map(cell => {
+                      return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    })}
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        )
+    }
+
+    columns = React.useMemo(
+        () => [
+          {
+            columns: [
+              {
+                Header: 'Age',
+                accessor: 'age',
+              },
+              {
+                Header: 'Visits',
+                accessor: 'visits',
+              },
+              {
+                Header: 'Status',
+                accessor: 'status',
+              },
+              {
+                Header: 'Profile Progress',
+                accessor: 'progress',
+              },
+            ],
+          },
+        ],
+        []
+      )
+    
+    data = React.useMemo(() => makeData(20), [])
+
     render() {
         return(
             <div ref={this.window}>
+                <this.Table columns={this.columns} data={this.data} />
                 {this.state.reviewers.length > 0 &&
                 <tabel className="reviewer-container">
                     <thead>

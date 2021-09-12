@@ -3,7 +3,8 @@ import { store } from '../store';
 
 // axios.defaults.baseURL = "http://localhost:4000";
 // axios.defaults.baseURL = "http://192.168.0.107:4000";
-axios.defaults.baseURL = "http://192.168.0.100:4000";
+// axios.defaults.baseURL = "http://192.168.0.100:4000";
+axios.defaults.baseURL = "http://172.20.10.3:4000";
 
 export default class ApiService {
     static baseUrl = axios.defaults.baseURL;
